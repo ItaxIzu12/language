@@ -7,6 +7,7 @@ import Lesson from "./pages/Lesson";
 import Listen from "./pages/Listen";
 import Podcasts from "./pages/Podcasts";
 import Quiz from "./pages/Quiz";
+import Read from "./pages/Read";
 import Review from "./pages/Review";
 import Settings from "./pages/Settings";
 import Speak from "./pages/Speak";
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="review" element={<Review />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="listen" element={<Listen />} />
+        <Route path="read" element={<Read />} />
         <Route path="speak" element={<Speak />} />
         <Route path="podcasts" element={<Podcasts />} />
         <Route path="settings" element={<Settings />} />

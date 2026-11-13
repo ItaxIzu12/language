@@ -100,7 +100,20 @@ export interface Episode {
   lines: EpisodeLine[];
 }
 
+/** A reading text with comprehension questions. */
+export interface ReadingText {
+  id: string;
+  title: string;
+  titleDe: string;
+  level: Level;
+  icon: string;
+  sentences: Array<{ target: string; reading: string; de: string }>;
+  questions: Array<{ question: string; answer: string; wrong: string[] }>;
+}
+
 export interface Language {
+  /** Reading texts. */
+  texts: ReadingText[];
   /** Name of the reading system, e.g. "Pinyin". */
   readingName: string;
   /** In-app mini podcast episodes. */

@@ -24,6 +24,8 @@ export interface Progress {
   /** XP earned per day (YYYY-MM-DD). */
   days: Record<string, number>;
   lessonsDone: number;
+  /** Completed one-off items (reading texts, role plays), by id. */
+  done: Record<string, boolean>;
 }
 
 export interface Settings {
@@ -36,7 +38,7 @@ export interface Settings {
 
 export type WordStatus = "new" | "learning" | "mastered";
 
-const emptyProgress = (): Progress => ({ cards: {}, xp: 0, days: {}, lessonsDone: 0 });
+const emptyProgress = (): Progress => ({ cards: {}, xp: 0, days: {}, lessonsDone: 0, done: {} });
 
 const defaultSettings = (): Settings => ({
   theme:
@@ -83,6 +85,8 @@ interface Store {
   answer: (id: string, correct: boolean, xp?: number) => void;
   addXp: (n: number) => void;
   finishLesson: () => void;
+  /** Marks a text / role play as completed. */
+  markDone: (id: string) => void;
   updateSettings: (patch: Partial<Settings>) => void;
   resetProgress: () => void;
   exportProgress: () => string;
@@ -192,6 +196,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     answer,
     addXp,
     finishLesson,
+    markDone: (id) => setProgress((p) => (p.done[id] ? p : { ...p, done: { ...p.done, [id]: true } })),
     updateSettings: (patch) => {
       // Each language keeps its own progress: swap it together with the setting.
       if (patch.lang && patch.lang !== settings.lang) {

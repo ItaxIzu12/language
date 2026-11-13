@@ -15,6 +15,7 @@ export const categories: Category[] = [
   { id: "directions", name: "Wege & Orte", icon: "🧭", description: "Richtungen, Orte, Orientierung." },
   { id: "home", name: "Zuhause & Alltag", icon: "🏠", description: "Wohnen, Alltagsroutine, Haushalt." },
   { id: "work", name: "Arbeit & Studium", icon: "💼", description: "Beruf, Büro, Lernen, Termine." },
+  { id: "education", name: "Schule & Lernen", icon: "🎓", description: "Schule, Uni, Sprache, Lesen und Schreiben." },
   { id: "hobbies", name: "Hobbys & Freizeit", icon: "⚽", description: "Sport, Spiele, Aktivitäten." },
   { id: "media", name: "Medien & Internet", icon: "📱", description: "Handy, Social Media, Filme, Chat." },
   { id: "feelings", name: "Gefühle & Meinungen", icon: "💭", description: "Emotionen, Meinungen, Vorschläge." },

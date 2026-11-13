@@ -159,7 +159,7 @@ export default function Settings() {
           {message && <p className="mt-3 text-sm font-semibold text-brand-600 dark:text-brand-300">{message}</p>}
         </Section>
 
-        <p className="muted text-center text-xs">LinguaFlow v0.1 · Sprachausgabe nutzt die Stimmen deines Geräts.</p>
+        <p className="muted text-center text-xs">LinguaFlow v0.2 · Sprachausgabe nutzt die Stimmen deines Geräts.</p>
       </div>
     </div>
   );

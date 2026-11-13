@@ -1,18 +1,29 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../lib/store";
 import { stopSpeaking } from "../lib/tts";
 import { cx } from "../lib/utils";
 
-const NAV: Array<{ to: string; label: string; short?: string; icon: string; end?: boolean }> = [
-  { to: "/", label: "Start", icon: "🏠", end: true },
-  { to: "/learn", label: "Lernen", icon: "📚" },
-  { to: "/review", label: "Wiederholen", short: "Karten", icon: "🃏" },
+interface NavItem {
+  to: string;
+  label: string;
+  icon: string;
+  end?: boolean;
+  /** Shown directly in the mobile bottom bar (the rest sits behind "Mehr"). */
+  primary?: boolean;
+  short?: string;
+}
+
+const NAV: NavItem[] = [
+  { to: "/", label: "Start", icon: "🏠", end: true, primary: true },
+  { to: "/learn", label: "Lernen", icon: "📚", primary: true },
+  { to: "/review", label: "Wiederholen", short: "Karten", icon: "🃏", primary: true },
   { to: "/quiz", label: "Quiz", icon: "🎯" },
+  { to: "/read", label: "Lesen", icon: "📖", primary: true },
   { to: "/listen", label: "Hören", icon: "🎧" },
   { to: "/speak", label: "Sprechen", icon: "🎤" },
   { to: "/podcasts", label: "Podcast", icon: "📻" },
-  { to: "/settings", label: "Einstellungen", short: "Mehr", icon: "⚙️" },
+  { to: "/settings", label: "Einstellungen", icon: "⚙️" },
 ];
 
 function Logo() {
@@ -50,10 +61,14 @@ function Stats() {
 export default function Layout() {
   const { lang, dueWords } = useStore();
   const location = useLocation();
+  const [moreOpen, setMoreOpen] = useState(false);
+  const secondary = NAV.filter((n) => !n.primary);
+  const secondaryActive = secondary.some((n) => location.pathname.startsWith(n.to));
 
   // Stop any running speech and scroll up when changing pages.
   useEffect(() => {
     stopSpeaking();
+    setMoreOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
@@ -112,16 +127,42 @@ export default function Layout() {
           </div>
         </main>
 
-        {/* Bottom navigation (mobile) */}
-        <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t border-slate-200 bg-white/95 px-1 pb-[env(safe-area-inset-bottom)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/95 lg:hidden">
-          {NAV.map((n) => (
+        {/* Bottom navigation (mobile): main items + "Mehr" sheet */}
+        {moreOpen && (
+          <div className="fixed inset-0 z-30 bg-slate-900/40 lg:hidden" onClick={() => setMoreOpen(false)}>
+            <div
+              className="animate-fade-in absolute inset-x-3 bottom-20 grid grid-cols-3 gap-2 rounded-3xl border border-slate-200 bg-white p-3 shadow-soft dark:border-slate-700 dark:bg-slate-900"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {secondary.map((n) => (
+                <NavLink
+                  key={n.to}
+                  to={n.to}
+                  className={({ isActive }) =>
+                    cx(
+                      "flex flex-col items-center gap-1 rounded-2xl px-2 py-3 text-xs font-semibold",
+                      isActive
+                        ? "bg-brand-50 text-brand-700 dark:bg-brand-900/40 dark:text-brand-200"
+                        : "text-slate-600 dark:text-slate-300",
+                    )
+                  }
+                >
+                  <span className="text-2xl leading-none">{n.icon}</span>
+                  {n.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        )}
+        <nav className="fixed inset-x-0 bottom-0 z-40 flex border-t border-slate-200 bg-white/95 px-1 pb-[env(safe-area-inset-bottom)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/95 lg:hidden">
+          {NAV.filter((n) => n.primary).map((n) => (
             <NavLink
               key={n.to}
               to={n.to}
               end={n.end}
               className={({ isActive }) =>
                 cx(
-                  "flex min-w-0 flex-1 flex-col items-center gap-0.5 py-2 text-[10px] font-semibold",
+                  "flex min-w-0 flex-1 flex-col items-center gap-0.5 py-2 text-[11px] font-semibold",
                   isActive ? "text-brand-600 dark:text-brand-300" : "text-slate-500 dark:text-slate-400",
                 )
               }
@@ -130,6 +171,18 @@ export default function Layout() {
               {n.short ?? n.label}
             </NavLink>
           ))}
+          <button
+            type="button"
+            aria-expanded={moreOpen}
+            onClick={() => setMoreOpen((o) => !o)}
+            className={cx(
+              "flex min-w-0 flex-1 flex-col items-center gap-0.5 py-2 text-[11px] font-semibold",
+              moreOpen || secondaryActive ? "text-brand-600 dark:text-brand-300" : "text-slate-500 dark:text-slate-400",
+            )}
+          >
+            <span className="text-xl leading-none">☰</span>
+            Mehr
+          </button>
         </nav>
       </div>
     </div>

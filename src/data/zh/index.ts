@@ -2,10 +2,15 @@ import type { Example, Language, Level, Pos, VocabItem } from "../../types";
 import { categories } from "./categories";
 import { listening } from "./listening";
 import { episodes, podcasts } from "./podcasts";
+import { texts } from "./reading";
 import part1 from "./vocab/part1";
 import part2 from "./vocab/part2";
 import part3 from "./vocab/part3";
 import part4 from "./vocab/part4";
+import part5 from "./vocab/part5";
+import part6 from "./vocab/part6";
+import part7 from "./vocab/part7";
+import part8 from "./vocab/part8";
 
 const POS: Record<string, Pos> = {
   n: "noun",
@@ -64,7 +69,12 @@ function parseBlocks(blocks: Record<string, string>, seen: Set<string>): VocabIt
 }
 
 const seen = new Set<string>();
-const vocab: VocabItem[] = [part1, part2, part3, part4].flatMap((p) => parseBlocks(p, seen));
+// Stable sort by level, so lessons in every category run from A1 up to B2.
+const vocab: VocabItem[] = [part1, part2, part3, part4, part5, part6, part7, part8]
+  .flatMap((p) => parseBlocks(p, seen))
+  .map((w, i) => ({ w, i }))
+  .sort((a, b) => LEVELS.indexOf(a.w.level) - LEVELS.indexOf(b.w.level) || a.i - b.i)
+  .map((x) => x.w);
 
 export const zh: Language = {
   code: "zh",
@@ -79,4 +89,5 @@ export const zh: Language = {
   listening,
   podcasts,
   episodes,
+  texts,
 };

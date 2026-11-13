@@ -7,7 +7,9 @@ import { makeOptions, sentenceTiles, stripPunct } from "../lib/exercises";
 import { useStore } from "../lib/store";
 import { speak } from "../lib/tts";
 import { cx, shuffle } from "../lib/utils";
-import type { Category, VocabItem } from "../types";
+import { getSet } from "../lib/sets";
+import type { WordSet } from "../lib/sets";
+import type { VocabItem } from "../types";
 
 const WORDS_PER_LESSON = 5;
 const XP_PER_ANSWER = 10;
@@ -49,17 +51,17 @@ export default function Lesson() {
   const { categoryId } = useParams();
   const { lang } = useStore();
   const [run, setRun] = useState(0);
-  const category = lang.categories.find((c) => c.id === categoryId);
+  const category = getSet(lang, categoryId);
   if (!category) return <Navigate to="/learn" replace />;
   return <LessonRun key={`${category.id}-${run}`} category={category} onRestart={() => setRun((r) => r + 1)} />;
 }
 
-function LessonRun({ category, onRestart }: { category: Category; onRestart: () => void }) {
+function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () => void }) {
   const { lang, progress, settings, answer, addXp, finishLesson } = useStore();
 
   // Freeze the lesson content at start so progress updates don't reshuffle it.
   const [words] = useState<VocabItem[]>(() => {
-    const all = lang.vocab.filter((w) => w.category === category.id);
+    const all = category.words;
     const fresh = all.filter((w) => !progress.cards[w.id]);
     const known = all
       .filter((w) => progress.cards[w.id])

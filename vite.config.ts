@@ -6,4 +6,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "./",
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        // Keep the (large) learning content in its own cacheable file.
+        manualChunks: (id) => (id.includes("/src/data/") ? "content" : undefined),
+      },
+    },
+  },
 });

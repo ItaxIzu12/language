@@ -176,9 +176,9 @@ export default function Dashboard() {
       {/* Modes */}
       <section className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {[
-          { to: "/quiz", icon: "🎯", title: "Quiz", text: "Schnelle Runden" },
+          { to: "/read", icon: "📖", title: "Lesen", text: "Texte mit Fragen" },
           { to: "/listen", icon: "🎧", title: "Hören", text: "Sätze verstehen" },
-          { to: "/speak", icon: "🎤", title: "Sprechen", text: "Aussprache üben" },
+          { to: "/speak", icon: "🎤", title: "Sprechen", text: "Rollenspiele & Aussprache" },
           { to: "/podcasts", icon: "📻", title: "Podcast", text: "Dialoge mit Transkript" },
         ].map((m) => (
           <Link key={m.to} to={m.to} className="card group p-4 transition hover:-translate-y-0.5 hover:shadow-soft">

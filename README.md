@@ -5,29 +5,38 @@ Erste Sprache: **Chinesisch (Mandarin)**, von A1 Richtung B2.
 
 ## Funktionen
 
-- **Lektionen im Spielstil** – neue Wörter kennenlernen, dann gemischte Übungen (Bedeutung wählen, Wort wählen, Hören, Satz aus Zeichen bauen). Fehler kommen am Ende nochmal.
+- **Lektionen im Spielstil** – neue Wörter kennenlernen, dann gemischte Übungen (Bedeutung wählen, Wort wählen, Hören, Satz aus Zeichen bauen). Fehler kommen am Ende nochmal. Lektionen gibt es je Kategorie und je Stufe.
+- **Wortschatz nach Kategorie und nach Stufe** – 20 Kategorien, Stufen A1 bis B2, jeweils filterbar; Wörterbuch-Suche auf Deutsch, in Schriftzeichen oder Pinyin (auch ohne Tonzeichen).
 - **Karteikarten mit Spaced Repetition** – schwierige Wörter kommen öfter, sichere seltener (Leitner-System, 7 Stufen).
 - **Quiz** – schnelle 10er-Runden, filterbar nach Kategorie, Niveau und „aus meinem Kurs".
+- **Lesen** – Texte von A1 bis B2: vorlesen lassen, Satz antippen für Ton und Übersetzung, danach Verständnisfragen.
 - **Hörverstehen** – Sätze anhören (normal oder 🐢 langsam) und die Bedeutung wählen.
-- **Sprechen** – nachsprechen mit Spracherkennung und Sofort-Feedback (Chrome, Edge, Safari).
+- **Sprechen** – vier Modi: Wörter nachsprechen, Sätze nachsprechen, „Sag es auf Chinesisch" (nur deutscher Hinweis) und Rollenspiele, in denen du eine Rolle im Dialog übernimmst. Feedback per Spracherkennung (Chrome, Edge, Safari), sonst Selbsteinschätzung.
 - **Podcast** – Mini-Episoden (Dialoge) mit mitlaufendem Transkript, Pinyin und Übersetzung zum Ein-/Ausblenden, plus Links zu echten Lern-Podcasts.
 - **Motivation** – XP, Level, Tagesziel, Tages-Serie (Streak), Wochenübersicht, Fortschritt je Niveau.
-- **Wörterbuch** – alle Wörter nach Kategorien, Suche auf Deutsch, in Schriftzeichen oder Pinyin (auch ohne Tonzeichen).
 - **Hell/Dunkel**, mobil nutzbar, als App auf dem Handy installierbar (PWA-Manifest).
 - **Kein Server nötig** – der Fortschritt liegt im Browser und lässt sich in den Einstellungen exportieren/importieren.
 
-## Inhalt (Stand v0.1)
+## Inhalt (Stand v0.2)
 
 | | |
 |---|---|
-| Wörter gesamt | 867 in 19 Kategorien |
-| davon aus dem bisherigen Kurs (★) | 414 – alle mit Beispielsatz |
-| Wörter mit Beispielsatz | 703 |
+| Wörter gesamt | 2.647 in 20 Kategorien |
+| nach Stufe | A1: 522 · A2: 883 · B1: 1.214 · B2: 28 |
+| davon aus dem bisherigen Kurs (★) | 414 |
+| Wörter mit Beispielsatz | 2.483 |
+| Lesetexte | 10 (A1–B2) mit je 3 Verständnisfragen |
 | Hörsätze | 48 kuratierte + alle Beispielsätze |
-| Podcast-Episoden | 6 Dialoge (A1–B1) |
+| Podcast-Episoden / Rollenspiele | 6 Dialoge (A1–B1) |
 
-Für ein vollständiges B2-Niveau braucht man etwa 4.000–5.000 Wörter. Die App ist dafür ausgelegt, Schritt für Schritt
-dorthin zu wachsen – neue Wörter sind eine Zeile Text (siehe unten).
+**Abdeckung bis B1:** Der Wortschatz enthält alle Wörter der offiziellen Listen HSK 3.0 Stufen 1–3 und HSK 2.0
+Stufen 1–4 (zusammen 2.510 Wörter) plus die Chat- und Alltagswörter aus dem eigenen Kurs. Die Stufen-Zuordnung
+(HSK 3.0 Stufe 1 = A1, 2 = A2, 3 = B1) ist eine Näherung. **B2 ist erst angelegt** (28 Wörter); dafür kämen
+die HSK-3.0-Stufen 4–5 mit rund 2.000 weiteren Wörtern dazu.
+
+Die HSK-Ergänzung (`part5.ts`–`part8.ts`) wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
+Dubletten), aber nicht Wort für Wort von einem Menschen gegengelesen. Fällt ein Fehler auf, lässt er sich in der
+jeweiligen Zeile direkt korrigieren.
 
 ## Starten
 
@@ -63,7 +72,7 @@ mitgelieferte Workflow (`.github/workflows/deploy.yml`) die App bei jedem Push a
 
 ### Neue Wörter
 
-Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part4.ts`, gruppiert nach Kategorie. Eine Zeile = ein Wort:
+Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part8.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–8: HSK-Ergänzung). Eine Zeile = ein Wort:
 
 ```
 Wort | Pinyin | Deutsch | Wortart | Niveau | Beispielsatz | Beispiel-Pinyin | Beispiel-Deutsch | L
@@ -79,11 +88,17 @@ Wort | Pinyin | Deutsch | Wortart | Niveau | Beispielsatz | Beispiel-Pinyin | Be
 
 In `src/data/zh/categories.ts` einen Eintrag ergänzen und in einer `part*.ts`-Datei einen Block mit derselben `id` anlegen.
 
-### Neue Hörsätze und Podcast-Episoden
+### Neue Lesetexte
+
+`src/data/zh/reading.ts`: pro Text die Sätze als `Satz | Pinyin | Deutsch` und die Fragen als
+`Frage | richtige Antwort | falsche Antwort | falsche Antwort`.
+
+### Neue Hörsätze, Podcast-Episoden und Rollenspiele
 
 - `src/data/zh/listening.ts`: `Satz | Pinyin | Deutsch | Niveau`
 - `src/data/zh/podcasts.ts`: Episode mit Zeilen `Sprecher | Satz | Pinyin | Deutsch`. Die Episoden werden von der
-  Sprachausgabe des Geräts vorgelesen – es sind also keine Audiodateien nötig.
+  Sprachausgabe des Geräts vorgelesen – es sind also keine Audiodateien nötig. Jede Episode mit einem Sprecher
+  `我` erscheint automatisch auch als Rollenspiel unter „Sprechen".
 
 ### Neue Sprache
 
@@ -100,7 +115,7 @@ src/
   data/          Inhalte (Sprachen, Vokabeln, Hörsätze, Podcasts)
   lib/           Logik: store (Fortschritt, SRS, XP), tts, speech, exercises
   components/    Layout und wiederverwendbare Bausteine
-  pages/         Start, Lernen, Lektion, Wiederholen, Quiz, Hören, Sprechen, Podcast, Einstellungen
+  pages/         Start, Lernen, Lektion, Wiederholen, Quiz, Lesen, Hören, Sprechen, Podcast, Einstellungen
 ```
 
 Technik: React 18, TypeScript, Vite, Tailwind CSS, React Router. Keine weiteren Laufzeit-Abhängigkeiten.
@@ -115,7 +130,7 @@ Technik: React 18, TypeScript, Vite, Tailwind CSS, React Router. Keine weiteren 
 
 ## Ideen für später
 
-Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
+B2-Wortschatz (HSK 3.0 Stufen 4–5), Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
 für den Podcast, Abzeichen und Ranglisten.
 
 ## Lizenz
