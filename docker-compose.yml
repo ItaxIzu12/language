@@ -1,0 +1,8 @@
+services:
+  linguaflow:
+    build: .
+    image: linguaflow:latest
+    container_name: linguaflow
+    ports:
+      - "8080:80"
+    restart: unless-stopped

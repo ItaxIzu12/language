@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.github
+.claude
+.agents
+.impeccable
+language
+*.log
+.DS_Store
+.env
+.env.*
