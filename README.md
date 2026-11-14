@@ -3,6 +3,75 @@
 Moderne Web-App zum Sprachenlernen – gebaut für langfristiges Lernen und einfach erweiterbar.
 Erste Sprache: **Chinesisch (Mandarin)**, von A1 Richtung B2.
 
+Das [Architekturhandbuch](docs/ARCHITEKTUR.md) enthält Datenmodell, Schnittstellen, Betrieb und Ausbauplan.
+
+## Lokaler Start mit Docker Compose
+
+Voraussetzungen sind Git und ein laufendes Docker Desktop oder Docker Engine mit Compose v2 oder neuer. Die Befehle laufen im Verzeichnis mit `docker-compose.yml`. Für diesen Start brauchst du auf dem Host weder Node.js noch PostgreSQL.
+
+**Mit einem Befehl starten**
+
+```sh
+./scripts/init-env.sh
+```
+
+Beim ersten Start erzeugt das Skript mit OpenSSL die lokale Konfiguration. Weitere Aufrufe verwenden die vorhandene `.env`. Im Terminal siehst du die Compose-Prüfung, den Build, den Start und den Status der Dienste.
+
+**Optionale manuelle Einrichtung.** Beim ersten Einrichten die Vorlage kopieren und nur die Kopie bearbeiten. Falls bereits eine `.env` vorhanden ist, behalte sie und ergänze bei Bedarf einzelne Felder.
+
+```sh
+(umask 077 && cp -n .env.example .env)
+```
+
+Öffne `.env` in deinem Editor. Erzeuge zwei unabhängige Zufallswerte und trage je einen in `POSTGRES_PASSWORD` und `DJANGO_SECRET_KEY` ein. Ein Passwortmanager kann beide Werte erstellen. Alternativ generiert `openssl rand -hex 48` bei jedem Aufruf einen neuen Wert.
+
+| Variable | Zweck und lokaler Standard |
+|---|---|
+| `POSTGRES_DB` | Datenbankname, standardmäßig `linguaflow` |
+| `POSTGRES_USER` | Technische Datenbankrolle, standardmäßig `linguaflow` |
+| `POSTGRES_PASSWORD` | Eigenes zufälliges Passwort für die Datenbankrolle |
+| `DJANGO_SECRET_KEY` | Separater zufälliger Django-Signaturschlüssel |
+| `WEB_PORT` | Port auf deinem Rechner, standardmäßig `8080` |
+| `DJANGO_ALLOWED_HOSTS` | Erlaubte Hostnamen, lokal `localhost,127.0.0.1,[::1]`. Der Container-Healthcheck nutzt localhost. |
+| `DJANGO_HTTPS` | Lokal `0`. Hinter eingerichtetem HTTPS aktiviert `1` Secure-Cookies. |
+| `DJANGO_CSRF_TRUSTED_ORIGINS` | Lokal leer. Bei Bedarf exakte HTTPS-Origins durch Kommas trennen. |
+
+**Docker-Befehle, die das Skript ausführt**
+
+```sh
+docker compose config --quiet
+docker compose up --build --wait --wait-timeout 180
+docker compose ps
+```
+
+Die App öffnet sich unter [localhost:8080](http://localhost:8080). Bei geändertem `WEB_PORT` verwende deinen gewählten Port. Unter **Einstellungen → Lernkonto → Neues Konto anlegen** erstellst du einen Lernzugang. Zur Übernahme eines Gaststands exportierst du im Gastmodus eine Sicherung und liest sie im gewünschten Konto wieder ein.
+
+| Dienst | Aufgabe |
+|---|---|
+| `linguaflow` | nginx liefert das gebaute React-Frontend aus und leitet `/api/v1/` weiter. Nur dieser Dienst belegt einen Host-Port, gebunden an Loopback. |
+| `backend` | Django/Gunicorn, Migrationen und Import des Mandarin-Pakets beim Start |
+| `db` | PostgreSQL 17, persistente Daten im benannten Volume `pgdata` |
+
+**Betrieb und Fehlersuche**
+
+```sh
+docker compose logs --tail=80 backend
+docker compose exec backend python manage.py showmigrations
+docker compose exec backend python manage.py test
+docker compose down
+```
+
+`down` erhält das Datenvolume. Nach Änderungen am Code mit `docker compose up --build --wait` neu bauen. Bei belegtem Web-Port passe `WEB_PORT` an. Bei fehlendem Pflichtwert meldet bereits `config --quiet` den Variablennamen. Bei einem bestehenden Volume ändert das Bearbeiten der `.env` allein kein Datenbankpasswort. Eine Rotation erfolgt zuerst koordiniert an der vorhandenen Datenbankrolle, anschließend in der lokalen Konfiguration. `down -v` löscht das Volume und damit Konten und Lernstände.
+
+**Sichern und Wiederherstellung prüfen.** Datenbankexporte enthalten private Lernstände und Passwort-Hashes. Lege sie im ignorierten Verzeichnis `backups/` ab. Der folgende Befehl verwendet die im Container konfigurierten Namen:
+
+```sh
+mkdir -p backups
+(umask 077 && docker compose exec -T db sh -ec 'exec pg_dump -Fc -U "$POSTGRES_USER" "$POSTGRES_DB"' > "backups/linguaflow-$(date +%Y%m%d-%H%M%S).dump")
+```
+
+Eine zweite verschlüsselte Kopie außerhalb des Rechners schützt vor Verlust des Volumes und der lokalen Sicherung. Die Anleitung zur Wiederherstellung in einer separaten Testdatenbank steht im [Architekturhandbuch](docs/ARCHITEKTUR.md).
+
 ## Funktionen
 
 - **Tagesblatt** – die Startseite ist das Kalenderblatt von heute: Datum auf Deutsch und in der Lernsprache (zum
@@ -33,7 +102,7 @@ Navigation, Bedienelemente und Seitenaufbau bleiben in allen Sprachen gleich.
 Die Regeln stehen in `DESIGN.md`, die Produktbeschreibung in `PRODUCT.md`. Technisch besteht eine Welt aus zwei Teilen:
 
 1. einem Farb- und Schriftsatz in `src/index.css` unter `[data-theme="<id>"]` (hell und dunkel),
-2. einer `culture`-Beschreibung der Sprache (`src/data/<code>/culture.ts`): Name der Welt, Zeichen für die
+2. einer `culture`-Beschreibung der Sprache (`src/themes/<code>/culture.ts`): Name der Welt, Zeichen für die
    Tagesblatt-Spalten, Siegel, Stufen-Marken und die Funktion, die das heutige Datum in der Sprache schreibt.
 
 ## Inhalt (Stand v0.4)
@@ -55,27 +124,6 @@ Stufen 1–5 sowie die Chat- und Alltagswörter aus dem eigenen Kurs. Die Stufen
 Die HSK-Ergänzung (`part5.ts`–`part9.ts`) wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
 Dubletten), aber nicht Wort für Wort von einem Menschen gegengelesen. Fällt ein Fehler auf, lässt er sich in der
 jeweiligen Zeile direkt korrigieren.
-
-## Mit Django und PostgreSQL starten
-
-Im Projektordner mit laufendem Docker Desktop:
-
-```bash
-python3 scripts/init-env.py
-docker compose up --build -d
-docker compose ps
-```
-
-Öffne **http://localhost:8080** und wähle **Einstellungen → Lernkonto → Neues Konto anlegen**.
-Für einen bestehenden Gaststand zuerst auf dem ursprünglichen Gerät unter **Einstellungen → Daten**
-eine Sicherung exportieren. Dann im gewünschten Konto einlesen. Der Import ersetzt dessen Lernstand für die aktuelle Sprache.
-Benutzerpasswörter lassen sich lokal mit `docker compose exec backend python manage.py changepassword NAME` zurücksetzen.
-
-nginx liefert die React-App aus und leitet `/api/v1/` an Gunicorn/Django weiter.
-Compose startet PostgreSQL 17 mit einem benannten Volume. Beim Start migriert Django die Datenbank
-und importiert den mit dem Image gebauten Kurskatalog aus der gemeinsamen TypeScript-Sprachregistrierung.
-Nur der Web-Port ist am Loopback-Interface erreichbar. `docker compose down` behält die Daten.
-Mit `docker compose exec -T db pg_dump -U linguaflow linguaflow > linguaflow.sql` sicherst du alle Konten und Lernstände.
 
 ### API und Synchronisierung
 
@@ -99,32 +147,46 @@ versioniert den gesamten Lernstand je Sprache. Die statische GitHub-Pages-Versio
 Tests gegen das in Compose verwendete PostgreSQL:
 
 ```bash
-docker compose exec backend python manage.py test learning
+docker compose exec backend python manage.py test
 ```
 
 ## Frontend separat starten
 
-Voraussetzung: [Node.js](https://nodejs.org) 18 oder neuer.
+Voraussetzung: [Node.js](https://nodejs.org) 22 (wie im Docker-Build).
 
 ```bash
-npm install      # einmalig
+npm ci           # Abhängigkeiten aus package-lock.json
 npm run dev      # Entwicklungsserver, meist http://localhost:5173
 npm run build    # fertige Version nach dist/
 npm run preview  # die gebaute Version lokal ansehen
 ```
 
-## Auf GitHub hochladen
+## Git, Zugangsdaten und persönliche Inhalte
 
-1. Auf github.com ein neues, leeres Repository anlegen (z. B. `linguaflow`), ohne README.
-2. Im Projektordner:
+Die versionierte `.env.example` enthält leere Pflichtfelder und öffentliche Standardwerte. Zugangsdaten gehören in die lokale `.env`. Variablen mit Präfix `VITE_` sind für Browsercode bestimmt. Verwende sie ausschließlich für öffentliche Einstellungen.
 
-```bash
-git remote add origin https://github.com/DEIN-NAME/linguaflow.git
-git push -u origin main
+| Daten | Lokaler Ablageort |
+|---|---|
+| Datenbankpasswort, Django-Schlüssel und spätere Anbieter-Tokens | `.env` oder lokales `secrets/` |
+| Rohimporte, Gesprächsmitschnitte, Screenshots und private Notizen | `private/` |
+| Browserexporte und Datenbanksicherungen | `exports/`, `backups/` |
+| Aufnahmen und Uploads | `recordings/`, `uploads/` |
+| Öffentlich auslieferbare Kursinhalte und Beispiele | `src/data/` nach manueller Freigabe |
+
+Diese privaten Verzeichnisse sind in Git und im Docker-Build-Kontext ausgeschlossen. Eine Datei unter `src/` oder `public/` kann im Browser und auf GitHub Pages sichtbar werden. Nutze dort nur freigegebene Lernbeispiele. Namen, private Gesprächsinhalte, Bilder und personenbezogene Freitexte erfordern eine inhaltliche Prüfung. Der Git-Verlauf enthält außerdem die in Git konfigurierte Commit-Identität. Für eine private Adresse kannst du die von GitHub bereitgestellte Noreply-Adresse als lokale `user.email` konfigurieren.
+
+**Einmal pro Klon vor dem ersten Push** den lokalen Hook aktivieren. Auf macOS mit Homebrew:
+
+```sh
+brew install gitleaks
+git config --local core.hooksPath .githooks
+git config --get core.hooksPath
+gitleaks git --redact --log-opts="--all" .
 ```
 
-(Der Ordner ist bereits ein Git-Repository mit einem ersten Commit. Falls nicht: vorher `git init -b main`,
-`git add .`, `git commit -m "LinguaFlow"`.)
+Unter Linux installiere Gitleaks ab Version 8.19 über die [offiziellen Releases](https://github.com/gitleaks/gitleaks/releases). Der Hook prüft ausgehende Commits einschließlich zwischenzeitlich entfernter Dateien auf ausgeschlossene Pfade und bekannte Secret-Muster. Bei fehlendem Scanner hält er den Push an. Vor jedem Commit zusätzlich `git diff --cached` lesen. Mit `git check-ignore -v .env` lässt sich die lokale Ausschlussregel prüfen. `git ls-files -- .env` sollte leer bleiben.
+
+Bereits veröffentlichte Zugangsdaten beim Anbieter sperren oder rotieren. Danach die betroffenen Dateien aus der Versionierung nehmen und bei Bedarf den Verlauf koordiniert bereinigen. Ein Ignore-Muster entfernt keine frühere Veröffentlichung. Für weitere Mitwirkende kann der Repository-Inhaber zusätzlich GitHub Push Protection aktivieren, sofern für das Repository verfügbar.
 
 ### Kostenlos online stellen (GitHub Pages)
 
@@ -136,7 +198,7 @@ mitgelieferte Workflow (`.github/workflows/deploy.yml`) die App bei jedem Push a
 
 ### Neue Wörter
 
-Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part8.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–9: HSK-Ergänzung (9 = B2)). Eine Zeile = ein Wort:
+Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part9.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–9: HSK-Ergänzung (9 = B2)). Eine Zeile = ein Wort:
 
 ```
 Wort | Pinyin | Deutsch | Wortart | Niveau | Beispielsatz | Beispiel-Pinyin | Beispiel-Deutsch | L
@@ -167,7 +229,7 @@ In `src/data/zh/categories.ts` einen Eintrag ergänzen und in einer `part*.ts`-D
 ### Neue Sprache
 
 1. Ordner `src/data/<code>/` nach dem Vorbild von `src/data/zh/` anlegen (Kategorien, Vokabeln, Hörsätze,
-   Lesetexte, Podcasts, `culture.ts`).
+   Lesetexte, Podcasts). Die Kulturkonfiguration liegt in `src/themes/<code>/`.
 2. In `src/index.css` die Welt der Sprache als `[data-theme="<id>"]` anlegen (Kopie des Blocks „almanac" anpassen).
 3. In `src/data/languages.ts` importieren und in `languages` eintragen.
 
@@ -180,7 +242,7 @@ src/
   data/          Inhalte je Sprache: Vokabeln, Hörsätze, Lesetexte, Podcasts, Kultur
   lib/           Logik: store (Fortschritt, SRS, XP, Tagesplan), tts, speech, pinyin, exercises
   components/    Layout, Navigation, wiederverwendbare Bausteine
-  pages/         Heute, Wortschatz, Lektion, Karten, Fundstücke, Quiz, Hören, Sprechen, Tonlabor,
+  features/         Heute, Wortschatz, Lektion, Karten, Fundstücke, Quiz, Hören, Sprechen, Tonlabor,
                  Lesen, Podcast, Chronik, Einstellungen
 DESIGN.md        Gestaltungsregeln
 PRODUCT.md       Produktbeschreibung
@@ -199,9 +261,9 @@ Display, Noto Serif SC; alle unter der SIL Open Font License) werden über Fonts
 
 ## Ideen für später
 
-weitere Sprachen mit eigener Gestaltung, Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
+weitere Sprachen mit eigener Gestaltung, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
 für den Podcast, Abzeichen und Ranglisten.
 
 ## Lizenz
 
-MIT – siehe [LICENSE](LICENSE). Für eine kommerzielle Nutzung die Lizenz nach Bedarf anpassen.
+MIT. Siehe [LICENSE](LICENSE).

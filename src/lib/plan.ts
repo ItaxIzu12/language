@@ -36,9 +36,11 @@ export function dayPlan(opts: {
   dueCount: number;
   hasCards: boolean;
   weekday: number;
+  tonePractice?: boolean;
 }): Block[] {
   const { activity, nextSetId, nextSetName, dueCount, hasCards, weekday } = opts;
-  const evening = EVENING[weekday % EVENING.length];
+  const scheduled = EVENING[weekday % EVENING.length];
+  const evening = scheduled.to === "/tones" && !opts.tonePractice ? EVENING[3] : scheduled;
   return [
     {
       id: "lesson",

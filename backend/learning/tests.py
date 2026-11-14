@@ -1,7 +1,7 @@
 from copy import deepcopy
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-from .models import Course, Word
+from catalog.models import Course, Word
 
 STATE = {
     "settings": {"lang": "zh", "rate": 0.9, "showReading": True, "theme": "light", "dailyGoal": 50},
@@ -14,6 +14,7 @@ class LearningApiTests(TestCase):
     url = "/api/v1/state/zh/"
 
     def setUp(self):
+        Course.objects.create(code="zh", name="Chinesisch", content={"texts": []})
         self.user = get_user_model().objects.create_user("learner")
         self.client.force_login(self.user)
 
@@ -56,9 +57,28 @@ class LearningApiTests(TestCase):
         self.assertEqual(post("login").json()["username"], "mandarin")
 
     def test_catalog_pagination(self):
-        course = Course.objects.create(code="zh", name="Chinesisch", content={"texts": []})
+        course = Course.objects.get(pk="zh")
         Word.objects.create(course=course, key="test", position=0, category="food", level="A1", content={"de": "Tee"})
         base = "/api/v1/courses/zh/words/"
         self.assertEqual(self.client.get(base, {"level": "A1"}).json()["results"], [{"de": "Tee"}])
         self.assertEqual(self.client.get(base, {"offset": 1}).json()["results"], [])
         self.assertEqual(self.client.get(base, {"limit": -1}).status_code, 400)
+
+    def test_two_languages_export_and_delete(self):
+        Course.objects.create(code="ja", name="Japanisch", content={})
+        self.put()
+        headers = {"HTTP_X_LEARNER": "learner"}
+        path = "/api/v1/state/ja/"
+        self.assertIsNone(self.client.get(path, **headers).json()["document"])
+        payload = {"revision": 0, "document": deepcopy(STATE)}
+        self.assertEqual(self.client.put(path, payload, content_type="application/json", **headers).status_code, 400)
+        payload["document"]["settings"]["lang"] = "ja"
+        self.assertEqual(self.client.put(path, payload, content_type="application/json", **headers).status_code, 200)
+        profile = self.client.get("/api/v1/me/").json()
+        self.assertEqual({s["language_id"] for s in profile["states"]}, {"ja", "zh"})
+        self.assertEqual(self.client.delete("/api/v1/me/", {"password": "wrong"}, content_type="application/json").status_code, 403)
+        self.user.set_password("confirm-test-185")
+        self.user.save()
+        self.client.force_login(self.user)
+        self.assertEqual(self.client.delete("/api/v1/me/", {"password": "confirm-test-185"}, content_type="application/json").status_code, 200)
+        self.assertFalse(get_user_model().objects.filter(pk=self.user.pk).exists())

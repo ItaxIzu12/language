@@ -2,8 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { ReactNode } from "react";
 import { getLanguage } from "../data/languages";
 import type { Category, Language, VocabItem } from "../types";
-import type { AccountState } from "./account";
-import { draftKey, getDraft, useAccountSync } from "./useAccountSync";
+import type { AccountState } from "../features/account/account";
+import { draftKey, getDraft, useAccountSync } from "../features/account/useAccountSync";
 import { addDays, dayKey } from "./utils";
 
 // ---------------------------------------------------------------------------
@@ -152,10 +152,10 @@ interface Store {
 const Ctx = createContext<Store | null>(null);
 
 export function StoreProvider({ children, account }: { children: ReactNode; account: AccountState | null }) {
-  const [draft] = useState(() => account ? getDraft(draftKey(account.username, "zh")) : null);
+  const [draft] = useState(() => account ? getDraft(draftKey(account.username, account.language)) : null);
   const initial = draft?.document ?? account?.document;
   const [settings, setSettings] = useState<Settings>(() =>
-    account ? initial?.settings ?? defaultSettings() : load("linguaflow.settings", defaultSettings()),
+    account ? initial?.settings ?? { ...defaultSettings(), lang: account.language } : load("linguaflow.settings", defaultSettings()),
   );
   const progressKey = `linguaflow.progress.${settings.lang}`;
   const customKey = `linguaflow.custom.${settings.lang}`;
@@ -172,7 +172,11 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
     return () => clearInterval(t);
   }, []);
 
-  useEffect(() => { if (!account) save("linguaflow.settings", settings); }, [account, settings]);
+  useEffect(() => {
+    if (account) return;
+    save("linguaflow.settings", settings);
+    save(`linguaflow.settings.${settings.lang}`, settings);
+  }, [account, settings]);
   useEffect(() => { if (!account) save(progressKey, progress); }, [account, progressKey, progress]);
   useEffect(() => { if (!account) save(customKey, customWords); }, [account, customKey, customWords]);
 
@@ -317,8 +321,17 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
     updateSettings: (patch) => {
       // Each language keeps its own progress and own words: swap them with the setting.
       if (patch.lang && patch.lang !== settings.lang) {
+        if (account) {
+          if (sync.pending) return;
+          const url = new URL(window.location.href);
+          url.searchParams.set("lang", patch.lang);
+          window.location.assign(url);
+          return;
+        }
         setProgress(load(`linguaflow.progress.${patch.lang}`, emptyProgress()));
         setCustomWords(loadList<VocabItem>(`linguaflow.custom.${patch.lang}`));
+        setSettings({ ...load(`linguaflow.settings.${patch.lang}`, defaultSettings()), ...patch });
+        return;
       }
       setSettings((s) => ({ ...s, ...patch }));
     },
@@ -328,6 +341,7 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
     importProgress: (json) => {
       try {
         const data = JSON.parse(json);
+        if (data.lang && data.lang !== settings.lang) return false;
         const p = data.progress ?? data;
         if (!p || typeof p !== "object" || typeof p.cards !== "object") return false;
         setProgress({ ...emptyProgress(), ...p });

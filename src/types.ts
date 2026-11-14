@@ -152,6 +152,9 @@ export interface Culture {
 }
 
 export interface Language {
+  /** Optional language-specific inputs and exercise capabilities. */
+  normalizeReading?: (input: string) => string;
+  tonePractice?: boolean;
   /** Visual and cultural world of this language. */
   culture: Culture;
   /** Reading texts. */

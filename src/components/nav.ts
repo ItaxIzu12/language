@@ -25,7 +25,7 @@ export interface NavItem {
   end?: boolean;
 }
 
-export const HOME: NavItem = { to: "/", label: "Heute", hint: "Dein Tagesblatt", icon: CalendarDays, end: true };
+export const HOME: NavItem = { to: "/heute", label: "Heute", hint: "Dein Tagesblatt", icon: CalendarDays, end: true };
 
 export const LEARN: NavItem[] = [
   { to: "/learn", label: "Wortschatz", hint: "Alle Wörter nach Kategorie und Stufe", icon: LibraryBig },
@@ -41,6 +41,10 @@ export const PRACTICE: NavItem[] = [
   { to: "/read", label: "Lesen", hint: "Texte mit Verständnisfragen", icon: BookOpenText },
   { to: "/podcasts", label: "Podcast", hint: "Dialoge mit mitlaufendem Transkript", icon: Podcast },
 ];
+
+export function practiceItems(tonePractice?: boolean) {
+  return PRACTICE.filter(item => item.to !== "/tones" || tonePractice);
+}
 
 export const ARCHIVE: NavItem[] = [
   { to: "/chronicle", label: "Chronik", hint: "Dein Lernjahr auf einen Blick", icon: ChartNoAxesColumn },
@@ -62,5 +66,5 @@ export function mobileOwner(path: string): string {
   if ([LEARN[2], ...ARCHIVE].some((n) => path.startsWith(n.to)) || path.startsWith("/more")) return "/more";
   if (path.startsWith("/review")) return "/review";
   if (path.startsWith("/learn") || path.startsWith("/lesson")) return "/learn";
-  return "/";
+  return HOME.to;
 }

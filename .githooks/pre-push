@@ -1,0 +1,28 @@
+#!/bin/sh
+# Scan outgoing commits, including secrets removed by a later commit.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+while read -r local_ref local_oid remote_ref remote_oid; do
+    case "$local_oid" in *[!0]*) ;; *) continue ;; esac
+    range=$local_oid
+    if git cat-file -e "$remote_oid^{commit}" 2>/dev/null; then
+        range="$remote_oid..$local_oid"
+    fi
+    if ! command -v gitleaks >/dev/null; then
+        echo "Push angehalten: Gitleaks 8 installieren (macOS: brew install gitleaks)." >&2
+        exit 1
+    fi
+    # Inspect file names from every outgoing commit, including forced additions.
+    listing=$(mktemp)
+    trap 'rm -f "$listing"' EXIT
+    git log --format= --name-only --diff-filter=ACMRT -z "$range" > "$listing"
+    if git check-ignore --no-index --quiet -z --stdin < "$listing"; then
+        echo "Push angehalten: Der Verlauf enthält eine durch Git-Ignore-Regeln ausgeschlossene Datei." >&2
+        exit 1
+    else
+        status=$?
+        [ "$status" -eq 1 ] || exit "$status"
+    fi
+    gitleaks git --redact --log-opts="$range" . </dev/null
+    rm -f "$listing"
+done

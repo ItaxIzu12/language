@@ -5,9 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/init-env.py
-      - run: docker compose up --build --wait --wait-timeout 180
-      - run: docker compose exec -T backend python manage.py test learning
+      - run: ./scripts/init-env.sh
+      - run: docker compose exec -T backend python manage.py test
       - run: curl -fsS http://localhost:8080/api/v1/courses/zh/words/?limit=1 | python3 -c 'import json,sys; assert json.load(sys.stdin)["count"] > 4000'
       - if: failure()
         run: docker compose logs --tail 100

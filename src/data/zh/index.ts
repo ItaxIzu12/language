@@ -1,6 +1,7 @@
+import { numbersToMarks } from "../../lib/pinyin";
 import type { Example, Language, Level, Pos, VocabItem } from "../../types";
 import { categories } from "./categories";
-import { culture } from "./culture";
+import { culture } from "../../themes/zh/culture";
 import { listening } from "./listening";
 import { episodes, podcasts } from "./podcasts";
 import { texts } from "./reading";
@@ -80,6 +81,8 @@ const vocab: VocabItem[] = [part1, part2, part3, part4, part5, part6, part7, par
 
 export const zh: Language = {
   code: "zh",
+  tonePractice: true,
+  normalizeReading: numbersToMarks,
   name: "Chinesisch",
   nativeName: "中文",
   ttsLang: "zh-CN",

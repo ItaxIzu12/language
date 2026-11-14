@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useStore } from "../lib/store";
 import { stopSpeaking } from "../lib/tts";
 import { cx } from "../lib/utils";
-import { ARCHIVE, HOME, LEARN, MOBILE, PRACTICE, mobileOwner } from "./nav";
+import { ARCHIVE, HOME, LEARN, MOBILE, practiceItems, mobileOwner } from "./nav";
 import type { NavItem } from "./nav";
 
 function RailLink({ item, badge }: { item: NavItem; badge?: number }) {
@@ -84,7 +84,7 @@ export default function Layout() {
           <nav aria-label="Hauptnavigation" className="sticky top-[58px] space-y-6 px-3 py-8">
             <RailLink item={HOME} />
             <RailGroup title="Lernen" items={LEARN} dueBadge={dueWords.length} />
-            <RailGroup title="Üben" items={PRACTICE} />
+            <RailGroup title="Üben" items={practiceItems(lang.tonePractice)} />
             <RailGroup title="Verlauf" items={ARCHIVE} />
           </nav>
         </aside>
