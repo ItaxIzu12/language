@@ -1,7 +1,7 @@
 {
   "name": "linguaflow",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "LinguaFlow – modern multi-language learning app. Start: Mandarin Chinese (Flashcards, SRS, Quiz, TTS, Listening, Podcasts).",
   "scripts": {

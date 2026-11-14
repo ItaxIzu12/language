@@ -36,24 +36,23 @@ Die Regeln stehen in `DESIGN.md`, die Produktbeschreibung in `PRODUCT.md`. Techn
 2. einer `culture`-Beschreibung der Sprache (`src/data/<code>/culture.ts`): Name der Welt, Zeichen für die
    Tagesblatt-Spalten, Siegel, Stufen-Marken und die Funktion, die das heutige Datum in der Sprache schreibt.
 
-## Inhalt (Stand v0.3)
+## Inhalt (Stand v0.4)
 
 | | |
 |---|---|
-| Wörter gesamt | 2.647 in 20 Kategorien |
-| nach Stufe | A1: 522 · A2: 883 · B1: 1.214 · B2: 28 |
+| Wörter gesamt | 4.691 in 20 Kategorien |
+| nach Stufe | A1: 522 · A2: 883 · B1: 1.214 · B2: 2.072 |
 | davon aus dem bisherigen Kurs (★) | 414 |
-| Wörter mit Beispielsatz | 2.483 |
+| Wörter mit Beispielsatz | 4.527 |
 | Lesetexte | 10 (A1–B2) mit je 3 Verständnisfragen |
 | Hörsätze | 48 kuratierte + alle Beispielsätze |
 | Podcast-Episoden / Rollenspiele | 6 Dialoge (A1–B1) |
 
-**Abdeckung bis B1:** Der Wortschatz enthält alle Wörter der offiziellen Listen HSK 3.0 Stufen 1–3 und HSK 2.0
-Stufen 1–4 (zusammen 2.510 Wörter) plus die Chat- und Alltagswörter aus dem eigenen Kurs. Die Stufen-Zuordnung
-(HSK 3.0 Stufe 1 = A1, 2 = A2, 3 = B1) ist eine Näherung. **B2 ist erst angelegt** (28 Wörter); dafür kämen
-die HSK-3.0-Stufen 4–5 mit rund 2.000 weiteren Wörtern dazu.
+**Abdeckung bis B2:** Der Wortschatz enthält alle Wörter der offiziellen Listen HSK 3.0 Stufen 1–5 und HSK 2.0
+Stufen 1–5 sowie die Chat- und Alltagswörter aus dem eigenen Kurs. Die Stufen-Zuordnung
+(HSK 3.0 Stufe 1 = A1, 2 = A2, 3 = B1, 4–5 = B2) ist eine Näherung.
 
-Die HSK-Ergänzung (`part5.ts`–`part8.ts`) wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
+Die HSK-Ergänzung (`part5.ts`–`part9.ts`) wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
 Dubletten), aber nicht Wort für Wort von einem Menschen gegengelesen. Fällt ein Fehler auf, lässt er sich in der
 jeweiligen Zeile direkt korrigieren.
 
@@ -91,7 +90,7 @@ mitgelieferte Workflow (`.github/workflows/deploy.yml`) die App bei jedem Push a
 
 ### Neue Wörter
 
-Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part8.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–8: HSK-Ergänzung). Eine Zeile = ein Wort:
+Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part8.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–9: HSK-Ergänzung (9 = B2)). Eine Zeile = ein Wort:
 
 ```
 Wort | Pinyin | Deutsch | Wortart | Niveau | Beispielsatz | Beispiel-Pinyin | Beispiel-Deutsch | L
@@ -154,7 +153,7 @@ Display, Noto Serif SC; alle unter der SIL Open Font License) werden über Fonts
 
 ## Ideen für später
 
-B2-Wortschatz (HSK 3.0 Stufen 4–5), weitere Sprachen mit eigener Gestaltung, Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
+weitere Sprachen mit eigener Gestaltung, Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
 für den Podcast, Abzeichen und Ranglisten.
 
 ## Lizenz
