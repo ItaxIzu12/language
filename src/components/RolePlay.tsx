@@ -1,10 +1,12 @@
+import { Lightbulb } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "../lib/store";
 import { speak } from "../lib/tts";
 import { cx } from "../lib/utils";
 import type { Episode } from "../types";
+import { RoundBar, RoundEnd } from "./Round";
 import SpeakCheck, { PASS_SCORE } from "./SpeakCheck";
-import { Confetti, ProgressBar, SpeakButton } from "./ui";
+import { ICON, SpeakButton } from "./ui";
 
 /** The learner's role in every dialogue. */
 export const LEARNER = "我";
@@ -14,7 +16,7 @@ export const LEARNER = "我";
  * (guided by a German cue) and gets feedback, line by line.
  */
 export default function RolePlay({ episode, onExit }: { episode: Episode; onExit: () => void }) {
-  const { lang, settings, addXp, markDone } = useStore();
+  const { lang, settings, addXp, markDone, logActivity } = useStore();
   const [index, setIndex] = useState(0);
   const [attempted, setAttempted] = useState(false);
   const [hint, setHint] = useState(false);
@@ -38,9 +40,10 @@ export default function RolePlay({ episode, onExit }: { episode: Episode; onExit
     if (done && !rewarded.current) {
       rewarded.current = true;
       addXp(20);
+      logActivity("apply");
       markDone(`roleplay:${episode.id}`);
     }
-  }, [done, addXp, markDone, episode.id]);
+  }, [done, addXp, logActivity, markDone, episode.id]);
 
   const next = () => {
     setAttempted(false);
@@ -48,43 +51,60 @@ export default function RolePlay({ episode, onExit }: { episode: Episode; onExit
     setIndex((i) => i + 1);
   };
 
+  if (done) {
+    return (
+      <RoundEnd
+        score={good}
+        total={myTotal}
+        perfect={good === myTotal}
+        line={`Sätze im Rollenspiel „${episode.titleDe}“ gut getroffen. +20 XP`}
+        onExit={onExit}
+        exitLabel="Zurück zur Auswahl"
+      />
+    );
+  }
+
   return (
     <div className="mx-auto max-w-xl">
-      <div className="mb-5 flex items-center gap-3">
-        <button type="button" onClick={onExit} aria-label="Beenden" className="muted text-xl hover:text-slate-900 dark:hover:text-white">
-          ✕
-        </button>
-        <ProgressBar value={index / episode.lines.length} className="h-3.5" />
-        <span className="text-2xl">{episode.icon}</span>
-      </div>
+      <RoundBar onExit={onExit} value={index / episode.lines.length} right={<span className="hanzi text-base text-ink">{episode.title}</span>} />
 
-      {/* Conversation so far */}
-      <div className="space-y-3">
-        {episode.lines.slice(0, index).map((l, i) => (
-          <Bubble key={i} mine={l.speaker === LEARNER} speaker={l.speaker} target={l.target} reading={settings.showReading ? l.reading : undefined} de={l.de} />
-        ))}
+      {/* Conversation so far: a ruled transcript, own lines indented */}
+      <ol className="rows border-y border-rule">
+        {episode.lines.slice(0, index + (mine ? 0 : 1)).map((l, i) => {
+          const own = l.speaker === LEARNER;
+          const current = i === index;
+          return (
+            <li key={i} className={cx("flex items-start gap-3 py-3", own && "pl-8", current && "animate-enter")}>
+              <span className={cx("hanzi mt-0.5 w-10 shrink-0 text-sm font-bold", own ? "text-cinnabar" : "text-dim")}>{l.speaker}</span>
+              <p className="min-w-0 flex-1">
+                <span className="hanzi block text-lg font-medium">{l.target}</span>
+                {settings.showReading && <span className="reading block text-sm">{l.reading}</span>}
+                <span className="block text-sm text-dim">{l.de}</span>
+              </p>
+              {!own && <SpeakButton text={l.target} size="sm" />}
+            </li>
+          );
+        })}
+      </ol>
 
-        {line && !mine && <Bubble mine={false} speaker={line.speaker} target={line.target} reading={settings.showReading ? line.reading : undefined} de={line.de} active />}
-      </div>
-
-      {line && !mine && (
-        <button type="button" className="btn-primary mt-5 w-full py-3.5 text-base" onClick={next}>
+      {!mine && (
+        <button type="button" className="btn-ink mt-6 w-full" onClick={next}>
           Weiter
         </button>
       )}
 
-      {line && mine && (
-        <div className="card mt-4 animate-fade-in p-5">
-          <div className="muted text-xs font-bold uppercase tracking-wide">Du bist dran – sag auf Chinesisch:</div>
-          <div className="mt-1 text-lg font-bold">{line.de}</div>
+      {mine && (
+        <div className="mt-6 animate-enter border-t-2 border-ink pt-5">
+          <h2 className="font-bold">Du bist dran. Sag auf {lang.name}:</h2>
+          <p className="mt-1 text-2xl font-bold">{line.de}</p>
 
           {(hint || attempted) && (
-            <div className="mt-3 flex items-start gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800/60">
+            <div className="mt-4 flex items-start gap-3 bg-wash p-3">
               <SpeakButton text={line.target} size="sm" />
-              <div>
-                {attempted && <div className="hanzi text-lg">{line.target}</div>}
-                <div className="text-sm text-brand-700 dark:text-brand-300">{line.reading}</div>
-              </div>
+              <p className="min-w-0">
+                {attempted && <span className="hanzi block text-lg font-medium">{line.target}</span>}
+                <span className="reading block text-sm">{line.reading}</span>
+              </p>
             </div>
           )}
 
@@ -102,75 +122,21 @@ export default function RolePlay({ episode, onExit }: { episode: Episode; onExit
             />
           </div>
 
-          <div className="mt-5 flex flex-wrap justify-between gap-3">
+          <div className="mt-6 flex flex-wrap justify-between gap-3">
             {!hint && !attempted ? (
-              <button type="button" className="btn-ghost" onClick={() => setHint(true)}>
-                💡 Tipp ({lang.readingName})
+              <button type="button" className="btn-line" onClick={() => setHint(true)}>
+                <Lightbulb {...ICON} aria-hidden /> {lang.readingName} als Hilfe
               </button>
             ) : (
               <span />
             )}
-            <button type="button" className={attempted ? "btn-primary" : "btn-ghost"} onClick={next}>
+            <button type="button" className={attempted ? "btn-ink" : "btn-quiet"} onClick={next}>
               {attempted ? "Weiter" : "Überspringen"}
             </button>
           </div>
         </div>
       )}
-
-      {done && (
-        <div className="card mt-5 p-8 text-center">
-          <Confetti count={40} />
-          <p className="text-6xl">🎭</p>
-          <h2 className="mt-4 text-2xl font-extrabold">Rollenspiel geschafft!</h2>
-          <p className="muted mt-1">
-            {good} von {myTotal} Sätzen gut getroffen · +20 XP
-          </p>
-          <button type="button" className="btn-primary mt-6" onClick={onExit}>
-            Fertig
-          </button>
-        </div>
-      )}
       <div ref={bottom} className="h-4" />
-    </div>
-  );
-}
-
-function Bubble({
-  mine,
-  speaker,
-  target,
-  reading,
-  de,
-  active,
-}: {
-  mine: boolean;
-  speaker: string;
-  target: string;
-  reading?: string;
-  de: string;
-  active?: boolean;
-}) {
-  return (
-    <div className={cx("flex", mine ? "justify-end" : "justify-start")}>
-      <div
-        className={cx(
-          "max-w-[85%] rounded-2xl px-4 py-3",
-          mine
-            ? "rounded-br-md bg-brand-600 text-white"
-            : "rounded-bl-md border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900",
-          active && "animate-fade-in ring-2 ring-brand-400",
-        )}
-      >
-        <div className={cx("text-xs font-bold", mine ? "text-brand-100" : "muted")}>{speaker}</div>
-        <div className="flex items-start gap-2">
-          <div className="min-w-0">
-            <div className="hanzi text-lg">{target}</div>
-            {reading && <div className={cx("text-sm", mine ? "text-brand-100" : "text-brand-700 dark:text-brand-300")}>{reading}</div>}
-            <div className={cx("text-sm", mine ? "text-brand-100" : "muted")}>{de}</div>
-          </div>
-          {!mine && <SpeakButton text={target} size="sm" />}
-        </div>
-      </div>
     </div>
   );
 }

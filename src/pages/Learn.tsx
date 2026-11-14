@@ -1,10 +1,12 @@
+import { ArrowRight, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import WordRow from "../components/WordRow";
-import { LevelBadge, PageHeader, ProgressBar, Segmented } from "../components/ui";
+import { Bar, Glyph, ICON, PageHeader, Segmented, levelTone } from "../components/ui";
 import { LEVELS } from "../data/languages";
 import { LEVEL_INFO, levelSetId } from "../lib/sets";
 import { useStore } from "../lib/store";
+import { cx } from "../lib/utils";
 
 type View = "categories" | "levels";
 
@@ -32,123 +34,112 @@ export default function Learn() {
   return (
     <div>
       <PageHeader
-        title="Lernen"
+        title="Wortschatz"
         subtitle={`${lang.vocab.length} Wörter in ${lang.categories.length} Kategorien und ${LEVELS.length} Stufen.`}
       />
 
-      <input
-        className="input mb-5"
-        type="search"
-        placeholder={`Wörterbuch durchsuchen: Deutsch, ${lang.nativeName} oder ${lang.readingName} …`}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        aria-label="Wörterbuch durchsuchen"
-      />
+      <label className="relative mb-8 block">
+        <span className="sr-only">Wörterbuch durchsuchen</span>
+        <Search {...ICON} aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-dim" />
+        <input
+          className="field pl-10"
+          type="search"
+          placeholder={`Suchen: Deutsch, ${lang.nativeName} oder ${lang.readingName} (auch ohne Tonzeichen)`}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </label>
 
       {q ? (
-        <div className="card overflow-hidden">
-          {results.length ? (
-            <ul>
+        results.length ? (
+          <>
+            <p className="caption mb-2">{results.length === 80 ? "Die ersten 80 Treffer" : `${results.length} Treffer`}</p>
+            <ul className="rows border-y border-rule">
               {results.map((w) => (
                 <WordRow key={w.id} word={w} />
               ))}
             </ul>
-          ) : (
-            <p className="muted p-6 text-center text-sm">Kein Wort gefunden für „{query}“.</p>
-          )}
-        </div>
+          </>
+        ) : (
+          <p className="text-dim">Kein Wort gefunden für „{query}“. Versuch es mit einem kürzeren Suchwort.</p>
+        )
       ) : (
         <>
-          <div className="mb-5">
+          <div className="mb-6">
             <Segmented<View>
+              label="Ansicht"
               value={view}
               onChange={setView}
               options={[
-                { value: "categories", label: "📚 Nach Kategorie" },
-                { value: "levels", label: "📈 Nach Stufe" },
+                { value: "categories", label: "Nach Kategorie" },
+                { value: "levels", label: "Nach Stufe" },
               ]}
             />
           </div>
 
           {view === "levels" ? (
-            <div className="grid gap-4 sm:grid-cols-2">
+            <ul className="rows border-y-2 border-ink">
               {LEVELS.map((lv) => {
                 const words = lang.vocab.filter((w) => w.level === lv);
                 const done = words.filter((w) => status(w.id) !== "new").length;
                 const mastered = words.filter((w) => status(w.id) === "mastered").length;
                 const info = LEVEL_INFO[lv];
                 return (
-                  <Link
-                    key={lv}
-                    to={`/learn/${levelSetId(lv)}`}
-                    className="card group flex flex-col p-5 transition hover:-translate-y-0.5 hover:shadow-soft"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-3xl transition group-hover:scale-110 dark:bg-brand-900/40">
-                        {info.icon}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl font-extrabold">Stufe {lv}</span>
-                          <LevelBadge level={lv} />
-                        </div>
-                        <div className="muted text-sm font-semibold">{info.title}</div>
-                      </div>
-                    </div>
-                    <p className="muted mt-3 flex-1 text-sm">{info.description}</p>
-                    <div className="muted mt-3 flex justify-between text-xs font-medium">
-                      <span>
-                        {done} / {words.length} Wörter
+                  <li key={lv}>
+                    <Link
+                      to={`/learn/${levelSetId(lv)}`}
+                      className="group grid grid-cols-[5rem_minmax(0,1fr)_auto] items-center gap-x-5 py-5 sm:grid-cols-[7rem_minmax(0,1fr)_14rem_auto]"
+                    >
+                      <span className={cx("font-display text-6xl font-black leading-none sm:text-7xl", levelTone(lv))}>{lv}</span>
+                      <span className="min-w-0">
+                        <span className="block text-lg font-bold">{info.title}</span>
+                        <span className="block text-sm text-dim">{info.description}</span>
                       </span>
-                      <span>🏆 {mastered}</span>
-                    </div>
-                    <ProgressBar value={words.length ? done / words.length : 0} className="mt-1.5" />
-                  </Link>
+                      <span className="col-span-2 col-start-2 mt-3 sm:col-span-1 sm:col-start-3 sm:mt-0">
+                        <span className="flex justify-between text-sm text-dim">
+                          <span>
+                            {done} / {words.length}
+                          </span>
+                          <span>{mastered} sicher</span>
+                        </span>
+                        <Bar value={words.length ? done / words.length : 0} className="mt-1.5" />
+                      </span>
+                      <ArrowRight
+                        {...ICON}
+                        aria-hidden
+                        className="col-start-3 row-start-1 shrink-0 text-dim transition-transform group-hover:translate-x-1 sm:col-start-4"
+                      />
+                    </Link>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-x-10 border-t-2 border-ink md:grid-cols-2">
               {lang.categories.map((c) => {
                 const words = lang.vocab.filter((w) => w.category === c.id);
                 if (!words.length) return null;
                 const done = words.filter((w) => status(w.id) !== "new").length;
-                const mastered = words.filter((w) => status(w.id) === "mastered").length;
                 return (
-                  <Link
-                    key={c.id}
-                    to={`/learn/${c.id}`}
-                    className="card group flex flex-col p-5 transition hover:-translate-y-0.5 hover:shadow-soft"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl transition group-hover:scale-110 dark:bg-brand-900/40">
-                        {c.icon}
-                      </div>
-                      {done === words.length && <span title="Alle Wörter begonnen">✅</span>}
-                    </div>
-                    <div className="mt-3 font-bold">{c.name}</div>
-                    <p className="muted mt-0.5 flex-1 text-sm">{c.description}</p>
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {LEVELS.map((lv) => {
-                        const n = words.filter((w) => w.level === lv).length;
-                        return n ? (
-                          <span key={lv} className="chip bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                            {lv} · {n}
+                  <li key={c.id} className="min-w-0 border-b border-rule">
+                    <Link to={`/learn/${c.id}`} className="group flex items-center gap-4 py-4">
+                      <Glyph char={c.glyph} tone={done === words.length ? "red" : "ink"} />
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-baseline justify-between gap-3">
+                          <span className="truncate font-semibold">{c.name}</span>
+                          <span className="shrink-0 text-sm text-dim">
+                            {done} / {words.length}
                           </span>
-                        ) : null;
-                      })}
-                    </div>
-                    <div className="muted mt-3 flex justify-between text-xs font-medium">
-                      <span>
-                        {done} / {words.length} Wörter
+                        </span>
+                        <span className="block truncate text-sm text-dim">{c.description}</span>
+                        <Bar value={done / words.length} className="mt-2" />
                       </span>
-                      <span>🏆 {mastered}</span>
-                    </div>
-                    <ProgressBar value={done / words.length} className="mt-1.5" />
-                  </Link>
+                      <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           )}
         </>
       )}

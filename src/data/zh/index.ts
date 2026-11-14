@@ -1,5 +1,6 @@
 import type { Example, Language, Level, Pos, VocabItem } from "../../types";
 import { categories } from "./categories";
+import { culture } from "./culture";
 import { listening } from "./listening";
 import { episodes, podcasts } from "./podcasts";
 import { texts } from "./reading";
@@ -80,10 +81,10 @@ export const zh: Language = {
   code: "zh",
   name: "Chinesisch",
   nativeName: "中文",
-  flag: "🇨🇳",
   ttsLang: "zh-CN",
   readingName: "Pinyin",
   available: true,
+  culture,
   categories,
   vocab,
   listening,

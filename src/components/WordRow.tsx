@@ -1,64 +1,64 @@
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { POS_LABELS } from "../data/languages";
 import { useStore } from "../lib/store";
+import { cx } from "../lib/utils";
 import type { VocabItem } from "../types";
-import { LevelBadge, SpeakButton, StatusDot } from "./ui";
+import { LevelTag, SpeakButton, StatusMark } from "./ui";
 
-/** One vocabulary entry in a list; tap to expand the example sentence. */
+/** One vocabulary entry in a ruled list; opens to show details and the example sentence. */
 export default function WordRow({ word }: { word: VocabItem }) {
-  const { status, settings } = useStore();
+  const { status, settings, progress } = useStore();
   const [open, setOpen] = useState(false);
+  const card = progress.cards[word.id];
   return (
-    <li className="border-b border-slate-100 last:border-0 dark:border-slate-800">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => setOpen((o) => !o)}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setOpen((o) => !o)}
-        className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50"
-      >
-        <StatusDot status={status(word.id)} />
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-baseline gap-x-3">
-            <span className="hanzi text-xl font-medium">{word.target}</span>
-            {settings.showReading && <span className="text-sm text-brand-700 dark:text-brand-300">{word.reading}</span>}
-          </div>
-          <div className="truncate text-sm text-slate-600 dark:text-slate-300">{word.de}</div>
-        </div>
-        <div className="hidden items-center gap-1.5 sm:flex">
-          {word.learned && (
-            <span className="chip bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300" title="Aus deinem Kurs">
-              ★ Kurs
-            </span>
-          )}
-          <LevelBadge level={word.level} />
-        </div>
+    <li>
+      <div className="flex items-center gap-3 py-2.5">
+        <StatusMark status={status(word.id)} />
+        <button
+          type="button"
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+          className="grid min-w-0 flex-1 grid-cols-[minmax(4.5rem,auto)_minmax(0,1fr)] items-baseline gap-x-4 text-left"
+        >
+          <span className="hanzi text-2xl font-bold leading-tight">{word.target}</span>
+          <span className="min-w-0">
+            {settings.showReading && <span className="reading block text-sm">{word.reading}</span>}
+            <span className="block truncate">{word.de}</span>
+          </span>
+        </button>
+        <span className="hidden items-center gap-2 sm:flex">
+          {word.learned && <span className="tag text-dim">Kurs</span>}
+          <LevelTag level={word.level} />
+        </span>
         <SpeakButton text={word.target} size="sm" />
+        <button
+          type="button"
+          aria-label={open ? "Details schließen" : "Details öffnen"}
+          onClick={() => setOpen((o) => !o)}
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center text-dim hover:text-ink"
+        >
+          <ChevronDown size={18} strokeWidth={1.75} aria-hidden className={cx("transition-transform", open && "rotate-180")} />
+        </button>
       </div>
       {open && (
-        <div className="animate-fade-in space-y-2 bg-slate-50 px-4 pb-4 pt-1 text-sm dark:bg-slate-800/40">
-          <div className="muted flex flex-wrap gap-2 text-xs">
-            <span>{POS_LABELS[word.pos]}</span>
-            <span>·</span>
-            <span>Niveau {word.level}</span>
-            {word.learned && (
-              <>
-                <span>·</span>
-                <span>aus deinem Kurs</span>
-              </>
-            )}
-          </div>
+        <div className="animate-enter space-y-3 bg-wash/60 px-4 py-4 text-sm">
+          <p className="text-dim">
+            {POS_LABELS[word.pos]} · Stufe {word.level}
+            {word.learned && " · aus deinem Kurs"}
+            {card && ` · ${card.right}× richtig, ${card.wrong}× falsch`}
+          </p>
           {word.example ? (
-            <div className="flex items-start gap-3 rounded-xl bg-white p-3 dark:bg-slate-900">
+            <div className="flex items-start gap-3">
               <SpeakButton text={word.example.target} size="sm" />
-              <div>
-                <div className="hanzi text-base">{word.example.target}</div>
-                {settings.showReading && <div className="text-brand-700 dark:text-brand-300">{word.example.reading}</div>}
-                <div className="muted">{word.example.de}</div>
-              </div>
+              <p className="min-w-0">
+                <span className="hanzi block text-lg font-medium">{word.example.target}</span>
+                {settings.showReading && <span className="reading block">{word.example.reading}</span>}
+                <span className="block text-dim">{word.example.de}</span>
+              </p>
             </div>
           ) : (
-            <div className="muted">Noch kein Beispielsatz hinterlegt.</div>
+            <p className="text-dim">Zu diesem Wort ist noch kein Beispielsatz hinterlegt.</p>
           )}
         </div>
       )}

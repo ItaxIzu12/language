@@ -6,16 +6,16 @@ export interface WordSet {
   id: string;
   kind: "category" | "level";
   name: string;
-  icon: string;
+  glyph: string;
   description: string;
   words: VocabItem[];
 }
 
-export const LEVEL_INFO: Record<Level, { icon: string; title: string; description: string }> = {
-  A1: { icon: "🌱", title: "Einstieg", description: "Die ersten Wörter: begrüßen, bestellen, sich vorstellen." },
-  A2: { icon: "🌿", title: "Grundlagen", description: "Alltag meistern: einkaufen, verabreden, erzählen." },
-  B1: { icon: "🌳", title: "Mittelstufe", description: "Frei sprechen über Arbeit, Reisen, Meinungen und Pläne." },
-  B2: { icon: "🏔️", title: "Obere Mittelstufe", description: "Abstrakte Themen, Gesellschaft, feinere Ausdrucksweise." },
+export const LEVEL_INFO: Record<Level, { title: string; description: string }> = {
+  A1: { title: "Einstieg", description: "Die ersten Wörter: begrüßen, bestellen, sich vorstellen." },
+  A2: { title: "Grundlagen", description: "Alltag meistern: einkaufen, verabreden, erzählen." },
+  B1: { title: "Mittelstufe", description: "Frei sprechen über Arbeit, Reisen, Meinungen und Pläne." },
+  B2: { title: "Obere Mittelstufe", description: "Abstrakte Themen, Gesellschaft, feinere Ausdrucksweise." },
 };
 
 export function levelSetId(level: Level): string {
@@ -30,8 +30,8 @@ export function getSet(lang: Language, id: string | undefined): WordSet | undefi
     return {
       id,
       kind: "level",
-      name: `Stufe ${level} · ${info.title}`,
-      icon: info.icon,
+      name: `Stufe ${level} – ${info.title}`,
+      glyph: lang.culture.levelGlyphs[LEVELS.indexOf(level)],
       description: info.description,
       words: lang.vocab.filter((w) => w.level === level),
     };
@@ -42,7 +42,7 @@ export function getSet(lang: Language, id: string | undefined): WordSet | undefi
     id,
     kind: "category",
     name: category.name,
-    icon: category.icon,
+    glyph: category.glyph,
     description: category.description,
     words: lang.vocab.filter((w) => w.category === category.id),
   };

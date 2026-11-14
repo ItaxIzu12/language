@@ -1,8 +1,10 @@
+import { Check, Mic, RotateCcw, Square } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { listenOnce, recognitionSupported } from "../lib/speech";
 import type { ListenHandle } from "../lib/speech";
 import { useStore } from "../lib/store";
 import { cx, similarity } from "../lib/utils";
+import { ICON, Verdict } from "./ui";
 
 export const PASS_SCORE = 0.75;
 
@@ -43,8 +45,8 @@ export default function SpeakCheck({
       if (!alternatives.length) {
         setError(
           err === "not-allowed" || err === "service-not-allowed"
-            ? "Mikrofon-Zugriff wurde nicht erlaubt. Bitte im Browser freigeben."
-            : "Ich habe nichts verstanden – versuch es noch einmal, nah am Mikrofon.",
+            ? "Das Mikrofon ist nicht freigegeben. Erlaube den Zugriff in der Adressleiste des Browsers und versuch es erneut."
+            : "Es kam nichts an. Sprich näher am Mikrofon und drück den Knopf noch einmal.",
         );
         return;
       }
@@ -65,14 +67,16 @@ export default function SpeakCheck({
 
   if (!supported) {
     return (
-      <div className="text-center">
-        <p className="muted mb-3 text-sm">Sprich laut – dein Browser kann die Aussprache nicht prüfen. Wie lief es?</p>
-        <div className="flex justify-center gap-3">
-          <button type="button" className="btn-ghost" onClick={() => onResult(0)}>
-            🔁 Noch unsicher
+      <div>
+        <p className="mb-3 text-sm text-dim">
+          Dieser Browser kann die Aussprache nicht prüfen. Sprich laut und beurteile dich selbst.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <button type="button" className="btn-line" onClick={() => onResult(0)}>
+            <RotateCcw {...ICON} aria-hidden /> Noch unsicher
           </button>
-          <button type="button" className="btn-primary" onClick={() => onResult(1)}>
-            ✅ Hat geklappt
+          <button type="button" className="btn-ink" onClick={() => onResult(1)}>
+            <Check {...ICON} aria-hidden /> Hat geklappt
           </button>
         </div>
       </div>
@@ -80,36 +84,37 @@ export default function SpeakCheck({
   }
 
   return (
-    <div className="text-center">
-      <button
-        type="button"
-        onClick={record}
-        aria-label={recording ? "Aufnahme stoppen" : "Aufnahme starten"}
-        className={cx(
-          "mx-auto flex h-20 w-20 items-center justify-center rounded-full text-3xl text-white shadow-soft transition active:scale-95",
-          recording ? "animate-pulse bg-rose-500" : "bg-accent-500 hover:bg-accent-600",
-        )}
-      >
-        {recording ? "⏹" : "🎤"}
-      </button>
-      <p className="muted mt-2 text-sm">{recording ? "Ich höre zu … sprich jetzt." : "🎤 drücken und sprechen"}</p>
-
-      {error && <p className="mt-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">{error}</p>}
-
-      {score !== null && heard !== null && (
-        <div
+    <div>
+      <div className="flex items-center gap-4">
+        <button
+          type="button"
+          onClick={record}
+          aria-label={recording ? "Aufnahme stoppen" : "Aufnahme starten"}
           className={cx(
-            "animate-fade-in mt-4 rounded-2xl p-4",
-            score >= PASS_SCORE ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-amber-50 dark:bg-amber-900/30",
+            "inline-flex h-16 w-16 shrink-0 items-center justify-center rounded transition-transform active:translate-y-px",
+            recording ? "animate-pulse bg-cinnabar text-on-cinnabar" : "bg-ink text-paper hover:bg-ink/85",
           )}
         >
-          <div className="text-lg font-extrabold">
-            {score >= 0.95 ? "Perfekt! 🎯" : score >= PASS_SCORE ? "Gut gemacht! 👍" : "Fast – versuch es nochmal 💪"}
-          </div>
-          <div className="muted mt-1 text-sm">
-            Verstanden: <span className="hanzi text-base text-slate-900 dark:text-slate-100">{heard}</span> ·{" "}
-            {Math.round(score * 100)} % Übereinstimmung
-          </div>
+          {recording ? <Square size={24} strokeWidth={1.75} aria-hidden /> : <Mic size={26} strokeWidth={1.75} aria-hidden />}
+        </button>
+        <p className="text-sm text-dim">{recording ? "Aufnahme läuft – sprich jetzt." : "Knopf drücken und sprechen."}</p>
+      </div>
+
+      {error && (
+        <p role="alert" className="mt-4 border-t-2 border-cinnabar pt-3 text-sm">
+          {error}
+        </p>
+      )}
+
+      {score !== null && heard !== null && (
+        <div className="mt-4">
+          <Verdict
+            ok={score >= PASS_SCORE}
+            title={score >= 0.95 ? "Genau getroffen." : score >= PASS_SCORE ? "Gut verständlich." : "Noch nicht ganz – versuch es noch einmal."}
+          >
+            Verstanden wurde <span className="hanzi text-base font-medium">{heard}</span> · {Math.round(score * 100)} %
+            Übereinstimmung
+          </Verdict>
         </div>
       )}
     </div>

@@ -1,174 +1,201 @@
+import { Check, Download, Moon, Sun, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";
-import { PageHeader, Segmented, SpeakButton } from "../components/ui";
+import { ICON, PageHeader, Segmented, SpeakButton } from "../components/ui";
 import { languages, upcomingLanguages } from "../data/languages";
 import { useStore } from "../lib/store";
 import { cx } from "../lib/utils";
 
 export default function Settings() {
-  const { lang, settings, updateSettings, progress, resetProgress, exportProgress, importProgress } = useStore();
+  const { lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
   const fileInput = useRef<HTMLInputElement>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
   const download = () => {
     const blob = new Blob([exportProgress()], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `linguaflow-fortschritt-${lang.code}.json`;
+    a.download = `linguaflow-${lang.code}.json`;
     a.click();
     URL.revokeObjectURL(url);
-    setMessage("Fortschritt exportiert.");
+    setMessage({ ok: true, text: "Sicherung gespeichert." });
   };
 
   const upload = async (file: File | undefined) => {
     if (!file) return;
     const ok = importProgress(await file.text());
-    setMessage(ok ? "Fortschritt importiert." : "Die Datei konnte nicht gelesen werden.");
+    setMessage(
+      ok
+        ? { ok: true, text: "Sicherung eingelesen." }
+        : { ok: false, text: "Die Datei ist keine LinguaFlow-Sicherung. Wähle eine Datei, die du hier exportiert hast." },
+    );
   };
 
   return (
-    <div>
-      <PageHeader title="Einstellungen" subtitle="Passe LinguaFlow an dich an." />
+    <div className="max-w-3xl">
+      <PageHeader title="Einstellungen" />
 
-      <div className="space-y-5">
-        <Section title="Sprache">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {languages.map((l) => (
+      <Section title="Sprache">
+        <p className="mb-3 text-sm text-dim">Jede Sprache bringt ihre eigene Gestaltung und ihren eigenen Fortschritt mit.</p>
+        <ul className="rows border-y border-rule">
+          {languages.map((l) => {
+            const active = l.code === lang.code;
+            return (
+              <li key={l.code}>
+                <button
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => updateSettings({ lang: l.code })}
+                  className="flex min-h-[64px] w-full items-center gap-4 py-3 text-left"
+                >
+                  <span className={cx("inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border", active ? "border-ink bg-ink text-paper" : "border-ink/60")}>
+                    {active && <Check size={16} strokeWidth={2.5} aria-hidden />}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-semibold">
+                      {l.name} <span className="hanzi ml-1">{l.nativeName}</span>
+                    </span>
+                    <span className="block text-sm text-dim">
+                      {l.vocab.length} Wörter · Gestaltung: {l.culture.themeName}
+                    </span>
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+          {upcomingLanguages.map((l) => (
+            <li key={l.code} className="flex min-h-[56px] items-center gap-4 py-3 text-dim">
+              <span className="h-6 w-6 shrink-0 rounded-sm border border-dashed border-rule" aria-hidden />
+              <span>
+                {l.name} <span className="ml-1">{l.nativeName}</span> · in Vorbereitung
+              </span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section title="Darstellung">
+        <Row label="Erscheinungsbild">
+          <div role="group" aria-label="Erscheinungsbild" className="inline-flex border border-ink/70">
+            {(
+              [
+                ["light", "Hell", Sun],
+                ["dark", "Dunkel", Moon],
+              ] as const
+            ).map(([value, label, Icon], i) => (
               <button
-                key={l.code}
+                key={value}
                 type="button"
-                onClick={() => updateSettings({ lang: l.code })}
+                aria-pressed={settings.theme === value}
+                onClick={() => updateSettings({ theme: value })}
                 className={cx(
-                  "flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition",
-                  l.code === lang.code
-                    ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30"
-                    : "border-slate-200 hover:border-brand-300 dark:border-slate-700",
+                  "inline-flex min-h-[40px] items-center gap-2 px-3 text-sm font-semibold",
+                  i > 0 && "border-l border-ink/70",
+                  settings.theme === value ? "bg-ink text-paper" : "hover:bg-wash",
                 )}
               >
-                <span className="text-3xl">{l.flag}</span>
-                <span>
-                  <span className="block font-bold">{l.name}</span>
-                  <span className="muted block text-sm">
-                    {l.nativeName} · {l.vocab.length} Wörter
-                  </span>
-                </span>
-                {l.code === lang.code && <span className="ml-auto">✅</span>}
+                <Icon size={16} strokeWidth={1.75} aria-hidden /> {label}
               </button>
             ))}
-            {upcomingLanguages.map((l) => (
-              <div key={l.code} className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-slate-200 p-4 opacity-60 dark:border-slate-700">
-                <span className="text-3xl">{l.flag}</span>
-                <span>
-                  <span className="block font-bold">{l.name}</span>
-                  <span className="muted block text-sm">{l.nativeName} · bald verfügbar</span>
-                </span>
-              </div>
-            ))}
           </div>
-        </Section>
+        </Row>
+        <Row label={`${lang.readingName} anzeigen`} hint="Ausschalten, um das Lesen der Schriftzeichen zu trainieren.">
+          <Segmented<"on" | "off">
+            label={`${lang.readingName} anzeigen`}
+            value={settings.showReading ? "on" : "off"}
+            onChange={(v) => updateSettings({ showReading: v === "on" })}
+            options={[
+              { value: "on", label: "An" },
+              { value: "off", label: "Aus" },
+            ]}
+          />
+        </Row>
+      </Section>
 
-        <Section title="Darstellung">
-          <Row label="Design">
-            <Segmented<"light" | "dark">
-              value={settings.theme}
-              onChange={(theme) => updateSettings({ theme })}
-              options={[
-                { value: "light", label: "☀️ Hell" },
-                { value: "dark", label: "🌙 Dunkel" },
-              ]}
-            />
-          </Row>
-          <Row label={`${lang.readingName} anzeigen`} hint="Ausschalten, um das Lesen der Schriftzeichen zu trainieren.">
-            <Segmented<"on" | "off">
-              value={settings.showReading ? "on" : "off"}
-              onChange={(v) => updateSettings({ showReading: v === "on" })}
-              options={[
-                { value: "on", label: "An" },
-                { value: "off", label: "Aus" },
-              ]}
-            />
-          </Row>
-        </Section>
-
-        <Section title="Lernen">
-          <Row label="Tagesziel" hint="Eine Lektion bringt etwa 100–170 XP.">
-            <Segmented<string>
-              value={String(settings.dailyGoal)}
-              onChange={(v) => updateSettings({ dailyGoal: Number(v) })}
-              options={[
-                { value: "30", label: "Locker · 30" },
-                { value: "50", label: "Normal · 50" },
-                { value: "100", label: "Ernsthaft · 100" },
-                { value: "200", label: "Intensiv · 200" },
-              ]}
-            />
-          </Row>
-          <Row label="Sprechtempo" hint={`${Math.round(settings.rate * 100)} % – 🐢 liest immer extra langsam.`}>
-            <div className="flex items-center gap-3">
-              <input
-                type="range"
-                min={0.5}
-                max={1.2}
-                step={0.05}
-                value={settings.rate}
-                onChange={(e) => updateSettings({ rate: Number(e.target.value) })}
-                className="w-40 accent-brand-600"
-                aria-label="Sprechtempo"
-              />
-              <SpeakButton text={lang.listening[0]?.target ?? lang.vocab[0].target} size="sm" />
-            </div>
-          </Row>
-        </Section>
-
-        <Section title="Daten">
-          <p className="muted text-sm">
-            Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) wird nur in diesem Browser
-            gespeichert. Exportiere ihn als Sicherung oder um auf ein anderes Gerät umzuziehen.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" className="btn-ghost" onClick={download}>
-              ⬇ Exportieren
-            </button>
-            <button type="button" className="btn-ghost" onClick={() => fileInput.current?.click()}>
-              ⬆ Importieren
-            </button>
+      <Section title="Lernen">
+        <Row label="Tagesziel" hint="Eine Lektion bringt etwa 100 bis 170 XP. Ab dem Tagesziel darfst du das Blatt abreißen.">
+          <Segmented<string>
+            label="Tagesziel"
+            value={String(settings.dailyGoal)}
+            onChange={(v) => updateSettings({ dailyGoal: Number(v) })}
+            options={[
+              { value: "30", label: "30" },
+              { value: "50", label: "50" },
+              { value: "100", label: "100" },
+              { value: "200", label: "200" },
+            ]}
+          />
+        </Row>
+        <Row label="Sprechtempo" hint={`${Math.round(settings.rate * 100)} % – der Schildkröten-Knopf liest immer besonders langsam.`}>
+          <div className="flex items-center gap-3">
             <input
-              ref={fileInput}
-              type="file"
-              accept="application/json,.json"
-              className="hidden"
-              onChange={(e) => {
-                void upload(e.target.files?.[0]);
-                e.target.value = "";
-              }}
+              type="range"
+              min={0.5}
+              max={1.2}
+              step={0.05}
+              value={settings.rate}
+              onChange={(e) => updateSettings({ rate: Number(e.target.value) })}
+              className="w-40 accent-[rgb(var(--cinnabar))]"
+              aria-label="Sprechtempo"
             />
-            <button
-              type="button"
-              className="btn border border-rose-300 text-rose-600 hover:bg-rose-50 dark:border-rose-800 dark:hover:bg-rose-900/30"
-              onClick={() => {
-                if (window.confirm("Wirklich den gesamten Fortschritt für diese Sprache löschen?")) {
-                  resetProgress();
-                  setMessage("Fortschritt zurückgesetzt.");
-                }
-              }}
-            >
-              Fortschritt zurücksetzen
-            </button>
+            <SpeakButton text={lang.listening[0]?.target ?? lang.vocab[0].target} size="sm" />
           </div>
-          {message && <p className="mt-3 text-sm font-semibold text-brand-600 dark:text-brand-300">{message}</p>}
-        </Section>
+        </Row>
+      </Section>
 
-        <p className="muted text-center text-xs">LinguaFlow v0.2 · Sprachausgabe nutzt die Stimmen deines Geräts.</p>
-      </div>
+      <Section title="Daten">
+        <p className="max-w-[65ch] text-sm text-dim">
+          Es gibt kein Konto. Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) und deine{" "}
+          {customWords.length} Fundstücke liegen nur in diesem Browser. Speichere regelmäßig eine Sicherung – damit ziehst
+          du auch auf ein anderes Gerät um.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <button type="button" className="btn-ink" onClick={download}>
+            <Download {...ICON} aria-hidden /> Sicherung speichern
+          </button>
+          <button type="button" className="btn-line" onClick={() => fileInput.current?.click()}>
+            <Upload {...ICON} aria-hidden /> Sicherung einlesen
+          </button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            onChange={(e) => {
+              void upload(e.target.files?.[0]);
+              e.target.value = "";
+            }}
+          />
+        </div>
+        {message && (
+          <p role="status" className={cx("mt-3 text-sm font-semibold", message.ok ? "text-jade" : "text-cinnabar")}>
+            {message.text}
+          </p>
+        )}
+        <div className="mt-8 border-t border-rule pt-4">
+          <button
+            type="button"
+            className="btn border border-cinnabar text-cinnabar hover:bg-wash"
+            onClick={() => {
+              if (window.confirm(`Den gesamten Fortschritt für ${lang.name} löschen? Das lässt sich nur mit einer Sicherung rückgängig machen.`)) {
+                resetProgress();
+                setMessage({ ok: true, text: "Fortschritt gelöscht." });
+              }
+            }}
+          >
+            Fortschritt löschen
+          </button>
+        </div>
+      </Section>
     </div>
   );
 }
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="card p-5 sm:p-6">
-      <h2 className="mb-4 text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</h2>
+    <section className="mb-12">
+      <h2 className="mb-3 border-b-2 border-ink pb-2 text-lg font-bold">{title}</h2>
       {children}
     </section>
   );
@@ -176,10 +203,10 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 function Row({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 py-3 first:pt-0 last:border-0 last:pb-0 dark:border-slate-800">
-      <div>
+    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule py-4">
+      <div className="min-w-0 max-w-[40ch]">
         <div className="font-semibold">{label}</div>
-        {hint && <div className="muted text-sm">{hint}</div>}
+        {hint && <div className="text-sm text-dim">{hint}</div>}
       </div>
       {children}
     </div>

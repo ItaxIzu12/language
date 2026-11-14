@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Choice from "../components/Choice";
-import { PageHeader, Segmented, SpeakButton } from "../components/ui";
+import { Field, RoundBar, RoundEnd } from "../components/Round";
+import { PageHeader, Segmented, SpeakButton, Verdict } from "../components/ui";
 import { LEVELS } from "../data/languages";
 import { useStore } from "../lib/store";
 import { hasVoice, speak } from "../lib/tts";
-import { cx, shuffle } from "../lib/utils";
+import { shuffle } from "../lib/utils";
 import type { Level, ListeningSentence } from "../types";
 
 interface Item {
@@ -17,20 +18,32 @@ interface Item {
 
 const ROUND = 8;
 
+/** Shown wherever speech output is needed but the device has no voice for the language. */
+export function VoiceNotice() {
+  const { lang } = useStore();
+  const [ok, setOk] = useState(true);
+  useEffect(() => {
+    // Voices may load late; check twice.
+    const check = () => setOk(hasVoice(lang.ttsLang));
+    check();
+    const t = setTimeout(check, 800);
+    return () => clearTimeout(t);
+  }, [lang.ttsLang]);
+  if (ok) return null;
+  return (
+    <p role="alert" className="mb-6 border-l-0 border-t-2 border-cinnabar bg-wash p-4 text-sm">
+      <strong>Auf diesem Gerät fehlt eine Stimme für {lang.name}.</strong> Die Sprachausgabe nutzt die Stimmen deines
+      Geräts. Installiere in den Systemeinstellungen unter „Sprache" oder „Text-zu-Sprache" eine Stimme für {lang.name},
+      oder öffne die App in Chrome, Edge oder Safari.
+    </p>
+  );
+}
+
 /** Listening comprehension: hear a sentence, pick its meaning. */
 export default function Listen() {
   const { lang } = useStore();
   const [level, setLevel] = useState<Level | "all">("all");
   const [round, setRound] = useState<Item[] | null>(null);
-  const [voiceOk, setVoiceOk] = useState(true);
-
-  useEffect(() => {
-    // Voices may load late; check twice.
-    const check = () => setVoiceOk(hasVoice(lang.ttsLang));
-    check();
-    const t = setTimeout(check, 800);
-    return () => clearTimeout(t);
-  }, [lang.ttsLang]);
 
   // Sentences = curated listening set + all vocabulary example sentences.
   const pool = useMemo<Item[]>(() => {
@@ -49,45 +62,35 @@ export default function Listen() {
   if (round) return <Round items={round} pool={pool} onExit={() => setRound(null)} />;
 
   return (
-    <div>
-      <PageHeader title="Hörverstehen" subtitle="Höre einen Satz und wähle die richtige Bedeutung." />
-      {!voiceOk && (
-        <div className="mb-5 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-900/30 dark:text-amber-200">
-          <strong>Keine {lang.name}-Stimme gefunden.</strong> Die Sprachausgabe nutzt die Stimmen deines Geräts. Installiere
-          in den System-Einstellungen (Sprache / Text-zu-Sprache) eine Stimme für {lang.name} oder öffne die App in Chrome,
-          Edge oder Safari.
-        </div>
-      )}
-      <div className="card space-y-5 p-5 sm:p-6">
-        <div>
-          <div className="muted mb-2 text-xs font-bold uppercase tracking-wide">Niveau</div>
+    <div className="max-w-3xl">
+      <PageHeader title="Hören" subtitle="Einen Satz hören und seine Bedeutung wählen – erst danach siehst du ihn geschrieben." />
+      <VoiceNotice />
+      <div className="border-b border-rule">
+        <Field label="Stufe">
           <Segmented<Level | "all">
+            label="Stufe"
             value={level}
             onChange={setLevel}
             options={[{ value: "all", label: "Alle" }, ...LEVELS.map((l) => ({ value: l, label: l }))]}
           />
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-5 dark:border-slate-800">
-          <span className="muted text-sm">{pool.length} Sätze verfügbar</span>
-          <button
-            type="button"
-            className="btn-primary"
-            disabled={pool.length < 4}
-            onClick={() => setRound(shuffle(pool).slice(0, ROUND))}
-          >
-            🎧 Runde starten
-          </button>
-        </div>
+        </Field>
+      </div>
+      <div className="mt-6 flex flex-wrap items-center gap-4">
+        <button type="button" className="btn-ink" disabled={pool.length < 4} onClick={() => setRound(shuffle(pool).slice(0, ROUND))}>
+          Runde starten
+        </button>
+        <span className="text-sm text-dim">{pool.length} Sätze auf dieser Stufe</span>
       </div>
     </div>
   );
 }
 
 function Round({ items, pool, onExit }: { items: Item[]; pool: Item[]; onExit: () => void }) {
-  const { lang, settings, addXp } = useStore();
+  const { lang, settings, addXp, logActivity } = useStore();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [result, setResult] = useState<boolean | null>(null);
+  const logged = useRef(false);
 
   const questions = useMemo(
     () =>
@@ -101,52 +104,55 @@ function Round({ items, pool, onExit }: { items: Item[]; pool: Item[]; onExit: (
   const current = questions[index];
 
   useEffect(() => {
-    if (current) speak(current.item.target, lang.ttsLang, settings.rate);
+    if (current) void speak(current.item.target, lang.ttsLang, settings.rate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
+  useEffect(() => {
+    if (!current && !logged.current) {
+      logged.current = true;
+      logActivity("apply");
+    }
+  }, [current, logActivity]);
+
   if (!current) {
     return (
-      <div className="mx-auto max-w-md text-center">
-        <div className="card p-8">
-          <p className="text-6xl">🎧</p>
-          <h1 className="mt-4 text-3xl font-extrabold">
-            {score} / {questions.length}
-          </h1>
-          <p className="muted mt-1">Sätze richtig verstanden</p>
-          <button type="button" className="btn-primary mt-6" onClick={onExit}>
-            Neue Runde
-          </button>
-        </div>
-      </div>
+      <RoundEnd
+        score={score}
+        total={questions.length}
+        perfect={score === questions.length}
+        line="Sätze nach Gehör verstanden."
+        onExit={onExit}
+      />
     );
   }
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="mb-5 flex items-center justify-between text-sm font-bold">
-        <button type="button" onClick={onExit} className="muted hover:text-slate-900 dark:hover:text-white">
-          ✕ Beenden
-        </button>
-        <span className="muted">
-          Satz {index + 1} / {questions.length}
-        </span>
-        <span className="chip bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">✅ {score}</span>
-      </div>
+      <RoundBar
+        onExit={onExit}
+        value={index / questions.length}
+        right={
+          <>
+            Satz {index + 1} / {questions.length}
+          </>
+        }
+      />
 
-      <div key={index} className="animate-fade-in">
-        <div className="card mb-5 flex flex-col items-center gap-4 p-6">
-          <div className="flex gap-4">
+      <div key={index} className="animate-enter">
+        <h2 className="mb-4 text-lg font-bold">Was bedeutet der Satz?</h2>
+        <div className="mb-6 flex min-h-[7rem] flex-wrap items-center gap-5 border-y-2 border-ink py-5">
+          <div className="flex gap-3">
             <SpeakButton text={current.item.target} size="lg" />
             <SpeakButton text={current.item.target} size="lg" slow />
           </div>
           {result === null ? (
-            <p className="muted text-sm">Nochmal hören? Tippe auf 🔊 oder 🐢 für langsam.</p>
+            <p className="text-sm text-dim">Beliebig oft anhören – der rechte Knopf spricht langsam.</p>
           ) : (
-            <div className="text-center">
-              <div className="hanzi text-2xl">{current.item.target}</div>
-              <div className="mt-1 text-brand-700 dark:text-brand-300">{current.item.reading}</div>
-            </div>
+            <p className="min-w-0">
+              <span className="hanzi block text-2xl font-bold">{current.item.target}</span>
+              <span className="reading block">{current.item.reading}</span>
+            </p>
           )}
         </div>
         <Choice
@@ -163,23 +169,25 @@ function Round({ items, pool, onExit }: { items: Item[]; pool: Item[]; onExit: (
       </div>
 
       {result !== null && (
-        <div
-          className={cx(
-            "animate-fade-in mt-5 flex items-center justify-between gap-3 rounded-2xl p-4",
-            result ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-rose-50 dark:bg-rose-900/30",
-          )}
-        >
-          <span className="font-extrabold">{result ? "Richtig! +10 XP" : "Leider falsch"}</span>
-          <button
-            type="button"
-            className={result ? "btn-primary" : "btn-accent"}
-            onClick={() => {
-              setResult(null);
-              setIndex((i) => i + 1);
-            }}
+        <div className="mt-8">
+          <Verdict
+            ok={result}
+            title={result ? "Richtig verstanden. +10 XP" : "Nicht richtig – hör ihn dir noch einmal an."}
+            action={
+              <button
+                type="button"
+                className="btn-ink"
+                onClick={() => {
+                  setResult(null);
+                  setIndex((i) => i + 1);
+                }}
+              >
+                Weiter
+              </button>
+            }
           >
-            Weiter
-          </button>
+            {current.item.de}
+          </Verdict>
         </div>
       )}
     </div>

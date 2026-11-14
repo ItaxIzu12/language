@@ -1,10 +1,12 @@
+import { ArrowRight, Check, Eye } from "lucide-react";
 import { useMemo, useState } from "react";
 import RolePlay, { LEARNER } from "../components/RolePlay";
 import SpeakCheck, { PASS_SCORE } from "../components/SpeakCheck";
-import { LevelBadge, PageHeader, Segmented, SpeakButton } from "../components/ui";
+import { Glyph, ICON, LevelTag, PageHeader, Segmented, SpeakButton } from "../components/ui";
 import { useStore } from "../lib/store";
 import { shuffle } from "../lib/utils";
 import type { Episode } from "../types";
+import { VoiceNotice } from "./Listen";
 
 interface Prompt {
   id: string;
@@ -22,7 +24,7 @@ type Mode = "words" | "sentences" | "translate" | "roleplay";
  *  - role play: take a part in a dialogue
  */
 export default function Speak() {
-  const { lang, progress, addXp } = useStore();
+  const { lang, progress, settings, addXp, logActivity } = useStore();
   const [mode, setMode] = useState<Mode>("words");
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -49,6 +51,7 @@ export default function Speak() {
 
   const prompt = prompts[index % Math.max(prompts.length, 1)];
   const hidden = mode === "translate" && !revealed;
+  const reward = mode === "translate" ? 15 : 10;
 
   const next = () => {
     setRevealed(false);
@@ -58,10 +61,12 @@ export default function Speak() {
 
   return (
     <div>
-      <PageHeader title="Sprechen" subtitle="Nachsprechen, frei übersetzen oder im Rollenspiel antworten – mit Sofort-Feedback." />
+      <PageHeader title="Sprechen" subtitle="Nachsprechen, frei übersetzen oder im Rollenspiel antworten." />
+      <VoiceNotice />
 
-      <div className="mb-5">
+      <div className="mb-8">
         <Segmented<Mode>
+          label="Übungsart"
           value={mode}
           onChange={(m) => {
             setMode(m);
@@ -72,89 +77,86 @@ export default function Speak() {
           options={[
             { value: "words", label: "Wörter nachsprechen" },
             { value: "sentences", label: "Sätze nachsprechen" },
-            { value: "translate", label: "Sag es auf Chinesisch" },
-            { value: "roleplay", label: "🎭 Rollenspiel" },
+            { value: "translate", label: `Sag es auf ${lang.name}` },
+            { value: "roleplay", label: "Rollenspiel" },
           ]}
         />
       </div>
 
       {mode === "roleplay" ? (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <ul className="rows max-w-3xl border-y border-rule">
           {lang.episodes
             .filter((ep) => ep.lines.some((l) => l.speaker === LEARNER))
             .map((ep) => (
-              <button
-                key={ep.id}
-                type="button"
-                onClick={() => setEpisode(ep)}
-                className="card group flex items-start gap-4 p-5 text-left transition hover:-translate-y-0.5 hover:shadow-soft"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-2xl shadow-soft">
-                  {ep.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="hanzi text-lg font-medium">{ep.title}</div>
-                  <div className="font-semibold">{ep.titleDe}</div>
-                  <p className="muted mt-1 text-sm">{ep.description}</p>
-                  <div className="mt-2 flex items-center gap-2">
-                    <LevelBadge level={ep.level} />
-                    <span className="muted text-xs">
-                      {ep.lines.filter((l) => l.speaker === LEARNER).length} Sätze für dich
+              <li key={ep.id}>
+                <button type="button" onClick={() => setEpisode(ep)} className="group flex w-full items-center gap-4 py-4 text-left">
+                  <Glyph char={ep.glyph} tone={progress.done[`roleplay:${ep.id}`] ? "red" : "ink"} />
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-baseline gap-x-3">
+                      <span className="hanzi text-lg font-bold">{ep.title}</span>
+                      <span className="font-semibold">{ep.titleDe}</span>
                     </span>
-                  </div>
-                </div>
-                {progress.done[`roleplay:${ep.id}`] && <span title="Schon gespielt">✅</span>}
-              </button>
+                    <span className="block text-sm text-dim">{ep.description}</span>
+                    <span className="mt-1 flex items-center gap-2 text-sm text-dim">
+                      <LevelTag level={ep.level} />
+                      {ep.lines.filter((l) => l.speaker === LEARNER).length} Sätze für dich
+                      {progress.done[`roleplay:${ep.id}`] && (
+                        <span className="inline-flex items-center gap-1 text-jade">
+                          <Check size={14} strokeWidth={2.5} aria-hidden /> gespielt
+                        </span>
+                      )}
+                    </span>
+                  </span>
+                  <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+                </button>
+              </li>
             ))}
-        </div>
+        </ul>
       ) : (
         prompt && (
-          <div className="mx-auto max-w-xl">
-            <div className="card p-6 text-center sm:p-8">
+          <div className="max-w-2xl">
+            <div key={`${mode}-${index}`} className="animate-enter border-y-2 border-ink py-6">
               {mode === "translate" && (
                 <>
-                  <div className="muted text-xs font-bold uppercase tracking-wide">Sag auf Chinesisch</div>
-                  <div className="mt-1 text-2xl font-bold">{prompt.de}</div>
+                  <h2 className="text-sm font-semibold text-dim">Sag auf {lang.name}:</h2>
+                  <p className="mt-1 text-3xl font-bold">{prompt.de}</p>
                 </>
               )}
               {hidden ? (
-                <button type="button" className="btn-ghost mt-4" onClick={() => setRevealed(true)}>
-                  👀 Lösung zeigen
+                <button type="button" className="btn-line mt-4" onClick={() => setRevealed(true)}>
+                  <Eye {...ICON} aria-hidden /> Lösung zeigen
                 </button>
               ) : (
-                <div className={mode === "translate" ? "animate-fade-in mt-4 rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/60" : ""}>
-                  <div className="hanzi text-4xl font-medium leading-tight sm:text-5xl">{prompt.target}</div>
-                  <div className="mt-3 text-lg font-semibold text-brand-700 dark:text-brand-300">{prompt.reading}</div>
-                  {mode !== "translate" && <div className="muted mt-1">{prompt.de}</div>}
-                  <div className="mt-4 flex items-center justify-center gap-4">
-                    <SpeakButton text={prompt.target} size="lg" />
-                    <SpeakButton text={prompt.target} size="lg" slow />
+                <div className={mode === "translate" ? "mt-4 animate-enter bg-wash p-4" : ""}>
+                  <div className="hanzi text-5xl font-black leading-tight sm:text-6xl">{prompt.target}</div>
+                  {settings.showReading && <div className="reading mt-2 text-xl font-semibold">{prompt.reading}</div>}
+                  {mode !== "translate" && <div className="mt-1 text-lg text-dim">{prompt.de}</div>}
+                  <div className="mt-4 flex gap-2">
+                    <SpeakButton text={prompt.target} />
+                    <SpeakButton text={prompt.target} slow />
                   </div>
                 </div>
               )}
-
-              <div className="mt-6">
-                <SpeakCheck
-                  key={`${mode}-${index}`}
-                  target={prompt.target}
-                  onResult={(score) => {
-                    if (mode === "translate") setRevealed(true);
-                    if (score >= PASS_SCORE && !rewarded) {
-                      setRewarded(true);
-                      addXp(mode === "translate" ? 15 : 10);
-                    }
-                  }}
-                />
-              </div>
-              {rewarded && (
-                <p className="mt-3 text-sm font-bold text-emerald-700 dark:text-emerald-300">
-                  +{mode === "translate" ? 15 : 10} XP
-                </p>
-              )}
             </div>
 
-            <button type="button" className="btn-primary mt-5 w-full py-3.5 text-base" onClick={next}>
-              Nächstes →
+            <div className="py-6">
+              <SpeakCheck
+                key={`${mode}-${index}`}
+                target={prompt.target}
+                onResult={(score) => {
+                  if (mode === "translate") setRevealed(true);
+                  if (score >= PASS_SCORE && !rewarded) {
+                    setRewarded(true);
+                    addXp(reward);
+                    logActivity("apply");
+                  }
+                }}
+              />
+              {rewarded && <p className="mt-3 text-sm font-bold text-jade">+{reward} XP</p>}
+            </div>
+
+            <button type="button" className="btn-ink w-full" onClick={next}>
+              Nächstes <ArrowRight {...ICON} aria-hidden />
             </button>
           </div>
         )

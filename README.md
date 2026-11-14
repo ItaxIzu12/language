@@ -5,19 +5,38 @@ Erste Sprache: **Chinesisch (Mandarin)**, von A1 Richtung B2.
 
 ## Funktionen
 
-- **Lektionen im Spielstil** – neue Wörter kennenlernen, dann gemischte Übungen (Bedeutung wählen, Wort wählen, Hören, Satz aus Zeichen bauen). Fehler kommen am Ende nochmal. Lektionen gibt es je Kategorie und je Stufe.
-- **Wortschatz nach Kategorie und nach Stufe** – 20 Kategorien, Stufen A1 bis B2, jeweils filterbar; Wörterbuch-Suche auf Deutsch, in Schriftzeichen oder Pinyin (auch ohne Tonzeichen).
-- **Karteikarten mit Spaced Repetition** – schwierige Wörter kommen öfter, sichere seltener (Leitner-System, 7 Stufen).
-- **Quiz** – schnelle 10er-Runden, filterbar nach Kategorie, Niveau und „aus meinem Kurs".
-- **Lesen** – Texte von A1 bis B2: vorlesen lassen, Satz antippen für Ton und Übersetzung, danach Verständnisfragen.
-- **Hörverstehen** – Sätze anhören (normal oder 🐢 langsam) und die Bedeutung wählen.
-- **Sprechen** – vier Modi: Wörter nachsprechen, Sätze nachsprechen, „Sag es auf Chinesisch" (nur deutscher Hinweis) und Rollenspiele, in denen du eine Rolle im Dialog übernimmst. Feedback per Spracherkennung (Chrome, Edge, Safari), sonst Selbsteinschätzung.
-- **Podcast** – Mini-Episoden (Dialoge) mit mitlaufendem Transkript, Pinyin und Übersetzung zum Ein-/Ausblenden, plus Links zu echten Lern-Podcasts.
-- **Motivation** – XP, Level, Tagesziel, Tages-Serie (Streak), Wochenübersicht, Fortschritt je Niveau.
-- **Hell/Dunkel**, mobil nutzbar, als App auf dem Handy installierbar (PWA-Manifest).
-- **Kein Server nötig** – der Fortschritt liegt im Browser und lässt sich in den Einstellungen exportieren/importieren.
+- **Tagesblatt** – die Startseite ist das Kalenderblatt von heute: Datum auf Deutsch und in der Lernsprache (zum
+  Anhören), der Tagesplan in drei Blöcken (mittags Hauptlektion, nachmittags Abruf, abends Anwenden und Hören) und
+  die eigenen Stolperwörter. Ist das Tagesziel erreicht, wird das Blatt abgerissen.
+- **Wortschatz** – nach Kategorie und nach Stufe, mit Suche (Deutsch, Schriftzeichen, Pinyin auch ohne Tonzeichen).
+- **Lektionen** – neue Wörter kennenlernen, dann gemischte Übungen; Fehler kommen am Ende noch einmal.
+- **Karten** – Wiederholung mit Spaced Repetition (Leitner, 7 Stufen) und ein **Fehlerheft**, das falsch
+  beantwortete Wörter automatisch sammelt.
+- **Fundstücke** – eigene Wörter eintragen (Tonzahlen wie `ni3 hao3` werden zu Tonzeichen); sie laufen in Lektionen,
+  Karten und Quiz mit.
+- **Üben** – Quiz, Hörverstehen, Sprechen (nachsprechen, „Sag es auf …", Rollenspiel), **Tonlabor** (Töne nach
+  Gehör erkennen), Lesetexte mit Fragen, Podcast-Dialoge mit Transkript.
+- **Chronik** – das Lernjahr als zwölf kleine Kalenderblätter, dazu die Summen seit Beginn.
+- **Gestaltung je Sprache** – jede Sprache bringt ihre eigene visuelle Welt mit (siehe unten).
+- **Ohne Konto** – kein Login, keine Registrierung, kein Server. Der Fortschritt liegt im Browser und lässt sich als
+  Datei sichern und wieder einlesen. Alle Schriften sind mitgeliefert; zur Laufzeit wird nichts von fremden Servern geladen.
+- Hell und Dunkel, Tastaturbedienung, mobil nutzbar, als App installierbar.
 
-## Inhalt (Stand v0.2)
+## Gestaltung je Sprache
+
+Die Oberfläche wechselt mit der Lernsprache ihre Welt: Schrift, Farben, Motive und das Markenzeichen der Startseite.
+Navigation, Bedienelemente und Seitenaufbau bleiben in allen Sprachen gleich.
+
+- **Chinesisch: „Abreißkalender 黄历"** – Songti-Druckschrift, Zinnoberrot, Siegel und die Almanach-Spalten
+  宜 (günstig) und 忌 (meiden), kombiniert mit schmalen modernen Ziffern und strengem Raster.
+
+Die Regeln stehen in `DESIGN.md`, die Produktbeschreibung in `PRODUCT.md`. Technisch besteht eine Welt aus zwei Teilen:
+
+1. einem Farb- und Schriftsatz in `src/index.css` unter `[data-theme="<id>"]` (hell und dunkel),
+2. einer `culture`-Beschreibung der Sprache (`src/data/<code>/culture.ts`): Name der Welt, Zeichen für die
+   Tagesblatt-Spalten, Siegel, Stufen-Marken und die Funktion, die das heutige Datum in der Sprache schreibt.
+
+## Inhalt (Stand v0.3)
 
 | | |
 |---|---|
@@ -102,23 +121,28 @@ In `src/data/zh/categories.ts` einen Eintrag ergänzen und in einer `part*.ts`-D
 
 ### Neue Sprache
 
-1. Ordner `src/data/<code>/` nach dem Vorbild von `src/data/zh/` anlegen (Kategorien, Vokabeln, Hörsätze, Podcasts).
-2. In `src/data/languages.ts` importieren und in `languages` eintragen.
+1. Ordner `src/data/<code>/` nach dem Vorbild von `src/data/zh/` anlegen (Kategorien, Vokabeln, Hörsätze,
+   Lesetexte, Podcasts, `culture.ts`).
+2. In `src/index.css` die Welt der Sprache als `[data-theme="<id>"]` anlegen (Kopie des Blocks „almanac" anpassen).
+3. In `src/data/languages.ts` importieren und in `languages` eintragen.
 
-Die gesamte Oberfläche (Lektionen, Quiz, Karteikarten, Sprachausgabe) arbeitet sprachunabhängig; jede Sprache hat
-ihren eigenen Fortschritt.
+Jede Sprache hat ihren eigenen Fortschritt und ihre eigenen Fundstücke.
 
 ## Aufbau
 
 ```
 src/
-  data/          Inhalte (Sprachen, Vokabeln, Hörsätze, Podcasts)
-  lib/           Logik: store (Fortschritt, SRS, XP), tts, speech, exercises
-  components/    Layout und wiederverwendbare Bausteine
-  pages/         Start, Lernen, Lektion, Wiederholen, Quiz, Lesen, Hören, Sprechen, Podcast, Einstellungen
+  data/          Inhalte je Sprache: Vokabeln, Hörsätze, Lesetexte, Podcasts, Kultur
+  lib/           Logik: store (Fortschritt, SRS, XP, Tagesplan), tts, speech, pinyin, exercises
+  components/    Layout, Navigation, wiederverwendbare Bausteine
+  pages/         Heute, Wortschatz, Lektion, Karten, Fundstücke, Quiz, Hören, Sprechen, Tonlabor,
+                 Lesen, Podcast, Chronik, Einstellungen
+DESIGN.md        Gestaltungsregeln
+PRODUCT.md       Produktbeschreibung
 ```
 
-Technik: React 18, TypeScript, Vite, Tailwind CSS, React Router. Keine weiteren Laufzeit-Abhängigkeiten.
+Technik: React 18, TypeScript, Vite, Tailwind CSS, React Router, Lucide-Icons. Schriften (Archivo, Big Shoulders
+Display, Noto Serif SC; alle unter der SIL Open Font License) werden über Fontsource mitgeliefert.
 
 ## Hinweise
 
@@ -130,7 +154,7 @@ Technik: React 18, TypeScript, Vite, Tailwind CSS, React Router. Keine weiteren 
 
 ## Ideen für später
 
-B2-Wortschatz (HSK 3.0 Stufen 4–5), Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
+B2-Wortschatz (HSK 3.0 Stufen 4–5), weitere Sprachen mit eigener Gestaltung, Konten und Cloud-Sync, Schreibübungen mit Strichfolge, Grammatik-Lektionen, weitere Sprachen, eigene Audioaufnahmen
 für den Podcast, Abzeichen und Ranglisten.
 
 ## Lizenz

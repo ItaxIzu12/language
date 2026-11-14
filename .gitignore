@@ -30,3 +30,9 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# Agent skills (installed locally, not part of the app)
+.agents/
+.claude/
+skills-lock.json
+.impeccable/

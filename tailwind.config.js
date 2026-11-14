@@ -1,65 +1,54 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "Inter",
-          "system-ui",
-          "-apple-system",
-          "Segoe UI",
-          "Roboto",
-          "sans-serif",
-        ],
-        hanzi: [
-          "Noto Sans SC",
-          "PingFang SC",
-          "Microsoft YaHei",
-          "sans-serif",
-        ],
+        // Set per language world in index.css.
+        sans: ["var(--font-sans)"],
+        display: ["var(--font-display)"],
+        hanzi: ["var(--font-script)"],
       },
       colors: {
-        brand: {
-          50: "#eef5ff",
-          100: "#d9e8ff",
-          200: "#bcd7ff",
-          300: "#8ebeff",
-          400: "#599bff",
-          500: "#3377ff",
-          600: "#1f5af5",
-          700: "#1846e1",
-          800: "#1a3bb6",
-          900: "#1b388f",
-        },
-        accent: {
-          400: "#ff8a5c",
-          500: "#ff6b35",
-          600: "#f25016",
-        },
-      },
-      boxShadow: {
-        soft: "0 6px 24px -8px rgba(16, 24, 40, 0.18)",
-        card: "0 2px 12px -4px rgba(16, 24, 40, 0.12)",
+        paper: token("paper"),
+        sheet: token("sheet"),
+        wash: token("wash"),
+        ink: token("ink"),
+        dim: token("dim"),
+        rule: token("rule"),
+        cinnabar: token("cinnabar"),
+        "on-cinnabar": token("on-cinnabar"),
+        band: token("band"),
+        jade: token("jade"),
+        blue: token("blue"),
+        ochre: token("ochre"),
       },
       borderRadius: {
-        xl2: "1.25rem",
+        DEFAULT: "3px",
       },
       keyframes: {
-        "fade-in": {
+        enter: {
           "0%": { opacity: "0", transform: "translateY(6px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "pop": {
-          "0%": { transform: "scale(0.96)" },
-          "60%": { transform: "scale(1.02)" },
-          "100%": { transform: "scale(1)" },
+        stamp: {
+          "0%": { opacity: "0", transform: "scale(1.9) rotate(-14deg)" },
+          "55%": { opacity: "1", transform: "scale(0.94) rotate(-7deg)" },
+          "100%": { opacity: "1", transform: "scale(1) rotate(-8deg)" },
+        },
+        tear: {
+          "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
+          "22%": { transform: "translateY(10px) rotate(-1.2deg)", opacity: "1" },
+          "100%": { transform: "translateY(115vh) rotate(9deg)", opacity: "0.9" },
         },
       },
       animation: {
-        "fade-in": "fade-in 0.3s ease-out",
-        "pop": "pop 0.25s ease-out",
+        enter: "enter 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
+        stamp: "stamp 0.45s cubic-bezier(0.2, 1.3, 0.4, 1) both",
+        tear: "tear 0.9s cubic-bezier(0.5, 0, 0.9, 0.4) forwards",
       },
     },
   },

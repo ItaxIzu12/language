@@ -1,3 +1,4 @@
+import { Check, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cx } from "../lib/utils";
 
@@ -10,7 +11,7 @@ export interface ChoiceOption {
 }
 
 /**
- * Multiple-choice answer grid. Locks after the first pick and reports it.
+ * Multiple-choice answers as a ruled list. Locks after the first pick and reports it.
  * Remount with a new `key` for each question. Number keys 1–4 also work.
  */
 export default function Choice({
@@ -40,7 +41,7 @@ export default function Choice({
   });
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-2 sm:grid-cols-2" data-choice>
       {options.map((o, i) => {
         const isCorrect = o.key === correctKey;
         const isPicked = o.key === picked;
@@ -51,23 +52,22 @@ export default function Choice({
             disabled={!!picked}
             onClick={() => pick(o.key)}
             className={cx(
-              "flex items-center gap-3 rounded-2xl border-2 px-4 py-3.5 text-left transition",
-              !picked &&
-                "border-slate-200 bg-white hover:border-brand-400 hover:bg-brand-50 active:scale-[0.98] dark:border-slate-700 dark:bg-slate-900 dark:hover:border-brand-500 dark:hover:bg-brand-900/20",
-              picked && isCorrect && "animate-pop border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30",
-              picked && isPicked && !isCorrect && "border-rose-500 bg-rose-50 dark:bg-rose-900/30",
-              picked && !isPicked && !isCorrect && "border-slate-200 opacity-50 dark:border-slate-700",
+              "flex min-h-[60px] items-center gap-3 rounded border px-4 py-3 text-left transition-transform duration-150",
+              !picked && "border-ink/60 bg-sheet hover:bg-wash active:translate-y-px",
+              picked && isCorrect && "border-jade bg-jade text-paper",
+              picked && isPicked && !isCorrect && "border-cinnabar bg-cinnabar text-on-cinnabar",
+              picked && !isPicked && !isCorrect && "border-rule text-dim",
             )}
           >
-            <span className="muted hidden h-6 w-6 shrink-0 items-center justify-center rounded-md border border-slate-200 text-xs font-bold dark:border-slate-700 sm:flex">
+            <span className={cx("font-display text-xl font-extrabold leading-none", !picked && "text-dim")} aria-hidden>
               {i + 1}
             </span>
-            <span className="min-w-0">
-              <span className={cx("block font-semibold", o.hanzi && "hanzi text-xl font-medium")}>{o.label}</span>
-              {o.sub && <span className="block text-sm text-brand-700 dark:text-brand-300">{o.sub}</span>}
+            <span className="min-w-0 flex-1">
+              <span className={cx("block font-semibold", o.hanzi && "hanzi text-2xl font-bold leading-tight")}>{o.label}</span>
+              {o.sub && <span className={cx("block text-sm", !picked && "reading")}>{o.sub}</span>}
             </span>
-            {picked && isCorrect && <span className="ml-auto">✅</span>}
-            {picked && isPicked && !isCorrect && <span className="ml-auto">❌</span>}
+            {picked && isCorrect && <Check size={20} strokeWidth={2.25} aria-label="richtig" />}
+            {picked && isPicked && !isCorrect && <X size={20} strokeWidth={2.25} aria-label="falsch" />}
           </button>
         );
       })}

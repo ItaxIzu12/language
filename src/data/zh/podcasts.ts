@@ -7,7 +7,7 @@ import type { Episode, EpisodeLine, Level, Podcast } from "../../types";
  */
 function ep(
   id: string,
-  icon: string,
+  glyph: string,
   title: string,
   titleDe: string,
   level: Level,
@@ -22,13 +22,13 @@ function ep(
       const [speaker, target, reading, de] = l.split("|").map((s) => s.trim());
       return { speaker, target, reading, de };
     });
-  return { id, icon, title, titleDe, level, description, lines };
+  return { id, glyph, title, titleDe, level, description, lines };
 }
 
 export const episodes: Episode[] = [
   ep(
     "zh-ep-1",
-    "☕",
+    "咖",
     "在咖啡店",
     "Im Café",
     "A1",
@@ -46,7 +46,7 @@ export const episodes: Episode[] = [
   ),
   ep(
     "zh-ep-2",
-    "🏸",
+    "球",
     "周末打羽毛球",
     "Badminton am Wochenende",
     "A2",
@@ -66,7 +66,7 @@ export const episodes: Episode[] = [
   ),
   ep(
     "zh-ep-3",
-    "🍜",
+    "饿",
     "点外卖",
     "Essen bestellen",
     "A2",
@@ -85,7 +85,7 @@ export const episodes: Episode[] = [
   ),
   ep(
     "zh-ep-4",
-    "✈️",
+    "旅",
     "旅游计划",
     "Reisepläne",
     "B1",
@@ -105,7 +105,7 @@ export const episodes: Episode[] = [
   ),
   ep(
     "zh-ep-5",
-    "🤒",
+    "药",
     "你好点儿了吗？",
     "Geht's dir besser?",
     "B1",
@@ -126,7 +126,7 @@ export const episodes: Episode[] = [
   ),
   ep(
     "zh-ep-6",
-    "📦",
+    "递",
     "快递出问题了",
     "Ärger mit dem Paket",
     "B1",

@@ -7,7 +7,7 @@ import type { Level, ReadingText } from "../../types";
  */
 function text(
   id: string,
-  icon: string,
+  glyph: string,
   title: string,
   titleDe: string,
   level: Level,
@@ -22,7 +22,7 @@ function text(
       .map((l) => l.split("|").map((s) => s.trim()));
   return {
     id,
-    icon,
+    glyph,
     title,
     titleDe,
     level,
@@ -34,7 +34,7 @@ function text(
 export const texts: ReadingText[] = [
   text(
     "zh-read-1",
-    "☀️",
+    "日",
     "我的一天",
     "Mein Tag",
     "A1",
@@ -56,7 +56,7 @@ Was macht er am Nachmittag?|Er lernt Chinesisch|Er sieht fern|Er trifft Freunde
   ),
   text(
     "zh-read-2",
-    "👨‍👩‍👧",
+    "家",
     "我的家",
     "Meine Familie",
     "A1",
@@ -78,7 +78,7 @@ Wo arbeitet die Schwester?|In Peking|In Shanghai|Zu Hause
   ),
   text(
     "zh-read-3",
-    "🍜",
+    "饭",
     "在饭店",
     "Im Restaurant",
     "A1",
@@ -100,7 +100,7 @@ Wer bezahlt?|Der Freund|Der Erzähler|Jeder für sich
   ),
   text(
     "zh-read-4",
-    "🌧️",
+    "雨",
     "周末计划",
     "Wochenendpläne",
     "A2",
@@ -122,7 +122,7 @@ Was machen sie am Samstag?|Filme schauen und Essen bestellen|Im Park Badminton s
   ),
   text(
     "zh-read-5",
-    "📦",
+    "购",
     "网上购物",
     "Online-Shopping",
     "A2",
@@ -144,7 +144,7 @@ Wie reagiert der Kundenservice?|Freundlich, Umtausch ist möglich|Er antwortet n
   ),
   text(
     "zh-read-6",
-    "🏸",
+    "好",
     "我的爱好",
     "Mein Hobby",
     "A2",
@@ -166,7 +166,7 @@ Wie lief das Turnier?|Nicht gewonnen, aber Spaß gehabt|Gewonnen|Nicht teilgenom
   ),
   text(
     "zh-read-7",
-    "✈️",
+    "游",
     "第一次去中国",
     "Zum ersten Mal in China",
     "B1",
@@ -189,7 +189,7 @@ Was beschließt sie nach der Reise?|Weiterzulernen und wieder hinzufahren|Nie wi
   ),
   text(
     "zh-read-8",
-    "📚",
+    "学",
     "怎么学好中文",
     "Wie man gut Chinesisch lernt",
     "B1",
@@ -213,7 +213,7 @@ Was sagt der Text über Fehler?|Sie sind nicht schlimm, Hauptsache man wird vers
   ),
   text(
     "zh-read-9",
-    "📱",
+    "机",
     "手机和我们的生活",
     "Das Handy und unser Leben",
     "B1",
@@ -235,7 +235,7 @@ Welche Regel setzt sich die Person?|Kein Handy beim Essen und vor dem Schlafen|D
   ),
   text(
     "zh-read-10",
-    "⚖️",
+    "衡",
     "工作和生活的平衡",
     "Balance zwischen Arbeit und Leben",
     "B2",

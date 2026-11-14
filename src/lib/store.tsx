@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { getLanguage } from "../data/languages";
-import type { Language, VocabItem } from "../types";
+import type { Category, Language, VocabItem } from "../types";
 import { addDays, dayKey } from "./utils";
 
 // ---------------------------------------------------------------------------
@@ -10,6 +10,19 @@ import { addDays, dayKey } from "./utils";
 // ---------------------------------------------------------------------------
 export const BOX_INTERVALS = [0, 1, 3, 7, 14, 30, 60]; // days per box
 export const MASTERED_BOX = 4;
+export const XP_PER_LEVEL = 200;
+
+/** Id of the category that holds the learner's own words. */
+export const CUSTOM_ID = "custom";
+
+function customCategory(glyph: string): Category {
+  return {
+    id: CUSTOM_ID,
+    name: "Fundstücke",
+    glyph,
+    description: "Deine eigenen Wörter – aus Chats, Serien, Gesprächen.",
+  };
+}
 
 export interface CardState {
   box: number;
@@ -17,6 +30,15 @@ export interface CardState {
   right: number;
   wrong: number;
 }
+
+/** What was done on one day, used for the three-block day plan. */
+export interface DayActivity {
+  lesson: number;
+  review: number;
+  apply: number;
+}
+
+export type ActivityKind = keyof DayActivity;
 
 export interface Progress {
   cards: Record<string, CardState>;
@@ -26,6 +48,10 @@ export interface Progress {
   lessonsDone: number;
   /** Completed one-off items (reading texts, role plays), by id. */
   done: Record<string, boolean>;
+  /** Activity counters per day. */
+  activity: Record<string, DayActivity>;
+  /** Days whose calendar sheet has been torn off. */
+  torn: Record<string, boolean>;
 }
 
 export interface Settings {
@@ -38,7 +64,17 @@ export interface Settings {
 
 export type WordStatus = "new" | "learning" | "mastered";
 
-const emptyProgress = (): Progress => ({ cards: {}, xp: 0, days: {}, lessonsDone: 0, done: {} });
+const emptyProgress = (): Progress => ({
+  cards: {},
+  xp: 0,
+  days: {},
+  lessonsDone: 0,
+  done: {},
+  activity: {},
+  torn: {},
+});
+
+const emptyActivity = (): DayActivity => ({ lesson: 0, review: 0, apply: 0 });
 
 const defaultSettings = (): Settings => ({
   theme:
@@ -51,13 +87,23 @@ const defaultSettings = (): Settings => ({
   lang: "zh",
 });
 
-function load<T>(key: string, fallback: T): T {
+function load<T extends object>(key: string, fallback: T): T {
   try {
     const raw = localStorage.getItem(key);
     if (!raw) return fallback;
     return { ...fallback, ...JSON.parse(raw) };
   } catch {
     return fallback;
+  }
+}
+
+function loadList<T>(key: string): T[] {
+  try {
+    const raw = localStorage.getItem(key);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
   }
 }
 
@@ -69,24 +115,30 @@ function save(key: string, value: unknown) {
   }
 }
 
-export const XP_PER_LEVEL = 200;
-
 interface Store {
   lang: Language;
   settings: Settings;
   progress: Progress;
   today: string;
   todayXp: number;
+  todayActivity: DayActivity;
   streak: number;
   level: number;
   dueWords: VocabItem[];
+  customWords: VocabItem[];
   status: (id: string) => WordStatus;
   /** Records an answer for a word: updates SRS + XP. */
   answer: (id: string, correct: boolean, xp?: number) => void;
   addXp: (n: number) => void;
+  /** Counts an activity towards today's three-block plan. */
+  logActivity: (kind: ActivityKind, n?: number) => void;
   finishLesson: () => void;
   /** Marks a text / role play as completed. */
   markDone: (id: string) => void;
+  /** Tears off today's calendar sheet. */
+  tearToday: () => void;
+  addCustomWord: (word: Omit<VocabItem, "id" | "category">) => void;
+  removeCustomWord: (id: string) => void;
   updateSettings: (patch: Partial<Settings>) => void;
   resetProgress: () => void;
   exportProgress: () => string;
@@ -100,7 +152,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     load("linguaflow.settings", defaultSettings()),
   );
   const progressKey = `linguaflow.progress.${settings.lang}`;
+  const customKey = `linguaflow.custom.${settings.lang}`;
   const [progress, setProgress] = useState<Progress>(() => load(progressKey, emptyProgress()));
+  const [customWords, setCustomWords] = useState<VocabItem[]>(() => loadList<VocabItem>(customKey));
   const [today, setToday] = useState(dayKey());
 
   // Keep "today" fresh if the app stays open overnight.
@@ -111,6 +165,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => save("linguaflow.settings", settings), [settings]);
   useEffect(() => save(progressKey, progress), [progressKey, progress]);
+  useEffect(() => save(customKey, customWords), [customKey, customWords]);
+
+  // The language decides the visual world.
+  useEffect(() => {
+    document.documentElement.dataset.theme = getLanguage(settings.lang).culture.theme;
+  }, [settings.lang]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", settings.theme === "dark");
@@ -121,7 +181,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     }
   }, [settings.theme]);
 
-  const lang = useMemo(() => getLanguage(settings.lang), [settings.lang]);
+  // The learning language = shipped content + the learner's own words.
+  const lang = useMemo<Language>(() => {
+    const base = getLanguage(settings.lang);
+    if (!customWords.length) return base;
+    return {
+      ...base,
+      categories: [...base.categories, customCategory(base.culture.customGlyph)],
+      vocab: [...base.vocab, ...customWords],
+    };
+  }, [settings.lang, customWords]);
 
   const addXp = useCallback((n: number) => {
     if (n <= 0) return;
@@ -131,6 +200,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       xp: p.xp + n,
       days: { ...p.days, [day]: (p.days[day] ?? 0) + n },
     }));
+  }, []);
+
+  const logActivity = useCallback((kind: ActivityKind, n = 1) => {
+    const day = dayKey();
+    setProgress((p) => {
+      const cur = p.activity[day] ?? emptyActivity();
+      return { ...p, activity: { ...p.activity, [day]: { ...cur, [kind]: cur[kind] + n } } };
+    });
   }, []);
 
   const answer = useCallback((id: string, correct: boolean, xp = 10) => {
@@ -155,7 +232,25 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const finishLesson = useCallback(() => {
-    setProgress((p) => ({ ...p, lessonsDone: p.lessonsDone + 1 }));
+    const day = dayKey();
+    setProgress((p) => {
+      const cur = p.activity[day] ?? emptyActivity();
+      return {
+        ...p,
+        lessonsDone: p.lessonsDone + 1,
+        activity: { ...p.activity, [day]: { ...cur, lesson: cur.lesson + 1 } },
+      };
+    });
+  }, []);
+
+  const markDone = useCallback(
+    (id: string) => setProgress((p) => (p.done[id] ? p : { ...p, done: { ...p.done, [id]: true } })),
+    [],
+  );
+
+  const tearToday = useCallback(() => {
+    const day = dayKey();
+    setProgress((p) => (p.torn[day] ? p : { ...p, torn: { ...p.torn, [day]: true } }));
   }, []);
 
   const status = useCallback(
@@ -189,29 +284,43 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     progress,
     today,
     todayXp: progress.days[today] ?? 0,
+    todayActivity: progress.activity[today] ?? emptyActivity(),
     streak,
     level: Math.floor(progress.xp / XP_PER_LEVEL) + 1,
     dueWords,
+    customWords,
     status,
     answer,
     addXp,
+    logActivity,
     finishLesson,
-    markDone: (id) => setProgress((p) => (p.done[id] ? p : { ...p, done: { ...p.done, [id]: true } })),
+    markDone,
+    tearToday,
+    addCustomWord: (word) =>
+      setCustomWords((list) => {
+        const id = `${settings.lang}:custom:${word.target}:${word.reading}`;
+        if (list.some((w) => w.id === id)) return list;
+        return [...list, { ...word, id, category: CUSTOM_ID, learned: true }];
+      }),
+    removeCustomWord: (id) => setCustomWords((list) => list.filter((w) => w.id !== id)),
     updateSettings: (patch) => {
-      // Each language keeps its own progress: swap it together with the setting.
+      // Each language keeps its own progress and own words: swap them with the setting.
       if (patch.lang && patch.lang !== settings.lang) {
         setProgress(load(`linguaflow.progress.${patch.lang}`, emptyProgress()));
+        setCustomWords(loadList<VocabItem>(`linguaflow.custom.${patch.lang}`));
       }
       setSettings((s) => ({ ...s, ...patch }));
     },
     resetProgress: () => setProgress(emptyProgress()),
-    exportProgress: () => JSON.stringify({ app: "linguaflow", lang: settings.lang, progress }, null, 2),
+    exportProgress: () =>
+      JSON.stringify({ app: "linguaflow", lang: settings.lang, progress, customWords }, null, 2),
     importProgress: (json) => {
       try {
         const data = JSON.parse(json);
         const p = data.progress ?? data;
         if (!p || typeof p !== "object" || typeof p.cards !== "object") return false;
         setProgress({ ...emptyProgress(), ...p });
+        if (Array.isArray(data.customWords)) setCustomWords(data.customWords);
         return true;
       } catch {
         return false;

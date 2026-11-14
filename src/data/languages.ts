@@ -10,10 +10,10 @@ export const languages: Language[] = [zh];
 
 /** Shown as "coming soon" in the language picker. */
 export const upcomingLanguages = [
-  { code: "ja", name: "Japanisch", nativeName: "日本語", flag: "🇯🇵" },
-  { code: "ko", name: "Koreanisch", nativeName: "한국어", flag: "🇰🇷" },
-  { code: "vi", name: "Vietnamesisch", nativeName: "Tiếng Việt", flag: "🇻🇳" },
-  { code: "es", name: "Spanisch", nativeName: "Español", flag: "🇪🇸" },
+  { code: "ja", name: "Japanisch", nativeName: "日本語" },
+  { code: "ko", name: "Koreanisch", nativeName: "한국어" },
+  { code: "vi", name: "Vietnamesisch", nativeName: "Tiếng Việt" },
+  { code: "es", name: "Spanisch", nativeName: "Español" },
 ];
 
 export function getLanguage(code: string): Language {

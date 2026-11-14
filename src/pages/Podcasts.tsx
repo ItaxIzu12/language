@@ -1,79 +1,68 @@
+import { ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import type { ReactNode } from "react";
-import { LevelBadge, PageHeader } from "../components/ui";
+import { Glyph, ICON, LevelTag, PageHeader } from "../components/ui";
 import { useStore } from "../lib/store";
 import { speak, stopSpeaking } from "../lib/tts";
 import { cx } from "../lib/utils";
 import type { Episode } from "../types";
+import { VoiceNotice } from "./Listen";
+import { Toggle } from "./Read";
 
 export default function Podcasts() {
   const { lang } = useStore();
   const [episode, setEpisode] = useState<Episode | null>(null);
 
-  if (episode) return <Player episode={episode} onBack={() => setEpisode(null)} />;
+  if (episode) return <Player key={episode.id} episode={episode} onBack={() => setEpisode(null)} />;
 
   return (
-    <div>
-      <PageHeader
-        title="Podcast"
-        subtitle="Mini-Episoden mit Transkript direkt in der App – plus Empfehlungen für echte Podcasts."
-      />
+    <div className="max-w-3xl">
+      <PageHeader title="Podcast" subtitle="Dialoge zum Mithören. Das Transkript läuft mit, Pinyin und Übersetzung lassen sich ausblenden." />
+      <VoiceNotice />
 
-      <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">LinguaFlow-Episoden</h2>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <ol className="rows border-y border-rule">
         {lang.episodes.map((ep, i) => (
-          <button
-            key={ep.id}
-            type="button"
-            onClick={() => setEpisode(ep)}
-            className="card group flex items-start gap-4 p-5 text-left transition hover:-translate-y-0.5 hover:shadow-soft"
-          >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-2xl shadow-soft">
-              {ep.icon}
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="muted text-xs font-bold">Episode {i + 1}</div>
-              <div className="hanzi text-lg font-medium">{ep.title}</div>
-              <div className="font-semibold">{ep.titleDe}</div>
-              <p className="muted mt-1 text-sm">{ep.description}</p>
-              <div className="mt-2 flex items-center gap-2">
-                <LevelBadge level={ep.level} />
-                <span className="muted text-xs">{ep.lines.length} Sätze</span>
-              </div>
-            </div>
-            <span className="text-2xl text-brand-600 transition group-hover:scale-125">▶</span>
-          </button>
+          <li key={ep.id}>
+            <button type="button" onClick={() => setEpisode(ep)} className="group flex w-full items-center gap-4 py-4 text-left">
+              <span className="w-8 shrink-0 text-center font-display text-3xl font-extrabold leading-none text-dim">{i + 1}</span>
+              <Glyph char={ep.glyph} />
+              <span className="min-w-0 flex-1">
+                <span className="flex flex-wrap items-baseline gap-x-3">
+                  <span className="hanzi text-lg font-bold">{ep.title}</span>
+                  <span className="font-semibold">{ep.titleDe}</span>
+                </span>
+                <span className="block text-sm text-dim">{ep.description}</span>
+                <span className="mt-1 flex items-center gap-2 text-sm text-dim">
+                  <LevelTag level={ep.level} /> {ep.lines.length} Sätze
+                </span>
+              </span>
+              <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+            </button>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      <h2 className="mb-3 mt-8 text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-        Empfohlene Podcasts (extern)
-      </h2>
-      <div className="card divide-y divide-slate-100 dark:divide-slate-800">
+      <h2 className="mb-1 mt-12 border-b-2 border-ink pb-2 text-lg font-bold">Echte Podcasts zum Weiterhören</h2>
+      <p className="mb-2 text-sm text-dim">Externe Seiten. Die Adressen können sich ändern.</p>
+      <ul className="rows border-b border-rule">
         {lang.podcasts.map((p) => (
-          <a
-            key={p.url}
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 p-4 transition hover:bg-slate-50 dark:hover:bg-slate-800/50"
-          >
-            <span className="text-2xl">📻</span>
-            <div className="min-w-0 flex-1">
-              <div className="font-bold">{p.title}</div>
-              <div className="muted text-sm">{p.description}</div>
-            </div>
-            <span className="chip bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">{p.level}</span>
-            <span className="muted">↗</span>
-          </a>
+          <li key={p.url}>
+            <a href={p.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 py-3">
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">{p.title}</span>
+                <span className="block text-sm text-dim">{p.description}</span>
+              </span>
+              <span className="tag shrink-0 text-dim">{p.level}</span>
+              <ArrowUpRight {...ICON} aria-label="öffnet in neuem Tab" className="shrink-0 text-dim" />
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
 function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
-  const { lang, settings, addXp } = useStore();
+  const { lang, settings, addXp, logActivity } = useStore();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [slow, setSlow] = useState(false);
@@ -90,7 +79,7 @@ function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
     const my = ++token.current;
     const line = episode.lines[index];
     lineRefs.current[index]?.scrollIntoView({ block: "center", behavior: "smooth" });
-    speak(line.target, lang.ttsLang, slow ? 0.6 : settings.rate).then(() => {
+    void speak(line.target, lang.ttsLang, slow ? 0.6 : settings.rate).then(() => {
       if (token.current !== my) return; // paused, skipped or left the page
       setTimeout(() => {
         if (token.current !== my) return;
@@ -102,6 +91,7 @@ function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
           if (!rewarded.current) {
             rewarded.current = true;
             addXp(15);
+            logActivity("apply");
           }
         }
       }, 450);
@@ -134,45 +124,40 @@ function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
     }
   };
 
+  const started = playing || finished || index > 0;
+
   return (
     <div className="mx-auto max-w-2xl">
-      <button type="button" onClick={onBack} className="muted mb-3 text-sm font-semibold hover:text-brand-600">
-        ← Alle Episoden
+      <button type="button" onClick={onBack} className="mb-5 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-dim hover:text-ink">
+        <ArrowLeft {...ICON} aria-hidden /> Alle Episoden
       </button>
 
-      <div className="rounded-3xl bg-gradient-to-br from-brand-600 to-indigo-900 p-6 text-white shadow-soft">
-        <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-3xl">{episode.icon}</div>
-          <div>
-            <div className="hanzi text-2xl font-medium">{episode.title}</div>
-            <div className="font-semibold text-brand-100">{episode.titleDe}</div>
-          </div>
-        </div>
-        <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/20">
+      {/* Player: sticks below the app header while the transcript scrolls */}
+      <div className="sticky top-[58px] z-10 -mx-4 border-b-2 border-ink bg-paper px-4 pb-4 pt-1 sm:mx-0 sm:px-0">
+        <h1 className="flex flex-wrap items-baseline gap-x-3">
+          <span className="hanzi text-3xl font-black">{episode.title}</span>
+          <span className="text-dim">{episode.titleDe}</span>
+        </h1>
+        <div className="mt-3 h-1.5 bg-wash" role="progressbar" aria-valuemin={0} aria-valuemax={episode.lines.length} aria-valuenow={index + (finished ? 1 : 0)}>
           <div
-            className="h-full rounded-full bg-white transition-all duration-500"
-            style={{ width: `${((index + (finished ? 1 : 0)) / episode.lines.length) * 100}%` }}
+            className="h-full origin-left bg-cinnabar transition-transform duration-500"
+            style={{ transform: `scaleX(${(index + (finished ? 1 : 0)) / episode.lines.length})` }}
           />
         </div>
-        <div className="mt-5 flex items-center justify-center gap-5">
-          <button type="button" aria-label="Vorheriger Satz" onClick={() => jump(index - 1)} className="text-2xl transition hover:scale-110">
-            ⏮
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <button type="button" aria-label="Vorheriger Satz" onClick={() => jump(index - 1)} className="btn-line w-11 px-0">
+            <SkipBack {...ICON} aria-hidden />
           </button>
-          <button
-            type="button"
-            aria-label={playing ? "Pause" : "Abspielen"}
-            onClick={toggle}
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-2xl text-brand-700 shadow-soft transition active:scale-95"
-          >
-            {playing ? "⏸" : "▶"}
+          <button type="button" onClick={toggle} className="btn-ink min-w-[8.5rem]">
+            {playing ? <Pause {...ICON} aria-hidden /> : <Play {...ICON} aria-hidden />}
+            {playing ? "Anhalten" : finished ? "Nochmal" : "Abspielen"}
           </button>
-          <button type="button" aria-label="Nächster Satz" onClick={() => jump(index + 1)} className="text-2xl transition hover:scale-110">
-            ⏭
+          <button type="button" aria-label="Nächster Satz" onClick={() => jump(index + 1)} className="btn-line w-11 px-0">
+            <SkipForward {...ICON} aria-hidden />
           </button>
-        </div>
-        <div className="mt-5 flex flex-wrap justify-center gap-2 text-sm font-semibold">
+          <span className="mx-1 hidden h-6 w-px bg-rule sm:block" aria-hidden />
           <Toggle on={slow} onClick={() => setSlow((s) => !s)}>
-            🐢 Langsam
+            Langsam
           </Toggle>
           <Toggle on={showReading} onClick={() => setShowReading((s) => !s)}>
             {lang.readingName}
@@ -184,12 +169,12 @@ function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
       </div>
 
       {finished && (
-        <div className="animate-fade-in mt-4 rounded-2xl bg-emerald-50 p-4 text-center font-bold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
-          🎉 Episode gehört! +15 XP – Tipp: Jetzt nochmal ohne Übersetzung hören.
-        </div>
+        <p role="status" className="animate-enter border-b border-rule py-4 font-semibold text-jade">
+          Episode gehört. +15 XP – hör sie jetzt noch einmal ohne Übersetzung.
+        </p>
       )}
 
-      <ol className="mt-5 space-y-2">
+      <ol className="rows">
         {episode.lines.map((line, i) => (
           <li
             key={i}
@@ -200,34 +185,21 @@ function Player({ episode, onBack }: { episode: Episode; onBack: () => void }) {
             <button
               type="button"
               onClick={() => jump(i)}
-              className={cx(
-                "w-full rounded-2xl border-2 p-4 text-left transition",
-                i === index && (playing || finished || index > 0)
-                  ? "border-brand-500 bg-brand-50 dark:bg-brand-900/30"
-                  : "border-transparent bg-white hover:border-slate-200 dark:bg-slate-900 dark:hover:border-slate-700",
-              )}
+              aria-current={started && i === index ? "true" : undefined}
+              className={cx("flex w-full items-start gap-3 py-3.5 pl-3 text-left transition-colors", started && i === index ? "bg-wash" : "hover:bg-wash/60")}
             >
-              <div className="muted text-xs font-bold">{line.speaker}</div>
-              <div className="hanzi mt-0.5 text-lg">{line.target}</div>
-              {showReading && <div className="text-sm text-brand-700 dark:text-brand-300">{line.reading}</div>}
-              {showDe && <div className="muted text-sm">{line.de}</div>}
+              <span className={cx("hanzi mt-1 w-10 shrink-0 text-sm font-bold", started && i === index ? "text-cinnabar" : "text-dim")}>
+                {line.speaker}
+              </span>
+              <span className="min-w-0">
+                <span className="hanzi block text-xl font-medium">{line.target}</span>
+                {showReading && <span className="reading block text-sm">{line.reading}</span>}
+                {showDe && <span className="block text-sm text-dim">{line.de}</span>}
+              </span>
             </button>
           </li>
         ))}
       </ol>
     </div>
-  );
-}
-
-function Toggle({ on, onClick, children }: { on: boolean; onClick: () => void; children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={on}
-      onClick={onClick}
-      className={cx("rounded-full px-3.5 py-1.5 transition", on ? "bg-white text-brand-700" : "bg-white/15 text-white hover:bg-white/25")}
-    >
-      {children}
-    </button>
   );
 }

@@ -1,26 +1,30 @@
+import { ArrowRight, Check } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ProgressBar, Ring } from "../components/ui";
+import { Bar, Glyph, ICON, Seal, SpeakButton, levelTone } from "../components/ui";
 import { LEVELS } from "../data/languages";
-import { XP_PER_LEVEL, useStore } from "../lib/store";
+import { mistakeWords } from "../lib/mistakes";
+import { dayPlan } from "../lib/plan";
+import { useStore } from "../lib/store";
 import { addDays, cx } from "../lib/utils";
+import type { Culture } from "../types";
 
-const WEEKDAYS = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+const MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const WEEKDAYS = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+const WEEKDAYS_SHORT = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
-function greeting(): string {
-  const h = new Date().getHours();
-  if (h < 11) return "Guten Morgen";
-  if (h < 18) return "Hallo";
-  return "Guten Abend";
+function parseDay(key: string): Date {
+  const [y, m, d] = key.split("-").map(Number);
+  return new Date(y, m - 1, d);
 }
 
+/** Home: today's calendar sheet with the day plan (宜) and stumbling words (忌). */
 export default function Dashboard() {
-  const { lang, progress, settings, today, todayXp, streak, level, dueWords, status } = useStore();
+  const { lang, progress, settings, today, todayXp, todayActivity, dueWords, status, tearToday } = useStore();
+  const [tearing, setTearing] = useState(false);
 
-  const total = lang.vocab.length;
-  const started = lang.vocab.filter((w) => status(w.id) !== "new").length;
-  const mastered = lang.vocab.filter((w) => status(w.id) === "mastered").length;
-  const goalPct = todayXp / settings.dailyGoal;
-  const levelXp = progress.xp % XP_PER_LEVEL;
+  const date = parseDay(today);
+  const torn = !!progress.torn[today];
 
   // Next category that still has new words.
   const next =
@@ -29,165 +33,276 @@ export default function Dashboard() {
   const nextWords = lang.vocab.filter((w) => w.category === next.id);
   const nextDone = nextWords.filter((w) => status(w.id) !== "new").length;
 
-  const week = Array.from({ length: 7 }, (_, i) => {
-    const key = addDays(today, i - 6);
-    const [y, m, d] = key.split("-").map(Number);
-    return { key, xp: progress.days[key] ?? 0, label: WEEKDAYS[new Date(y, m - 1, d).getDay()] };
+  const blocks = dayPlan({
+    activity: todayActivity,
+    nextSetId: next.id,
+    nextSetName: next.name,
+    dueCount: dueWords.length,
+    hasCards: Object.keys(progress.cards).length > 0,
+    weekday: date.getDay(),
   });
-  const weekMax = Math.max(settings.dailyGoal, ...week.map((d) => d.xp));
+  const blocksDone = blocks.filter((b) => b.done).length;
+  const goalReached = todayXp >= settings.dailyGoal;
+  const canTear = goalReached || blocksDone === blocks.length;
+  const stumbling = mistakeWords(lang.vocab, progress).slice(0, 4);
+  const tornTotal = Object.keys(progress.torn).length;
+
+  const fortnight = Array.from({ length: 14 }, (_, i) => {
+    const key = addDays(today, i - 13);
+    return { key, xp: progress.days[key] ?? 0, torn: !!progress.torn[key], date: parseDay(key) };
+  });
+
+  const tear = () => {
+    setTearing(true);
+    window.setTimeout(() => {
+      tearToday();
+      setTearing(false);
+    }, 880);
+  };
 
   return (
-    <div className="space-y-6">
-      {/* Hero */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-700 to-indigo-900 p-6 text-white shadow-soft sm:p-8">
-        <div className="hanzi pointer-events-none absolute -right-4 -top-8 select-none text-[11rem] font-bold leading-none text-white/10">
-          学
-        </div>
-        <div className="relative flex flex-wrap items-center justify-between gap-6">
-          <div className="max-w-md">
-            <p className="text-sm font-semibold text-brand-100">
-              {lang.flag} {lang.name} · Level {level}
-            </p>
-            <h1 className="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl">{greeting()}! 加油 💪</h1>
-            <p className="mt-2 text-brand-100">
-              {todayXp >= settings.dailyGoal
-                ? "Tagesziel geschafft – stark! Jede Extra-Runde bringt dich schneller zu B2."
-                : `Noch ${settings.dailyGoal - todayXp} XP bis zu deinem Tagesziel.`}
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link to={`/lesson/${next.id}`} className="btn bg-white text-brand-700 hover:bg-brand-50">
-                ▶ Lektion starten
-              </Link>
-              {dueWords.length > 0 && (
-                <Link to="/review" className="btn bg-accent-500 text-white hover:bg-accent-600">
-                  🃏 {dueWords.length} wiederholen
-                </Link>
-              )}
+    <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)]">
+      {/* The sheet(s): today's on top, tomorrow's underneath. */}
+      <div className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        {(torn || tearing) && <NextSheet date={parseDay(addDays(today, 1))} tornTotal={tornTotal + (tearing ? 1 : 0)} culture={lang.culture} />}
+        {!torn && (
+          <article className={cx("sheet overflow-hidden", tearing && "pointer-events-none origin-top-left animate-tear")}>
+            <SheetHead date={date} culture={lang.culture} />
+
+            <div className="grid sm:grid-cols-2">
+              {/* 宜 – favourable today: the three blocks */}
+              <section className="border-t-2 border-ink p-5 sm:border-r sm:border-r-rule">
+                <h2 className="flex items-baseline gap-3">
+                  <span className="hanzi text-3xl font-black text-jade">{lang.culture.favourable}</span>
+                  <span className="font-bold">Günstig heute</span>
+                  <span className="ml-auto text-sm text-dim">
+                    {blocksDone}/{blocks.length}
+                  </span>
+                </h2>
+                <ol className="rows mt-3">
+                  {blocks.map((b) => (
+                    <li key={b.id}>
+                      <Link to={b.to} className="group flex items-start gap-3 py-3">
+                        <span
+                          className={cx(
+                            "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border",
+                            b.done ? "border-jade bg-jade text-paper" : "border-ink/60",
+                          )}
+                          aria-label={b.done ? "erledigt" : "offen"}
+                        >
+                          {b.done && <Check size={16} strokeWidth={2.5} aria-hidden />}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className={cx("block font-semibold", b.done && "text-dim line-through")}>{b.title}</span>
+                          <span className="block text-sm text-dim">{b.when}</span>
+                          <span className="block text-sm">{b.detail}</span>
+                          {!b.done && b.progress > 0 && <Bar value={b.progress} tone="jade" className="mt-2" />}
+                        </span>
+                        <ArrowRight {...ICON} aria-hidden className="mt-1 shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              {/* 忌 – avoid: stumbling words */}
+              <section className="border-t-2 border-ink p-5">
+                <h2 className="flex items-baseline gap-3">
+                  <span className="hanzi text-3xl font-black text-cinnabar">{lang.culture.avoid}</span>
+                  <span className="font-bold">Stolpersteine</span>
+                </h2>
+                {stumbling.length ? (
+                  <>
+                    <ul className="rows mt-3">
+                      {stumbling.map((w) => (
+                        <li key={w.id} className="flex items-center gap-3 py-2.5">
+                          <span className="hanzi w-16 shrink-0 text-xl font-bold">{w.target}</span>
+                          <span className="min-w-0 flex-1">
+                            {settings.showReading && <span className="reading block text-sm">{w.reading}</span>}
+                            <span className="block truncate text-sm text-dim">{w.de}</span>
+                          </span>
+                          <span className="text-sm text-dim" title="so oft falsch beantwortet">
+                            {progress.cards[w.id].wrong}×
+                          </span>
+                          <SpeakButton text={w.target} size="sm" />
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/review?tab=mistakes" className="btn-line mt-3 w-full">
+                      Fehlerheft öffnen
+                    </Link>
+                  </>
+                ) : (
+                  <p className="mt-3 text-sm text-dim">
+                    Noch keine. Wörter, die du falsch beantwortest, sammeln sich hier – damit du weißt, worauf du heute achten
+                    solltest.
+                  </p>
+                )}
+              </section>
             </div>
-          </div>
-          <div className="rounded-3xl bg-white/10 p-4 backdrop-blur">
-            <Ring value={goalPct} size={132}>
-              <span className="text-2xl font-extrabold">{todayXp}</span>
-              <span className="text-xs text-brand-100">/ {settings.dailyGoal} XP</span>
-            </Ring>
-          </div>
-        </div>
-      </section>
 
-      {/* Key numbers */}
-      <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {[
-          { icon: "🔥", value: streak, label: streak === 1 ? "Tag in Folge" : "Tage in Folge" },
-          { icon: "⚡", value: progress.xp, label: "XP gesamt" },
-          { icon: "📖", value: started, label: `von ${total} Wörtern begonnen` },
-          { icon: "🏆", value: mastered, label: "Wörter sicher" },
-        ].map((s) => (
-          <div key={s.label} className="card p-4">
-            <div className="text-2xl">{s.icon}</div>
-            <div className="mt-2 text-2xl font-extrabold">{s.value}</div>
-            <div className="muted text-xs font-medium">{s.label}</div>
-          </div>
-        ))}
-      </section>
-
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Continue */}
-        <section className="card p-5">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Weiterlernen</h2>
-          <div className="mt-3 flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-3xl dark:bg-brand-900/40">
-              {next.icon}
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="truncate font-bold">{next.name}</div>
-              <div className="muted text-sm">
-                {nextDone} / {nextWords.length} Wörter
-              </div>
-              <ProgressBar value={nextWords.length ? nextDone / nextWords.length : 0} className="mt-2" />
-            </div>
-          </div>
-          <div className="mt-4 flex gap-2">
-            <Link to={`/lesson/${next.id}`} className="btn-primary flex-1">
-              Lektion starten
-            </Link>
-            <Link to={`/learn/${next.id}`} className="btn-ghost">
-              Wörter ansehen
-            </Link>
-          </div>
-        </section>
-
-        {/* Week */}
-        <section className="card p-5">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Diese Woche</h2>
-            <span className="muted text-xs">
-              Level {level} · {levelXp}/{XP_PER_LEVEL} XP
-            </span>
-          </div>
-          <div className="mt-4 flex items-end gap-2">
-            {week.map((d) => (
-              <div key={d.key} className="flex flex-1 flex-col items-center gap-1.5">
-                <div className="flex h-24 w-full items-end">
-                  <div
-                    title={`${d.xp} XP`}
-                    className={cx(
-                      "w-full rounded-t-lg transition-all",
-                      d.xp >= settings.dailyGoal
-                        ? "bg-gradient-to-t from-brand-600 to-accent-500"
-                        : d.xp > 0
-                          ? "bg-brand-300 dark:bg-brand-700"
-                          : "bg-slate-200 dark:bg-slate-800",
-                    )}
-                    style={{ height: `${Math.max(6, (d.xp / weekMax) * 100)}%` }}
-                  />
-                </div>
-                <span className={cx("text-xs font-semibold", d.key === today ? "text-brand-600 dark:text-brand-300" : "muted")}>
-                  {d.label}
-                </span>
-              </div>
-            ))}
-          </div>
-          <ProgressBar value={levelXp / XP_PER_LEVEL} className="mt-4" />
-        </section>
-      </div>
-
-      {/* Path to B2 */}
-      <section className="card p-5">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Dein Weg zu B2</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {LEVELS.map((lv) => {
-            const words = lang.vocab.filter((w) => w.level === lv);
-            const done = words.filter((w) => status(w.id) !== "new").length;
-            return (
-              <div key={lv}>
-                <div className="flex items-baseline justify-between">
-                  <span className="font-extrabold">{lv}</span>
-                  <span className="muted text-xs">
-                    {done} / {words.length}
+            {/* Tear-off strip */}
+            <footer className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-ink p-5">
+              <div className="min-w-[10rem] flex-1">
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="font-semibold">Tagesziel</span>
+                  <span className="text-dim">
+                    {todayXp} / {settings.dailyGoal} XP
                   </span>
                 </div>
-                <ProgressBar value={words.length ? done / words.length : 0} className="mt-2" />
+                <Bar value={todayXp / settings.dailyGoal} tone="red" className="mt-1.5" />
               </div>
-            );
-          })}
-        </div>
-      </section>
+              <button type="button" className="btn-red" disabled={!canTear || tearing} onClick={tear}>
+                Blatt abreißen
+              </button>
+              {!canTear && (
+                <p className="w-full text-sm text-dim">
+                  Noch {settings.dailyGoal - todayXp} XP oder alle drei Blöcke – dann darfst du das Blatt abreißen.
+                </p>
+              )}
+            </footer>
+          </article>
+        )}
+      </div>
 
-      {/* Modes */}
-      <section className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {[
-          { to: "/read", icon: "📖", title: "Lesen", text: "Texte mit Fragen" },
-          { to: "/listen", icon: "🎧", title: "Hören", text: "Sätze verstehen" },
-          { to: "/speak", icon: "🎤", title: "Sprechen", text: "Rollenspiele & Aussprache" },
-          { to: "/podcasts", icon: "📻", title: "Podcast", text: "Dialoge mit Transkript" },
-        ].map((m) => (
-          <Link key={m.to} to={m.to} className="card group p-4 transition hover:-translate-y-0.5 hover:shadow-soft">
-            <div className="text-3xl transition group-hover:scale-110">{m.icon}</div>
-            <div className="mt-2 font-bold">{m.title}</div>
-            <div className="muted text-xs">{m.text}</div>
+      {/* Beside the sheet */}
+      <aside className="space-y-10">
+        <section>
+          <h2 className="flex items-baseline justify-between border-b-2 border-ink pb-2">
+            <span className="font-bold">Abgerissene Blätter</span>
+            <span className="font-display text-4xl font-extrabold leading-none">{tornTotal}</span>
+          </h2>
+          <ol className="mt-3 grid grid-cols-7 gap-1.5" aria-label="Die letzten 14 Tage">
+            {fortnight.map((d) => (
+              <li
+                key={d.key}
+                title={`${d.date.getDate()}. ${MONTHS[d.date.getMonth()]}: ${d.xp} XP${d.torn ? ", abgerissen" : ""}`}
+                className={cx(
+                  "flex aspect-[4/5] flex-col items-center justify-center rounded-sm border text-center",
+                  d.torn
+                    ? "border-cinnabar bg-cinnabar text-on-cinnabar"
+                    : d.xp > 0
+                      ? "border-ink/60 bg-wash"
+                      : "border-rule text-dim",
+                  d.key === today && "outline outline-2 outline-offset-2 outline-ink",
+                )}
+              >
+                <span className="font-display text-lg font-extrabold leading-none">{d.date.getDate()}</span>
+                <span className="text-[10px] font-semibold uppercase">{WEEKDAYS_SHORT[d.date.getDay()]}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-2 text-sm text-dim">Rot: Blatt abgerissen. Grau: gelernt, Blatt hängt noch.</p>
+        </section>
+
+        <section>
+          <h2 className="border-b-2 border-ink pb-2 font-bold">Weiter im Wortschatz</h2>
+          <Link to={`/learn/${next.id}`} className="group mt-3 flex items-center gap-4">
+            <Glyph char={next.glyph} />
+            <span className="min-w-0 flex-1">
+              <span className="block truncate font-semibold">{next.name}</span>
+              <span className="block text-sm text-dim">
+                {nextDone} von {nextWords.length} Wörtern begonnen
+              </span>
+              <Bar value={nextWords.length ? nextDone / nextWords.length : 0} className="mt-2" />
+            </span>
+            <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
           </Link>
-        ))}
-      </section>
+        </section>
+
+        <section>
+          <h2 className="border-b-2 border-ink pb-2 font-bold">Stand je Stufe</h2>
+          <ul className="rows">
+            {LEVELS.map((lv) => {
+              const words = lang.vocab.filter((w) => w.level === lv);
+              const done = words.filter((w) => status(w.id) !== "new").length;
+              return (
+                <li key={lv} className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 py-2.5">
+                  <span className={cx("font-display text-2xl font-extrabold leading-none", levelTone(lv))}>{lv}</span>
+                  <Bar value={words.length ? done / words.length : 0} />
+                  <span className="text-sm text-dim">
+                    {done} / {words.length}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </aside>
     </div>
+  );
+}
+
+function SheetHead({ date, culture, quiet }: { date: Date; culture: Culture; quiet?: boolean }) {
+  const zh = culture.localDate(date);
+  const weekend = date.getDay() === 0 || date.getDay() === 6;
+  return (
+    <header>
+      <div className="bg-band text-white">
+        <div className="perforation" aria-hidden />
+        <div className="flex items-baseline justify-between gap-3 px-5 pb-2 pt-1">
+          <span className="font-display text-2xl font-extrabold uppercase leading-none">
+            {MONTHS[date.getMonth()]} {date.getFullYear()}
+          </span>
+          {zh && <span className="hanzi text-xl font-bold">{zh.month}</span>}
+        </div>
+      </div>
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-end gap-x-5 gap-y-2 p-5">
+        <div
+          className={cx("font-display font-black leading-[0.8]", weekend ? "text-cinnabar" : "text-ink", quiet && "opacity-40")}
+          style={{ fontSize: "clamp(7.5rem, 24vw, 13rem)" }}
+        >
+          {date.getDate()}
+        </div>
+        <div className="min-w-0 pb-2">
+          <h1 className="font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl">{WEEKDAYS[date.getDay()]}</h1>
+          {zh && (
+            <>
+              <p className="hanzi mt-2 text-3xl font-bold leading-tight">{zh.weekday}</p>
+              {zh.traditional && (
+                <p className="mt-1 text-sm text-dim">
+                  {culture.traditionalLabel} <span className="hanzi text-base text-ink">{zh.traditional}</span>
+                </p>
+              )}
+            </>
+          )}
+        </div>
+        {zh && !quiet && (
+          <div className="col-span-2 flex items-center gap-3 border-t border-rule pt-3">
+            <SpeakButton text={zh.sentence} size="sm" />
+            <p className="min-w-0">
+              <span className="hanzi block text-lg font-medium">{zh.sentence}</span>
+              <span className="reading block text-sm">{zh.sentenceReading}</span>
+            </p>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
+
+/** The sheet under today's: shown once today's has been torn off. */
+function NextSheet({ date, tornTotal, culture }: { date: Date; tornTotal: number; culture: Culture }) {
+  return (
+    <article className="sheet overflow-hidden">
+      <SheetHead date={date} culture={culture} quiet />
+      <div className="flex flex-wrap items-center gap-6 border-t-2 border-ink p-5">
+        <Seal text={culture.seal} />
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xl font-bold">Das Blatt von heute ist abgerissen.</h2>
+          <p className="mt-1 max-w-[52ch] text-dim">
+            Blatt Nummer {tornTotal}. Das nächste wartet morgen – wer mag, lernt einfach weiter, die Punkte zählen trotzdem.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link to="/review" className="btn-ink">
+              Karten wiederholen
+            </Link>
+            <Link to="/practice" className="btn-line">
+              Etwas üben
+            </Link>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }

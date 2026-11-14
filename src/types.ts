@@ -57,8 +57,8 @@ export interface Category {
   id: string;
   /** German display name. */
   name: string;
-  /** Emoji icon. */
-  icon: string;
+  /** A single character of the target script used as the mark of this category. */
+  glyph: string;
   /** Short German description. */
   description: string;
 }
@@ -96,7 +96,8 @@ export interface Episode {
   titleDe: string;
   level: Level;
   description: string;
-  icon: string;
+  /** Single-character mark. */
+  glyph: string;
   lines: EpisodeLine[];
 }
 
@@ -106,12 +107,53 @@ export interface ReadingText {
   title: string;
   titleDe: string;
   level: Level;
-  icon: string;
+  /** Single-character mark. */
+  glyph: string;
   sentences: Array<{ target: string; reading: string; de: string }>;
   questions: Array<{ question: string; answer: string; wrong: string[] }>;
 }
 
+/** Date as written in the target language, for the daily sheet. */
+export interface LocalDate {
+  month: string;
+  weekday: string;
+  /** Full sentence for reading aloud, with its reading. */
+  sentence: string;
+  sentenceReading: string;
+  /** Traditional calendar date, when available. */
+  traditional?: string;
+}
+
+/**
+ * The visual and cultural world of a language. Every language brings its own:
+ * the look (a theme defined in index.css) and the motifs of the daily sheet.
+ * Layout, navigation and controls stay the same across languages.
+ */
+export interface Culture {
+  /** Theme id; index.css defines its colours and fonts under [data-theme="<id>"]. */
+  theme: string;
+  /** German name of the world, shown in the settings. */
+  themeName: string;
+  /** Heading mark for today's plan (e.g. 宜 "favourable"). */
+  favourable: string;
+  /** Heading mark for the stumbling words (e.g. 忌 "avoid"). */
+  avoid: string;
+  /** Character on the seal that celebrates a finished task. */
+  seal: string;
+  /** Label for the traditional calendar line. */
+  traditionalLabel: string;
+  /** Marks of the three daily blocks: lesson, recall, apply. */
+  blockGlyphs: [string, string, string];
+  /** Marks of the four levels A1–B2. */
+  levelGlyphs: [string, string, string, string];
+  /** Mark of the learner's own words. */
+  customGlyph: string;
+  localDate: (date: Date) => LocalDate;
+}
+
 export interface Language {
+  /** Visual and cultural world of this language. */
+  culture: Culture;
   /** Reading texts. */
   texts: ReadingText[];
   /** Name of the reading system, e.g. "Pinyin". */
@@ -124,8 +166,6 @@ export interface Language {
   name: string;
   /** Endonym, e.g. "中文". */
   nativeName: string;
-  /** Emoji flag. */
-  flag: string;
   /** Speech-synthesis language tag, e.g. "zh-CN". */
   ttsLang: string;
   /** Whether content is ready. Future languages can be listed as not available. */

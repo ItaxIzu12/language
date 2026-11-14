@@ -1,11 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3377ff"/>
-      <stop offset="1" stop-color="#ff6b35"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="'Noto Sans SC','PingFang SC',sans-serif" font-size="34" font-weight="700" fill="#ffffff">语</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="6" fill="#FBF8F1"/>
+  <rect width="64" height="18" rx="6" fill="#BE2E1A"/>
+  <rect y="12" width="64" height="6" fill="#BE2E1A"/>
+  <circle cx="18" cy="9" r="3" fill="#FBF8F1"/><circle cx="32" cy="9" r="3" fill="#FBF8F1"/><circle cx="46" cy="9" r="3" fill="#FBF8F1"/>
+  <text x="32" y="43" dominant-baseline="middle" text-anchor="middle" font-family="'Noto Serif SC','Songti SC',serif" font-size="32" font-weight="900" fill="#1B1917">语</text>
 </svg>

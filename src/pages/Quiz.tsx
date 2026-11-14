@@ -1,16 +1,17 @@
 import { useMemo, useState } from "react";
-import type { ReactNode } from "react";
 import Choice from "../components/Choice";
-import { PageHeader, Segmented, SpeakButton } from "../components/ui";
+import { Field, RoundBar, RoundEnd } from "../components/Round";
+import { PageHeader, Segmented, SpeakButton, Verdict, WordLine } from "../components/ui";
 import { LEVELS } from "../data/languages";
 import { makeOptions } from "../lib/exercises";
+import { mistakeWords } from "../lib/mistakes";
 import { useStore } from "../lib/store";
 import { speak } from "../lib/tts";
-import { cx, shuffle } from "../lib/utils";
+import { shuffle } from "../lib/utils";
 import type { Level, VocabItem } from "../types";
 
 type Direction = "toDe" | "toTarget" | "mixed";
-type Scope = "all" | "course" | "started";
+type Scope = "all" | "course" | "started" | "mistakes";
 
 const ROUND = 10;
 
@@ -22,25 +23,25 @@ export default function Quiz() {
   const [level, setLevel] = useState<Level | "all">("all");
   const [round, setRound] = useState<VocabItem[] | null>(null);
 
-  const pool = useMemo(
-    () =>
-      lang.vocab.filter(
-        (w) =>
-          (category === "all" || w.category === category) &&
-          (level === "all" || w.level === level) &&
-          (scope === "all" || (scope === "course" ? w.learned : !!progress.cards[w.id])),
-      ),
-    [lang.vocab, category, level, scope, progress.cards],
-  );
+  const pool = useMemo(() => {
+    const base = scope === "mistakes" ? mistakeWords(lang.vocab, progress) : lang.vocab;
+    return base.filter(
+      (w) =>
+        (category === "all" || w.category === category) &&
+        (level === "all" || w.level === level) &&
+        (scope === "all" || scope === "mistakes" || (scope === "course" ? w.learned : !!progress.cards[w.id])),
+    );
+  }, [lang.vocab, category, level, scope, progress]);
 
   if (round) return <Round words={round} direction={direction} onExit={() => setRound(null)} />;
 
   return (
-    <div>
-      <PageHeader title="Quiz" subtitle={`Schnelle Runden mit ${ROUND} Fragen – wähle, was du üben willst.`} />
-      <div className="card space-y-5 p-5 sm:p-6">
+    <div className="max-w-3xl">
+      <PageHeader title="Quiz" subtitle={`Runden mit ${ROUND} Fragen. Wähle, woraus gefragt wird.`} />
+      <div className="border-b border-rule">
         <Field label="Richtung">
           <Segmented<Direction>
+            label="Richtung"
             value={direction}
             onChange={setDirection}
             options={[
@@ -52,60 +53,52 @@ export default function Quiz() {
         </Field>
         <Field label="Wörter">
           <Segmented<Scope>
+            label="Wörter"
             value={scope}
             onChange={setScope}
             options={[
               { value: "all", label: "Alle" },
-              { value: "course", label: "★ Aus meinem Kurs" },
+              { value: "course", label: "Aus meinem Kurs" },
               { value: "started", label: "Schon begonnen" },
+              { value: "mistakes", label: "Fehlerheft" },
             ]}
           />
         </Field>
-        <Field label="Niveau">
+        <Field label="Stufe">
           <Segmented<Level | "all">
+            label="Stufe"
             value={level}
             onChange={setLevel}
             options={[{ value: "all", label: "Alle" }, ...LEVELS.map((l) => ({ value: l, label: l }))]}
           />
         </Field>
         <Field label="Kategorie">
-          <select className="input max-w-sm" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select className="field max-w-sm" value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Kategorie">
             <option value="all">Alle Kategorien</option>
             {lang.categories.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.icon} {c.name}
+                {c.name}
               </option>
             ))}
           </select>
         </Field>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-5 dark:border-slate-800">
-          <span className="muted text-sm">{pool.length} Wörter passen zur Auswahl</span>
-          <button
-            type="button"
-            className="btn-primary"
-            disabled={pool.length < 4}
-            onClick={() => setRound(shuffle(pool).slice(0, ROUND))}
-          >
-            🎯 Runde starten
-          </button>
-        </div>
-        {pool.length < 4 && <p className="text-sm text-rose-600">Mindestens 4 Wörter nötig – erweitere die Auswahl.</p>}
+      </div>
+      <div className="mt-6 flex flex-wrap items-center gap-4">
+        <button type="button" className="btn-ink" disabled={pool.length < 4} onClick={() => setRound(shuffle(pool).slice(0, ROUND))}>
+          Runde starten
+        </button>
+        <span className="text-sm text-dim">
+          {pool.length < 4
+            ? `Nur ${pool.length} Wörter passen – mindestens vier sind nötig. Lockere einen Filter.`
+            : `${pool.length} Wörter passen zur Auswahl`}
+        </span>
       </div>
     </div>
   );
 }
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div>
-      <div className="muted mb-2 text-xs font-bold uppercase tracking-wide">{label}</div>
-      {children}
-    </div>
-  );
-}
-
 function Round({ words, direction, onExit }: { words: VocabItem[]; direction: Direction; onExit: () => void }) {
-  const { lang, settings, answer } = useStore();
+  const { lang, settings, answer, logActivity } = useStore();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -124,23 +117,19 @@ function Round({ words, direction, onExit }: { words: VocabItem[]; direction: Di
   );
 
   if (index >= questions.length) {
-    const pct = Math.round((score / questions.length) * 100);
+    const ratio = score / questions.length;
     return (
-      <div className="mx-auto max-w-md text-center">
-        <div className="card p-8">
-          <p className="text-6xl">{pct === 100 ? "🏆" : pct >= 70 ? "🎉" : "💪"}</p>
-          <h1 className="mt-4 text-3xl font-extrabold">
-            {score} / {questions.length}
-          </h1>
-          <p className="muted mt-1">
-            {pct === 100 ? "Fehlerfrei – stark!" : pct >= 70 ? "Gute Runde!" : "Dranbleiben – Übung macht den Meister."}
-          </p>
-          <p className="mt-3 text-sm font-semibold">🔥 Beste Serie: {bestCombo}</p>
-          <button type="button" className="btn-primary mt-6" onClick={onExit}>
-            Neue Runde
-          </button>
-        </div>
-      </div>
+      <RoundEnd
+        score={score}
+        total={questions.length}
+        perfect={ratio === 1}
+        line={ratio === 1 ? "Fehlerfrei." : ratio >= 0.7 ? "Gute Runde." : "Die falschen Wörter stehen jetzt in deinem Fehlerheft."}
+        onExit={onExit}
+      >
+        <p className="border-b border-rule py-3 text-sm">
+          Längste Serie richtiger Antworten: <strong>{bestCombo}</strong>
+        </p>
+      </RoundEnd>
     );
   }
 
@@ -148,13 +137,13 @@ function Round({ words, direction, onExit }: { words: VocabItem[]; direction: Di
   const onPick = (correct: boolean) => {
     setResult(correct);
     answer(q.word.id, correct, 5);
-    speak(q.word.target, lang.ttsLang, settings.rate);
+    logActivity("review");
+    void speak(q.word.target, lang.ttsLang, settings.rate);
     if (correct) {
       setScore((s) => s + 1);
-      setCombo((c) => {
-        setBestCombo((b) => Math.max(b, c + 1));
-        return c + 1;
-      });
+      const c = combo + 1;
+      setCombo(c);
+      setBestCombo((b) => Math.max(b, c));
     } else {
       setCombo(0);
     }
@@ -162,30 +151,31 @@ function Round({ words, direction, onExit }: { words: VocabItem[]; direction: Di
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="mb-5 flex items-center justify-between text-sm font-bold">
-        <button type="button" onClick={onExit} className="muted hover:text-slate-900 dark:hover:text-white">
-          ✕ Beenden
-        </button>
-        <span className="muted">
-          Frage {index + 1} / {questions.length}
-        </span>
-        <span className={cx("chip", combo >= 3 ? "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300")}>
-          🔥 {combo}
-        </span>
-      </div>
+      <RoundBar
+        onExit={onExit}
+        value={index / questions.length}
+        right={
+          <>
+            Serie <span className="font-display text-2xl font-extrabold leading-none text-ink">{combo}</span>
+          </>
+        }
+      />
 
-      <div key={index} className="animate-fade-in">
-        <div className="card mb-5 flex min-h-[7rem] items-center gap-4 p-5">
+      <div key={index} className="animate-enter">
+        <h2 className="mb-4 text-lg font-bold">
+          Frage {index + 1} von {questions.length}
+        </h2>
+        <div className="mb-6 flex min-h-[7rem] items-center gap-5 border-y-2 border-ink py-5">
           {q.mode === "toDe" ? (
             <>
-              <SpeakButton text={q.word.target} />
-              <div>
-                <div className="hanzi text-4xl font-medium">{q.word.target}</div>
-                {settings.showReading && <div className="mt-1 text-brand-700 dark:text-brand-300">{q.word.reading}</div>}
+              <div className="min-w-0 flex-1">
+                <div className="hanzi text-6xl font-black leading-none">{q.word.target}</div>
+                {settings.showReading && <div className="reading mt-2 text-lg">{q.word.reading}</div>}
               </div>
+              <SpeakButton text={q.word.target} />
             </>
           ) : (
-            <div className="text-2xl font-bold">{q.word.de}</div>
+            <div className="text-3xl font-bold">{q.word.de}</div>
           )}
         </div>
         <Choice
@@ -200,26 +190,25 @@ function Round({ words, direction, onExit }: { words: VocabItem[]; direction: Di
       </div>
 
       {result !== null && (
-        <div
-          className={cx(
-            "animate-fade-in mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4",
-            result ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-rose-50 dark:bg-rose-900/30",
-          )}
-        >
-          <div className="text-sm">
-            <span className="hanzi text-lg">{q.word.target}</span>{" "}
-            <span className="text-brand-700 dark:text-brand-300">{q.word.reading}</span> – {q.word.de}
-          </div>
-          <button
-            type="button"
-            className={result ? "btn-primary" : "btn-accent"}
-            onClick={() => {
-              setResult(null);
-              setIndex((i) => i + 1);
-            }}
+        <div className="mt-8">
+          <Verdict
+            ok={result}
+            title={result ? "Richtig. +5 XP" : "Falsch – das Wort wandert ins Fehlerheft."}
+            action={
+              <button
+                type="button"
+                className="btn-ink"
+                onClick={() => {
+                  setResult(null);
+                  setIndex((i) => i + 1);
+                }}
+              >
+                Weiter
+              </button>
+            }
           >
-            Weiter
-          </button>
+            <WordLine target={q.word.target} reading={q.word.reading} de={q.word.de} />
+          </Verdict>
         </div>
       )}
     </div>

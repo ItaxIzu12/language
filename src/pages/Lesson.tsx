@@ -1,14 +1,15 @@
+import { Check, Play, RotateCcw, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Choice from "../components/Choice";
-import { Confetti, LevelBadge, ProgressBar, SpeakButton } from "../components/ui";
+import { Bar, Empty, ICON, LevelTag, Seal, SpeakButton, Verdict, WordLine } from "../components/ui";
 import { POS_LABELS } from "../data/languages";
 import { makeOptions, sentenceTiles, stripPunct } from "../lib/exercises";
+import { getSet } from "../lib/sets";
+import type { WordSet } from "../lib/sets";
 import { useStore } from "../lib/store";
 import { speak } from "../lib/tts";
 import { cx, shuffle } from "../lib/utils";
-import { getSet } from "../lib/sets";
-import type { WordSet } from "../lib/sets";
 import type { VocabItem } from "../types";
 
 const WORDS_PER_LESSON = 5;
@@ -51,19 +52,18 @@ export default function Lesson() {
   const { categoryId } = useParams();
   const { lang } = useStore();
   const [run, setRun] = useState(0);
-  const category = getSet(lang, categoryId);
-  if (!category) return <Navigate to="/learn" replace />;
-  return <LessonRun key={`${category.id}-${run}`} category={category} onRestart={() => setRun((r) => r + 1)} />;
+  const set = getSet(lang, categoryId);
+  if (!set) return <Navigate to="/learn" replace />;
+  return <LessonRun key={`${set.id}-${run}`} set={set} onRestart={() => setRun((r) => r + 1)} />;
 }
 
-function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () => void }) {
+function LessonRun({ set, onRestart }: { set: WordSet; onRestart: () => void }) {
   const { lang, progress, settings, answer, addXp, finishLesson } = useStore();
 
   // Freeze the lesson content at start so progress updates don't reshuffle it.
   const [words] = useState<VocabItem[]>(() => {
-    const all = category.words;
-    const fresh = all.filter((w) => !progress.cards[w.id]);
-    const known = all
+    const fresh = set.words.filter((w) => !progress.cards[w.id]);
+    const known = set.words
       .filter((w) => progress.cards[w.id])
       .sort((a, b) => progress.cards[a.id].box - progress.cards[b.id].box);
     return [...fresh, ...known].slice(0, WORDS_PER_LESSON);
@@ -86,7 +86,7 @@ function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () =
   const grade = (correct: boolean) => {
     if (!step || result !== null) return;
     setResult(correct);
-    speak(step.word.target, lang.ttsLang, settings.rate);
+    void speak(step.word.target, lang.ttsLang, settings.rate);
     if (correct) {
       setXp((x) => x + XP_PER_ANSWER);
       addXp(XP_PER_ANSWER);
@@ -109,7 +109,7 @@ function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () =
   useEffect(() => {
     if (!step) return;
     if (step.kind === "intro" || (step.kind === "choice" && step.mode === "listen")) {
-      speak(step.word.target, lang.ttsLang, settings.rate);
+      void speak(step.word.target, lang.ttsLang, settings.rate);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
@@ -137,50 +137,63 @@ function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () =
 
   if (!words.length) {
     return (
-      <div className="card mx-auto max-w-xl p-8 text-center">
-        <p className="text-4xl">📭</p>
-        <p className="mt-3 font-bold">In dieser Kategorie gibt es noch keine Wörter.</p>
-        <Link to="/learn" className="btn-primary mt-5">
-          Zurück
-        </Link>
-      </div>
+      <Empty
+        action={
+          <Link to="/learn" className="btn-ink">
+            Zum Wortschatz
+          </Link>
+        }
+      >
+        In „{set.name}“ gibt es noch keine Wörter.
+      </Empty>
     );
   }
 
   if (done) {
-    const perfect = mistakes.size === 0;
     return (
-      <div className="mx-auto max-w-xl text-center">
-        <Confetti />
-        <div className="card p-8">
-          <p className="text-6xl">{perfect ? "🏆" : "🎉"}</p>
-          <h1 className="mt-4 text-3xl font-extrabold">{perfect ? "Perfekt!" : "Lektion geschafft!"}</h1>
-          <p className="muted mt-1">
-            {category.icon} {category.name}
-          </p>
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            <Stat value={`+${xp + LESSON_BONUS}`} label="XP" />
-            <Stat value={String(words.length)} label="Wörter" />
-            <Stat value={String(mistakes.size)} label="Fehler" />
+      <div className="mx-auto max-w-2xl">
+        <header className="flex flex-wrap items-center gap-6 border-b-2 border-ink pb-6">
+          <Seal text={lang.culture.seal} />
+          <div className="min-w-0 flex-1">
+            <h1 className="title">{mistakes.size === 0 ? "Fehlerfrei" : "Geschafft"}</h1>
+            <p className="mt-2 text-dim">Lektion aus „{set.name}“</p>
           </div>
-          <ul className="mt-6 space-y-2 text-left">
-            {words.map((w) => (
-              <li key={w.id} className="flex items-center gap-3 rounded-xl bg-slate-50 px-3 py-2 dark:bg-slate-800/60">
-                <span>{mistakes.has(w.id) ? "🔁" : "✅"}</span>
-                <span className="hanzi text-lg">{w.target}</span>
-                <span className="text-sm text-brand-700 dark:text-brand-300">{w.reading}</span>
-                <span className="muted ml-auto truncate text-sm">{w.de}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <button type="button" className="btn-primary" onClick={onRestart}>
-              ▶ Nächste Lektion
-            </button>
-            <Link to="/" className="btn-ghost">
-              Zur Übersicht
-            </Link>
-          </div>
+        </header>
+        <dl className="grid grid-cols-3 border-b border-rule">
+          {[
+            ["XP", `+${xp + LESSON_BONUS}`],
+            ["Wörter", words.length],
+            ["Fehler", mistakes.size],
+          ].map(([label, value], i) => (
+            <div key={label} className={cx("py-4", i > 0 && "border-l border-rule pl-5")}>
+              <dt className="caption">{label}</dt>
+              <dd className="font-display text-5xl font-extrabold leading-tight">{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <ul className="rows border-b border-rule">
+          {words.map((w) => (
+            <li key={w.id} className="flex items-center gap-3 py-3">
+              <span
+                className={cx(
+                  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm",
+                  mistakes.has(w.id) ? "border border-ochre text-ochre" : "bg-jade text-paper",
+                )}
+                title={mistakes.has(w.id) ? "kommt bald wieder" : "sicher beantwortet"}
+              >
+                {mistakes.has(w.id) ? <RotateCcw size={14} strokeWidth={2} aria-hidden /> : <Check size={16} strokeWidth={2.5} aria-hidden />}
+              </span>
+              <WordLine target={w.target} reading={w.reading} de={w.de} />
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <button type="button" className="btn-ink" onClick={onRestart}>
+            <Play {...ICON} aria-hidden /> Nächste Lektion
+          </button>
+          <Link to="/" className="btn-line">
+            Zum Tagesblatt
+          </Link>
         </div>
       </div>
     );
@@ -188,52 +201,48 @@ function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () =
 
   if (!step) return null;
 
+  const shown = step.kind === "build" ? step.word.example : step.word;
+
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="mb-6 flex items-center gap-3">
-        <Link to={`/learn/${category.id}`} aria-label="Lektion beenden" className="muted text-xl hover:text-slate-900 dark:hover:text-white">
-          ✕
+      <div className="mb-8 flex items-center gap-4">
+        <Link
+          to={`/learn/${set.id}`}
+          aria-label="Lektion beenden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded border border-ink/60 hover:bg-wash"
+        >
+          <X {...ICON} aria-hidden />
         </Link>
-        <ProgressBar value={index / steps.length} className="h-3.5" />
-        <span className="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-200">⚡ {xp}</span>
+        <Bar value={index / steps.length} tone="red" className="h-2" />
+        <span className="shrink-0 text-sm font-semibold text-dim">
+          <span className="font-display text-2xl font-extrabold leading-none text-ink">{xp}</span> XP
+        </span>
       </div>
 
-      <div key={index} className="animate-fade-in">
+      <div key={index} className="animate-enter">
         {step.kind === "intro" && <Intro word={step.word} />}
         {step.kind === "choice" && <ChoiceStep step={step} onPick={grade} />}
         {step.kind === "build" && <BuildStep word={step.word} tiles={step.tiles} locked={result !== null} onCheck={grade} />}
       </div>
 
-      {/* Footer: continue / feedback */}
-      <div className="mt-6">
+      <div className="mt-8">
         {step.kind === "intro" ? (
-          <button type="button" className="btn-primary w-full py-3.5 text-base" onClick={next}>
-            Verstanden – weiter
+          <button type="button" className="btn-ink w-full" onClick={next}>
+            Verstanden, weiter
           </button>
         ) : (
           result !== null && (
-            <div
-              className={cx(
-                "animate-fade-in flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4",
-                result ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-rose-50 dark:bg-rose-900/30",
-              )}
+            <Verdict
+              ok={result}
+              title={result ? `Richtig. +${XP_PER_ANSWER} XP` : "Nicht ganz – das kommt am Ende noch einmal."}
+              action={
+                <button type="button" className="btn-ink" onClick={next}>
+                  Weiter
+                </button>
+              }
             >
-              <div>
-                <div className={cx("font-extrabold", result ? "text-emerald-700 dark:text-emerald-300" : "text-rose-700 dark:text-rose-300")}>
-                  {result ? `Richtig! +${XP_PER_ANSWER} XP` : "Nicht ganz – das kommt gleich nochmal."}
-                </div>
-                <div className="mt-0.5 text-sm">
-                  <span className="hanzi text-base">{step.kind === "build" ? step.word.example?.target : step.word.target}</span>{" "}
-                  <span className="text-brand-700 dark:text-brand-300">
-                    {step.kind === "build" ? step.word.example?.reading : step.word.reading}
-                  </span>{" "}
-                  – {step.kind === "build" ? step.word.example?.de : step.word.de}
-                </div>
-              </div>
-              <button type="button" className={result ? "btn-primary" : "btn-accent"} onClick={next}>
-                Weiter
-              </button>
-            </div>
+              <WordLine target={shown?.target} reading={shown?.reading} de={shown?.de} />
+            </Verdict>
           )
         )}
       </div>
@@ -241,38 +250,34 @@ function LessonRun({ category, onRestart }: { category: WordSet; onRestart: () =
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-2xl bg-slate-50 p-3 dark:bg-slate-800/60">
-      <div className="text-2xl font-extrabold">{value}</div>
-      <div className="muted text-xs font-semibold">{label}</div>
-    </div>
-  );
-}
-
 function Intro({ word }: { word: VocabItem }) {
+  const { settings } = useStore();
   return (
-    <div className="card p-6 text-center sm:p-8">
-      <div className="mb-4 flex items-center justify-center gap-2">
-        <span className="chip bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-200">Neues Wort</span>
-        <LevelBadge level={word.level} />
-        <span className="chip bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">{POS_LABELS[word.pos]}</span>
-      </div>
-      <div className="hanzi text-6xl font-medium sm:text-7xl">{word.target}</div>
-      <div className="mt-3 text-xl font-semibold text-brand-700 dark:text-brand-300">{word.reading}</div>
-      <div className="mt-1 text-lg">{word.de}</div>
-      <div className="mt-5 flex justify-center gap-3">
-        <SpeakButton text={word.target} size="lg" />
-        <SpeakButton text={word.target} size="lg" slow />
+    <div>
+      <p className="mb-4 flex items-center gap-2 text-sm font-semibold">
+        <span className="tag text-cinnabar">Neues Wort</span>
+        <LevelTag level={word.level} />
+        <span className="text-dim">{POS_LABELS[word.pos]}</span>
+      </p>
+      <div className="grid gap-x-8 gap-y-4 border-y-2 border-ink py-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
+        <div className="hanzi text-7xl font-black leading-none sm:text-8xl">{word.target}</div>
+        <div className="min-w-0">
+          {settings.showReading && <div className="reading text-2xl font-semibold">{word.reading}</div>}
+          <div className="mt-1 text-xl">{word.de}</div>
+          <div className="mt-4 flex gap-2">
+            <SpeakButton text={word.target} />
+            <SpeakButton text={word.target} slow />
+          </div>
+        </div>
       </div>
       {word.example && (
-        <div className="mt-6 flex items-start gap-3 rounded-2xl bg-slate-50 p-4 text-left dark:bg-slate-800/60">
+        <div className="flex items-start gap-3 border-b border-rule py-4">
           <SpeakButton text={word.example.target} size="sm" />
-          <div>
-            <div className="hanzi text-lg">{word.example.target}</div>
-            <div className="text-sm text-brand-700 dark:text-brand-300">{word.example.reading}</div>
-            <div className="muted text-sm">{word.example.de}</div>
-          </div>
+          <p className="min-w-0">
+            <span className="hanzi block text-xl font-medium">{word.example.target}</span>
+            {settings.showReading && <span className="reading block text-sm">{word.example.reading}</span>}
+            <span className="block text-sm text-dim">{word.example.de}</span>
+          </p>
         </div>
       )}
     </div>
@@ -290,24 +295,24 @@ function ChoiceStep({
   const { word, mode, options } = step;
   return (
     <div>
-      <p className="muted mb-3 text-sm font-bold uppercase tracking-wide">
+      <h2 className="mb-4 text-lg font-bold">
         {mode === "toDe" && "Was bedeutet das?"}
         {mode === "toTarget" && "Wie sagt man das?"}
-        {mode === "listen" && "Was hörst du?"}
-      </p>
-      <div className="card mb-5 flex items-center gap-4 p-5">
+        {mode === "listen" && "Welches Wort hörst du?"}
+      </h2>
+      <div className="mb-6 flex min-h-[7rem] items-center gap-5 border-y-2 border-ink py-5">
         {mode === "toDe" && (
           <>
-            <SpeakButton text={word.target} />
-            <div>
-              <div className="hanzi text-4xl font-medium">{word.target}</div>
-              {settings.showReading && <div className="mt-1 text-brand-700 dark:text-brand-300">{word.reading}</div>}
+            <div className="min-w-0 flex-1">
+              <div className="hanzi text-6xl font-black leading-none">{word.target}</div>
+              {settings.showReading && <div className="reading mt-2 text-lg">{word.reading}</div>}
             </div>
+            <SpeakButton text={word.target} />
           </>
         )}
-        {mode === "toTarget" && <div className="text-2xl font-bold">{word.de}</div>}
+        {mode === "toTarget" && <div className="text-3xl font-bold">{word.de}</div>}
         {mode === "listen" && (
-          <div className="flex w-full items-center justify-center gap-4 py-2">
+          <div className="flex gap-3">
             <SpeakButton text={word.target} size="lg" />
             <SpeakButton text={word.target} size="lg" slow />
           </div>
@@ -344,25 +349,26 @@ function BuildStep({
 
   return (
     <div>
-      <p className="muted mb-3 text-sm font-bold uppercase tracking-wide">Bilde den Satz</p>
-      <div className="card mb-5 p-5 text-xl font-bold">{example.de}</div>
+      <h2 className="mb-4 text-lg font-bold">Setze den Satz zusammen</h2>
+      <div className="border-t-2 border-ink py-5 text-2xl font-bold">{example.de}</div>
 
-      <div className="mb-4 flex min-h-[4.5rem] flex-wrap items-center gap-2 rounded-2xl border-2 border-dashed border-slate-300 p-3 dark:border-slate-700">
-        {picked.length === 0 && <span className="muted text-sm">Tippe die Zeichen in der richtigen Reihenfolge an.</span>}
+      <div className="flex min-h-[4.75rem] flex-wrap items-center gap-2 border-y-2 border-ink py-3" data-answer>
+        {picked.length === 0 && <span className="text-sm text-dim">Tippe die Zeichen unten in der richtigen Reihenfolge an.</span>}
         {picked.map((id) => (
           <button
             key={id}
             type="button"
             disabled={locked}
+            aria-label={`${byId.get(id)!.ch} entfernen`}
             onClick={() => setPicked((p) => p.filter((x) => x !== id))}
-            className="hanzi rounded-xl bg-brand-600 px-3.5 py-2 text-2xl text-white shadow-soft transition active:scale-95"
+            className="hanzi h-14 w-14 rounded-sm bg-ink text-3xl font-bold text-paper transition-transform active:translate-y-px"
           >
             {byId.get(id)!.ch}
           </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="mt-5 flex flex-wrap gap-2" data-tiles>
         {tiles.map((t) => {
           const used = picked.includes(t.id);
           return (
@@ -372,10 +378,8 @@ function BuildStep({
               disabled={used || locked}
               onClick={() => setPicked((p) => [...p, t.id])}
               className={cx(
-                "hanzi rounded-xl border-2 px-3.5 py-2 text-2xl transition active:scale-95",
-                used
-                  ? "border-slate-200 text-transparent dark:border-slate-800"
-                  : "border-slate-200 bg-white hover:border-brand-400 dark:border-slate-700 dark:bg-slate-900",
+                "hanzi h-14 w-14 rounded-sm border text-3xl font-bold transition-transform active:translate-y-px",
+                used ? "border-rule text-transparent" : "border-ink/70 bg-sheet hover:bg-wash",
               )}
             >
               {t.ch}
@@ -387,7 +391,7 @@ function BuildStep({
       {!locked && (
         <button
           type="button"
-          className="btn-primary mt-6 w-full py-3.5 text-base"
+          className="btn-ink mt-8 w-full"
           disabled={picked.length !== tiles.length}
           onClick={() => onCheck(answerText === stripPunct(example.target))}
         >

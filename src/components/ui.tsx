@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { Check, Turtle, Volume2, X } from "lucide-react";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { useStore } from "../lib/store";
 import type { WordStatus } from "../lib/store";
@@ -6,7 +7,9 @@ import { speak } from "../lib/tts";
 import { cx } from "../lib/utils";
 import type { Level } from "../types";
 
-/** Round button that reads text aloud in the current learning language. */
+export const ICON = { size: 18, strokeWidth: 1.75 } as const;
+
+/** Square button that reads text aloud in the current learning language. */
 export function SpeakButton({
   text,
   size = "md",
@@ -20,7 +23,8 @@ export function SpeakButton({
 }) {
   const { lang, settings } = useStore();
   const [active, setActive] = useState(false);
-  const dims = size === "lg" ? "h-14 w-14 text-2xl" : size === "sm" ? "h-8 w-8 text-sm" : "h-10 w-10 text-lg";
+  const dims = size === "lg" ? "h-14 w-14" : size === "sm" ? "h-9 w-9" : "h-11 w-11";
+  const Icon = slow ? Turtle : Volume2;
   return (
     <button
       type="button"
@@ -29,96 +33,107 @@ export function SpeakButton({
       onClick={(e) => {
         e.stopPropagation();
         setActive(true);
-        speak(text, lang.ttsLang, slow ? 0.6 : settings.rate).then(() => setActive(false));
+        void speak(text, lang.ttsLang, slow ? 0.6 : settings.rate).then(() => setActive(false));
       }}
       className={cx(
-        "inline-flex shrink-0 items-center justify-center rounded-full transition active:scale-95",
-        active
-          ? "bg-brand-600 text-white"
-          : "bg-brand-50 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/40 dark:text-brand-200 dark:hover:bg-brand-900/70",
+        "inline-flex shrink-0 items-center justify-center rounded border transition-transform duration-150 active:translate-y-px",
+        active ? "border-cinnabar bg-cinnabar text-on-cinnabar" : "border-ink/60 text-ink hover:bg-wash",
         dims,
         className,
       )}
     >
-      {slow ? "🐢" : "🔊"}
+      <Icon size={size === "lg" ? 24 : size === "sm" ? 16 : 20} strokeWidth={1.75} aria-hidden />
     </button>
   );
 }
 
-export function ProgressBar({ value, className }: { value: number; className?: string }) {
+/** Flat progress bar with a hard edge. */
+export function Bar({ value, className, tone = "ink" }: { value: number; className?: string; tone?: "ink" | "red" | "jade" }) {
   const pct = Math.max(0, Math.min(100, Math.round(value * 100)));
+  const fill = tone === "red" ? "bg-cinnabar" : tone === "jade" ? "bg-jade" : "bg-ink";
   return (
     <div
       role="progressbar"
       aria-valuenow={pct}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={cx("h-2.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800", className)}
+      className={cx("h-1.5 w-full overflow-hidden bg-wash", className)}
     >
-      <div
-        className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all duration-500"
-        style={{ width: `${pct}%` }}
-      />
+      <div className={cx("h-full origin-left transition-transform duration-500", fill)} style={{ transform: `scaleX(${pct / 100})` }} />
     </div>
   );
 }
 
-export function Ring({ value, size = 120, children }: { value: number; size?: number; children?: ReactNode }) {
-  const stroke = 10;
-  const r = (size - stroke) / 2;
-  const c = 2 * Math.PI * r;
-  const v = Math.max(0, Math.min(1, value));
-  return (
-    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} strokeWidth={stroke} fill="none" className="stroke-slate-200 dark:stroke-slate-800" />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={r}
-          strokeWidth={stroke}
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - v)}
-          className="stroke-accent-500 transition-all duration-700"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">{children}</div>
-    </div>
-  );
-}
-
-const LEVEL_STYLE: Record<Level, string> = {
-  A1: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300",
-  A2: "bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300",
-  B1: "bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300",
-  B2: "bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300",
+const LEVEL_TONE: Record<Level, string> = {
+  A1: "text-jade",
+  A2: "text-blue",
+  B1: "text-ochre",
+  B2: "text-cinnabar",
 };
 
-export function LevelBadge({ level }: { level: Level }) {
-  return <span className={cx("chip", LEVEL_STYLE[level])}>{level}</span>;
+export function levelTone(level: Level): string {
+  return LEVEL_TONE[level];
 }
 
-export function StatusDot({ status }: { status: WordStatus }) {
-  const map: Record<WordStatus, [string, string]> = {
-    new: ["bg-slate-300 dark:bg-slate-600", "Neu"],
-    learning: ["bg-amber-400", "Am Lernen"],
-    mastered: ["bg-emerald-500", "Sicher"],
-  };
-  const [color, label] = map[status];
-  return <span title={label} aria-label={label} className={cx("inline-block h-2.5 w-2.5 shrink-0 rounded-full", color)} />;
+export function LevelTag({ level }: { level: Level }) {
+  return <span className={cx("tag", LEVEL_TONE[level])}>{level}</span>;
+}
+
+/** Word status as a small printed box: empty, half, full – never colour alone. */
+export function StatusMark({ status }: { status: WordStatus }) {
+  const label = status === "new" ? "Neu" : status === "learning" ? "Am Lernen" : "Sicher";
+  return (
+    <span
+      title={label}
+      aria-label={label}
+      className={cx(
+        "relative inline-block h-3 w-3 shrink-0 border",
+        status === "new" && "border-dim/60",
+        status === "learning" && "border-ochre",
+        status === "mastered" && "border-jade bg-jade",
+      )}
+    >
+      {status === "learning" && <span className="absolute inset-y-0 left-0 w-1/2 bg-ochre" />}
+    </span>
+  );
+}
+
+/** A single character in a square field: the mark of a category, level, text or episode. */
+export function Glyph({
+  char,
+  size = "md",
+  tone = "ink",
+}: {
+  char: string;
+  size?: "sm" | "md" | "lg";
+  tone?: "ink" | "red" | "line";
+}) {
+  const dims = size === "lg" ? "h-16 w-16 text-4xl" : size === "sm" ? "h-9 w-9 text-xl" : "h-12 w-12 text-[1.7rem]";
+  return (
+    <span
+      aria-hidden
+      className={cx(
+        "hanzi inline-flex shrink-0 items-center justify-center rounded-sm font-bold leading-none",
+        tone === "ink" && "bg-ink text-paper",
+        tone === "red" && "bg-cinnabar text-on-cinnabar",
+        tone === "line" && "border border-ink/70 text-ink",
+        dims,
+      )}
+    >
+      {char}
+    </span>
+  );
 }
 
 export function PageHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: ReactNode }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{title}</h1>
-        {subtitle && <p className="muted mt-1 text-sm sm:text-base">{subtitle}</p>}
+    <header className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-ink pb-4">
+      <div className="min-w-0">
+        <h1 className="title">{title}</h1>
+        {subtitle && <p className="mt-2 max-w-[65ch] text-dim">{subtitle}</p>}
       </div>
       {action}
-    </div>
+    </header>
   );
 }
 
@@ -126,23 +141,25 @@ export function Segmented<T extends string>({
   value,
   options,
   onChange,
+  label,
 }: {
   value: T;
   options: Array<{ value: T; label: string }>;
   onChange: (v: T) => void;
+  label?: string;
 }) {
   return (
-    <div className="inline-flex flex-wrap gap-1 rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
-      {options.map((o) => (
+    <div role="group" aria-label={label} className="inline-flex flex-wrap border border-ink/70">
+      {options.map((o, i) => (
         <button
           key={o.value}
           type="button"
+          aria-pressed={value === o.value}
           onClick={() => onChange(o.value)}
           className={cx(
-            "rounded-lg px-3 py-1.5 text-sm font-semibold transition",
-            value === o.value
-              ? "bg-white text-brand-700 shadow-sm dark:bg-slate-950 dark:text-brand-300"
-              : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white",
+            "min-h-[40px] px-3 text-sm font-semibold transition-colors",
+            i > 0 && "border-l border-ink/70",
+            value === o.value ? "bg-ink text-paper" : "text-ink hover:bg-wash",
           )}
         >
           {o.label}
@@ -152,41 +169,77 @@ export function Segmented<T extends string>({
   );
 }
 
-const CONFETTI_COLORS = ["#3377ff", "#ff6b35", "#22c55e", "#facc15", "#a855f7", "#ec4899"];
-
-/** Lightweight celebratory confetti (pure CSS animation). */
-export function Confetti({ count = 70 }: { count?: number }) {
-  const [show, setShow] = useState(true);
-  const pieces = useMemo(
-    () =>
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        delay: Math.random() * 0.6,
-        duration: 2 + Math.random() * 1.8,
-        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-      })),
-    [count],
-  );
-  useEffect(() => {
-    const t = setTimeout(() => setShow(false), 4500);
-    return () => clearTimeout(t);
-  }, []);
-  if (!show) return null;
+/** Red seal impression – the app's one celebration. */
+export function Seal({ text = "完", size = 96 }: { text?: string; size?: number }) {
   return (
-    <div aria-hidden>
-      {pieces.map((p) => (
+    <span
+      role="img"
+      aria-label="Siegel: fertig"
+      className="hanzi inline-flex animate-stamp items-center justify-center rounded-sm border-[3px] border-cinnabar font-black leading-none text-cinnabar"
+      style={{ width: size, height: size, fontSize: size * 0.6 }}
+    >
+      {text}
+    </span>
+  );
+}
+
+/** Result strip after an answer: icon + text, never colour alone. */
+export function Verdict({
+  ok,
+  title,
+  children,
+  action,
+}: {
+  ok: boolean;
+  title: string;
+  children?: ReactNode;
+  action?: ReactNode;
+}) {
+  return (
+    <div
+      role="status"
+      className={cx(
+        "flex animate-enter flex-wrap items-center justify-between gap-3 border-t-2 py-4",
+        ok ? "border-jade" : "border-cinnabar",
+      )}
+    >
+      <div className="flex min-w-0 items-start gap-3">
         <span
-          key={p.id}
-          className="confetti-piece"
-          style={{
-            left: `${p.left}vw`,
-            background: p.color,
-            animationDelay: `${p.delay}s`,
-            animationDuration: `${p.duration}s`,
-          }}
-        />
-      ))}
+          className={cx(
+            "mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-sm",
+            ok ? "bg-jade text-paper" : "bg-cinnabar text-on-cinnabar",
+          )}
+        >
+          {ok ? <Check {...ICON} aria-hidden /> : <X {...ICON} aria-hidden />}
+        </span>
+        <div className="min-w-0">
+          <div className="font-bold">{title}</div>
+          {children && <div className="mt-0.5 text-sm">{children}</div>}
+        </div>
+      </div>
+      {action}
+    </div>
+  );
+}
+
+/** Word shown as target + reading + meaning on one line. */
+export function WordLine({ target, reading, de }: { target?: string; reading?: string; de?: string }) {
+  const { settings } = useStore();
+  return (
+    <span>
+      <span className="hanzi text-lg font-medium">{target}</span>
+      {settings.showReading && reading && <span className="reading ml-2">{reading}</span>}
+      {de && <span className="text-dim"> – {de}</span>}
+    </span>
+  );
+}
+
+/** One line telling what is missing and the control that fixes it. */
+export function Empty({ children, action }: { children: ReactNode; action?: ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-4 border border-dashed border-rule p-5">
+      <p className="max-w-[60ch] text-dim">{children}</p>
+      {action}
     </div>
   );
 }

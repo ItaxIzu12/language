@@ -2,54 +2,146 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ----------------------------------------------------------------------------
+   LinguaFlow – every language brings its own visual world (see DESIGN.md).
+   A world is a set of tokens under [data-theme="<id>"]; the language's
+   `culture.theme` selects it. Colours are RGB triplets so Tailwind can apply
+   opacity (bg-ink/10). To add a world: copy both blocks below, rename the id,
+   change the values, and set the fonts.
+
+   World "almanac" (Chinese): the tear-off wall calendar.
+---------------------------------------------------------------------------- */
+:root,
+[data-theme="almanac"] {
+  --font-sans: "Archivo Variable", Archivo, system-ui, sans-serif;
+  --font-display: "Big Shoulders Display Variable", "Big Shoulders Display", "Archivo Variable", sans-serif;
+  --font-script: "Noto Serif SC", "Songti SC", STSong, SimSun, "Noto Serif CJK SC", serif;
+  --paper: 243 238 227;
+  --sheet: 251 248 241;
+  --wash: 235 228 214;
+  --ink: 27 25 23;
+  --dim: 104 97 87;
+  --rule: 212 203 186;
+  --cinnabar: 190 46 26;
+  --on-cinnabar: 255 255 255;
+  --band: 190 46 26;
+  --jade: 26 105 78;
+  --blue: 40 88 138;
+  --ochre: 138 90 16;
+  color-scheme: light;
+}
+
+.dark,
+.dark[data-theme="almanac"] {
+  --paper: 22 20 18;
+  --sheet: 31 28 25;
+  --wash: 40 36 32;
+  --ink: 240 233 220;
+  --dim: 170 161 146;
+  --rule: 62 56 48;
+  --cinnabar: 232 96 72;
+  --on-cinnabar: 22 20 18;
+  --band: 156 38 24;
+  --jade: 98 190 150;
+  --blue: 120 170 220;
+  --ochre: 214 164 84;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
+    scrollbar-color: rgb(var(--rule)) rgb(var(--paper));
   }
   body {
-    @apply bg-slate-50 font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    @apply bg-paper font-sans text-ink antialiased;
+    font-feature-settings: "tnum" 1;
+    caret-color: rgb(var(--cinnabar));
+  }
+  ::selection {
+    background: rgb(var(--cinnabar));
+    color: rgb(var(--on-cinnabar));
   }
   :focus-visible {
-    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-950;
+    outline: 2px solid rgb(var(--ink));
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  button,
+  a,
+  select,
+  [role="button"] {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
   }
 }
 
 @layer components {
-  .card {
-    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card dark:border-slate-800 dark:bg-slate-900;
+  /* A printed sheet: one hairline edge, no shadow. Never nest sheets. */
+  .sheet {
+    @apply rounded border border-rule bg-sheet;
   }
-  .btn {
-    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  /* Column / field caption, as on a printed form. Not a kicker above headings. */
+  .caption {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-dim;
   }
-  .btn-primary {
-    @apply btn bg-brand-600 text-white shadow-soft hover:bg-brand-700;
-  }
-  .btn-accent {
-    @apply btn bg-accent-500 text-white shadow-soft hover:bg-accent-600;
-  }
-  .btn-ghost {
-    @apply btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800;
-  }
-  .chip {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  .title {
+    @apply font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl;
+    letter-spacing: -0.005em;
   }
   .hanzi {
     @apply font-hanzi;
   }
-  .muted {
-    @apply text-slate-500 dark:text-slate-400;
+  .reading {
+    @apply text-cinnabar;
   }
-  .input {
-    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand-500 dark:border-slate-700 dark:bg-slate-900;
+  .btn {
+    @apply inline-flex min-h-[44px] select-none items-center justify-center gap-2 rounded px-4 text-sm font-semibold transition-transform duration-150 active:translate-y-px disabled:opacity-40 disabled:active:translate-y-0;
   }
+  .btn-ink {
+    @apply btn bg-ink text-paper hover:bg-ink/85;
+  }
+  .btn-red {
+    @apply btn bg-cinnabar text-on-cinnabar hover:bg-cinnabar/90;
+  }
+  .btn-line {
+    @apply btn border border-ink/70 text-ink hover:bg-wash;
+  }
+  .btn-quiet {
+    @apply btn text-dim hover:bg-wash hover:text-ink;
+  }
+  .field {
+    @apply min-h-[44px] w-full rounded border border-rule bg-sheet px-3 text-base text-ink placeholder:text-dim/70 focus:border-ink;
+  }
+  .tag {
+    @apply inline-flex items-center gap-1 rounded-sm border border-current px-1.5 py-px text-[11px] font-semibold uppercase tracking-wide;
+  }
+  /* Ruled list rows, as in the almanac's dense columns. */
+  .rows > * + * {
+    @apply border-t border-rule;
+  }
+}
+
+/* The calendar's binding: a row of punched holes along a strip. */
+.perforation {
+  height: 10px;
+  background-image: radial-gradient(circle, rgb(var(--paper)) 2.6px, transparent 3px);
+  background-size: 18px 10px;
+  background-position: center;
 }
 
 /* Flashcard flip */
 .flip {
-  perspective: 1200px;
+  perspective: 1400px;
 }
 .flip-inner {
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
 }
 .flip.flipped .flip-inner {
@@ -63,32 +155,11 @@
   transform: rotateY(180deg);
 }
 
-/* Confetti */
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(105vh) rotate(720deg);
-    opacity: 0.6;
-  }
-}
-.confetti-piece {
-  position: fixed;
-  top: 0;
-  width: 10px;
-  height: 14px;
-  border-radius: 2px;
-  animation: confetti-fall linear forwards;
-  pointer-events: none;
-  z-index: 60;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .flip-inner,
-  .confetti-piece {
-    animation: none;
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }
