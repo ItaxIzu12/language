@@ -44,7 +44,7 @@ function RailGroup({ title, items, dueBadge }: { title: string; items: NavItem[]
 }
 
 export default function Layout() {
-  const { lang, streak, progress, dueWords } = useStore();
+  const { lang, streak, progress, dueWords, sync } = useStore();
   const location = useLocation();
 
   // Stop any running speech and scroll up when changing pages.
@@ -91,6 +91,9 @@ export default function Layout() {
 
         <main className="min-w-0 px-4 pb-28 pt-8 sm:px-6 lg:border-l lg:border-rule lg:pb-16 lg:pl-10 lg:pt-10">
           <div key={location.pathname} className="animate-enter">
+            {sync.pending && sync.status !== "Speichert …" && location.pathname !== "/settings" && (
+              <p role="status" className="mb-4 border-b border-rule pb-3">{sync.status} <Link className="underline" to="/settings">Zum Lernkonto</Link></p>
+            )}
             <Outlet />
           </div>
         </main>

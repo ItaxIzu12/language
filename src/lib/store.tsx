@@ -2,6 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { ReactNode } from "react";
 import { getLanguage } from "../data/languages";
 import type { Category, Language, VocabItem } from "../types";
+import type { AccountState } from "./account";
+import { draftKey, getDraft, useAccountSync } from "./useAccountSync";
 import { addDays, dayKey } from "./utils";
 
 // ---------------------------------------------------------------------------
@@ -116,6 +118,8 @@ function save(key: string, value: unknown) {
 }
 
 interface Store {
+  username: string | null;
+  sync: ReturnType<typeof useAccountSync>;
   lang: Language;
   settings: Settings;
   progress: Progress;
@@ -147,15 +151,20 @@ interface Store {
 
 const Ctx = createContext<Store | null>(null);
 
-export function StoreProvider({ children }: { children: ReactNode }) {
+export function StoreProvider({ children, account }: { children: ReactNode; account: AccountState | null }) {
+  const [draft] = useState(() => account ? getDraft(draftKey(account.username, "zh")) : null);
+  const initial = draft?.document ?? account?.document;
   const [settings, setSettings] = useState<Settings>(() =>
-    load("linguaflow.settings", defaultSettings()),
+    account ? initial?.settings ?? defaultSettings() : load("linguaflow.settings", defaultSettings()),
   );
   const progressKey = `linguaflow.progress.${settings.lang}`;
   const customKey = `linguaflow.custom.${settings.lang}`;
-  const [progress, setProgress] = useState<Progress>(() => load(progressKey, emptyProgress()));
-  const [customWords, setCustomWords] = useState<VocabItem[]>(() => loadList<VocabItem>(customKey));
+  const [progress, setProgress] = useState<Progress>(() => account ? initial?.progress ?? emptyProgress() : load(progressKey, emptyProgress()));
+  const [customWords, setCustomWords] = useState<VocabItem[]>(() => account ? initial?.customWords ?? [] : loadList<VocabItem>(customKey));
   const [today, setToday] = useState(dayKey());
+
+  const snapshot = useMemo(() => ({ settings, progress, customWords }), [settings, progress, customWords]);
+  const sync = useAccountSync(account, snapshot, draft);
 
   // Keep "today" fresh if the app stays open overnight.
   useEffect(() => {
@@ -163,9 +172,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return () => clearInterval(t);
   }, []);
 
-  useEffect(() => save("linguaflow.settings", settings), [settings]);
-  useEffect(() => save(progressKey, progress), [progressKey, progress]);
-  useEffect(() => save(customKey, customWords), [customKey, customWords]);
+  useEffect(() => { if (!account) save("linguaflow.settings", settings); }, [account, settings]);
+  useEffect(() => { if (!account) save(progressKey, progress); }, [account, progressKey, progress]);
+  useEffect(() => { if (!account) save(customKey, customWords); }, [account, customKey, customWords]);
 
   // The language decides the visual world.
   useEffect(() => {
@@ -279,6 +288,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, [progress.days, today]);
 
   const store: Store = {
+    username: account?.username ?? null,
+    sync,
     lang,
     settings,
     progress,

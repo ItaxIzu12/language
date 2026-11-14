@@ -1,0 +1,64 @@
+from copy import deepcopy
+from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from .models import Course, Word
+
+STATE = {
+    "settings": {"lang": "zh", "rate": 0.9, "showReading": True, "theme": "light", "dailyGoal": 50},
+    "customWords": [],
+    "progress": {"days": {}, "done": {}, "torn": {}, "activity": {}, "cards": {}, "lessonsDone": 0, "xp": 10},
+}
+
+
+class LearningApiTests(TestCase):
+    url = "/api/v1/state/zh/"
+
+    def setUp(self):
+        self.user = get_user_model().objects.create_user("learner")
+        self.client.force_login(self.user)
+
+    def put(self, rev=0, doc=STATE):
+        return self.client.put(self.url, {"revision": rev, "document": doc}, content_type="application/json", HTTP_X_LEARNER="learner")
+
+    def test_save_restore_retry_and_conflict(self):
+        self.assertEqual(self.put().json(), {"revision": 1})
+        self.assertEqual(self.put().json(), {"revision": 1})
+        changed = deepcopy(STATE)
+        changed["progress"]["xp"] = 20
+        self.assertEqual(self.put(0, changed).status_code, 409)
+        self.assertEqual(self.put(1, changed).status_code, 200)
+        result = self.client.get(self.url, HTTP_X_LEARNER="learner").json()
+        self.assertEqual(result, {"revision": 2, "document": changed})
+
+    def test_invalid_card(self):
+        changed = deepcopy(STATE)
+        changed["progress"]["cards"] = {"a": {"due": "2026-02-31", "box": 1, "right": 2, "wrong": 1}}
+        self.assertEqual(self.put(doc=changed).status_code, 400)
+
+    def test_account_isolation(self):
+        self.put()
+        self.client.force_login(get_user_model().objects.create_user("second"))
+        self.assertEqual(self.put().status_code, 409)
+        self.assertIsNone(self.client.get(self.url, HTTP_X_LEARNER="second").json()["document"])
+        self.client.logout()
+        self.assertEqual(self.client.get(self.url).status_code, 401)
+
+    def test_session_lifecycle_and_csrf(self):
+        c = Client(enforce_csrf_checks=True)
+        credentials = {"username": "mandarin", "password": "testing-languages-184"}
+        def post(action):
+            return c.post(f"/api/v1/{action}/", credentials, content_type="application/json",
+                          HTTP_X_CSRFTOKEN=c.cookies["csrftoken"].value)
+        self.assertEqual(c.post("/api/v1/register/", credentials).status_code, 403)
+        self.assertIsNone(c.get("/api/v1/session/").json()["username"])
+        self.assertEqual(post("register").json()["username"], "mandarin")
+        self.assertIsNone(post("logout").json()["username"])
+        self.assertEqual(post("login").json()["username"], "mandarin")
+
+    def test_catalog_pagination(self):
+        course = Course.objects.create(code="zh", name="Chinesisch", content={"texts": []})
+        Word.objects.create(course=course, key="test", position=0, category="food", level="A1", content={"de": "Tee"})
+        base = "/api/v1/courses/zh/words/"
+        self.assertEqual(self.client.get(base, {"level": "A1"}).json()["results"], [{"de": "Tee"}])
+        self.assertEqual(self.client.get(base, {"offset": 1}).json()["results"], [])
+        self.assertEqual(self.client.get(base, {"limit": -1}).status_code, 400)

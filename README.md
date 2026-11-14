@@ -18,8 +18,8 @@ Erste Sprache: **Chinesisch (Mandarin)**, von A1 Richtung B2.
   Gehör erkennen), Lesetexte mit Fragen, Podcast-Dialoge mit Transkript.
 - **Chronik** – das Lernjahr als zwölf kleine Kalenderblätter, dazu die Summen seit Beginn.
 - **Gestaltung je Sprache** – jede Sprache bringt ihre eigene visuelle Welt mit (siehe unten).
-- **Ohne Konto** – kein Login, keine Registrierung, kein Server. Der Fortschritt liegt im Browser und lässt sich als
-  Datei sichern und wieder einlesen. Alle Schriften sind mitgeliefert; zur Laufzeit wird nichts von fremden Servern geladen.
+- **Gastmodus und Lernkonto** – lokal im Browser lernen oder im Docker-Betrieb mit einem Konto
+  Fortschritt, Fundstücke und Einstellungen in PostgreSQL speichern. JSON-Export und -Import sind in beiden Modi verfügbar.
 - Hell und Dunkel, Tastaturbedienung, mobil nutzbar, als App installierbar.
 
 ## Gestaltung je Sprache
@@ -56,7 +56,53 @@ Die HSK-Ergänzung (`part5.ts`–`part9.ts`) wurde automatisch erzeugt und masch
 Dubletten), aber nicht Wort für Wort von einem Menschen gegengelesen. Fällt ein Fehler auf, lässt er sich in der
 jeweiligen Zeile direkt korrigieren.
 
-## Starten
+## Mit Django und PostgreSQL starten
+
+Im Projektordner mit laufendem Docker Desktop:
+
+```bash
+python3 scripts/init-env.py
+docker compose up --build -d
+docker compose ps
+```
+
+Öffne **http://localhost:8080** und wähle **Einstellungen → Lernkonto → Neues Konto anlegen**.
+Für einen bestehenden Gaststand zuerst auf dem ursprünglichen Gerät unter **Einstellungen → Daten**
+eine Sicherung exportieren. Dann im gewünschten Konto einlesen. Der Import ersetzt dessen Lernstand für die aktuelle Sprache.
+Benutzerpasswörter lassen sich lokal mit `docker compose exec backend python manage.py changepassword NAME` zurücksetzen.
+
+nginx liefert die React-App aus und leitet `/api/v1/` an Gunicorn/Django weiter.
+Compose startet PostgreSQL 17 mit einem benannten Volume. Beim Start migriert Django die Datenbank
+und importiert den mit dem Image gebauten Kurskatalog aus der gemeinsamen TypeScript-Sprachregistrierung.
+Nur der Web-Port ist am Loopback-Interface erreichbar. `docker compose down` behält die Daten.
+Mit `docker compose exec -T db pg_dump -U linguaflow linguaflow > linguaflow.sql` sicherst du alle Konten und Lernstände.
+
+### API und Synchronisierung
+
+| Pfad unter `/api/v1/` | Methode | Ergebnis |
+|---|---|---|
+| `health/` | GET | Datenbankverbindung |
+| `session/` | GET | Kontoname und CSRF-Token |
+| `register/`, `login/`, `logout/` | POST | Django-Cookie-Sitzung; Registrierung und Anmeldung erwarten username und password |
+| `courses/`, `courses/zh/` | GET | Verfügbare Kurse bzw. Kursinhalte mit Kategorien, Lesetexten und Hörmaterial |
+| `courses/zh/words/` | GET | Wörter, filterbar nach level und category, mit limit und offset |
+| `state/zh/` | GET, PUT | Persönlicher Lernstand mit Revision, Einstellungen, SRS, Tagesaktivität und Fundstücken |
+
+Schreibzugriffe verwenden `X-CSRFToken`. Lernstand-Anfragen senden zusätzlich den URL-kodierten
+Kontonamen als `X-Learner`. Das Konto für den Datenzugriff stammt aus der Sitzung.
+PUT erwartet `{revision, document}`; bei konkurrierenden Änderungen antwortet Django mit HTTP 409.
+Die Oberfläche bietet in diesem Fall Export und Neuladen an. Ausstehende Änderungen werden
+im aktuellen Tab zwischengespeichert. Beim Wechsel des Geräts zuerst den Speicherstatus prüfen.
+Die Lernübungen und die Leitner-Berechnung laufen weiter im Browser. Das Backend validiert und
+versioniert den gesamten Lernstand je Sprache. Die statische GitHub-Pages-Version läuft im Gastmodus.
+
+Tests gegen das in Compose verwendete PostgreSQL:
+
+```bash
+docker compose exec backend python manage.py test learning
+```
+
+## Frontend separat starten
 
 Voraussetzung: [Node.js](https://nodejs.org) 18 oder neuer.
 
@@ -148,7 +194,7 @@ Display, Noto Serif SC; alle unter der SIL Open Font License) werden über Fonts
 - **Sprachausgabe** nutzt die Stimmen des Geräts (Web Speech API). Fehlt eine chinesische Stimme, in den
   Systemeinstellungen eine installieren.
 - **Spracherkennung** funktioniert in Chrome, Edge und Safari und benötigt Mikrofon-Freigabe sowie meist Internet.
-- **Fortschritt** liegt im `localStorage` des Browsers – regelmäßig exportieren, wenn er wichtig ist.
+- **Gastfortschritt** liegt im `localStorage` des Browsers. Kontodaten liegen im Docker-Betrieb in PostgreSQL.
 - Die externen Podcast-Links können sich ändern; sie stehen in `src/data/zh/podcasts.ts`.
 
 ## Ideen für später

@@ -1,3 +1,5 @@
+import AccountPanel from "../components/AccountPanel";
+import { accountEnabled } from "../lib/account";
 import { Check, Download, Moon, Sun, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";
@@ -7,7 +9,7 @@ import { useStore } from "../lib/store";
 import { cx } from "../lib/utils";
 
 export default function Settings() {
-  const { lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
+  const { username, lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
   const fileInput = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -36,6 +38,7 @@ export default function Settings() {
     <div className="max-w-3xl">
       <PageHeader title="Einstellungen" />
 
+      {accountEnabled && <Section title="Lernkonto"><AccountPanel /></Section>}
       <Section title="Sprache">
         <p className="mb-3 text-sm text-dim">Jede Sprache bringt ihre eigene Gestaltung und ihren eigenen Fortschritt mit.</p>
         <ul className="rows border-y border-rule">
@@ -146,8 +149,8 @@ export default function Settings() {
 
       <Section title="Daten">
         <p className="max-w-[65ch] text-sm text-dim">
-          Es gibt kein Konto. Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) und deine{" "}
-          {customWords.length} Fundstücke liegen nur in diesem Browser. Speichere regelmäßig eine Sicherung – damit ziehst
+          Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) und deine{" "}
+          {customWords.length} Fundstücke {username ? "werden im Konto gespeichert" : "liegen in diesem Browser"}. Mit einer Sicherung ziehst
           du auch auf ein anderes Gerät um.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">

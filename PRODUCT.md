@@ -8,7 +8,7 @@ web (responsive, als PWA auf dem Handy installierbar)
 
 ## Stack
 
-React 18, TypeScript, Vite, Tailwind CSS, React Router (HashRouter). Statisch gehostet (GitHub Pages), kein Backend.
+React 18, TypeScript, Vite, Tailwind CSS, React Router (HashRouter). GitHub Pages bietet den Gastmodus. Der Docker-Betrieb ergänzt Django, PostgreSQL und persönliche Lernkonten.
 
 ## Users
 

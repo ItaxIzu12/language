@@ -36,3 +36,6 @@ Thumbs.db
 .claude/
 skills-lock.json
 .impeccable/
+
+__pycache__/
+*.pyc
