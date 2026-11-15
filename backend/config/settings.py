@@ -34,3 +34,28 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
 }
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",") if origin.strip()]
+
+# Only expose provider routes when the backend has the complete credentials.
+SOCIALACCOUNT_PROVIDERS = {}
+if os.getenv("GOOGLE_CLIENT_ID") and os.getenv("GOOGLE_CLIENT_SECRET"):
+    SOCIALACCOUNT_PROVIDERS["google"] = {"APPS": [{
+        "client_id": os.environ["GOOGLE_CLIENT_ID"], "secret": os.environ["GOOGLE_CLIENT_SECRET"],
+    }], "OAUTH_PKCE_ENABLED": True}
+if all(os.getenv(k) for k in ("APPLE_SERVICE_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY")):
+    SOCIALACCOUNT_PROVIDERS["apple"] = {"APPS": [{
+        "client_id": os.environ["APPLE_SERVICE_ID"], "key": os.environ["APPLE_TEAM_ID"],
+        "secret": os.environ["APPLE_KEY_ID"],
+        "settings": {"certificate_key": os.environ["APPLE_PRIVATE_KEY"].replace("\\n", "\n")},
+    }]}
+if SOCIALACCOUNT_PROVIDERS:
+    INSTALLED_APPS += ["django.contrib.messages", "allauth", "allauth.account", "allauth.socialaccount"]
+    INSTALLED_APPS += ["allauth.socialaccount.providers." + provider for provider in SOCIALACCOUNT_PROVIDERS]
+    MIDDLEWARE += ["django.contrib.messages.middleware.MessageMiddleware", "allauth.account.middleware.AccountMiddleware"]
+    TEMPLATES = [{"BACKEND": "django.template.backends.django.DjangoTemplates", "APP_DIRS": True,
+                  "OPTIONS": {"context_processors": ["django.template.context_processors.request",
+                                                     "django.contrib.messages.context_processors.messages"]}}]
+    LOGIN_REDIRECT_URL = "/#/heute"
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https" if SESSION_COOKIE_SECURE else "http"
+    ACCOUNT_EMAIL_VERIFICATION = "none"
+    SOCIALACCOUNT_ONLY = True
+    SOCIALACCOUNT_STORE_TOKENS = False

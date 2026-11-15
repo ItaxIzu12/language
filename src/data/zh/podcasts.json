@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Coffee Break Chinese",
+    "author": "Coffee Break Languages",
+    "description": "Kurze, strukturierte Lektionen auf Englisch – ideal für den Einstieg.",
+    "level": "A1–A2",
+    "url": "https://coffeebreaklanguages.com/coffeebreakchinese/"
+  },
+  {
+    "title": "ChinesePod",
+    "author": "ChinesePod",
+    "description": "Riesiges Archiv an Dialog-Lektionen von Anfänger bis Fortgeschritten.",
+    "level": "A1–B2",
+    "url": "https://www.chinesepod.com/"
+  },
+  {
+    "title": "Tea Time Chinese 茶歇中文",
+    "author": "Nathan Rao",
+    "description": "Langsam und deutlich gesprochenes Mandarin über Alltag und Kultur.",
+    "level": "A2–B1",
+    "url": "https://teatimechinese.com/"
+  },
+  {
+    "title": "Dashu Mandarin 大叔中文",
+    "author": "Dashu Mandarin",
+    "description": "Drei Lehrer plaudern natürlich über Alltag und Gesellschaft in China.",
+    "level": "B1–B2",
+    "url": "https://www.dashumandarin.com/"
+  },
+  {
+    "title": "Mandarin Corner",
+    "author": "Mandarin Corner",
+    "description": "Authentische Gespräche und Straßeninterviews mit Untertiteln.",
+    "level": "A2–B2",
+    "url": "https://mandarincorner.org/"
+  }
+]

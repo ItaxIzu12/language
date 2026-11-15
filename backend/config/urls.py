@@ -1,4 +1,5 @@
-from django.urls import path, re_path
+from django.conf import settings
+from django.urls import include, path, re_path
 from accounts import views as accounts
 from catalog import views as catalog
 from learning import views
@@ -13,3 +14,6 @@ urlpatterns = [
     re_path(r"^api/v1/(?P<action>login|register|logout)/$", accounts.account),
     path("api/v1/state/<slug:language>/", views.state),
 ]
+
+if settings.SOCIALACCOUNT_PROVIDERS:
+    urlpatterns.append(path("api/oauth/", include("allauth.urls")))

@@ -72,6 +72,12 @@ mkdir -p backups
 
 Eine zweite verschlüsselte Kopie außerhalb des Rechners schützt vor Verlust des Volumes und der lokalen Sicherung. Die Anleitung zur Wiederherstellung in einer separaten Testdatenbank steht im [Architekturhandbuch](docs/ARCHITEKTUR.md).
 
+## Einstieg und Anbieter-Anmeldung
+
+Die Startseite zeigt die verfügbaren Lernsprachen. **Chinesisch** öffnet den Mandarin-Einstieg. Dort führen Anmeldung, Registrierung oder Gastzugang zum Tagesblatt. GitHub Pages unterstützt den Gastzugang. Der Docker-Betrieb bietet zusätzlich Lernkonten.
+
+Für Google eine OAuth-Webanwendung anlegen und die beiden GOOGLE-Werte in der lokalen `.env` setzen. Für Apple die Services ID, Team ID, Key ID und den privaten Signaturschlüssel im Backend konfigurieren. Die Return-URL des jeweiligen Anbieters lautet `https://<deine-domain>/api/oauth/google/login/callback/` bzw. `https://<deine-domain>/api/oauth/apple/login/callback/`. Für Google ist lokal auch `http://localhost:8080/api/oauth/google/login/callback/` eintragbar. Apple benötigt eine registrierte HTTPS-Domain. Für HTTPS Host, CSRF-Origin und DJANGO_HTTPS konfigurieren. Nach dem Setzen der Werte das Startskript erneut ausführen. Die Schaltflächen werden je Anbieter freigeschaltet, sobald dessen Konfiguration vollständig ist.
+
 ## Funktionen
 
 - **Tagesblatt** – die Startseite ist das Kalenderblatt von heute: Datum auf Deutsch und in der Lernsprache (zum
@@ -121,7 +127,7 @@ Die Regeln stehen in `DESIGN.md`, die Produktbeschreibung in `PRODUCT.md`. Techn
 Stufen 1–5 sowie die Chat- und Alltagswörter aus dem eigenen Kurs. Die Stufen-Zuordnung
 (HSK 3.0 Stufe 1 = A1, 2 = A2, 3 = B1, 4–5 = B2) ist eine Näherung.
 
-Die HSK-Ergänzung (`part5.ts`–`part9.ts`) wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
+Die HSK-Ergänzung wurde automatisch erzeugt und maschinell geprüft (Format, Pinyin-Silben,
 Dubletten), aber nicht Wort für Wort von einem Menschen gegengelesen. Fällt ein Fehler auf, lässt er sich in der
 jeweiligen Zeile direkt korrigieren.
 
@@ -196,35 +202,9 @@ mitgelieferte Workflow (`.github/workflows/deploy.yml`) die App bei jedem Push a
 
 ## Erweitern
 
-### Neue Wörter
+### Mandarin-Inhalte bearbeiten
 
-Die Vokabeln stehen in `src/data/zh/vocab/part1.ts` bis `part9.ts`, gruppiert nach Kategorie (1–4: Kurs- und Alltagswortschatz, 5–9: HSK-Ergänzung (9 = B2)). Eine Zeile = ein Wort:
-
-```
-Wort | Pinyin | Deutsch | Wortart | Niveau | Beispielsatz | Beispiel-Pinyin | Beispiel-Deutsch | L
-朋友 | péngyou | Freund/in | n | A1 | 我跟朋友去吃饭。 | Wǒ gēn péngyou qù chīfàn. | Ich gehe mit Freunden essen. | L
-```
-
-- Wortart: `n v adj adv pron num mw conj prep part phr int`
-- Niveau: `A1 A2 B1 B2`
-- Die drei Beispiel-Felder und das `L` (= Wort aus dem eigenen Kurs) sind optional.
-- Ein Wort nachträglich nicht umbenennen (Wort, Pinyin, Wortart bilden die ID, an der der Lernfortschritt hängt).
-
-### Neue Kategorie
-
-In `src/data/zh/categories.ts` einen Eintrag ergänzen und in einer `part*.ts`-Datei einen Block mit derselben `id` anlegen.
-
-### Neue Lesetexte
-
-`src/data/zh/reading.ts`: pro Text die Sätze als `Satz | Pinyin | Deutsch` und die Fragen als
-`Frage | richtige Antwort | falsche Antwort | falsche Antwort`.
-
-### Neue Hörsätze, Podcast-Episoden und Rollenspiele
-
-- `src/data/zh/listening.ts`: `Satz | Pinyin | Deutsch | Niveau`
-- `src/data/zh/podcasts.ts`: Episode mit Zeilen `Sprecher | Satz | Pinyin | Deutsch`. Die Episoden werden von der
-  Sprachausgabe des Geräts vorgelesen – es sind also keine Audiodateien nötig. Jede Episode mit einem Sprecher
-  `我` erscheint automatisch auch als Rollenspiel unter „Sprechen".
+Der Wortschatz steht in [A1.json](src/data/zh/vocab/A1.json), [A2.json](src/data/zh/vocab/A2.json), [B1.json](src/data/zh/vocab/B1.json) und [B2.json](src/data/zh/vocab/B2.json). Bestehende Wort-IDs bleiben bei Textkorrekturen erhalten. Kategorien, Hörsätze, Lesetexte, Dialogepisoden und Podcast-Empfehlungen stehen in den JSON-Dateien direkt unter `src/data/zh/`. Browser und Django-Import verwenden dieselbe Kursregistrierung.
 
 ### Neue Sprache
 
@@ -257,7 +237,7 @@ Display, Noto Serif SC; alle unter der SIL Open Font License) werden über Fonts
   Systemeinstellungen eine installieren.
 - **Spracherkennung** funktioniert in Chrome, Edge und Safari und benötigt Mikrofon-Freigabe sowie meist Internet.
 - **Gastfortschritt** liegt im `localStorage` des Browsers. Kontodaten liegen im Docker-Betrieb in PostgreSQL.
-- Die externen Podcast-Links können sich ändern; sie stehen in `src/data/zh/podcasts.ts`.
+- Die externen Podcast-Links können sich ändern; sie stehen in `src/data/zh/podcasts.json`.
 
 ## Ideen für später
 

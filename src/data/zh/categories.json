@@ -1,0 +1,122 @@
+[
+  {
+    "id": "basics",
+    "name": "Grundlagen & Begrüßung",
+    "glyph": "始",
+    "description": "Die allerersten Wörter: Pronomen, Höflichkeit, Ja/Nein."
+  },
+  {
+    "id": "people",
+    "name": "Menschen & Familie",
+    "glyph": "人",
+    "description": "Familie, Freunde, Beziehungen."
+  },
+  {
+    "id": "numbers",
+    "name": "Zahlen & Mengen",
+    "glyph": "数",
+    "description": "Zahlen, Zählwörter, Mengenangaben."
+  },
+  {
+    "id": "time",
+    "name": "Zeit & Datum",
+    "glyph": "时",
+    "description": "Uhrzeit, Tage, Wochen, Zeitangaben."
+  },
+  {
+    "id": "food",
+    "name": "Essen & Trinken",
+    "glyph": "食",
+    "description": "Gerichte, Getränke, Geschmack, Restaurant."
+  },
+  {
+    "id": "shopping",
+    "name": "Einkaufen & Geld",
+    "glyph": "买",
+    "description": "Geschäfte, Kleidung, Preise, Bezahlen."
+  },
+  {
+    "id": "travel",
+    "name": "Reisen & Verkehr",
+    "glyph": "行",
+    "description": "Wege, Verkehrsmittel, Urlaub, Hotel."
+  },
+  {
+    "id": "directions",
+    "name": "Wege & Orte",
+    "glyph": "向",
+    "description": "Richtungen, Orte, Orientierung."
+  },
+  {
+    "id": "home",
+    "name": "Zuhause & Alltag",
+    "glyph": "家",
+    "description": "Wohnen, Alltagsroutine, Haushalt."
+  },
+  {
+    "id": "work",
+    "name": "Arbeit & Studium",
+    "glyph": "工",
+    "description": "Beruf, Büro, Lernen, Termine."
+  },
+  {
+    "id": "education",
+    "name": "Schule & Lernen",
+    "glyph": "学",
+    "description": "Schule, Uni, Sprache, Lesen und Schreiben."
+  },
+  {
+    "id": "hobbies",
+    "name": "Hobbys & Freizeit",
+    "glyph": "乐",
+    "description": "Sport, Spiele, Aktivitäten."
+  },
+  {
+    "id": "media",
+    "name": "Medien & Internet",
+    "glyph": "网",
+    "description": "Handy, Social Media, Filme, Chat."
+  },
+  {
+    "id": "feelings",
+    "name": "Gefühle & Meinungen",
+    "glyph": "心",
+    "description": "Emotionen, Meinungen, Vorschläge."
+  },
+  {
+    "id": "health",
+    "name": "Gesundheit & Körper",
+    "glyph": "身",
+    "description": "Körper, Krankheit, Arzt, Wohlbefinden."
+  },
+  {
+    "id": "weather",
+    "name": "Wetter & Natur",
+    "glyph": "天",
+    "description": "Wetter, Jahreszeiten, Natur."
+  },
+  {
+    "id": "verbs",
+    "name": "Häufige Verben",
+    "glyph": "动",
+    "description": "Die wichtigsten Alltagsverben."
+  },
+  {
+    "id": "adjectives",
+    "name": "Adjektive & Eigenschaften",
+    "glyph": "形",
+    "description": "Beschreibungen, Farben, Eigenschaften."
+  },
+  {
+    "id": "connectors",
+    "name": "Konnektoren & Grammatik",
+    "glyph": "连",
+    "description": "Verbindungswörter, Partikel, Strukturen."
+  },
+  {
+    "id": "society",
+    "name": "Gesellschaft & Abstraktes",
+    "glyph": "世",
+    "description": "Themen Richtung B1/B2: Bildung, Umwelt, Wirtschaft."
+  }
+]

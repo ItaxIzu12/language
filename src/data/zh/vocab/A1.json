@@ -1,0 +1,7156 @@
+[
+  {
+    "id": "zh:我:wǒ:pron",
+    "target": "我",
+    "reading": "wǒ",
+    "de": "ich",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我是德国人。",
+      "reading": "Wǒ shì Déguó rén.",
+      "de": "Ich bin Deutscher."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:你:nǐ:pron",
+    "target": "你",
+    "reading": "nǐ",
+    "de": "du",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你好吗？",
+      "reading": "Nǐ hǎo ma?",
+      "de": "Wie geht es dir?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:他:tā:pron",
+    "target": "他",
+    "reading": "tā",
+    "de": "er",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "他是我的朋友。",
+      "reading": "Tā shì wǒ de péngyou.",
+      "de": "Er ist mein Freund."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:她:tā:pron",
+    "target": "她",
+    "reading": "tā",
+    "de": "sie",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "她很忙。",
+      "reading": "Tā hěn máng.",
+      "de": "Sie ist beschäftigt."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:我们:wǒmen:pron",
+    "target": "我们",
+    "reading": "wǒmen",
+    "de": "wir",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我们一起去吧。",
+      "reading": "Wǒmen yìqǐ qù ba.",
+      "de": "Lass uns zusammen gehen."
+    }
+  },
+  {
+    "id": "zh:你们:nǐmen:pron",
+    "target": "你们",
+    "reading": "nǐmen",
+    "de": "ihr",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你们好！",
+      "reading": "Nǐmen hǎo!",
+      "de": "Hallo zusammen!"
+    }
+  },
+  {
+    "id": "zh:他们:tāmen:pron",
+    "target": "他们",
+    "reading": "tāmen",
+    "de": "sie (Plural)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "他们在吃饭。",
+      "reading": "Tāmen zài chīfàn.",
+      "de": "Sie essen gerade."
+    }
+  },
+  {
+    "id": "zh:这:zhè:pron",
+    "target": "这",
+    "reading": "zhè",
+    "de": "dies, das hier",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "这是什么？",
+      "reading": "Zhè shì shénme?",
+      "de": "Was ist das?"
+    }
+  },
+  {
+    "id": "zh:那:nà:pron",
+    "target": "那",
+    "reading": "nà",
+    "de": "das dort, jenes",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "那是我的手机。",
+      "reading": "Nà shì wǒ de shǒujī.",
+      "de": "Das dort ist mein Handy."
+    }
+  },
+  {
+    "id": "zh:谁:shéi:pron",
+    "target": "谁",
+    "reading": "shéi",
+    "de": "wer",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "他是谁？",
+      "reading": "Tā shì shéi?",
+      "de": "Wer ist er?"
+    }
+  },
+  {
+    "id": "zh:哪儿:nǎr:pron",
+    "target": "哪儿",
+    "reading": "nǎr",
+    "de": "wo",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你在哪儿？",
+      "reading": "Nǐ zài nǎr?",
+      "de": "Wo bist du?"
+    }
+  },
+  {
+    "id": "zh:你好:nǐ hǎo:phr",
+    "target": "你好",
+    "reading": "nǐ hǎo",
+    "de": "Hallo",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你好，我叫Phong。",
+      "reading": "Nǐ hǎo, wǒ jiào Phong.",
+      "de": "Hallo, ich heiße Phong."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:谢谢:xièxie:phr",
+    "target": "谢谢",
+    "reading": "xièxie",
+    "de": "danke",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "谢谢你的帮忙。",
+      "reading": "Xièxie nǐ de bāngmáng.",
+      "de": "Danke für deine Hilfe."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:再见:zàijiàn:phr",
+    "target": "再见",
+    "reading": "zàijiàn",
+    "de": "auf Wiedersehen",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "明天见，再见！",
+      "reading": "Míngtiān jiàn, zàijiàn!",
+      "de": "Bis morgen, tschüss!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:对不起:duìbuqǐ:phr",
+    "target": "对不起",
+    "reading": "duìbuqǐ",
+    "de": "Entschuldigung, es tut mir leid",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "对不起，我来晚了。",
+      "reading": "Duìbuqǐ, wǒ lái wǎn le.",
+      "de": "Entschuldigung, ich bin zu spät."
+    }
+  },
+  {
+    "id": "zh:是:shì:v",
+    "target": "是",
+    "reading": "shì",
+    "de": "sein",
+    "pos": "verb",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我是学生。",
+      "reading": "Wǒ shì xuésheng.",
+      "de": "Ich bin Student."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:不:bù:adv",
+    "target": "不",
+    "reading": "bù",
+    "de": "nicht",
+    "pos": "adverb",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我不喝咖啡。",
+      "reading": "Wǒ bù hē kāfēi.",
+      "de": "Ich trinke keinen Kaffee."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:有:yǒu:v",
+    "target": "有",
+    "reading": "yǒu",
+    "de": "haben; es gibt",
+    "pos": "verb",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我有一个问题。",
+      "reading": "Wǒ yǒu yí ge wèntí.",
+      "de": "Ich habe eine Frage."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:没有:méiyǒu:v",
+    "target": "没有",
+    "reading": "méiyǒu",
+    "de": "nicht haben; es gibt nicht",
+    "pos": "verb",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "我没有时间。",
+      "reading": "Wǒ méiyǒu shíjiān.",
+      "de": "Ich habe keine Zeit."
+    }
+  },
+  {
+    "id": "zh:好:hǎo:adj",
+    "target": "好",
+    "reading": "hǎo",
+    "de": "gut",
+    "pos": "adjective",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "今天天气很好。",
+      "reading": "Jīntiān tiānqì hěn hǎo.",
+      "de": "Heute ist das Wetter gut."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:对:duì:adj",
+    "target": "对",
+    "reading": "duì",
+    "de": "richtig, stimmt",
+    "pos": "adjective",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "对，就是这个。",
+      "reading": "Duì, jiù shì zhège.",
+      "de": "Stimmt, genau das."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:行:xíng:adj",
+    "target": "行",
+    "reading": "xíng",
+    "de": "okay, das geht",
+    "pos": "adjective",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "明天行吗？",
+      "reading": "Míngtiān xíng ma?",
+      "de": "Geht es morgen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:好的:hǎo de:phr",
+    "target": "好的",
+    "reading": "hǎo de",
+    "de": "okay, in Ordnung",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "好的，没问题。",
+      "reading": "Hǎo de, méi wèntí.",
+      "de": "Okay, kein Problem."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:好吧:hǎo ba:phr",
+    "target": "好吧",
+    "reading": "hǎo ba",
+    "de": "na gut",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "好吧，听你的。",
+      "reading": "Hǎo ba, tīng nǐ de.",
+      "de": "Na gut, wie du meinst."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:嗯:èn:int",
+    "target": "嗯",
+    "reading": "èn",
+    "de": "mhm, ja",
+    "pos": "interjection",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "嗯，我知道了。",
+      "reading": "Èn, wǒ zhīdào le.",
+      "de": "Mhm, verstanden."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:哈哈:hāhā:int",
+    "target": "哈哈",
+    "reading": "hāhā",
+    "de": "haha",
+    "pos": "interjection",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "哈哈，太搞笑了！",
+      "reading": "Hāhā, tài gǎoxiào le!",
+      "de": "Haha, zu witzig!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:喂:wéi:int",
+    "target": "喂",
+    "reading": "wéi",
+    "de": "hallo (am Telefon)",
+    "pos": "interjection",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "喂，你好！",
+      "reading": "Wéi, nǐ hǎo!",
+      "de": "Hallo? (Telefon)"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:请:qǐng:v",
+    "target": "请",
+    "reading": "qǐng",
+    "de": "bitte; einladen",
+    "pos": "verb",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "请坐。",
+      "reading": "Qǐng zuò.",
+      "de": "Bitte setz dich."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:不好意思:bù hǎoyìsi:phr",
+    "target": "不好意思",
+    "reading": "bù hǎoyìsi",
+    "de": "Entschuldigung, sorry (leicht)",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "不好意思，我迟到了。",
+      "reading": "Bù hǎoyìsi, wǒ chídào le.",
+      "de": "Sorry, ich bin zu spät."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:没关系:méi guānxi:phr",
+    "target": "没关系",
+    "reading": "méi guānxi",
+    "de": "macht nichts",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "没关系，慢慢来。",
+      "reading": "Méi guānxi, mànmàn lái.",
+      "de": "Macht nichts, lass dir Zeit."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:没事儿:méi shìr:phr",
+    "target": "没事儿",
+    "reading": "méi shìr",
+    "de": "schon gut, nichts passiert",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "没事儿，别担心。",
+      "reading": "Méi shìr, bié dānxīn.",
+      "de": "Schon gut, keine Sorge."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:没问题:méi wèntí:phr",
+    "target": "没问题",
+    "reading": "méi wèntí",
+    "de": "kein Problem",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "明天见面？没问题！",
+      "reading": "Míngtiān jiànmiàn? Méi wèntí!",
+      "de": "Morgen treffen? Kein Problem!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:加油:jiāyóu:phr",
+    "target": "加油",
+    "reading": "jiāyóu",
+    "de": "Auf geht's! Du schaffst das!",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "明天考试，加油！",
+      "reading": "Míngtiān kǎoshì, jiāyóu!",
+      "de": "Morgen Prüfung – du schaffst das!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:什么:shénme:pron",
+    "target": "什么",
+    "reading": "shénme",
+    "de": "was",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你想吃什么？",
+      "reading": "Nǐ xiǎng chī shénme?",
+      "de": "Was möchtest du essen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:怎么:zěnme:pron",
+    "target": "怎么",
+    "reading": "zěnme",
+    "de": "wie",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "这个怎么用？",
+      "reading": "Zhège zěnme yòng?",
+      "de": "Wie benutzt man das?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:为什么:wèishénme:pron",
+    "target": "为什么",
+    "reading": "wèishénme",
+    "de": "warum",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你为什么不来？",
+      "reading": "Nǐ wèishénme bù lái?",
+      "de": "Warum kommst du nicht?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:怎么了:zěnme le:phr",
+    "target": "怎么了",
+    "reading": "zěnme le",
+    "de": "was ist los?",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你怎么了？",
+      "reading": "Nǐ zěnme le?",
+      "de": "Was ist los mit dir?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:怎么样:zěnmeyàng:pron",
+    "target": "怎么样",
+    "reading": "zěnmeyàng",
+    "de": "wie (ist es)?",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "这个怎么样？",
+      "reading": "Zhège zěnmeyàng?",
+      "de": "Wie ist das?"
+    }
+  },
+  {
+    "id": "zh:人:rén:n",
+    "target": "人",
+    "reading": "rén",
+    "de": "Mensch, Person",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "这里人很多。",
+      "reading": "Zhèlǐ rén hěn duō.",
+      "de": "Hier sind viele Leute."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:朋友:péngyou:n",
+    "target": "朋友",
+    "reading": "péngyou",
+    "de": "Freund/in",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我跟朋友去吃饭。",
+      "reading": "Wǒ gēn péngyou qù chīfàn.",
+      "de": "Ich gehe mit Freunden essen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:妈妈:māma:n",
+    "target": "妈妈",
+    "reading": "māma",
+    "de": "Mama",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我妈妈做饭很好吃。",
+      "reading": "Wǒ māma zuòfàn hěn hǎochī.",
+      "de": "Meine Mama kocht sehr lecker."
+    }
+  },
+  {
+    "id": "zh:爸爸:bàba:n",
+    "target": "爸爸",
+    "reading": "bàba",
+    "de": "Papa",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "爸爸在上班。",
+      "reading": "Bàba zài shàngbān.",
+      "de": "Papa ist bei der Arbeit."
+    }
+  },
+  {
+    "id": "zh:哥哥:gēge:n",
+    "target": "哥哥",
+    "reading": "gēge",
+    "de": "älterer Bruder",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:姐姐:jiějie:n",
+    "target": "姐姐",
+    "reading": "jiějie",
+    "de": "ältere Schwester",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:弟弟:dìdi:n",
+    "target": "弟弟",
+    "reading": "dìdi",
+    "de": "jüngerer Bruder",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:妹妹:mèimei:n",
+    "target": "妹妹",
+    "reading": "mèimei",
+    "de": "jüngere Schwester",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:孩子:háizi:n",
+    "target": "孩子",
+    "reading": "háizi",
+    "de": "Kind",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "他们有两个孩子。",
+      "reading": "Tāmen yǒu liǎng ge háizi.",
+      "de": "Sie haben zwei Kinder."
+    }
+  },
+  {
+    "id": "zh:男朋友:nánpéngyou:n",
+    "target": "男朋友",
+    "reading": "nánpéngyou",
+    "de": "fester Freund",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:女朋友:nǚpéngyou:n",
+    "target": "女朋友",
+    "reading": "nǚpéngyou",
+    "de": "feste Freundin",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:同学:tóngxué:n",
+    "target": "同学",
+    "reading": "tóngxué",
+    "de": "Mitschüler, Kommilitone",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:老师:lǎoshī:n",
+    "target": "老师",
+    "reading": "lǎoshī",
+    "de": "Lehrer/in",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "老师说得很慢。",
+      "reading": "Lǎoshī shuō de hěn màn.",
+      "de": "Der Lehrer spricht sehr langsam."
+    }
+  },
+  {
+    "id": "zh:学生:xuésheng:n",
+    "target": "学生",
+    "reading": "xuésheng",
+    "de": "Schüler, Student",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:先生:xiānsheng:n",
+    "target": "先生",
+    "reading": "xiānsheng",
+    "de": "Herr",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1"
+  },
+  {
+    "id": "zh:大家:dàjiā:pron",
+    "target": "大家",
+    "reading": "dàjiā",
+    "de": "alle",
+    "pos": "pronoun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "大家好！",
+      "reading": "Dàjiā hǎo!",
+      "de": "Hallo zusammen!"
+    }
+  },
+  {
+    "id": "zh:名字:míngzi:n",
+    "target": "名字",
+    "reading": "míngzi",
+    "de": "Name",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "你叫什么名字？",
+      "reading": "Nǐ jiào shénme míngzi?",
+      "de": "Wie heißt du?"
+    }
+  },
+  {
+    "id": "zh:认识:rènshi:v",
+    "target": "认识",
+    "reading": "rènshi",
+    "de": "kennen, kennenlernen",
+    "pos": "verb",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "很高兴认识你。",
+      "reading": "Hěn gāoxìng rènshi nǐ.",
+      "de": "Freut mich, dich kennenzulernen."
+    }
+  },
+  {
+    "id": "zh:一:yī:num",
+    "target": "一",
+    "reading": "yī",
+    "de": "eins",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:二:èr:num",
+    "target": "二",
+    "reading": "èr",
+    "de": "zwei",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:两:liǎng:num",
+    "target": "两",
+    "reading": "liǎng",
+    "de": "zwei (vor Zählwort)",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "我要两杯咖啡。",
+      "reading": "Wǒ yào liǎng bēi kāfēi.",
+      "de": "Ich möchte zwei Kaffee."
+    }
+  },
+  {
+    "id": "zh:三:sān:num",
+    "target": "三",
+    "reading": "sān",
+    "de": "drei",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:四:sì:num",
+    "target": "四",
+    "reading": "sì",
+    "de": "vier",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:五:wǔ:num",
+    "target": "五",
+    "reading": "wǔ",
+    "de": "fünf",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:六:liù:num",
+    "target": "六",
+    "reading": "liù",
+    "de": "sechs",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:七:qī:num",
+    "target": "七",
+    "reading": "qī",
+    "de": "sieben",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:八:bā:num",
+    "target": "八",
+    "reading": "bā",
+    "de": "acht",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:九:jiǔ:num",
+    "target": "九",
+    "reading": "jiǔ",
+    "de": "neun",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:十:shí:num",
+    "target": "十",
+    "reading": "shí",
+    "de": "zehn",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:百:bǎi:num",
+    "target": "百",
+    "reading": "bǎi",
+    "de": "hundert",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这个一百块。",
+      "reading": "Zhège yìbǎi kuài.",
+      "de": "Das kostet hundert Yuan."
+    }
+  },
+  {
+    "id": "zh:零:líng:num",
+    "target": "零",
+    "reading": "líng",
+    "de": "null",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1"
+  },
+  {
+    "id": "zh:半:bàn:num",
+    "target": "半",
+    "reading": "bàn",
+    "de": "halb",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "现在三点半。",
+      "reading": "Xiànzài sān diǎn bàn.",
+      "de": "Es ist halb vier."
+    }
+  },
+  {
+    "id": "zh:多少:duōshao:pron",
+    "target": "多少",
+    "reading": "duōshao",
+    "de": "wie viel",
+    "pos": "pronoun",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这个多少钱？",
+      "reading": "Zhège duōshao qián?",
+      "de": "Wie viel kostet das?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:几:jǐ:pron",
+    "target": "几",
+    "reading": "jǐ",
+    "de": "wie viele (kleine Zahl)",
+    "pos": "pronoun",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "现在几点？",
+      "reading": "Xiànzài jǐ diǎn?",
+      "de": "Wie spät ist es?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:一点儿:yìdiǎnr:num",
+    "target": "一点儿",
+    "reading": "yìdiǎnr",
+    "de": "ein bisschen (nach Adj./Verb)",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "便宜一点儿吧。",
+      "reading": "Piányi yìdiǎnr ba.",
+      "de": "Mach's ein bisschen billiger."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:有点儿:yǒudiǎnr:adv",
+    "target": "有点儿",
+    "reading": "yǒudiǎnr",
+    "de": "etwas, ein wenig (vor Adj., negativ)",
+    "pos": "adverb",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这个有点儿贵。",
+      "reading": "Zhège yǒudiǎnr guì.",
+      "de": "Das ist etwas teuer."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:一下:yíxià:num",
+    "target": "一下",
+    "reading": "yíxià",
+    "de": "mal kurz",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "等一下。",
+      "reading": "Děng yíxià.",
+      "de": "Warte mal kurz."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:个:gè:mw",
+    "target": "个",
+    "reading": "gè",
+    "de": "allgemeines Zählwort",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "一个人",
+      "reading": "yí ge rén",
+      "de": "eine Person"
+    }
+  },
+  {
+    "id": "zh:件:jiàn:mw",
+    "target": "件",
+    "reading": "jiàn",
+    "de": "Zählwort für Kleidung, Angelegenheiten",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这件衣服很好看。",
+      "reading": "Zhè jiàn yīfu hěn hǎokàn.",
+      "de": "Dieses Kleidungsstück ist hübsch."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:双:shuāng:mw",
+    "target": "双",
+    "reading": "shuāng",
+    "de": "Paar (Zählwort)",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "我买了一双鞋。",
+      "reading": "Wǒ mǎile yì shuāng xié.",
+      "de": "Ich habe ein Paar Schuhe gekauft."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:块:kuài:mw",
+    "target": "块",
+    "reading": "kuài",
+    "de": "Yuan (ugs.); Stück",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "一共三十块。",
+      "reading": "Yígòng sānshí kuài.",
+      "de": "Insgesamt dreißig Yuan."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:杯:bēi:mw",
+    "target": "杯",
+    "reading": "bēi",
+    "de": "Tasse, Glas (Zählwort)",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "一杯水",
+      "reading": "yì bēi shuǐ",
+      "de": "ein Glas Wasser"
+    }
+  },
+  {
+    "id": "zh:本:běn:mw",
+    "target": "本",
+    "reading": "běn",
+    "de": "Zählwort für Bücher",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "一本书",
+      "reading": "yì běn shū",
+      "de": "ein Buch"
+    }
+  },
+  {
+    "id": "zh:次:cì:mw",
+    "target": "次",
+    "reading": "cì",
+    "de": "Mal (Zählwort)",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "我去过一次。",
+      "reading": "Wǒ qùguo yí cì.",
+      "de": "Ich war einmal dort."
+    }
+  },
+  {
+    "id": "zh:号:hào:n",
+    "target": "号",
+    "reading": "hào",
+    "de": "Nummer; Größe; Tag (Datum)",
+    "pos": "noun",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "你穿多大号？",
+      "reading": "Nǐ chuān duō dà hào?",
+      "de": "Welche Größe trägst du?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:现在:xiànzài:n",
+    "target": "现在",
+    "reading": "xiànzài",
+    "de": "jetzt",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我现在很忙。",
+      "reading": "Wǒ xiànzài hěn máng.",
+      "de": "Ich bin gerade sehr beschäftigt."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:时间:shíjiān:n",
+    "target": "时间",
+    "reading": "shíjiān",
+    "de": "Zeit",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "你有时间吗？",
+      "reading": "Nǐ yǒu shíjiān ma?",
+      "de": "Hast du Zeit?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:今天:jīntiān:n",
+    "target": "今天",
+    "reading": "jīntiān",
+    "de": "heute",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "今天我不上班。",
+      "reading": "Jīntiān wǒ bú shàngbān.",
+      "de": "Heute arbeite ich nicht."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:明天:míngtiān:n",
+    "target": "明天",
+    "reading": "míngtiān",
+    "de": "morgen",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "明天见！",
+      "reading": "Míngtiān jiàn!",
+      "de": "Bis morgen!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:昨天:zuótiān:n",
+    "target": "昨天",
+    "reading": "zuótiān",
+    "de": "gestern",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "昨天我很累。",
+      "reading": "Zuótiān wǒ hěn lèi.",
+      "de": "Gestern war ich sehr müde."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:时候:shíhou:n",
+    "target": "时候",
+    "reading": "shíhou",
+    "de": "Zeitpunkt; wenn, als",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "你什么时候来？",
+      "reading": "Nǐ shénme shíhou lái?",
+      "de": "Wann kommst du?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:一会儿:yíhuìr:n",
+    "target": "一会儿",
+    "reading": "yíhuìr",
+    "de": "ein Weilchen; gleich",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我一会儿给你打电话。",
+      "reading": "Wǒ yíhuìr gěi nǐ dǎ diànhuà.",
+      "de": "Ich rufe dich gleich an."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:周末:zhōumò:n",
+    "target": "周末",
+    "reading": "zhōumò",
+    "de": "Wochenende",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "周末你有空吗？",
+      "reading": "Zhōumò nǐ yǒu kòng ma?",
+      "de": "Hast du am Wochenende Zeit?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:点:diǎn:mw",
+    "target": "点",
+    "reading": "diǎn",
+    "de": "Uhr (Stunde)",
+    "pos": "measure",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我们七点见面。",
+      "reading": "Wǒmen qī diǎn jiànmiàn.",
+      "de": "Wir treffen uns um sieben."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:分钟:fēnzhōng:n",
+    "target": "分钟",
+    "reading": "fēnzhōng",
+    "de": "Minute",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "走路十分钟。",
+      "reading": "Zǒulù shí fēnzhōng.",
+      "de": "Zehn Minuten zu Fuß."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:小时:xiǎoshí:n",
+    "target": "小时",
+    "reading": "xiǎoshí",
+    "de": "Stunde",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我等了一个小时。",
+      "reading": "Wǒ děngle yí ge xiǎoshí.",
+      "de": "Ich habe eine Stunde gewartet."
+    }
+  },
+  {
+    "id": "zh:马上:mǎshàng:adv",
+    "target": "马上",
+    "reading": "mǎshàng",
+    "de": "sofort, gleich",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我马上到。",
+      "reading": "Wǒ mǎshàng dào.",
+      "de": "Ich bin gleich da."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:已经:yǐjīng:adv",
+    "target": "已经",
+    "reading": "yǐjīng",
+    "de": "schon, bereits",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我已经吃了。",
+      "reading": "Wǒ yǐjīng chī le.",
+      "de": "Ich habe schon gegessen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:先:xiān:adv",
+    "target": "先",
+    "reading": "xiān",
+    "de": "zuerst",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我先走了。",
+      "reading": "Wǒ xiān zǒu le.",
+      "de": "Ich gehe schon mal."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:然后:ránhòu:conj",
+    "target": "然后",
+    "reading": "ránhòu",
+    "de": "dann, danach",
+    "pos": "conjunction",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "先吃饭，然后看电影。",
+      "reading": "Xiān chīfàn, ránhòu kàn diànyǐng.",
+      "de": "Erst essen, dann einen Film schauen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:再:zài:adv",
+    "target": "再",
+    "reading": "zài",
+    "de": "wieder, noch einmal (Zukunft); dann",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "请再说一遍。",
+      "reading": "Qǐng zài shuō yí biàn.",
+      "de": "Bitte sag es noch einmal."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:早上:zǎoshang:n",
+    "target": "早上",
+    "reading": "zǎoshang",
+    "de": "früher Morgen",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "早上好！",
+      "reading": "Zǎoshang hǎo!",
+      "de": "Guten Morgen!"
+    }
+  },
+  {
+    "id": "zh:上午:shàngwǔ:n",
+    "target": "上午",
+    "reading": "shàngwǔ",
+    "de": "Vormittag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:中午:zhōngwǔ:n",
+    "target": "中午",
+    "reading": "zhōngwǔ",
+    "de": "Mittag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "中午一起吃饭吧。",
+      "reading": "Zhōngwǔ yìqǐ chīfàn ba.",
+      "de": "Lass uns mittags zusammen essen."
+    }
+  },
+  {
+    "id": "zh:下午:xiàwǔ:n",
+    "target": "下午",
+    "reading": "xiàwǔ",
+    "de": "Nachmittag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:晚上:wǎnshang:n",
+    "target": "晚上",
+    "reading": "wǎnshang",
+    "de": "Abend",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "晚上你有空吗？",
+      "reading": "Wǎnshang nǐ yǒu kòng ma?",
+      "de": "Hast du abends Zeit?"
+    }
+  },
+  {
+    "id": "zh:星期:xīngqī:n",
+    "target": "星期",
+    "reading": "xīngqī",
+    "de": "Woche; Wochentag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "今天星期几？",
+      "reading": "Jīntiān xīngqī jǐ?",
+      "de": "Welcher Wochentag ist heute?"
+    }
+  },
+  {
+    "id": "zh:月:yuè:n",
+    "target": "月",
+    "reading": "yuè",
+    "de": "Monat",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我十一月去中国。",
+      "reading": "Wǒ shíyī yuè qù Zhōngguó.",
+      "de": "Ich fahre im November nach China."
+    }
+  },
+  {
+    "id": "zh:年:nián:n",
+    "target": "年",
+    "reading": "nián",
+    "de": "Jahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:天:tiān:n",
+    "target": "天",
+    "reading": "tiān",
+    "de": "Tag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我每天学中文。",
+      "reading": "Wǒ měi tiān xué Zhōngwén.",
+      "de": "Ich lerne jeden Tag Chinesisch."
+    }
+  },
+  {
+    "id": "zh:每天:měi tiān:adv",
+    "target": "每天",
+    "reading": "měi tiān",
+    "de": "jeden Tag",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:今年:jīnnián:n",
+    "target": "今年",
+    "reading": "jīnnián",
+    "de": "dieses Jahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:去年:qùnián:n",
+    "target": "去年",
+    "reading": "qùnián",
+    "de": "letztes Jahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:明年:míngnián:n",
+    "target": "明年",
+    "reading": "míngnián",
+    "de": "nächstes Jahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1"
+  },
+  {
+    "id": "zh:生日:shēngrì:n",
+    "target": "生日",
+    "reading": "shēngrì",
+    "de": "Geburtstag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "生日快乐！",
+      "reading": "Shēngrì kuàilè!",
+      "de": "Alles Gute zum Geburtstag!"
+    }
+  },
+  {
+    "id": "zh:早:zǎo:adj",
+    "target": "早",
+    "reading": "zǎo",
+    "de": "früh",
+    "pos": "adjective",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "早点儿睡吧。",
+      "reading": "Zǎo diǎnr shuì ba.",
+      "de": "Geh früh schlafen."
+    }
+  },
+  {
+    "id": "zh:晚:wǎn:adj",
+    "target": "晚",
+    "reading": "wǎn",
+    "de": "spät",
+    "pos": "adjective",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "太晚了，我要回家。",
+      "reading": "Tài wǎn le, wǒ yào huíjiā.",
+      "de": "Es ist zu spät, ich muss nach Hause."
+    }
+  },
+  {
+    "id": "zh:吃:chī:v",
+    "target": "吃",
+    "reading": "chī",
+    "de": "essen",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "你吃饭了吗？",
+      "reading": "Nǐ chīfàn le ma?",
+      "de": "Hast du schon gegessen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:喝:hē:v",
+    "target": "喝",
+    "reading": "hē",
+    "de": "trinken",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我想喝水。",
+      "reading": "Wǒ xiǎng hē shuǐ.",
+      "de": "Ich möchte Wasser trinken."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:水:shuǐ:n",
+    "target": "水",
+    "reading": "shuǐ",
+    "de": "Wasser",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "多喝水。",
+      "reading": "Duō hē shuǐ.",
+      "de": "Trink viel Wasser."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:饭:fàn:n",
+    "target": "饭",
+    "reading": "fàn",
+    "de": "Essen, Mahlzeit; Reis",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我们去吃饭吧。",
+      "reading": "Wǒmen qù chīfàn ba.",
+      "de": "Lass uns essen gehen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:菜:cài:n",
+    "target": "菜",
+    "reading": "cài",
+    "de": "Gericht; Gemüse",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "这个菜很好吃。",
+      "reading": "Zhège cài hěn hǎochī.",
+      "de": "Dieses Gericht ist lecker."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:好吃:hǎochī:adj",
+    "target": "好吃",
+    "reading": "hǎochī",
+    "de": "lecker (Essen)",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "太好吃了！",
+      "reading": "Tài hǎochī le!",
+      "de": "Superlecker!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:好喝:hǎohē:adj",
+    "target": "好喝",
+    "reading": "hǎohē",
+    "de": "lecker (Getränk)",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "这杯咖啡很好喝。",
+      "reading": "Zhè bēi kāfēi hěn hǎohē.",
+      "de": "Dieser Kaffee schmeckt gut."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:咖啡:kāfēi:n",
+    "target": "咖啡",
+    "reading": "kāfēi",
+    "de": "Kaffee",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我每天喝咖啡。",
+      "reading": "Wǒ měi tiān hē kāfēi.",
+      "de": "Ich trinke jeden Tag Kaffee."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:饿:è:adj",
+    "target": "饿",
+    "reading": "è",
+    "de": "hungrig",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我饿了。",
+      "reading": "Wǒ è le.",
+      "de": "Ich habe Hunger."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:渴:kě:adj",
+    "target": "渴",
+    "reading": "kě",
+    "de": "durstig",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "你渴不渴？",
+      "reading": "Nǐ kě bu kě?",
+      "de": "Hast du Durst?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:饱:bǎo:adj",
+    "target": "饱",
+    "reading": "bǎo",
+    "de": "satt",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我吃饱了。",
+      "reading": "Wǒ chībǎo le.",
+      "de": "Ich bin satt."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:服务员:fúwùyuán:n",
+    "target": "服务员",
+    "reading": "fúwùyuán",
+    "de": "Kellner/in, Bedienung",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "服务员，买单！",
+      "reading": "Fúwùyuán, mǎidān!",
+      "de": "Bedienung, die Rechnung bitte!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:点菜:diǎncài:v",
+    "target": "点菜",
+    "reading": "diǎncài",
+    "de": "Essen bestellen (im Restaurant)",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我们点菜吧。",
+      "reading": "Wǒmen diǎncài ba.",
+      "de": "Lass uns bestellen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:菜单:càidān:n",
+    "target": "菜单",
+    "reading": "càidān",
+    "de": "Speisekarte",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "请给我菜单。",
+      "reading": "Qǐng gěi wǒ càidān.",
+      "de": "Die Speisekarte bitte."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:米饭:mǐfàn:n",
+    "target": "米饭",
+    "reading": "mǐfàn",
+    "de": "gekochter Reis",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我要一碗米饭。",
+      "reading": "Wǒ yào yì wǎn mǐfàn.",
+      "de": "Ich möchte eine Schale Reis."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:面条:miàntiáo:n",
+    "target": "面条",
+    "reading": "miàntiáo",
+    "de": "Nudeln",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢吃面条。",
+      "reading": "Wǒ xǐhuan chī miàntiáo.",
+      "de": "Ich esse gern Nudeln."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:甜:tián:adj",
+    "target": "甜",
+    "reading": "tián",
+    "de": "süß",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "这个太甜了。",
+      "reading": "Zhège tài tián le.",
+      "de": "Das ist zu süß."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:辣:là:adj",
+    "target": "辣",
+    "reading": "là",
+    "de": "scharf",
+    "pos": "adjective",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我不能吃辣。",
+      "reading": "Wǒ bù néng chī là.",
+      "de": "Ich kann nicht scharf essen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:买单:mǎidān:v",
+    "target": "买单",
+    "reading": "mǎidān",
+    "de": "zahlen (im Restaurant)",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "今天我来买单。",
+      "reading": "Jīntiān wǒ lái mǎidān.",
+      "de": "Heute zahle ich."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:茶:chá:n",
+    "target": "茶",
+    "reading": "chá",
+    "de": "Tee",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "你喝茶还是咖啡？",
+      "reading": "Nǐ hē chá háishi kāfēi?",
+      "de": "Trinkst du Tee oder Kaffee?"
+    }
+  },
+  {
+    "id": "zh:啤酒:píjiǔ:n",
+    "target": "啤酒",
+    "reading": "píjiǔ",
+    "de": "Bier",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "来两瓶啤酒。",
+      "reading": "Lái liǎng píng píjiǔ.",
+      "de": "Zwei Flaschen Bier bitte."
+    }
+  },
+  {
+    "id": "zh:牛奶:niúnǎi:n",
+    "target": "牛奶",
+    "reading": "niúnǎi",
+    "de": "Milch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:果汁:guǒzhī:n",
+    "target": "果汁",
+    "reading": "guǒzhī",
+    "de": "Saft",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:鸡蛋:jīdàn:n",
+    "target": "鸡蛋",
+    "reading": "jīdàn",
+    "de": "Ei",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:面包:miànbāo:n",
+    "target": "面包",
+    "reading": "miànbāo",
+    "de": "Brot",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:水果:shuǐguǒ:n",
+    "target": "水果",
+    "reading": "shuǐguǒ",
+    "de": "Obst",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "多吃水果对身体好。",
+      "reading": "Duō chī shuǐguǒ duì shēntǐ hǎo.",
+      "de": "Viel Obst ist gut für den Körper."
+    }
+  },
+  {
+    "id": "zh:苹果:píngguǒ:n",
+    "target": "苹果",
+    "reading": "píngguǒ",
+    "de": "Apfel",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:肉:ròu:n",
+    "target": "肉",
+    "reading": "ròu",
+    "de": "Fleisch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我不吃肉。",
+      "reading": "Wǒ bù chī ròu.",
+      "de": "Ich esse kein Fleisch."
+    }
+  },
+  {
+    "id": "zh:牛肉:niúròu:n",
+    "target": "牛肉",
+    "reading": "niúròu",
+    "de": "Rindfleisch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:鸡肉:jīròu:n",
+    "target": "鸡肉",
+    "reading": "jīròu",
+    "de": "Hähnchenfleisch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:鱼:yú:n",
+    "target": "鱼",
+    "reading": "yú",
+    "de": "Fisch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:汤:tāng:n",
+    "target": "汤",
+    "reading": "tāng",
+    "de": "Suppe",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:饺子:jiǎozi:n",
+    "target": "饺子",
+    "reading": "jiǎozi",
+    "de": "Jiaozi, Teigtaschen",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我们一起包饺子。",
+      "reading": "Wǒmen yìqǐ bāo jiǎozi.",
+      "de": "Wir machen zusammen Jiaozi."
+    }
+  },
+  {
+    "id": "zh:饭店:fàndiàn:n",
+    "target": "饭店",
+    "reading": "fàndiàn",
+    "de": "Restaurant; Hotel",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:早饭:zǎofàn:n",
+    "target": "早饭",
+    "reading": "zǎofàn",
+    "de": "Frühstück",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:午饭:wǔfàn:n",
+    "target": "午饭",
+    "reading": "wǔfàn",
+    "de": "Mittagessen",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1"
+  },
+  {
+    "id": "zh:晚饭:wǎnfàn:n",
+    "target": "晚饭",
+    "reading": "wǎnfàn",
+    "de": "Abendessen",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "晚饭吃什么？",
+      "reading": "Wǎnfàn chī shénme?",
+      "de": "Was gibt's zum Abendessen?"
+    }
+  },
+  {
+    "id": "zh:做饭:zuòfàn:v",
+    "target": "做饭",
+    "reading": "zuòfàn",
+    "de": "kochen",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我不太会做饭。",
+      "reading": "Wǒ bú tài huì zuòfàn.",
+      "de": "Ich kann nicht so gut kochen."
+    }
+  },
+  {
+    "id": "zh:买:mǎi:v",
+    "target": "买",
+    "reading": "mǎi",
+    "de": "kaufen",
+    "pos": "verb",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我想买一件衣服。",
+      "reading": "Wǒ xiǎng mǎi yí jiàn yīfu.",
+      "de": "Ich möchte ein Kleidungsstück kaufen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:卖:mài:v",
+    "target": "卖",
+    "reading": "mài",
+    "de": "verkaufen",
+    "pos": "verb",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这里卖水果吗？",
+      "reading": "Zhèlǐ mài shuǐguǒ ma?",
+      "de": "Wird hier Obst verkauft?"
+    }
+  },
+  {
+    "id": "zh:钱:qián:n",
+    "target": "钱",
+    "reading": "qián",
+    "de": "Geld",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我没带钱。",
+      "reading": "Wǒ méi dài qián.",
+      "de": "Ich habe kein Geld dabei."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:贵:guì:adj",
+    "target": "贵",
+    "reading": "guì",
+    "de": "teuer",
+    "pos": "adjective",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "太贵了！",
+      "reading": "Tài guì le!",
+      "de": "Zu teuer!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:便宜:piányi:adj",
+    "target": "便宜",
+    "reading": "piányi",
+    "de": "billig, günstig",
+    "pos": "adjective",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这个比那个便宜。",
+      "reading": "Zhège bǐ nàge piányi.",
+      "de": "Das hier ist günstiger als das dort."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:超市:chāoshì:n",
+    "target": "超市",
+    "reading": "chāoshì",
+    "de": "Supermarkt",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我去超市买东西。",
+      "reading": "Wǒ qù chāoshì mǎi dōngxi.",
+      "de": "Ich gehe im Supermarkt einkaufen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:商店:shāngdiàn:n",
+    "target": "商店",
+    "reading": "shāngdiàn",
+    "de": "Geschäft, Laden",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "那家商店几点关门？",
+      "reading": "Nà jiā shāngdiàn jǐ diǎn guānmén?",
+      "de": "Wann schließt der Laden dort?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:东西:dōngxi:n",
+    "target": "东西",
+    "reading": "dōngxi",
+    "de": "Ding, Sachen",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "你买了什么东西？",
+      "reading": "Nǐ mǎile shénme dōngxi?",
+      "de": "Was hast du gekauft?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:衣服:yīfu:n",
+    "target": "衣服",
+    "reading": "yīfu",
+    "de": "Kleidung",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这件衣服多少钱？",
+      "reading": "Zhè jiàn yīfu duōshao qián?",
+      "de": "Wie viel kostet dieses Kleidungsstück?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:裤子:kùzi:n",
+    "target": "裤子",
+    "reading": "kùzi",
+    "de": "Hose",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1"
+  },
+  {
+    "id": "zh:鞋:xié:n",
+    "target": "鞋",
+    "reading": "xié",
+    "de": "Schuhe",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这双鞋有点儿小。",
+      "reading": "Zhè shuāng xié yǒudiǎnr xiǎo.",
+      "de": "Diese Schuhe sind etwas klein."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:包:bāo:n",
+    "target": "包",
+    "reading": "bāo",
+    "de": "Tasche",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1"
+  },
+  {
+    "id": "zh:颜色:yánsè:n",
+    "target": "颜色",
+    "reading": "yánsè",
+    "de": "Farbe",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "你喜欢什么颜色？",
+      "reading": "Nǐ xǐhuan shénme yánsè?",
+      "de": "Welche Farbe magst du?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:试:shì:v",
+    "target": "试",
+    "reading": "shì",
+    "de": "anprobieren, versuchen",
+    "pos": "verb",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我可以试一下吗？",
+      "reading": "Wǒ kěyǐ shì yíxià ma?",
+      "de": "Kann ich das mal anprobieren?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:去:qù:v",
+    "target": "去",
+    "reading": "qù",
+    "de": "gehen, fahren (hin)",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我明天去北京。",
+      "reading": "Wǒ míngtiān qù Běijīng.",
+      "de": "Ich fahre morgen nach Peking."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:来:lái:v",
+    "target": "来",
+    "reading": "lái",
+    "de": "kommen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "你什么时候来？",
+      "reading": "Nǐ shénme shíhou lái?",
+      "de": "Wann kommst du?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:走:zǒu:v",
+    "target": "走",
+    "reading": "zǒu",
+    "de": "gehen, losgehen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我们走吧。",
+      "reading": "Wǒmen zǒu ba.",
+      "de": "Lass uns gehen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:坐:zuò:v",
+    "target": "坐",
+    "reading": "zuò",
+    "de": "sitzen; fahren mit",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我坐地铁去。",
+      "reading": "Wǒ zuò dìtiě qù.",
+      "de": "Ich fahre mit der U-Bahn hin."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:到:dào:v",
+    "target": "到",
+    "reading": "dào",
+    "de": "ankommen; bis",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我到了。",
+      "reading": "Wǒ dào le.",
+      "de": "Ich bin da."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:回:huí:v",
+    "target": "回",
+    "reading": "huí",
+    "de": "zurückkehren",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我下周回德国。",
+      "reading": "Wǒ xià zhōu huí Déguó.",
+      "de": "Ich kehre nächste Woche nach Deutschland zurück."
+    }
+  },
+  {
+    "id": "zh:地铁:dìtiě:n",
+    "target": "地铁",
+    "reading": "dìtiě",
+    "de": "U-Bahn",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "坐地铁很方便。",
+      "reading": "Zuò dìtiě hěn fāngbiàn.",
+      "de": "U-Bahn fahren ist sehr praktisch."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:公交车:gōngjiāochē:n",
+    "target": "公交车",
+    "reading": "gōngjiāochē",
+    "de": "Bus",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我每天坐公交车上班。",
+      "reading": "Wǒ měi tiān zuò gōngjiāochē shàngbān.",
+      "de": "Ich fahre jeden Tag mit dem Bus zur Arbeit."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:出租车:chūzūchē:n",
+    "target": "出租车",
+    "reading": "chūzūchē",
+    "de": "Taxi",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1"
+  },
+  {
+    "id": "zh:车站:chēzhàn:n",
+    "target": "车站",
+    "reading": "chēzhàn",
+    "de": "Haltestelle, Bahnhof",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "车站在哪儿？",
+      "reading": "Chēzhàn zài nǎr?",
+      "de": "Wo ist die Haltestelle?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:飞机:fēijī:n",
+    "target": "飞机",
+    "reading": "fēijī",
+    "de": "Flugzeug",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我坐飞机去上海。",
+      "reading": "Wǒ zuò fēijī qù Shànghǎi.",
+      "de": "Ich fliege nach Shanghai."
+    }
+  },
+  {
+    "id": "zh:火车:huǒchē:n",
+    "target": "火车",
+    "reading": "huǒchē",
+    "de": "Zug",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1"
+  },
+  {
+    "id": "zh:开车:kāichē:v",
+    "target": "开车",
+    "reading": "kāichē",
+    "de": "Auto fahren",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "你会开车吗？",
+      "reading": "Nǐ huì kāichē ma?",
+      "de": "Kannst du Auto fahren?"
+    }
+  },
+  {
+    "id": "zh:票:piào:n",
+    "target": "票",
+    "reading": "piào",
+    "de": "Ticket, Karte",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我买了两张票。",
+      "reading": "Wǒ mǎile liǎng zhāng piào.",
+      "de": "Ich habe zwei Tickets gekauft."
+    }
+  },
+  {
+    "id": "zh:中国:Zhōngguó:n",
+    "target": "中国",
+    "reading": "Zhōngguó",
+    "de": "China",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1"
+  },
+  {
+    "id": "zh:德国:Déguó:n",
+    "target": "德国",
+    "reading": "Déguó",
+    "de": "Deutschland",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我是从德国来的。",
+      "reading": "Wǒ shì cóng Déguó lái de.",
+      "de": "Ich komme aus Deutschland."
+    }
+  },
+  {
+    "id": "zh:住:zhù:v",
+    "target": "住",
+    "reading": "zhù",
+    "de": "wohnen, übernachten",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "你住在哪儿？",
+      "reading": "Nǐ zhù zài nǎr?",
+      "de": "Wo wohnst du?"
+    }
+  },
+  {
+    "id": "zh:怎么走:zěnme zǒu:phr",
+    "target": "怎么走",
+    "reading": "zěnme zǒu",
+    "de": "wie kommt man hin?",
+    "pos": "phrase",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "去地铁站怎么走？",
+      "reading": "Qù dìtiězhàn zěnme zǒu?",
+      "de": "Wie komme ich zur U-Bahn-Station?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:路:lù:n",
+    "target": "路",
+    "reading": "lù",
+    "de": "Straße, Weg",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "这条路很长。",
+      "reading": "Zhè tiáo lù hěn cháng.",
+      "de": "Diese Straße ist sehr lang."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:地方:dìfang:n",
+    "target": "地方",
+    "reading": "dìfang",
+    "de": "Ort, Platz",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "这个地方很漂亮。",
+      "reading": "Zhège dìfang hěn piàoliang.",
+      "de": "Dieser Ort ist sehr schön."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:前面:qiánmiàn:n",
+    "target": "前面",
+    "reading": "qiánmiàn",
+    "de": "vorne, davor",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "超市在前面。",
+      "reading": "Chāoshì zài qiánmiàn.",
+      "de": "Der Supermarkt ist da vorne."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:后面:hòumiàn:n",
+    "target": "后面",
+    "reading": "hòumiàn",
+    "de": "hinten, dahinter",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "车站在商店后面。",
+      "reading": "Chēzhàn zài shāngdiàn hòumiàn.",
+      "de": "Die Haltestelle ist hinter dem Laden."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:左边:zuǒbian:n",
+    "target": "左边",
+    "reading": "zuǒbian",
+    "de": "links",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "银行在左边。",
+      "reading": "Yínháng zài zuǒbian.",
+      "de": "Die Bank ist links."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:右边:yòubian:n",
+    "target": "右边",
+    "reading": "yòubian",
+    "de": "rechts",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "洗手间在右边。",
+      "reading": "Xǐshǒujiān zài yòubian.",
+      "de": "Die Toilette ist rechts."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:旁边:pángbiān:n",
+    "target": "旁边",
+    "reading": "pángbiān",
+    "de": "neben, daneben",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "他坐在我旁边。",
+      "reading": "Tā zuò zài wǒ pángbiān.",
+      "de": "Er sitzt neben mir."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:远:yuǎn:adj",
+    "target": "远",
+    "reading": "yuǎn",
+    "de": "weit",
+    "pos": "adjective",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "离这儿远吗？",
+      "reading": "Lí zhèr yuǎn ma?",
+      "de": "Ist es weit von hier?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:近:jìn:adj",
+    "target": "近",
+    "reading": "jìn",
+    "de": "nah (Adjektiv)",
+    "pos": "adjective",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我家离公司很近。",
+      "reading": "Wǒ jiā lí gōngsī hěn jìn.",
+      "de": "Mein Zuhause ist nah an der Firma."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:这儿:zhèr:pron",
+    "target": "这儿",
+    "reading": "zhèr",
+    "de": "hier",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我在这儿等你。",
+      "reading": "Wǒ zài zhèr děng nǐ.",
+      "de": "Ich warte hier auf dich."
+    }
+  },
+  {
+    "id": "zh:那儿:nàr:pron",
+    "target": "那儿",
+    "reading": "nàr",
+    "de": "dort",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1"
+  },
+  {
+    "id": "zh:里面:lǐmiàn:n",
+    "target": "里面",
+    "reading": "lǐmiàn",
+    "de": "drinnen, innen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1"
+  },
+  {
+    "id": "zh:外面:wàimiàn:n",
+    "target": "外面",
+    "reading": "wàimiàn",
+    "de": "draußen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "外面在下雨。",
+      "reading": "Wàimiàn zài xiàyǔ.",
+      "de": "Draußen regnet es."
+    }
+  },
+  {
+    "id": "zh:上面:shàngmiàn:n",
+    "target": "上面",
+    "reading": "shàngmiàn",
+    "de": "oben, auf",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1"
+  },
+  {
+    "id": "zh:下面:xiàmiàn:n",
+    "target": "下面",
+    "reading": "xiàmiàn",
+    "de": "unten, unter",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1"
+  },
+  {
+    "id": "zh:从:cóng:prep",
+    "target": "从",
+    "reading": "cóng",
+    "de": "von, aus",
+    "pos": "preposition",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "从这儿到那儿要多久？",
+      "reading": "Cóng zhèr dào nàr yào duō jiǔ?",
+      "de": "Wie lange dauert es von hier bis dort?"
+    }
+  },
+  {
+    "id": "zh:公园:gōngyuán:n",
+    "target": "公园",
+    "reading": "gōngyuán",
+    "de": "Park",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我们去公园散步吧。",
+      "reading": "Wǒmen qù gōngyuán sànbù ba.",
+      "de": "Lass uns im Park spazieren gehen."
+    }
+  },
+  {
+    "id": "zh:洗手间:xǐshǒujiān:n",
+    "target": "洗手间",
+    "reading": "xǐshǒujiān",
+    "de": "Toilette, WC",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "请问，洗手间在哪儿？",
+      "reading": "Qǐngwèn, xǐshǒujiān zài nǎr?",
+      "de": "Entschuldigung, wo ist die Toilette?"
+    }
+  },
+  {
+    "id": "zh:家:jiā:n",
+    "target": "家",
+    "reading": "jiā",
+    "de": "Zuhause; Familie",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我在家。",
+      "reading": "Wǒ zài jiā.",
+      "de": "Ich bin zu Hause."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:起床:qǐchuáng:v",
+    "target": "起床",
+    "reading": "qǐchuáng",
+    "de": "aufstehen",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我每天七点起床。",
+      "reading": "Wǒ měi tiān qī diǎn qǐchuáng.",
+      "de": "Ich stehe jeden Tag um sieben auf."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:睡觉:shuìjiào:v",
+    "target": "睡觉",
+    "reading": "shuìjiào",
+    "de": "schlafen",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我要去睡觉了。",
+      "reading": "Wǒ yào qù shuìjiào le.",
+      "de": "Ich gehe jetzt schlafen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:回家:huíjiā:v",
+    "target": "回家",
+    "reading": "huíjiā",
+    "de": "nach Hause gehen",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我下班就回家。",
+      "reading": "Wǒ xiàbān jiù huíjiā.",
+      "de": "Nach der Arbeit gehe ich direkt nach Hause."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:房间:fángjiān:n",
+    "target": "房间",
+    "reading": "fángjiān",
+    "de": "Zimmer",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我的房间很小。",
+      "reading": "Wǒ de fángjiān hěn xiǎo.",
+      "de": "Mein Zimmer ist sehr klein."
+    }
+  },
+  {
+    "id": "zh:床:chuáng:n",
+    "target": "床",
+    "reading": "chuáng",
+    "de": "Bett",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1"
+  },
+  {
+    "id": "zh:门:mén:n",
+    "target": "门",
+    "reading": "mén",
+    "de": "Tür",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "请关门。",
+      "reading": "Qǐng guān mén.",
+      "de": "Bitte mach die Tür zu."
+    }
+  },
+  {
+    "id": "zh:桌子:zhuōzi:n",
+    "target": "桌子",
+    "reading": "zhuōzi",
+    "de": "Tisch",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1"
+  },
+  {
+    "id": "zh:椅子:yǐzi:n",
+    "target": "椅子",
+    "reading": "yǐzi",
+    "de": "Stuhl",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1"
+  },
+  {
+    "id": "zh:开:kāi:v",
+    "target": "开",
+    "reading": "kāi",
+    "de": "öffnen; einschalten",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "请开一下门。",
+      "reading": "Qǐng kāi yíxià mén.",
+      "de": "Bitte mach mal die Tür auf."
+    }
+  },
+  {
+    "id": "zh:关:guān:v",
+    "target": "关",
+    "reading": "guān",
+    "de": "schließen; ausschalten",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "别忘了关灯。",
+      "reading": "Bié wàngle guān dēng.",
+      "de": "Vergiss nicht, das Licht auszumachen."
+    }
+  },
+  {
+    "id": "zh:洗:xǐ:v",
+    "target": "洗",
+    "reading": "xǐ",
+    "de": "waschen",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我去洗衣服。",
+      "reading": "Wǒ qù xǐ yīfu.",
+      "de": "Ich gehe Wäsche waschen."
+    }
+  },
+  {
+    "id": "zh:穿:chuān:v",
+    "target": "穿",
+    "reading": "chuān",
+    "de": "anziehen, tragen (Kleidung)",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "今天多穿点儿。",
+      "reading": "Jīntiān duō chuān diǎnr.",
+      "de": "Zieh dich heute wärmer an."
+    }
+  },
+  {
+    "id": "zh:工作:gōngzuò:n",
+    "target": "工作",
+    "reading": "gōngzuò",
+    "de": "Arbeit; arbeiten",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你做什么工作？",
+      "reading": "Nǐ zuò shénme gōngzuò?",
+      "de": "Was arbeitest du?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:忙:máng:adj",
+    "target": "忙",
+    "reading": "máng",
+    "de": "beschäftigt",
+    "pos": "adjective",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我最近很忙。",
+      "reading": "Wǒ zuìjìn hěn máng.",
+      "de": "Ich bin in letzter Zeit sehr beschäftigt."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:上班:shàngbān:v",
+    "target": "上班",
+    "reading": "shàngbān",
+    "de": "zur Arbeit gehen, arbeiten",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我九点上班。",
+      "reading": "Wǒ jiǔ diǎn shàngbān.",
+      "de": "Ich fange um neun an zu arbeiten."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:下班:xiàbān:v",
+    "target": "下班",
+    "reading": "xiàbān",
+    "de": "Feierabend machen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你几点下班？",
+      "reading": "Nǐ jǐ diǎn xiàbān?",
+      "de": "Wann hast du Feierabend?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:问题:wèntí:n",
+    "target": "问题",
+    "reading": "wèntí",
+    "de": "Frage; Problem",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我有一个问题。",
+      "reading": "Wǒ yǒu yí ge wèntí.",
+      "de": "Ich habe eine Frage."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:事儿:shìr:n",
+    "target": "事儿",
+    "reading": "shìr",
+    "de": "Sache, Angelegenheit",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你找我有什么事儿？",
+      "reading": "Nǐ zhǎo wǒ yǒu shénme shìr?",
+      "de": "Was gibt's, weshalb suchst du mich?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:帮:bāng:v",
+    "target": "帮",
+    "reading": "bāng",
+    "de": "helfen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你能帮我吗？",
+      "reading": "Nǐ néng bāng wǒ ma?",
+      "de": "Kannst du mir helfen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:帮忙:bāngmáng:v",
+    "target": "帮忙",
+    "reading": "bāngmáng",
+    "de": "helfen, aushelfen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "谢谢你的帮忙。",
+      "reading": "Xièxie nǐ de bāngmáng.",
+      "de": "Danke für deine Hilfe."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:见面:jiànmiàn:v",
+    "target": "见面",
+    "reading": "jiànmiàn",
+    "de": "sich treffen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我们在哪儿见面？",
+      "reading": "Wǒmen zài nǎr jiànmiàn?",
+      "de": "Wo treffen wir uns?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:有空:yǒu kòng:v",
+    "target": "有空",
+    "reading": "yǒu kòng",
+    "de": "Zeit haben",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你明天有空吗？",
+      "reading": "Nǐ míngtiān yǒu kòng ma?",
+      "de": "Hast du morgen Zeit?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:公司:gōngsī:n",
+    "target": "公司",
+    "reading": "gōngsī",
+    "de": "Firma",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我在一家德国公司工作。",
+      "reading": "Wǒ zài yì jiā Déguó gōngsī gōngzuò.",
+      "de": "Ich arbeite bei einer deutschen Firma."
+    }
+  },
+  {
+    "id": "zh:电脑:diànnǎo:n",
+    "target": "电脑",
+    "reading": "diànnǎo",
+    "de": "Computer",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1"
+  },
+  {
+    "id": "zh:学习:xuéxí:v",
+    "target": "学习",
+    "reading": "xuéxí",
+    "de": "lernen, studieren",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我在学习中文。",
+      "reading": "Wǒ zài xuéxí Zhōngwén.",
+      "de": "Ich lerne gerade Chinesisch."
+    }
+  },
+  {
+    "id": "zh:学校:xuéxiào:n",
+    "target": "学校",
+    "reading": "xuéxiào",
+    "de": "Schule",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1"
+  },
+  {
+    "id": "zh:中文:Zhōngwén:n",
+    "target": "中文",
+    "reading": "Zhōngwén",
+    "de": "Chinesisch (Sprache)",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "你的中文很好！",
+      "reading": "Nǐ de Zhōngwén hěn hǎo!",
+      "de": "Dein Chinesisch ist sehr gut!"
+    }
+  },
+  {
+    "id": "zh:汉语:Hànyǔ:n",
+    "target": "汉语",
+    "reading": "Hànyǔ",
+    "de": "Chinesisch (Mandarin)",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1"
+  },
+  {
+    "id": "zh:字:zì:n",
+    "target": "字",
+    "reading": "zì",
+    "de": "Schriftzeichen",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "这个字怎么读？",
+      "reading": "Zhège zì zěnme dú?",
+      "de": "Wie liest man dieses Zeichen?"
+    }
+  },
+  {
+    "id": "zh:意思:yìsi:n",
+    "target": "意思",
+    "reading": "yìsi",
+    "de": "Bedeutung",
+    "pos": "noun",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "这是什么意思？",
+      "reading": "Zhè shì shénme yìsi?",
+      "de": "Was bedeutet das?"
+    }
+  },
+  {
+    "id": "zh:懂:dǒng:v",
+    "target": "懂",
+    "reading": "dǒng",
+    "de": "verstehen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我听不懂。",
+      "reading": "Wǒ tīng bu dǒng.",
+      "de": "Ich verstehe es nicht (beim Hören)."
+    }
+  },
+  {
+    "id": "zh:开始:kāishǐ:v",
+    "target": "开始",
+    "reading": "kāishǐ",
+    "de": "anfangen",
+    "pos": "verb",
+    "category": "work",
+    "level": "A1",
+    "example": {
+      "target": "我们开始吧。",
+      "reading": "Wǒmen kāishǐ ba.",
+      "de": "Fangen wir an."
+    }
+  },
+  {
+    "id": "zh:看电影:kàn diànyǐng:v",
+    "target": "看电影",
+    "reading": "kàn diànyǐng",
+    "de": "einen Film schauen",
+    "pos": "verb",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我们去看电影吧。",
+      "reading": "Wǒmen qù kàn diànyǐng ba.",
+      "de": "Lass uns ins Kino gehen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:电影:diànyǐng:n",
+    "target": "电影",
+    "reading": "diànyǐng",
+    "de": "Film",
+    "pos": "noun",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "这部电影很好看。",
+      "reading": "Zhè bù diànyǐng hěn hǎokàn.",
+      "de": "Dieser Film ist sehr gut."
+    }
+  },
+  {
+    "id": "zh:音乐:yīnyuè:n",
+    "target": "音乐",
+    "reading": "yīnyuè",
+    "de": "Musik",
+    "pos": "noun",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢听音乐。",
+      "reading": "Wǒ xǐhuan tīng yīnyuè.",
+      "de": "Ich höre gern Musik."
+    }
+  },
+  {
+    "id": "zh:看书:kànshū:v",
+    "target": "看书",
+    "reading": "kànshū",
+    "de": "lesen (Bücher)",
+    "pos": "verb",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢在咖啡店看书。",
+      "reading": "Wǒ xǐhuan zài kāfēidiàn kànshū.",
+      "de": "Ich lese gern im Café."
+    }
+  },
+  {
+    "id": "zh:玩儿:wánr:v",
+    "target": "玩儿",
+    "reading": "wánr",
+    "de": "spielen, Spaß haben",
+    "pos": "verb",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "有空来我家玩儿。",
+      "reading": "Yǒu kòng lái wǒ jiā wánr.",
+      "de": "Komm mal vorbei, wenn du Zeit hast."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:一起:yìqǐ:adv",
+    "target": "一起",
+    "reading": "yìqǐ",
+    "de": "zusammen",
+    "pos": "adverb",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我们一起去吧。",
+      "reading": "Wǒmen yìqǐ qù ba.",
+      "de": "Lass uns zusammen gehen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:手机:shǒujī:n",
+    "target": "手机",
+    "reading": "shǒujī",
+    "de": "Handy",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "我的手机没电了。",
+      "reading": "Wǒ de shǒujī méi diàn le.",
+      "de": "Mein Handy-Akku ist leer."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:电话:diànhuà:n",
+    "target": "电话",
+    "reading": "diànhuà",
+    "de": "Telefon; Anruf",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "我给你打电话。",
+      "reading": "Wǒ gěi nǐ dǎ diànhuà.",
+      "de": "Ich rufe dich an."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:打:dǎ:v",
+    "target": "打",
+    "reading": "dǎ",
+    "de": "schlagen; spielen; (Anruf) tätigen",
+    "pos": "verb",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "我晚上给你打电话。",
+      "reading": "Wǒ wǎnshang gěi nǐ dǎ diànhuà.",
+      "de": "Ich rufe dich abends an."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:微信:Wēixìn:n",
+    "target": "微信",
+    "reading": "Wēixìn",
+    "de": "WeChat",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "我们加个微信吧。",
+      "reading": "Wǒmen jiā ge Wēixìn ba.",
+      "de": "Lass uns WeChat-Kontakte austauschen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:告诉:gàosu:v",
+    "target": "告诉",
+    "reading": "gàosu",
+    "de": "sagen, mitteilen",
+    "pos": "verb",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "到了告诉我。",
+      "reading": "Dàole gàosu wǒ.",
+      "de": "Sag mir Bescheid, wenn du da bist."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:照片:zhàopiàn:n",
+    "target": "照片",
+    "reading": "zhàopiàn",
+    "de": "Foto",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "这张照片真好看。",
+      "reading": "Zhè zhāng zhàopiàn zhēn hǎokàn.",
+      "de": "Dieses Foto ist wirklich schön."
+    }
+  },
+  {
+    "id": "zh:电视:diànshì:n",
+    "target": "电视",
+    "reading": "diànshì",
+    "de": "Fernseher",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1"
+  },
+  {
+    "id": "zh:喜欢:xǐhuan:v",
+    "target": "喜欢",
+    "reading": "xǐhuan",
+    "de": "mögen",
+    "pos": "verb",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢吃中国菜。",
+      "reading": "Wǒ xǐhuan chī Zhōngguó cài.",
+      "de": "Ich esse gern chinesisch."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:爱:ài:v",
+    "target": "爱",
+    "reading": "ài",
+    "de": "lieben",
+    "pos": "verb",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "我爱你。",
+      "reading": "Wǒ ài nǐ.",
+      "de": "Ich liebe dich."
+    }
+  },
+  {
+    "id": "zh:觉得:juéde:v",
+    "target": "觉得",
+    "reading": "juéde",
+    "de": "finden, meinen",
+    "pos": "verb",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "我觉得这个不错。",
+      "reading": "Wǒ juéde zhège búcuò.",
+      "de": "Ich finde das nicht schlecht."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:开心:kāixīn:adj",
+    "target": "开心",
+    "reading": "kāixīn",
+    "de": "fröhlich, glücklich",
+    "pos": "adjective",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "今天玩儿得很开心。",
+      "reading": "Jīntiān wánr de hěn kāixīn.",
+      "de": "Heute hatte ich viel Spaß."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:高兴:gāoxìng:adj",
+    "target": "高兴",
+    "reading": "gāoxìng",
+    "de": "froh, erfreut",
+    "pos": "adjective",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "很高兴认识你。",
+      "reading": "Hěn gāoxìng rènshi nǐ.",
+      "de": "Freut mich, dich kennenzulernen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:快乐:kuàilè:adj",
+    "target": "快乐",
+    "reading": "kuàilè",
+    "de": "glücklich, fröhlich",
+    "pos": "adjective",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "新年快乐！",
+      "reading": "Xīnnián kuàilè!",
+      "de": "Frohes neues Jahr!"
+    }
+  },
+  {
+    "id": "zh:累:lèi:adj",
+    "target": "累",
+    "reading": "lèi",
+    "de": "müde, erschöpft",
+    "pos": "adjective",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "我今天太累了。",
+      "reading": "Wǒ jīntiān tài lèi le.",
+      "de": "Ich bin heute total erschöpft."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:休息:xiūxi:v",
+    "target": "休息",
+    "reading": "xiūxi",
+    "de": "sich ausruhen",
+    "pos": "verb",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "你多休息。",
+      "reading": "Nǐ duō xiūxi.",
+      "de": "Ruh dich viel aus."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:身体:shēntǐ:n",
+    "target": "身体",
+    "reading": "shēntǐ",
+    "de": "Körper; Gesundheit",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "你身体怎么样？",
+      "reading": "Nǐ shēntǐ zěnmeyàng?",
+      "de": "Wie geht es dir gesundheitlich?"
+    }
+  },
+  {
+    "id": "zh:医院:yīyuàn:n",
+    "target": "医院",
+    "reading": "yīyuàn",
+    "de": "Krankenhaus",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "我陪你去医院。",
+      "reading": "Wǒ péi nǐ qù yīyuàn.",
+      "de": "Ich begleite dich ins Krankenhaus."
+    }
+  },
+  {
+    "id": "zh:医生:yīshēng:n",
+    "target": "医生",
+    "reading": "yīshēng",
+    "de": "Arzt, Ärztin",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1"
+  },
+  {
+    "id": "zh:头:tóu:n",
+    "target": "头",
+    "reading": "tóu",
+    "de": "Kopf",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1"
+  },
+  {
+    "id": "zh:眼睛:yǎnjing:n",
+    "target": "眼睛",
+    "reading": "yǎnjing",
+    "de": "Auge",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1"
+  },
+  {
+    "id": "zh:手:shǒu:n",
+    "target": "手",
+    "reading": "shǒu",
+    "de": "Hand",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1"
+  },
+  {
+    "id": "zh:天气:tiānqì:n",
+    "target": "天气",
+    "reading": "tiānqì",
+    "de": "Wetter",
+    "pos": "noun",
+    "category": "weather",
+    "level": "A1",
+    "example": {
+      "target": "今天天气怎么样？",
+      "reading": "Jīntiān tiānqì zěnmeyàng?",
+      "de": "Wie ist das Wetter heute?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:下雨:xiàyǔ:v",
+    "target": "下雨",
+    "reading": "xiàyǔ",
+    "de": "regnen",
+    "pos": "verb",
+    "category": "weather",
+    "level": "A1",
+    "example": {
+      "target": "要下雨了。",
+      "reading": "Yào xiàyǔ le.",
+      "de": "Es fängt gleich an zu regnen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:冷:lěng:adj",
+    "target": "冷",
+    "reading": "lěng",
+    "de": "kalt",
+    "pos": "adjective",
+    "category": "weather",
+    "level": "A1",
+    "example": {
+      "target": "今天比昨天冷。",
+      "reading": "Jīntiān bǐ zuótiān lěng.",
+      "de": "Heute ist es kälter als gestern."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:热:rè:adj",
+    "target": "热",
+    "reading": "rè",
+    "de": "heiß",
+    "pos": "adjective",
+    "category": "weather",
+    "level": "A1",
+    "example": {
+      "target": "今天热死了！",
+      "reading": "Jīntiān rè sǐ le!",
+      "de": "Heute ist es mörderisch heiß!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:山:shān:n",
+    "target": "山",
+    "reading": "shān",
+    "de": "Berg",
+    "pos": "noun",
+    "category": "weather",
+    "level": "A1"
+  },
+  {
+    "id": "zh:花:huā:n",
+    "target": "花",
+    "reading": "huā",
+    "de": "Blume",
+    "pos": "noun",
+    "category": "weather",
+    "level": "A1"
+  },
+  {
+    "id": "zh:想:xiǎng:v",
+    "target": "想",
+    "reading": "xiǎng",
+    "de": "möchten; denken; vermissen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我想去中国。",
+      "reading": "Wǒ xiǎng qù Zhōngguó.",
+      "de": "Ich möchte nach China."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:要:yào:v",
+    "target": "要",
+    "reading": "yào",
+    "de": "wollen; müssen; werden",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我要一杯咖啡。",
+      "reading": "Wǒ yào yì bēi kāfēi.",
+      "de": "Ich möchte einen Kaffee."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:会:huì:v",
+    "target": "会",
+    "reading": "huì",
+    "de": "können (gelernt); werden",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我会说一点儿中文。",
+      "reading": "Wǒ huì shuō yìdiǎnr Zhōngwén.",
+      "de": "Ich kann ein bisschen Chinesisch."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:能:néng:v",
+    "target": "能",
+    "reading": "néng",
+    "de": "können (möglich sein)",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你明天能来吗？",
+      "reading": "Nǐ míngtiān néng lái ma?",
+      "de": "Kannst du morgen kommen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:可以:kěyǐ:v",
+    "target": "可以",
+    "reading": "kěyǐ",
+    "de": "dürfen, können",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我可以坐这儿吗？",
+      "reading": "Wǒ kěyǐ zuò zhèr ma?",
+      "de": "Darf ich mich hierhin setzen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:别:bié:adv",
+    "target": "别",
+    "reading": "bié",
+    "de": "nicht (Verbot): tu nicht",
+    "pos": "adverb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "别忘了！",
+      "reading": "Bié wàng le!",
+      "de": "Vergiss es nicht!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:在:zài:v",
+    "target": "在",
+    "reading": "zài",
+    "de": "sich befinden; gerade (Verlauf)",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我在看书呢。",
+      "reading": "Wǒ zài kànshū ne.",
+      "de": "Ich lese gerade."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:知道:zhīdào:v",
+    "target": "知道",
+    "reading": "zhīdào",
+    "de": "wissen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我不知道。",
+      "reading": "Wǒ bù zhīdào.",
+      "de": "Ich weiß es nicht."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:看:kàn:v",
+    "target": "看",
+    "reading": "kàn",
+    "de": "sehen, schauen, lesen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我看看。",
+      "reading": "Wǒ kànkan.",
+      "de": "Lass mich mal schauen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:听:tīng:v",
+    "target": "听",
+    "reading": "tīng",
+    "de": "hören",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "听起来不错。",
+      "reading": "Tīng qǐlai búcuò.",
+      "de": "Klingt gut."
+    }
+  },
+  {
+    "id": "zh:说:shuō:v",
+    "target": "说",
+    "reading": "shuō",
+    "de": "sprechen, sagen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请说慢一点儿。",
+      "reading": "Qǐng shuō màn yìdiǎnr.",
+      "de": "Bitte sprich etwas langsamer."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:读:dú:v",
+    "target": "读",
+    "reading": "dú",
+    "de": "lesen (laut), vorlesen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1"
+  },
+  {
+    "id": "zh:写:xiě:v",
+    "target": "写",
+    "reading": "xiě",
+    "de": "schreiben",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我不会写这个字。",
+      "reading": "Wǒ bú huì xiě zhège zì.",
+      "de": "Ich kann dieses Zeichen nicht schreiben."
+    }
+  },
+  {
+    "id": "zh:问:wèn:v",
+    "target": "问",
+    "reading": "wèn",
+    "de": "fragen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我想问一下。",
+      "reading": "Wǒ xiǎng wèn yíxià.",
+      "de": "Ich möchte mal kurz fragen."
+    }
+  },
+  {
+    "id": "zh:叫:jiào:v",
+    "target": "叫",
+    "reading": "jiào",
+    "de": "heißen; rufen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我叫Phong。",
+      "reading": "Wǒ jiào Phong.",
+      "de": "Ich heiße Phong."
+    }
+  },
+  {
+    "id": "zh:做:zuò:v",
+    "target": "做",
+    "reading": "zuò",
+    "de": "machen, tun",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你在做什么？",
+      "reading": "Nǐ zài zuò shénme?",
+      "de": "Was machst du gerade?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:找:zhǎo:v",
+    "target": "找",
+    "reading": "zhǎo",
+    "de": "suchen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我在找我的手机。",
+      "reading": "Wǒ zài zhǎo wǒ de shǒujī.",
+      "de": "Ich suche mein Handy."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:等:děng:v",
+    "target": "等",
+    "reading": "děng",
+    "de": "warten",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "等我五分钟。",
+      "reading": "Děng wǒ wǔ fēnzhōng.",
+      "de": "Warte fünf Minuten auf mich."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:用:yòng:v",
+    "target": "用",
+    "reading": "yòng",
+    "de": "benutzen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我可以用一下吗？",
+      "reading": "Wǒ kěyǐ yòng yíxià ma?",
+      "de": "Darf ich das mal benutzen?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:给:gěi:v",
+    "target": "给",
+    "reading": "gěi",
+    "de": "geben; für, an",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请给我一杯水。",
+      "reading": "Qǐng gěi wǒ yì bēi shuǐ.",
+      "de": "Gib mir bitte ein Glas Wasser."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:学:xué:v",
+    "target": "学",
+    "reading": "xué",
+    "de": "lernen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我想学做中国菜。",
+      "reading": "Wǒ xiǎng xué zuò Zhōngguó cài.",
+      "de": "Ich möchte lernen, chinesisch zu kochen."
+    }
+  },
+  {
+    "id": "zh:进:jìn:v",
+    "target": "进",
+    "reading": "jìn",
+    "de": "hineingehen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请进！",
+      "reading": "Qǐng jìn!",
+      "de": "Herein bitte!"
+    }
+  },
+  {
+    "id": "zh:好看:hǎokàn:adj",
+    "target": "好看",
+    "reading": "hǎokàn",
+    "de": "hübsch; sehenswert",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这件衣服很好看。",
+      "reading": "Zhè jiàn yīfu hěn hǎokàn.",
+      "de": "Dieses Kleidungsstück ist hübsch."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:漂亮:piàoliang:adj",
+    "target": "漂亮",
+    "reading": "piàoliang",
+    "de": "schön, hübsch",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "你今天真漂亮。",
+      "reading": "Nǐ jīntiān zhēn piàoliang.",
+      "de": "Du siehst heute wirklich hübsch aus."
+    }
+  },
+  {
+    "id": "zh:快:kuài:adj",
+    "target": "快",
+    "reading": "kuài",
+    "de": "schnell",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "你说得太快了。",
+      "reading": "Nǐ shuō de tài kuài le.",
+      "de": "Du sprichst zu schnell."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:慢:màn:adj",
+    "target": "慢",
+    "reading": "màn",
+    "de": "langsam",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "请说慢一点儿。",
+      "reading": "Qǐng shuō màn yìdiǎnr.",
+      "de": "Bitte sprich etwas langsamer."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:大:dà:adj",
+    "target": "大",
+    "reading": "dà",
+    "de": "groß",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这个房间很大。",
+      "reading": "Zhège fángjiān hěn dà.",
+      "de": "Dieses Zimmer ist groß."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:小:xiǎo:adj",
+    "target": "小",
+    "reading": "xiǎo",
+    "de": "klein",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这个太小了。",
+      "reading": "Zhège tài xiǎo le.",
+      "de": "Das ist zu klein."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:多:duō:adj",
+    "target": "多",
+    "reading": "duō",
+    "de": "viel",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "今天人很多。",
+      "reading": "Jīntiān rén hěn duō.",
+      "de": "Heute sind viele Leute da."
+    }
+  },
+  {
+    "id": "zh:少:shǎo:adj",
+    "target": "少",
+    "reading": "shǎo",
+    "de": "wenig",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "少喝点儿酒。",
+      "reading": "Shǎo hē diǎnr jiǔ.",
+      "de": "Trink weniger Alkohol."
+    }
+  },
+  {
+    "id": "zh:新:xīn:adj",
+    "target": "新",
+    "reading": "xīn",
+    "de": "neu",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这是我的新手机。",
+      "reading": "Zhè shì wǒ de xīn shǒujī.",
+      "de": "Das ist mein neues Handy."
+    }
+  },
+  {
+    "id": "zh:高:gāo:adj",
+    "target": "高",
+    "reading": "gāo",
+    "de": "hoch; groß (Person)",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "他比我高。",
+      "reading": "Tā bǐ wǒ gāo.",
+      "de": "Er ist größer als ich."
+    }
+  },
+  {
+    "id": "zh:红:hóng:adj",
+    "target": "红",
+    "reading": "hóng",
+    "de": "rot",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢红色。",
+      "reading": "Wǒ xǐhuan hóngsè.",
+      "de": "Ich mag Rot."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:黑:hēi:adj",
+    "target": "黑",
+    "reading": "hēi",
+    "de": "schwarz",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "天黑了。",
+      "reading": "Tiān hēi le.",
+      "de": "Es ist dunkel geworden."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:白:bái:adj",
+    "target": "白",
+    "reading": "bái",
+    "de": "weiß",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "我想要白色的。",
+      "reading": "Wǒ xiǎng yào báisè de.",
+      "de": "Ich möchte das in Weiß."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:蓝:lán:adj",
+    "target": "蓝",
+    "reading": "lán",
+    "de": "blau",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1"
+  },
+  {
+    "id": "zh:绿:lǜ:adj",
+    "target": "绿",
+    "reading": "lǜ",
+    "de": "grün",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1"
+  },
+  {
+    "id": "zh:黄:huáng:adj",
+    "target": "黄",
+    "reading": "huáng",
+    "de": "gelb",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1"
+  },
+  {
+    "id": "zh:不错:búcuò:adj",
+    "target": "不错",
+    "reading": "búcuò",
+    "de": "nicht schlecht, gut",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "听起来不错。",
+      "reading": "Tīng qǐlai búcuò.",
+      "de": "Klingt gut."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:很:hěn:adv",
+    "target": "很",
+    "reading": "hěn",
+    "de": "sehr",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我很好。",
+      "reading": "Wǒ hěn hǎo.",
+      "de": "Mir geht's gut."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:也:yě:adv",
+    "target": "也",
+    "reading": "yě",
+    "de": "auch",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我也想去。",
+      "reading": "Wǒ yě xiǎng qù.",
+      "de": "Ich möchte auch hin."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:都:dōu:adv",
+    "target": "都",
+    "reading": "dōu",
+    "de": "alle, beide",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我们都喜欢吃辣。",
+      "reading": "Wǒmen dōu xǐhuan chī là.",
+      "de": "Wir alle essen gern scharf."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:还:hái:adv",
+    "target": "还",
+    "reading": "hái",
+    "de": "noch; außerdem",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我还没吃饭。",
+      "reading": "Wǒ hái méi chīfàn.",
+      "de": "Ich habe noch nicht gegessen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:太…了:tài … le:phr",
+    "target": "太…了",
+    "reading": "tài … le",
+    "de": "zu …; total …",
+    "pos": "phrase",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "太好了！",
+      "reading": "Tài hǎo le!",
+      "de": "Super!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:还是:háishi:conj",
+    "target": "还是",
+    "reading": "háishi",
+    "de": "oder (in Fragen); doch lieber",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "你喝茶还是咖啡？",
+      "reading": "Nǐ hē chá háishi kāfēi?",
+      "de": "Trinkst du Tee oder Kaffee?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:和:hé:conj",
+    "target": "和",
+    "reading": "hé",
+    "de": "und (verbindet Nomen)",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我和朋友一起去。",
+      "reading": "Wǒ hé péngyou yìqǐ qù.",
+      "de": "Ich gehe mit einem Freund zusammen."
+    }
+  },
+  {
+    "id": "zh:跟:gēn:prep",
+    "target": "跟",
+    "reading": "gēn",
+    "de": "mit; wie",
+    "pos": "preposition",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我跟你一起去。",
+      "reading": "Wǒ gēn nǐ yìqǐ qù.",
+      "de": "Ich gehe mit dir zusammen."
+    }
+  },
+  {
+    "id": "zh:因为:yīnwèi:conj",
+    "target": "因为",
+    "reading": "yīnwèi",
+    "de": "weil",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "因为下雨，我不去了。",
+      "reading": "Yīnwèi xiàyǔ, wǒ bú qù le.",
+      "de": "Weil es regnet, gehe ich nicht mehr hin."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:所以:suǒyǐ:conj",
+    "target": "所以",
+    "reading": "suǒyǐ",
+    "de": "deshalb",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我感冒了，所以在家休息。",
+      "reading": "Wǒ gǎnmào le, suǒyǐ zài jiā xiūxi.",
+      "de": "Ich bin erkältet, deshalb ruhe ich mich zu Hause aus."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:但是:dànshì:conj",
+    "target": "但是",
+    "reading": "dànshì",
+    "de": "aber",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我想去，但是没时间。",
+      "reading": "Wǒ xiǎng qù, dànshì méi shíjiān.",
+      "de": "Ich möchte hin, aber ich habe keine Zeit."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:当然:dāngrán:adv",
+    "target": "当然",
+    "reading": "dāngrán",
+    "de": "natürlich",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "当然可以！",
+      "reading": "Dāngrán kěyǐ!",
+      "de": "Natürlich geht das!"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:真的:zhēn de:adv",
+    "target": "真的",
+    "reading": "zhēn de",
+    "de": "wirklich, echt",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "真的吗？",
+      "reading": "Zhēn de ma?",
+      "de": "Wirklich?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:呢:ne:part",
+    "target": "呢",
+    "reading": "ne",
+    "de": "Partikel: und …? / gerade",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我很好，你呢？",
+      "reading": "Wǒ hěn hǎo, nǐ ne?",
+      "de": "Mir geht's gut, und dir?"
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:吧:ba:part",
+    "target": "吧",
+    "reading": "ba",
+    "de": "Partikel: Vorschlag, Vermutung",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我们走吧。",
+      "reading": "Wǒmen zǒu ba.",
+      "de": "Lass uns gehen."
+    },
+    "learned": true
+  },
+  {
+    "id": "zh:吗:ma:part",
+    "target": "吗",
+    "reading": "ma",
+    "de": "Fragepartikel (Ja/Nein)",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "你是德国人吗？",
+      "reading": "Nǐ shì Déguó rén ma?",
+      "de": "Bist du Deutscher?"
+    }
+  },
+  {
+    "id": "zh:的:de:part",
+    "target": "的",
+    "reading": "de",
+    "de": "Partikel: Besitz, Attribut",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "这是我的书。",
+      "reading": "Zhè shì wǒ de shū.",
+      "de": "Das ist mein Buch."
+    }
+  },
+  {
+    "id": "zh:了:le:part",
+    "target": "了",
+    "reading": "le",
+    "de": "Partikel: Abschluss, Veränderung",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我吃了。",
+      "reading": "Wǒ chī le.",
+      "de": "Ich habe gegessen."
+    }
+  },
+  {
+    "id": "zh:别的:biéde:pron",
+    "target": "别的",
+    "reading": "biéde",
+    "de": "andere(s)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你还要别的吗？",
+      "reading": "Nǐ hái yào biéde ma?",
+      "de": "Möchtest du noch etwas anderes?"
+    }
+  },
+  {
+    "id": "zh:不客气:bú kèqi:phr",
+    "target": "不客气",
+    "reading": "bú kèqi",
+    "de": "gern geschehen",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "谢谢！不客气。",
+      "reading": "Xièxie! Bú kèqi.",
+      "de": "Danke! – Gern geschehen."
+    }
+  },
+  {
+    "id": "zh:干什么:gàn shénme:phr",
+    "target": "干什么",
+    "reading": "gàn shénme",
+    "de": "was machen; wozu",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你在干什么？",
+      "reading": "Nǐ zài gàn shénme?",
+      "de": "Was machst du gerade?"
+    }
+  },
+  {
+    "id": "zh:没什么:méi shénme:phr",
+    "target": "没什么",
+    "reading": "méi shénme",
+    "de": "nichts; macht nichts",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "没什么，别客气。",
+      "reading": "Méi shénme, bié kèqi.",
+      "de": "Schon gut, keine Ursache."
+    }
+  },
+  {
+    "id": "zh:们:men:part",
+    "target": "们",
+    "reading": "men",
+    "de": "(Pluralsuffix für Personen)",
+    "pos": "particle",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "朋友们，你们好！",
+      "reading": "Péngyoumen, nǐmen hǎo!",
+      "de": "Hallo, Freunde!"
+    }
+  },
+  {
+    "id": "zh:哪里:nǎli:pron",
+    "target": "哪里",
+    "reading": "nǎli",
+    "de": "wo",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你住在哪里？",
+      "reading": "Nǐ zhù zài nǎli?",
+      "de": "Wo wohnst du?"
+    }
+  },
+  {
+    "id": "zh:哪些:nǎxiē:pron",
+    "target": "哪些",
+    "reading": "nǎxiē",
+    "de": "welche (Plural)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你去过哪些国家？",
+      "reading": "Nǐ qùguo nǎxiē guójiā?",
+      "de": "In welchen Ländern warst du schon?"
+    }
+  },
+  {
+    "id": "zh:那些:nàxiē:pron",
+    "target": "那些",
+    "reading": "nàxiē",
+    "de": "jene; die da",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "那些书是谁的？",
+      "reading": "Nàxiē shū shì shéi de?",
+      "de": "Wem gehören die Bücher da?"
+    }
+  },
+  {
+    "id": "zh:您:nín:pron",
+    "target": "您",
+    "reading": "nín",
+    "de": "Sie (höflich)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "您好，请问您找谁？",
+      "reading": "Nín hǎo, qǐngwèn nín zhǎo shéi?",
+      "de": "Guten Tag, zu wem möchten Sie?"
+    }
+  },
+  {
+    "id": "zh:请进:qǐng jìn:phr",
+    "target": "请进",
+    "reading": "qǐng jìn",
+    "de": "herein bitte",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "请进，门没关。",
+      "reading": "Qǐng jìn, mén méi guān.",
+      "de": "Herein, die Tür ist offen."
+    }
+  },
+  {
+    "id": "zh:请问:qǐngwèn:phr",
+    "target": "请问",
+    "reading": "qǐngwèn",
+    "de": "Entschuldigung, darf ich fragen",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "请问，洗手间在哪儿？",
+      "reading": "Qǐngwèn, xǐshǒujiān zài nǎr?",
+      "de": "Entschuldigung, wo ist die Toilette?"
+    }
+  },
+  {
+    "id": "zh:请坐:qǐng zuò:phr",
+    "target": "请坐",
+    "reading": "qǐng zuò",
+    "de": "bitte setzen Sie sich",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "请坐，喝杯茶吧。",
+      "reading": "Qǐng zuò, hē bēi chá ba.",
+      "de": "Setzen Sie sich doch und trinken Sie einen Tee."
+    }
+  },
+  {
+    "id": "zh:是不是:shì bu shì:phr",
+    "target": "是不是",
+    "reading": "shì bu shì",
+    "de": "ist es so oder nicht; etwa",
+    "pos": "phrase",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "你是不是累了？",
+      "reading": "Nǐ shì bu shì lèi le?",
+      "de": "Bist du etwa müde?"
+    }
+  },
+  {
+    "id": "zh:她们:tāmen:pron",
+    "target": "她们",
+    "reading": "tāmen",
+    "de": "sie (Plural, weiblich)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "她们都是我的同学。",
+      "reading": "Tāmen dōu shì wǒ de tóngxué.",
+      "de": "Sie sind alle meine Mitschülerinnen."
+    }
+  },
+  {
+    "id": "zh:有的:yǒude:pron",
+    "target": "有的",
+    "reading": "yǒude",
+    "de": "manche; einige",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "有的人不喜欢吃肉。",
+      "reading": "Yǒude rén bù xǐhuan chī ròu.",
+      "de": "Manche Leute essen nicht gern Fleisch."
+    }
+  },
+  {
+    "id": "zh:有些:yǒuxiē:pron",
+    "target": "有些",
+    "reading": "yǒuxiē",
+    "de": "einige; etwas",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "有些字我不认识。",
+      "reading": "Yǒuxiē zì wǒ bú rènshi.",
+      "de": "Einige Schriftzeichen kenne ich nicht."
+    }
+  },
+  {
+    "id": "zh:这些:zhèxiē:pron",
+    "target": "这些",
+    "reading": "zhèxiē",
+    "de": "diese (Plural)",
+    "pos": "pronoun",
+    "category": "basics",
+    "level": "A1",
+    "example": {
+      "target": "这些苹果很甜。",
+      "reading": "Zhèxiē píngguǒ hěn tián.",
+      "de": "Diese Äpfel sind sehr süß."
+    }
+  },
+  {
+    "id": "zh:工人:gōngrén:n",
+    "target": "工人",
+    "reading": "gōngrén",
+    "de": "Arbeiter/in",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我爸爸是工人。",
+      "reading": "Wǒ bàba shì gōngrén.",
+      "de": "Mein Vater ist Arbeiter."
+    }
+  },
+  {
+    "id": "zh:老人:lǎorén:n",
+    "target": "老人",
+    "reading": "lǎorén",
+    "de": "alter Mensch; Senior/in",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "那位老人是我爷爷。",
+      "reading": "Nà wèi lǎorén shì wǒ yéye.",
+      "de": "Der alte Herr dort ist mein Opa."
+    }
+  },
+  {
+    "id": "zh:奶奶:nǎinai:n",
+    "target": "奶奶",
+    "reading": "nǎinai",
+    "de": "Oma (väterlicherseits)",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我奶奶今年七十岁。",
+      "reading": "Wǒ nǎinai jīnnián qīshí suì.",
+      "de": "Meine Oma ist dieses Jahr siebzig."
+    }
+  },
+  {
+    "id": "zh:男:nán:adj",
+    "target": "男",
+    "reading": "nán",
+    "de": "männlich",
+    "pos": "adjective",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "那个男的是谁？",
+      "reading": "Nàge nán de shì shéi?",
+      "de": "Wer ist der Mann da?"
+    }
+  },
+  {
+    "id": "zh:男孩儿:nánháir:n",
+    "target": "男孩儿",
+    "reading": "nánháir",
+    "de": "Junge",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "那个男孩儿是我弟弟。",
+      "reading": "Nàge nánháir shì wǒ dìdi.",
+      "de": "Der Junge dort ist mein kleiner Bruder."
+    }
+  },
+  {
+    "id": "zh:男人:nánrén:n",
+    "target": "男人",
+    "reading": "nánrén",
+    "de": "Mann",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "那个男人很高。",
+      "reading": "Nàge nánrén hěn gāo.",
+      "de": "Der Mann dort ist sehr groß."
+    }
+  },
+  {
+    "id": "zh:男生:nánshēng:n",
+    "target": "男生",
+    "reading": "nánshēng",
+    "de": "Schüler; Student (männlich)",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我们班有十个男生。",
+      "reading": "Wǒmen bān yǒu shí gè nánshēng.",
+      "de": "In unserer Klasse sind zehn Jungen."
+    }
+  },
+  {
+    "id": "zh:女孩儿:nǚháir:n",
+    "target": "女孩儿",
+    "reading": "nǚháir",
+    "de": "Mädchen",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "这个女孩儿很可爱。",
+      "reading": "Zhège nǚháir hěn kě'ài.",
+      "de": "Dieses Mädchen ist sehr süß."
+    }
+  },
+  {
+    "id": "zh:女人:nǚrén:n",
+    "target": "女人",
+    "reading": "nǚrén",
+    "de": "Frau",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "那个女人是我们老师。",
+      "reading": "Nàge nǚrén shì wǒmen lǎoshī.",
+      "de": "Die Frau dort ist unsere Lehrerin."
+    }
+  },
+  {
+    "id": "zh:女生:nǚshēng:n",
+    "target": "女生",
+    "reading": "nǚshēng",
+    "de": "Schülerin; Studentin",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我们班女生很多。",
+      "reading": "Wǒmen bān nǚshēng hěn duō.",
+      "de": "In unserer Klasse sind viele Mädchen."
+    }
+  },
+  {
+    "id": "zh:小孩儿:xiǎoháir:n",
+    "target": "小孩儿",
+    "reading": "xiǎoháir",
+    "de": "Kind",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "这个小孩儿真可爱。",
+      "reading": "Zhège xiǎoháir zhēn kě'ài.",
+      "de": "Dieses Kind ist wirklich süß."
+    }
+  },
+  {
+    "id": "zh:小姐:xiǎojiě:n",
+    "target": "小姐",
+    "reading": "xiǎojiě",
+    "de": "Fräulein; junge Dame",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "王小姐，您好！",
+      "reading": "Wáng xiǎojiě, nín hǎo!",
+      "de": "Guten Tag, Frau Wang!"
+    }
+  },
+  {
+    "id": "zh:小朋友:xiǎopéngyou:n",
+    "target": "小朋友",
+    "reading": "xiǎopéngyou",
+    "de": "Kind; Kinder (Anrede)",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "小朋友，你几岁了？",
+      "reading": "Xiǎopéngyou, nǐ jǐ suì le?",
+      "de": "Na, Kleiner, wie alt bist du?"
+    }
+  },
+  {
+    "id": "zh:爷爷:yéye:n",
+    "target": "爷爷",
+    "reading": "yéye",
+    "de": "Opa (väterlicherseits)",
+    "pos": "noun",
+    "category": "people",
+    "level": "A1",
+    "example": {
+      "target": "我爷爷喜欢喝茶。",
+      "reading": "Wǒ yéye xǐhuan hē chá.",
+      "de": "Mein Opa trinkt gern Tee."
+    }
+  },
+  {
+    "id": "zh:第:dì:num",
+    "target": "第",
+    "reading": "dì",
+    "de": "(Präfix für Ordnungszahlen)",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这是我第一次来。",
+      "reading": "Zhè shì wǒ dì yī cì lái.",
+      "de": "Ich bin zum ersten Mal hier."
+    }
+  },
+  {
+    "id": "zh:间:jiān:mw",
+    "target": "间",
+    "reading": "jiān",
+    "de": "Zählwort für Zimmer",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "这间房间很大。",
+      "reading": "Zhè jiān fángjiān hěn dà.",
+      "de": "Dieses Zimmer ist sehr groß."
+    }
+  },
+  {
+    "id": "zh:口:kǒu:mw",
+    "target": "口",
+    "reading": "kǒu",
+    "de": "Mund; Zählwort für Familienmitglieder",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "你家有几口人？",
+      "reading": "Nǐ jiā yǒu jǐ kǒu rén?",
+      "de": "Wie viele Personen seid ihr in der Familie?"
+    }
+  },
+  {
+    "id": "zh:岁:suì:mw",
+    "target": "岁",
+    "reading": "suì",
+    "de": "Jahre alt",
+    "pos": "measure",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "我儿子今年五岁。",
+      "reading": "Wǒ érzi jīnnián wǔ suì.",
+      "de": "Mein Sohn ist dieses Jahr fünf."
+    }
+  },
+  {
+    "id": "zh:一半:yíbàn:num",
+    "target": "一半",
+    "reading": "yíbàn",
+    "de": "Hälfte",
+    "pos": "number",
+    "category": "numbers",
+    "level": "A1",
+    "example": {
+      "target": "我只吃了一半。",
+      "reading": "Wǒ zhǐ chī le yíbàn.",
+      "de": "Ich habe nur die Hälfte gegessen."
+    }
+  },
+  {
+    "id": "zh:白天:báitiān:n",
+    "target": "白天",
+    "reading": "báitiān",
+    "de": "tagsüber; Tag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我白天上班。",
+      "reading": "Wǒ báitiān shàngbān.",
+      "de": "Ich arbeite tagsüber."
+    }
+  },
+  {
+    "id": "zh:半年:bànnián:n",
+    "target": "半年",
+    "reading": "bànnián",
+    "de": "halbes Jahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我学了半年中文。",
+      "reading": "Wǒ xué le bànnián Zhōngwén.",
+      "de": "Ich habe ein halbes Jahr Chinesisch gelernt."
+    }
+  },
+  {
+    "id": "zh:半天:bàntiān:n",
+    "target": "半天",
+    "reading": "bàntiān",
+    "de": "halber Tag; lange Zeit",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我等了你半天。",
+      "reading": "Wǒ děng le nǐ bàntiān.",
+      "de": "Ich habe ewig auf dich gewartet."
+    }
+  },
+  {
+    "id": "zh:常:cháng:adv",
+    "target": "常",
+    "reading": "cháng",
+    "de": "oft",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "他常来这儿。",
+      "reading": "Tā cháng lái zhèr.",
+      "de": "Er kommt oft hierher."
+    }
+  },
+  {
+    "id": "zh:常常:chángcháng:adv",
+    "target": "常常",
+    "reading": "chángcháng",
+    "de": "oft; häufig",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我常常去公园。",
+      "reading": "Wǒ chángcháng qù gōngyuán.",
+      "de": "Ich gehe oft in den Park."
+    }
+  },
+  {
+    "id": "zh:分:fēn:mw",
+    "target": "分",
+    "reading": "fēn",
+    "de": "Minute; Punkt",
+    "pos": "measure",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "现在三点十分。",
+      "reading": "Xiànzài sān diǎn shí fēn.",
+      "de": "Es ist jetzt zehn nach drei."
+    }
+  },
+  {
+    "id": "zh:后天:hòutiān:n",
+    "target": "后天",
+    "reading": "hòutiān",
+    "de": "übermorgen",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我后天去上海。",
+      "reading": "Wǒ hòutiān qù Shànghǎi.",
+      "de": "Ich fahre übermorgen nach Shanghai."
+    }
+  },
+  {
+    "id": "zh:前天:qiántiān:n",
+    "target": "前天",
+    "reading": "qiántiān",
+    "de": "vorgestern",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "我前天见过他。",
+      "reading": "Wǒ qiántiān jiànguo tā.",
+      "de": "Ich habe ihn vorgestern getroffen."
+    }
+  },
+  {
+    "id": "zh:日:rì:n",
+    "target": "日",
+    "reading": "rì",
+    "de": "Tag (im Datum)",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "今天是五月一日。",
+      "reading": "Jīntiān shì wǔ yuè yī rì.",
+      "de": "Heute ist der 1. Mai."
+    }
+  },
+  {
+    "id": "zh:日期:rìqī:n",
+    "target": "日期",
+    "reading": "rìqī",
+    "de": "Datum",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "请写上今天的日期。",
+      "reading": "Qǐng xiěshang jīntiān de rìqī.",
+      "de": "Bitte schreib das heutige Datum dazu."
+    }
+  },
+  {
+    "id": "zh:上次:shàngcì:n",
+    "target": "上次",
+    "reading": "shàngcì",
+    "de": "letztes Mal",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "上次我们见过面。",
+      "reading": "Shàngcì wǒmen jiànguo miàn.",
+      "de": "Wir haben uns letztes Mal schon getroffen."
+    }
+  },
+  {
+    "id": "zh:下次:xiàcì:n",
+    "target": "下次",
+    "reading": "xiàcì",
+    "de": "nächstes Mal",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "下次再来玩吧！",
+      "reading": "Xiàcì zài lái wán ba!",
+      "de": "Komm nächstes Mal wieder vorbei!"
+    }
+  },
+  {
+    "id": "zh:新年:xīnnián:n",
+    "target": "新年",
+    "reading": "xīnnián",
+    "de": "Neujahr",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "新年快乐！",
+      "reading": "Xīnnián kuàilè!",
+      "de": "Frohes neues Jahr!"
+    }
+  },
+  {
+    "id": "zh:星期日:xīngqīrì:n",
+    "target": "星期日",
+    "reading": "xīngqīrì",
+    "de": "Sonntag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "星期日我不上班。",
+      "reading": "Xīngqīrì wǒ bú shàngbān.",
+      "de": "Sonntags arbeite ich nicht."
+    }
+  },
+  {
+    "id": "zh:星期天:xīngqītiān:n",
+    "target": "星期天",
+    "reading": "xīngqītiān",
+    "de": "Sonntag",
+    "pos": "noun",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "星期天你有空吗？",
+      "reading": "Xīngqītiān nǐ yǒu kòng ma?",
+      "de": "Hast du am Sonntag Zeit?"
+    }
+  },
+  {
+    "id": "zh:最后:zuìhòu:adv",
+    "target": "最后",
+    "reading": "zuìhòu",
+    "de": "zuletzt; schließlich",
+    "pos": "adverb",
+    "category": "time",
+    "level": "A1",
+    "example": {
+      "target": "最后我们都回家了。",
+      "reading": "Zuìhòu wǒmen dōu huí jiā le.",
+      "de": "Am Ende sind wir alle nach Hause gegangen."
+    }
+  },
+  {
+    "id": "zh:包子:bāozi:n",
+    "target": "包子",
+    "reading": "bāozi",
+    "de": "gefülltes Dampfbrötchen",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我早上吃了两个包子。",
+      "reading": "Wǒ zǎoshang chī le liǎng gè bāozi.",
+      "de": "Ich habe heute Morgen zwei Baozi gegessen."
+    }
+  },
+  {
+    "id": "zh:吃饭:chīfàn:v",
+    "target": "吃饭",
+    "reading": "chīfàn",
+    "de": "essen",
+    "pos": "verb",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我们一起吃饭吧。",
+      "reading": "Wǒmen yìqǐ chīfàn ba.",
+      "de": "Lass uns zusammen essen."
+    }
+  },
+  {
+    "id": "zh:奶:nǎi:n",
+    "target": "奶",
+    "reading": "nǎi",
+    "de": "Milch",
+    "pos": "noun",
+    "category": "food",
+    "level": "A1",
+    "example": {
+      "target": "我喝咖啡不加奶。",
+      "reading": "Wǒ hē kāfēi bù jiā nǎi.",
+      "de": "Ich trinke Kaffee ohne Milch."
+    }
+  },
+  {
+    "id": "zh:毛:máo:mw",
+    "target": "毛",
+    "reading": "máo",
+    "de": "Mao (0,1 Yuan)",
+    "pos": "measure",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这个五毛钱。",
+      "reading": "Zhège wǔ máo qián.",
+      "de": "Das kostet fünf Mao."
+    }
+  },
+  {
+    "id": "zh:钱包:qiánbāo:n",
+    "target": "钱包",
+    "reading": "qiánbāo",
+    "de": "Geldbeutel; Portemonnaie",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我的钱包不见了。",
+      "reading": "Wǒ de qiánbāo bú jiàn le.",
+      "de": "Mein Geldbeutel ist weg."
+    }
+  },
+  {
+    "id": "zh:书店:shūdiàn:n",
+    "target": "书店",
+    "reading": "shūdiàn",
+    "de": "Buchhandlung",
+    "pos": "noun",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "我去书店买书。",
+      "reading": "Wǒ qù shūdiàn mǎi shū.",
+      "de": "Ich gehe in die Buchhandlung, um Bücher zu kaufen."
+    }
+  },
+  {
+    "id": "zh:元:yuán:mw",
+    "target": "元",
+    "reading": "yuán",
+    "de": "Yuan (Währung)",
+    "pos": "measure",
+    "category": "shopping",
+    "level": "A1",
+    "example": {
+      "target": "这本书三十元。",
+      "reading": "Zhè běn shū sānshí yuán.",
+      "de": "Dieses Buch kostet dreißig Yuan."
+    }
+  },
+  {
+    "id": "zh:北京:Běijīng:n",
+    "target": "北京",
+    "reading": "Běijīng",
+    "de": "Peking",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我想去北京。",
+      "reading": "Wǒ xiǎng qù Běijīng.",
+      "de": "Ich möchte nach Peking fahren."
+    }
+  },
+  {
+    "id": "zh:车:chē:n",
+    "target": "车",
+    "reading": "chē",
+    "de": "Auto; Fahrzeug",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我的车在外面。",
+      "reading": "Wǒ de chē zài wàimiàn.",
+      "de": "Mein Auto steht draußen."
+    }
+  },
+  {
+    "id": "zh:车票:chēpiào:n",
+    "target": "车票",
+    "reading": "chēpiào",
+    "de": "Fahrkarte",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我买了两张车票。",
+      "reading": "Wǒ mǎi le liǎng zhāng chēpiào.",
+      "de": "Ich habe zwei Fahrkarten gekauft."
+    }
+  },
+  {
+    "id": "zh:车上:chēshang:n",
+    "target": "车上",
+    "reading": "chēshang",
+    "de": "im Fahrzeug; im Bus",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "车上有很多人。",
+      "reading": "Chēshang yǒu hěn duō rén.",
+      "de": "Im Bus sind viele Leute."
+    }
+  },
+  {
+    "id": "zh:飞:fēi:v",
+    "target": "飞",
+    "reading": "fēi",
+    "de": "fliegen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "小鸟飞走了。",
+      "reading": "Xiǎoniǎo fēi zǒu le.",
+      "de": "Das Vögelchen ist weggeflogen."
+    }
+  },
+  {
+    "id": "zh:国:guó:n",
+    "target": "国",
+    "reading": "guó",
+    "de": "Land; Staat",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "你是哪国人？",
+      "reading": "Nǐ shì nǎ guó rén?",
+      "de": "Aus welchem Land kommst du?"
+    }
+  },
+  {
+    "id": "zh:国外:guówài:n",
+    "target": "国外",
+    "reading": "guówài",
+    "de": "Ausland",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "他在国外工作。",
+      "reading": "Tā zài guówài gōngzuò.",
+      "de": "Er arbeitet im Ausland."
+    }
+  },
+  {
+    "id": "zh:来到:láidào:v",
+    "target": "来到",
+    "reading": "láidào",
+    "de": "ankommen in; kommen nach",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "欢迎来到北京！",
+      "reading": "Huānyíng láidào Běijīng!",
+      "de": "Willkommen in Peking!"
+    }
+  },
+  {
+    "id": "zh:路上:lùshang:n",
+    "target": "路上",
+    "reading": "lùshang",
+    "de": "unterwegs; auf der Straße",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "路上小心！",
+      "reading": "Lùshang xiǎoxīn!",
+      "de": "Pass unterwegs auf dich auf!"
+    }
+  },
+  {
+    "id": "zh:门票:ménpiào:n",
+    "target": "门票",
+    "reading": "ménpiào",
+    "de": "Eintrittskarte",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "门票多少钱一张？",
+      "reading": "Ménpiào duōshao qián yì zhāng?",
+      "de": "Wie viel kostet eine Eintrittskarte?"
+    }
+  },
+  {
+    "id": "zh:汽车:qìchē:n",
+    "target": "汽车",
+    "reading": "qìchē",
+    "de": "Auto",
+    "pos": "noun",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "路上有很多汽车。",
+      "reading": "Lùshang yǒu hěn duō qìchē.",
+      "de": "Auf der Straße sind viele Autos."
+    }
+  },
+  {
+    "id": "zh:上车:shàngchē:v",
+    "target": "上车",
+    "reading": "shàngchē",
+    "de": "einsteigen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "快上车吧！",
+      "reading": "Kuài shàngchē ba!",
+      "de": "Steig schnell ein!"
+    }
+  },
+  {
+    "id": "zh:下车:xiàchē:v",
+    "target": "下车",
+    "reading": "xiàchē",
+    "de": "aussteigen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我在下一站下车。",
+      "reading": "Wǒ zài xià yí zhàn xiàchē.",
+      "de": "Ich steige an der nächsten Haltestelle aus."
+    }
+  },
+  {
+    "id": "zh:走路:zǒulù:v",
+    "target": "走路",
+    "reading": "zǒulù",
+    "de": "zu Fuß gehen",
+    "pos": "verb",
+    "category": "travel",
+    "level": "A1",
+    "example": {
+      "target": "我每天走路上班。",
+      "reading": "Wǒ měi tiān zǒulù shàngbān.",
+      "de": "Ich gehe jeden Tag zu Fuß zur Arbeit."
+    }
+  },
+  {
+    "id": "zh:北:běi:n",
+    "target": "北",
+    "reading": "běi",
+    "de": "Norden",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "往北走就到了。",
+      "reading": "Wǎng běi zǒu jiù dào le.",
+      "de": "Geh nach Norden, dann bist du gleich da."
+    }
+  },
+  {
+    "id": "zh:北边:běibian:n",
+    "target": "北边",
+    "reading": "běibian",
+    "de": "Nordseite; nördlich",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "学校在北边。",
+      "reading": "Xuéxiào zài běibian.",
+      "de": "Die Schule liegt im Norden."
+    }
+  },
+  {
+    "id": "zh:地点:dìdiǎn:n",
+    "target": "地点",
+    "reading": "dìdiǎn",
+    "de": "Ort; Treffpunkt",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "见面的地点在哪儿？",
+      "reading": "Jiànmiàn de dìdiǎn zài nǎr?",
+      "de": "Wo ist der Treffpunkt?"
+    }
+  },
+  {
+    "id": "zh:地上:dìshang:n",
+    "target": "地上",
+    "reading": "dìshang",
+    "de": "auf dem Boden",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "地上有一本书。",
+      "reading": "Dìshang yǒu yì běn shū.",
+      "de": "Auf dem Boden liegt ein Buch."
+    }
+  },
+  {
+    "id": "zh:电影院:diànyǐngyuàn:n",
+    "target": "电影院",
+    "reading": "diànyǐngyuàn",
+    "de": "Kino",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "电影院在商店旁边。",
+      "reading": "Diànyǐngyuàn zài shāngdiàn pángbiān.",
+      "de": "Das Kino ist neben dem Geschäft."
+    }
+  },
+  {
+    "id": "zh:东:dōng:n",
+    "target": "东",
+    "reading": "dōng",
+    "de": "Osten",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "往东走五分钟。",
+      "reading": "Wǎng dōng zǒu wǔ fēnzhōng.",
+      "de": "Geh fünf Minuten nach Osten."
+    }
+  },
+  {
+    "id": "zh:东边:dōngbian:n",
+    "target": "东边",
+    "reading": "dōngbian",
+    "de": "Ostseite; östlich",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "车站在东边。",
+      "reading": "Chēzhàn zài dōngbian.",
+      "de": "Die Haltestelle liegt im Osten."
+    }
+  },
+  {
+    "id": "zh:后:hòu:n",
+    "target": "后",
+    "reading": "hòu",
+    "de": "hinten; nach; später",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "三天后我回来。",
+      "reading": "Sān tiān hòu wǒ huílai.",
+      "de": "In drei Tagen komme ich zurück."
+    }
+  },
+  {
+    "id": "zh:后边:hòubian:n",
+    "target": "后边",
+    "reading": "hòubian",
+    "de": "hinten; Rückseite",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我家后边有公园。",
+      "reading": "Wǒ jiā hòubian yǒu gōngyuán.",
+      "de": "Hinter meinem Haus ist ein Park."
+    }
+  },
+  {
+    "id": "zh:里:lǐ:n",
+    "target": "里",
+    "reading": "lǐ",
+    "de": "in; innen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "包里有什么？",
+      "reading": "Bāo li yǒu shénme?",
+      "de": "Was ist in der Tasche?"
+    }
+  },
+  {
+    "id": "zh:里边:lǐbian:n",
+    "target": "里边",
+    "reading": "lǐbian",
+    "de": "innen; drinnen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "里边很暖和。",
+      "reading": "Lǐbian hěn nuǎnhuo.",
+      "de": "Drinnen ist es schön warm."
+    }
+  },
+  {
+    "id": "zh:楼上:lóushàng:n",
+    "target": "楼上",
+    "reading": "lóushàng",
+    "de": "oben (im Haus)",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我住在楼上。",
+      "reading": "Wǒ zhù zài lóushàng.",
+      "de": "Ich wohne oben."
+    }
+  },
+  {
+    "id": "zh:楼下:lóuxià:n",
+    "target": "楼下",
+    "reading": "lóuxià",
+    "de": "unten (im Haus)",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我在楼下等你。",
+      "reading": "Wǒ zài lóuxià děng nǐ.",
+      "de": "Ich warte unten auf dich."
+    }
+  },
+  {
+    "id": "zh:马路:mǎlù:n",
+    "target": "马路",
+    "reading": "mǎlù",
+    "de": "Straße",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "过马路要小心。",
+      "reading": "Guò mǎlù yào xiǎoxīn.",
+      "de": "Beim Überqueren der Straße muss man aufpassen."
+    }
+  },
+  {
+    "id": "zh:那边:nàbiān:pron",
+    "target": "那边",
+    "reading": "nàbiān",
+    "de": "dort drüben",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "洗手间在那边。",
+      "reading": "Xǐshǒujiān zài nàbiān.",
+      "de": "Die Toilette ist dort drüben."
+    }
+  },
+  {
+    "id": "zh:那里:nàli:pron",
+    "target": "那里",
+    "reading": "nàli",
+    "de": "dort",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "那里的东西很便宜。",
+      "reading": "Nàli de dōngxi hěn piányi.",
+      "de": "Dort sind die Sachen sehr günstig."
+    }
+  },
+  {
+    "id": "zh:南:nán:n",
+    "target": "南",
+    "reading": "nán",
+    "de": "Süden",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "一直往南走。",
+      "reading": "Yìzhí wǎng nán zǒu.",
+      "de": "Geh immer geradeaus nach Süden."
+    }
+  },
+  {
+    "id": "zh:南边:nánbian:n",
+    "target": "南边",
+    "reading": "nánbian",
+    "de": "Südseite; südlich",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "公园在学校南边。",
+      "reading": "Gōngyuán zài xuéxiào nánbian.",
+      "de": "Der Park liegt südlich der Schule."
+    }
+  },
+  {
+    "id": "zh:前:qián:n",
+    "target": "前",
+    "reading": "qián",
+    "de": "vorn; vor",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "请往前走。",
+      "reading": "Qǐng wǎng qián zǒu.",
+      "de": "Bitte gehen Sie nach vorn."
+    }
+  },
+  {
+    "id": "zh:前边:qiánbian:n",
+    "target": "前边",
+    "reading": "qiánbian",
+    "de": "vorn; Vorderseite",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "前边有一家银行。",
+      "reading": "Qiánbian yǒu yì jiā yínháng.",
+      "de": "Da vorn ist eine Bank."
+    }
+  },
+  {
+    "id": "zh:上:shàng:n",
+    "target": "上",
+    "reading": "shàng",
+    "de": "auf; oben; letzte(r)",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "手机在桌子上。",
+      "reading": "Shǒujī zài zhuōzi shang.",
+      "de": "Das Handy liegt auf dem Tisch."
+    }
+  },
+  {
+    "id": "zh:上边:shàngbian:n",
+    "target": "上边",
+    "reading": "shàngbian",
+    "de": "oben; Oberseite",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "上边那本书是我的。",
+      "reading": "Shàngbian nà běn shū shì wǒ de.",
+      "de": "Das Buch da oben ist meins."
+    }
+  },
+  {
+    "id": "zh:外:wài:n",
+    "target": "外",
+    "reading": "wài",
+    "de": "außen; draußen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "门外有人。",
+      "reading": "Mén wài yǒu rén.",
+      "de": "Vor der Tür ist jemand."
+    }
+  },
+  {
+    "id": "zh:外边:wàibian:n",
+    "target": "外边",
+    "reading": "wàibian",
+    "de": "draußen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "外边下雨了。",
+      "reading": "Wàibian xià yǔ le.",
+      "de": "Draußen regnet es."
+    }
+  },
+  {
+    "id": "zh:西:xī:n",
+    "target": "西",
+    "reading": "xī",
+    "de": "Westen",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "往西走就是车站。",
+      "reading": "Wǎng xī zǒu jiù shì chēzhàn.",
+      "de": "Wenn du nach Westen gehst, kommst du zur Haltestelle."
+    }
+  },
+  {
+    "id": "zh:西边:xībian:n",
+    "target": "西边",
+    "reading": "xībian",
+    "de": "Westseite; westlich",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "我家在学校西边。",
+      "reading": "Wǒ jiā zài xuéxiào xībian.",
+      "de": "Ich wohne westlich der Schule."
+    }
+  },
+  {
+    "id": "zh:下:xià:n",
+    "target": "下",
+    "reading": "xià",
+    "de": "unter; unten; nächste(r)",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "下个星期我去北京。",
+      "reading": "Xià ge xīngqī wǒ qù Běijīng.",
+      "de": "Nächste Woche fahre ich nach Peking."
+    }
+  },
+  {
+    "id": "zh:下边:xiàbian:n",
+    "target": "下边",
+    "reading": "xiàbian",
+    "de": "unten; Unterseite",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "请看下边的图。",
+      "reading": "Qǐng kàn xiàbian de tú.",
+      "de": "Schau dir bitte das Bild unten an."
+    }
+  },
+  {
+    "id": "zh:右:yòu:n",
+    "target": "右",
+    "reading": "yòu",
+    "de": "rechts",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "到路口往右拐。",
+      "reading": "Dào lùkǒu wǎng yòu guǎi.",
+      "de": "An der Kreuzung rechts abbiegen."
+    }
+  },
+  {
+    "id": "zh:这边:zhèbiān:pron",
+    "target": "这边",
+    "reading": "zhèbiān",
+    "de": "hier; diese Seite",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "请到这边来。",
+      "reading": "Qǐng dào zhèbiān lái.",
+      "de": "Kommen Sie bitte hier herüber."
+    }
+  },
+  {
+    "id": "zh:这里:zhèli:pron",
+    "target": "这里",
+    "reading": "zhèli",
+    "de": "hier",
+    "pos": "pronoun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "这里可以拍照吗？",
+      "reading": "Zhèli kěyǐ pāizhào ma?",
+      "de": "Darf man hier fotografieren?"
+    }
+  },
+  {
+    "id": "zh:中:zhōng:n",
+    "target": "中",
+    "reading": "zhōng",
+    "de": "Mitte; in; unter",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "他是三个人中最高的。",
+      "reading": "Tā shì sān gè rén zhōng zuì gāo de.",
+      "de": "Er ist der Größte von den dreien."
+    }
+  },
+  {
+    "id": "zh:左:zuǒ:n",
+    "target": "左",
+    "reading": "zuǒ",
+    "de": "links",
+    "pos": "noun",
+    "category": "directions",
+    "level": "A1",
+    "example": {
+      "target": "到路口往左拐。",
+      "reading": "Dào lùkǒu wǎng zuǒ guǎi.",
+      "de": "An der Kreuzung links abbiegen."
+    }
+  },
+  {
+    "id": "zh:杯子:bēizi:n",
+    "target": "杯子",
+    "reading": "bēizi",
+    "de": "Becher; Glas; Tasse",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "这个杯子是我的。",
+      "reading": "Zhège bēizi shì wǒ de.",
+      "de": "Dieser Becher gehört mir."
+    }
+  },
+  {
+    "id": "zh:地:dì:n",
+    "target": "地",
+    "reading": "dì",
+    "de": "Boden; Erde",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "地很干净。",
+      "reading": "Dì hěn gānjìng.",
+      "de": "Der Boden ist sehr sauber."
+    }
+  },
+  {
+    "id": "zh:电:diàn:n",
+    "target": "电",
+    "reading": "diàn",
+    "de": "Strom; Elektrizität",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "家里没电了。",
+      "reading": "Jiāli méi diàn le.",
+      "de": "Zu Hause ist der Strom ausgefallen."
+    }
+  },
+  {
+    "id": "zh:家里:jiāli:n",
+    "target": "家里",
+    "reading": "jiāli",
+    "de": "zu Hause; in der Familie",
+    "pos": "noun",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我家里有四口人。",
+      "reading": "Wǒ jiāli yǒu sì kǒu rén.",
+      "de": "Bei mir zu Hause sind wir zu viert."
+    }
+  },
+  {
+    "id": "zh:在家:zàijiā:v",
+    "target": "在家",
+    "reading": "zàijiā",
+    "de": "zu Hause sein",
+    "pos": "verb",
+    "category": "home",
+    "level": "A1",
+    "example": {
+      "target": "我今天在家休息。",
+      "reading": "Wǒ jīntiān zàijiā xiūxi.",
+      "de": "Ich ruhe mich heute zu Hause aus."
+    }
+  },
+  {
+    "id": "zh:班:bān:n",
+    "target": "班",
+    "reading": "bān",
+    "de": "Klasse; Schicht",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我们班有二十个学生。",
+      "reading": "Wǒmen bān yǒu èrshí gè xuésheng.",
+      "de": "Unsere Klasse hat zwanzig Schüler."
+    }
+  },
+  {
+    "id": "zh:本子:běnzi:n",
+    "target": "本子",
+    "reading": "běnzi",
+    "de": "Heft",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "这是我的本子。",
+      "reading": "Zhè shì wǒ de běnzi.",
+      "de": "Das ist mein Heft."
+    }
+  },
+  {
+    "id": "zh:大学:dàxué:n",
+    "target": "大学",
+    "reading": "dàxué",
+    "de": "Universität",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我哥哥在上大学。",
+      "reading": "Wǒ gēge zài shàng dàxué.",
+      "de": "Mein älterer Bruder studiert an der Uni."
+    }
+  },
+  {
+    "id": "zh:大学生:dàxuéshēng:n",
+    "target": "大学生",
+    "reading": "dàxuéshēng",
+    "de": "Student/in",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我妹妹是大学生。",
+      "reading": "Wǒ mèimei shì dàxuéshēng.",
+      "de": "Meine jüngere Schwester ist Studentin."
+    }
+  },
+  {
+    "id": "zh:读书:dúshū:v",
+    "target": "读书",
+    "reading": "dúshū",
+    "de": "lesen; lernen (zur Schule gehen)",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢读书。",
+      "reading": "Wǒ xǐhuan dúshū.",
+      "de": "Ich lese gern."
+    }
+  },
+  {
+    "id": "zh:放假:fàngjià:v",
+    "target": "放假",
+    "reading": "fàngjià",
+    "de": "Ferien haben; frei haben",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我们明天放假。",
+      "reading": "Wǒmen míngtiān fàngjià.",
+      "de": "Wir haben morgen frei."
+    }
+  },
+  {
+    "id": "zh:放学:fàngxué:v",
+    "target": "放学",
+    "reading": "fàngxué",
+    "de": "Schulschluss haben",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "你几点放学？",
+      "reading": "Nǐ jǐ diǎn fàngxué?",
+      "de": "Wann hast du Schulschluss?"
+    }
+  },
+  {
+    "id": "zh:汉字:Hànzì:n",
+    "target": "汉字",
+    "reading": "Hànzì",
+    "de": "chinesisches Schriftzeichen",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我会写一百个汉字。",
+      "reading": "Wǒ huì xiě yìbǎi gè Hànzì.",
+      "de": "Ich kann hundert Schriftzeichen schreiben."
+    }
+  },
+  {
+    "id": "zh:话:huà:n",
+    "target": "话",
+    "reading": "huà",
+    "de": "Worte; Gesagtes",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我听不懂他的话。",
+      "reading": "Wǒ tīng bu dǒng tā de huà.",
+      "de": "Ich verstehe nicht, was er sagt."
+    }
+  },
+  {
+    "id": "zh:记:jì:v",
+    "target": "记",
+    "reading": "jì",
+    "de": "sich merken; notieren",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "请记一下我的电话。",
+      "reading": "Qǐng jì yíxià wǒ de diànhuà.",
+      "de": "Bitte notier dir meine Nummer."
+    }
+  },
+  {
+    "id": "zh:记住:jìzhù:v",
+    "target": "记住",
+    "reading": "jìzhù",
+    "de": "sich einprägen; behalten",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我记住你的名字了。",
+      "reading": "Wǒ jìzhù nǐ de míngzi le.",
+      "de": "Ich habe mir deinen Namen gemerkt."
+    }
+  },
+  {
+    "id": "zh:教学楼:jiàoxuélóu:n",
+    "target": "教学楼",
+    "reading": "jiàoxuélóu",
+    "de": "Unterrichtsgebäude",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "教学楼在图书馆旁边。",
+      "reading": "Jiàoxuélóu zài túshūguǎn pángbiān.",
+      "de": "Das Unterrichtsgebäude ist neben der Bibliothek."
+    }
+  },
+  {
+    "id": "zh:考:kǎo:v",
+    "target": "考",
+    "reading": "kǎo",
+    "de": "eine Prüfung machen",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "你考得怎么样？",
+      "reading": "Nǐ kǎo de zěnmeyàng?",
+      "de": "Wie lief deine Prüfung?"
+    }
+  },
+  {
+    "id": "zh:课:kè:n",
+    "target": "课",
+    "reading": "kè",
+    "de": "Unterricht; Lektion",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我今天有三节课。",
+      "reading": "Wǒ jīntiān yǒu sān jié kè.",
+      "de": "Ich habe heute drei Unterrichtsstunden."
+    }
+  },
+  {
+    "id": "zh:课本:kèběn:n",
+    "target": "课本",
+    "reading": "kèběn",
+    "de": "Lehrbuch",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "请打开课本。",
+      "reading": "Qǐng dǎkāi kèběn.",
+      "de": "Schlagt bitte das Lehrbuch auf."
+    }
+  },
+  {
+    "id": "zh:课文:kèwén:n",
+    "target": "课文",
+    "reading": "kèwén",
+    "de": "Lektionstext",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "请读一下课文。",
+      "reading": "Qǐng dú yíxià kèwén.",
+      "de": "Lies bitte den Lektionstext vor."
+    }
+  },
+  {
+    "id": "zh:上课:shàngkè:v",
+    "target": "上课",
+    "reading": "shàngkè",
+    "de": "Unterricht haben",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我们八点上课。",
+      "reading": "Wǒmen bā diǎn shàngkè.",
+      "de": "Unser Unterricht beginnt um acht."
+    }
+  },
+  {
+    "id": "zh:上学:shàngxué:v",
+    "target": "上学",
+    "reading": "shàngxué",
+    "de": "zur Schule gehen",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "孩子们七点去上学。",
+      "reading": "Háizimen qī diǎn qù shàngxué.",
+      "de": "Die Kinder gehen um sieben zur Schule."
+    }
+  },
+  {
+    "id": "zh:书:shū:n",
+    "target": "书",
+    "reading": "shū",
+    "de": "Buch",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "这本书很有意思。",
+      "reading": "Zhè běn shū hěn yǒu yìsi.",
+      "de": "Dieses Buch ist sehr interessant."
+    }
+  },
+  {
+    "id": "zh:书包:shūbāo:n",
+    "target": "书包",
+    "reading": "shūbāo",
+    "de": "Schultasche",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我的书包很重。",
+      "reading": "Wǒ de shūbāo hěn zhòng.",
+      "de": "Meine Schultasche ist sehr schwer."
+    }
+  },
+  {
+    "id": "zh:听写:tīngxiě:n",
+    "target": "听写",
+    "reading": "tīngxiě",
+    "de": "Diktat; nach Diktat schreiben",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我们今天有听写。",
+      "reading": "Wǒmen jīntiān yǒu tīngxiě.",
+      "de": "Wir schreiben heute ein Diktat."
+    }
+  },
+  {
+    "id": "zh:图书馆:túshūguǎn:n",
+    "target": "图书馆",
+    "reading": "túshūguǎn",
+    "de": "Bibliothek",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我常去图书馆看书。",
+      "reading": "Wǒ cháng qù túshūguǎn kàn shū.",
+      "de": "Ich gehe oft zum Lesen in die Bibliothek."
+    }
+  },
+  {
+    "id": "zh:外语:wàiyǔ:n",
+    "target": "外语",
+    "reading": "wàiyǔ",
+    "de": "Fremdsprache",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "你会说几种外语？",
+      "reading": "Nǐ huì shuō jǐ zhǒng wàiyǔ?",
+      "de": "Wie viele Fremdsprachen sprichst du?"
+    }
+  },
+  {
+    "id": "zh:下课:xiàkè:v",
+    "target": "下课",
+    "reading": "xiàkè",
+    "de": "Unterrichtsschluss haben",
+    "pos": "verb",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我们四点下课。",
+      "reading": "Wǒmen sì diǎn xiàkè.",
+      "de": "Unser Unterricht ist um vier zu Ende."
+    }
+  },
+  {
+    "id": "zh:小学:xiǎoxué:n",
+    "target": "小学",
+    "reading": "xiǎoxué",
+    "de": "Grundschule",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我女儿在上小学。",
+      "reading": "Wǒ nǚ'ér zài shàng xiǎoxué.",
+      "de": "Meine Tochter geht in die Grundschule."
+    }
+  },
+  {
+    "id": "zh:小学生:xiǎoxuéshēng:n",
+    "target": "小学生",
+    "reading": "xiǎoxuéshēng",
+    "de": "Grundschüler/in",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我弟弟是小学生。",
+      "reading": "Wǒ dìdi shì xiǎoxuéshēng.",
+      "de": "Mein kleiner Bruder ist Grundschüler."
+    }
+  },
+  {
+    "id": "zh:学院:xuéyuàn:n",
+    "target": "学院",
+    "reading": "xuéyuàn",
+    "de": "Hochschule; Fakultät",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "她在音乐学院学习。",
+      "reading": "Tā zài yīnyuè xuéyuàn xuéxí.",
+      "de": "Sie studiert an der Musikhochschule."
+    }
+  },
+  {
+    "id": "zh:页:yè:mw",
+    "target": "页",
+    "reading": "yè",
+    "de": "Seite (im Buch)",
+    "pos": "measure",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "请看第十页。",
+      "reading": "Qǐng kàn dì shí yè.",
+      "de": "Schlagt bitte Seite zehn auf."
+    }
+  },
+  {
+    "id": "zh:知识:zhīshi:n",
+    "target": "知识",
+    "reading": "zhīshi",
+    "de": "Wissen; Kenntnisse",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "读书可以学到很多知识。",
+      "reading": "Dúshū kěyǐ xuédào hěn duō zhīshi.",
+      "de": "Durch Lesen kann man viel Wissen erwerben."
+    }
+  },
+  {
+    "id": "zh:中学:zhōngxué:n",
+    "target": "中学",
+    "reading": "zhōngxué",
+    "de": "Mittelschule; weiterführende Schule",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "我姐姐是中学老师。",
+      "reading": "Wǒ jiějie shì zhōngxué lǎoshī.",
+      "de": "Meine ältere Schwester ist Lehrerin an einer Mittelschule."
+    }
+  },
+  {
+    "id": "zh:中学生:zhōngxuéshēng:n",
+    "target": "中学生",
+    "reading": "zhōngxuéshēng",
+    "de": "Mittelschüler/in",
+    "pos": "noun",
+    "category": "education",
+    "level": "A1",
+    "example": {
+      "target": "他儿子是中学生。",
+      "reading": "Tā érzi shì zhōngxuéshēng.",
+      "de": "Sein Sohn ist Mittelschüler."
+    }
+  },
+  {
+    "id": "zh:唱:chàng:v",
+    "target": "唱",
+    "reading": "chàng",
+    "de": "singen",
+    "pos": "verb",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "她唱得很好。",
+      "reading": "Tā chàng de hěn hǎo.",
+      "de": "Sie singt sehr gut."
+    }
+  },
+  {
+    "id": "zh:动作:dòngzuò:n",
+    "target": "动作",
+    "reading": "dòngzuò",
+    "de": "Bewegung; Handlung",
+    "pos": "noun",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "他的动作很快。",
+      "reading": "Tā de dòngzuò hěn kuài.",
+      "de": "Seine Bewegungen sind sehr schnell."
+    }
+  },
+  {
+    "id": "zh:歌:gē:n",
+    "target": "歌",
+    "reading": "gē",
+    "de": "Lied",
+    "pos": "noun",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我喜欢这首歌。",
+      "reading": "Wǒ xǐhuan zhè shǒu gē.",
+      "de": "Ich mag dieses Lied."
+    }
+  },
+  {
+    "id": "zh:球:qiú:n",
+    "target": "球",
+    "reading": "qiú",
+    "de": "Ball",
+    "pos": "noun",
+    "category": "hobbies",
+    "level": "A1",
+    "example": {
+      "target": "我们下午去打球吧。",
+      "reading": "Wǒmen xiàwǔ qù dǎ qiú ba.",
+      "de": "Lass uns heute Nachmittag Ball spielen gehen."
+    }
+  },
+  {
+    "id": "zh:打电话:dǎ diànhuà:v",
+    "target": "打电话",
+    "reading": "dǎ diànhuà",
+    "de": "telefonieren; anrufen",
+    "pos": "verb",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "我给妈妈打电话。",
+      "reading": "Wǒ gěi māma dǎ diànhuà.",
+      "de": "Ich rufe meine Mutter an."
+    }
+  },
+  {
+    "id": "zh:电视机:diànshìjī:n",
+    "target": "电视机",
+    "reading": "diànshìjī",
+    "de": "Fernseher",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "这个电视机很大。",
+      "reading": "Zhège diànshìjī hěn dà.",
+      "de": "Dieser Fernseher ist sehr groß."
+    }
+  },
+  {
+    "id": "zh:网友:wǎngyǒu:n",
+    "target": "网友",
+    "reading": "wǎngyǒu",
+    "de": "Internetbekanntschaft; Online-Freund/in",
+    "pos": "noun",
+    "category": "media",
+    "level": "A1",
+    "example": {
+      "target": "他是我的网友。",
+      "reading": "Tā shì wǒ de wǎngyǒu.",
+      "de": "Er ist ein Online-Freund von mir."
+    }
+  },
+  {
+    "id": "zh:开玩笑:kāi wánxiào:v",
+    "target": "开玩笑",
+    "reading": "kāi wánxiào",
+    "de": "Witze machen; scherzen",
+    "pos": "verb",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "我是开玩笑的。",
+      "reading": "Wǒ shì kāi wánxiào de.",
+      "de": "Ich mache nur Spaß."
+    }
+  },
+  {
+    "id": "zh:认真:rènzhēn:adj",
+    "target": "认真",
+    "reading": "rènzhēn",
+    "de": "gewissenhaft; ernsthaft",
+    "pos": "adjective",
+    "category": "feelings",
+    "level": "A1",
+    "example": {
+      "target": "她学习很认真。",
+      "reading": "Tā xuéxí hěn rènzhēn.",
+      "de": "Sie lernt sehr gewissenhaft."
+    }
+  },
+  {
+    "id": "zh:病:bìng:n",
+    "target": "病",
+    "reading": "bìng",
+    "de": "Krankheit; krank sein",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "他的病好了。",
+      "reading": "Tā de bìng hǎo le.",
+      "de": "Er ist wieder gesund."
+    }
+  },
+  {
+    "id": "zh:病人:bìngrén:n",
+    "target": "病人",
+    "reading": "bìngrén",
+    "de": "Patient/in",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "医生在看病人。",
+      "reading": "Yīshēng zài kàn bìngrén.",
+      "de": "Der Arzt untersucht gerade einen Patienten."
+    }
+  },
+  {
+    "id": "zh:看病:kànbìng:v",
+    "target": "看病",
+    "reading": "kànbìng",
+    "de": "zum Arzt gehen",
+    "pos": "verb",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "我明天去医院看病。",
+      "reading": "Wǒ míngtiān qù yīyuàn kànbìng.",
+      "de": "Ich gehe morgen im Krankenhaus zum Arzt."
+    }
+  },
+  {
+    "id": "zh:身上:shēnshang:n",
+    "target": "身上",
+    "reading": "shēnshang",
+    "de": "am Körper; bei sich",
+    "pos": "noun",
+    "category": "health",
+    "level": "A1",
+    "example": {
+      "target": "我身上没带钱。",
+      "reading": "Wǒ shēnshang méi dài qián.",
+      "de": "Ich habe kein Geld bei mir."
+    }
+  },
+  {
+    "id": "zh:雨:yǔ:n",
+    "target": "雨",
+    "reading": "yǔ",
+    "de": "Regen",
+    "pos": "noun",
+    "category": "weather",
+    "level": "A1",
+    "example": {
+      "target": "今天的雨很大。",
+      "reading": "Jīntiān de yǔ hěn dà.",
+      "de": "Heute regnet es stark."
+    }
+  },
+  {
+    "id": "zh:出来:chūlai:v",
+    "target": "出来",
+    "reading": "chūlai",
+    "de": "herauskommen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你快出来吧。",
+      "reading": "Nǐ kuài chūlai ba.",
+      "de": "Komm schnell raus."
+    }
+  },
+  {
+    "id": "zh:出去:chūqu:v",
+    "target": "出去",
+    "reading": "chūqu",
+    "de": "hinausgehen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我想出去走走。",
+      "reading": "Wǒ xiǎng chūqu zǒuzou.",
+      "de": "Ich möchte ein bisschen rausgehen."
+    }
+  },
+  {
+    "id": "zh:打开:dǎkāi:v",
+    "target": "打开",
+    "reading": "dǎkāi",
+    "de": "öffnen; aufmachen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请打开窗户。",
+      "reading": "Qǐng dǎkāi chuānghu.",
+      "de": "Bitte mach das Fenster auf."
+    }
+  },
+  {
+    "id": "zh:得到:dédào:v",
+    "target": "得到",
+    "reading": "dédào",
+    "de": "bekommen; erhalten",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "他得到了一个好机会。",
+      "reading": "Tā dédào le yí gè hǎo jīhuì.",
+      "de": "Er hat eine gute Chance bekommen."
+    }
+  },
+  {
+    "id": "zh:动:dòng:v",
+    "target": "动",
+    "reading": "dòng",
+    "de": "sich bewegen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请你不要动。",
+      "reading": "Qǐng nǐ búyào dòng.",
+      "de": "Bitte beweg dich nicht."
+    }
+  },
+  {
+    "id": "zh:干:gàn:v",
+    "target": "干",
+    "reading": "gàn",
+    "de": "machen; tun",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "这个工作我来干。",
+      "reading": "Zhège gōngzuò wǒ lái gàn.",
+      "de": "Diese Arbeit übernehme ich."
+    }
+  },
+  {
+    "id": "zh:关上:guānshang:v",
+    "target": "关上",
+    "reading": "guānshang",
+    "de": "zumachen; schließen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请把门关上。",
+      "reading": "Qǐng bǎ mén guānshang.",
+      "de": "Bitte mach die Tür zu."
+    }
+  },
+  {
+    "id": "zh:回到:huídào:v",
+    "target": "回到",
+    "reading": "huídào",
+    "de": "zurückkehren nach",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "他回到家了。",
+      "reading": "Tā huídào jiā le.",
+      "de": "Er ist wieder zu Hause."
+    }
+  },
+  {
+    "id": "zh:回来:huílai:v",
+    "target": "回来",
+    "reading": "huílai",
+    "de": "zurückkommen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你什么时候回来？",
+      "reading": "Nǐ shénme shíhou huílai?",
+      "de": "Wann kommst du zurück?"
+    }
+  },
+  {
+    "id": "zh:回去:huíqu:v",
+    "target": "回去",
+    "reading": "huíqu",
+    "de": "zurückgehen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "太晚了，我要回去了。",
+      "reading": "Tài wǎn le, wǒ yào huíqu le.",
+      "de": "Es ist schon spät, ich muss zurück."
+    }
+  },
+  {
+    "id": "zh:见:jiàn:v",
+    "target": "见",
+    "reading": "jiàn",
+    "de": "sehen; treffen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我们明天见！",
+      "reading": "Wǒmen míngtiān jiàn!",
+      "de": "Wir sehen uns morgen!"
+    }
+  },
+  {
+    "id": "zh:进来:jìnlai:v",
+    "target": "进来",
+    "reading": "jìnlai",
+    "de": "hereinkommen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请进来坐吧。",
+      "reading": "Qǐng jìnlai zuò ba.",
+      "de": "Komm doch rein und setz dich."
+    }
+  },
+  {
+    "id": "zh:进去:jìnqu:v",
+    "target": "进去",
+    "reading": "jìnqu",
+    "de": "hineingehen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我们进去看看吧。",
+      "reading": "Wǒmen jìnqu kànkan ba.",
+      "de": "Lass uns reingehen und mal schauen."
+    }
+  },
+  {
+    "id": "zh:看到:kàndào:v",
+    "target": "看到",
+    "reading": "kàndào",
+    "de": "sehen; erblicken",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我看到他了。",
+      "reading": "Wǒ kàndào tā le.",
+      "de": "Ich habe ihn gesehen."
+    }
+  },
+  {
+    "id": "zh:看见:kànjiàn:v",
+    "target": "看见",
+    "reading": "kànjiàn",
+    "de": "sehen; erblicken",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你看见我的手机了吗？",
+      "reading": "Nǐ kànjiàn wǒ de shǒujī le ma?",
+      "de": "Hast du mein Handy gesehen?"
+    }
+  },
+  {
+    "id": "zh:起:qǐ:v",
+    "target": "起",
+    "reading": "qǐ",
+    "de": "aufstehen; sich erheben",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "他每天起得很早。",
+      "reading": "Tā měi tiān qǐ de hěn zǎo.",
+      "de": "Er steht jeden Tag sehr früh auf."
+    }
+  },
+  {
+    "id": "zh:起来:qǐlai:v",
+    "target": "起来",
+    "reading": "qǐlai",
+    "de": "aufstehen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "快起来，八点了！",
+      "reading": "Kuài qǐlai, bā diǎn le!",
+      "de": "Steh schnell auf, es ist schon acht!"
+    }
+  },
+  {
+    "id": "zh:睡:shuì:v",
+    "target": "睡",
+    "reading": "shuì",
+    "de": "schlafen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你昨天睡得好吗？",
+      "reading": "Nǐ zuótiān shuì de hǎo ma?",
+      "de": "Hast du gestern gut geschlafen?"
+    }
+  },
+  {
+    "id": "zh:说话:shuōhuà:v",
+    "target": "说话",
+    "reading": "shuōhuà",
+    "de": "sprechen; reden",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "上课的时候别说话。",
+      "reading": "Shàngkè de shíhou bié shuōhuà.",
+      "de": "Im Unterricht bitte nicht reden."
+    }
+  },
+  {
+    "id": "zh:听到:tīngdào:v",
+    "target": "听到",
+    "reading": "tīngdào",
+    "de": "hören",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我听到了你的声音。",
+      "reading": "Wǒ tīngdào le nǐ de shēngyīn.",
+      "de": "Ich habe deine Stimme gehört."
+    }
+  },
+  {
+    "id": "zh:听见:tīngjiàn:v",
+    "target": "听见",
+    "reading": "tīngjiàn",
+    "de": "hören",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "你听见了吗？",
+      "reading": "Nǐ tīngjiàn le ma?",
+      "de": "Hast du es gehört?"
+    }
+  },
+  {
+    "id": "zh:忘记:wàngjì:v",
+    "target": "忘记",
+    "reading": "wàngjì",
+    "de": "vergessen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我忘记带钥匙了。",
+      "reading": "Wǒ wàngjì dài yàoshi le.",
+      "de": "Ich habe vergessen, den Schlüssel mitzunehmen."
+    }
+  },
+  {
+    "id": "zh:找到:zhǎodào:v",
+    "target": "找到",
+    "reading": "zhǎodào",
+    "de": "finden",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "我找到我的手机了。",
+      "reading": "Wǒ zhǎodào wǒ de shǒujī le.",
+      "de": "Ich habe mein Handy gefunden."
+    }
+  },
+  {
+    "id": "zh:坐下:zuòxia:v",
+    "target": "坐下",
+    "reading": "zuòxia",
+    "de": "sich hinsetzen",
+    "pos": "verb",
+    "category": "verbs",
+    "level": "A1",
+    "example": {
+      "target": "请大家坐下。",
+      "reading": "Qǐng dàjiā zuòxia.",
+      "de": "Bitte setzt euch alle."
+    }
+  },
+  {
+    "id": "zh:不大:bú dà:phr",
+    "target": "不大",
+    "reading": "bú dà",
+    "de": "nicht groß; nicht sehr",
+    "pos": "phrase",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这个房间不大。",
+      "reading": "Zhège fángjiān bú dà.",
+      "de": "Dieses Zimmer ist nicht groß."
+    }
+  },
+  {
+    "id": "zh:不对:bú duì:adj",
+    "target": "不对",
+    "reading": "bú duì",
+    "de": "falsch; nicht richtig",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "你说得不对。",
+      "reading": "Nǐ shuō de bú duì.",
+      "de": "Was du sagst, stimmt nicht."
+    }
+  },
+  {
+    "id": "zh:错:cuò:adj",
+    "target": "错",
+    "reading": "cuò",
+    "de": "falsch; sich irren",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "对不起，我错了。",
+      "reading": "Duìbuqǐ, wǒ cuò le.",
+      "de": "Entschuldigung, ich habe mich geirrt."
+    }
+  },
+  {
+    "id": "zh:好听:hǎotīng:adj",
+    "target": "好听",
+    "reading": "hǎotīng",
+    "de": "schön (klingend)",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "你的名字很好听。",
+      "reading": "Nǐ de míngzi hěn hǎotīng.",
+      "de": "Dein Name klingt schön."
+    }
+  },
+  {
+    "id": "zh:老:lǎo:adj",
+    "target": "老",
+    "reading": "lǎo",
+    "de": "alt",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这只狗很老了。",
+      "reading": "Zhè zhī gǒu hěn lǎo le.",
+      "de": "Dieser Hund ist schon sehr alt."
+    }
+  },
+  {
+    "id": "zh:有用:yǒuyòng:adj",
+    "target": "有用",
+    "reading": "yǒuyòng",
+    "de": "nützlich",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这本书很有用。",
+      "reading": "Zhè běn shū hěn yǒuyòng.",
+      "de": "Dieses Buch ist sehr nützlich."
+    }
+  },
+  {
+    "id": "zh:重:zhòng:adj",
+    "target": "重",
+    "reading": "zhòng",
+    "de": "schwer",
+    "pos": "adjective",
+    "category": "adjectives",
+    "level": "A1",
+    "example": {
+      "target": "这个箱子太重了。",
+      "reading": "Zhège xiāngzi tài zhòng le.",
+      "de": "Dieser Koffer ist zu schwer."
+    }
+  },
+  {
+    "id": "zh:不用:búyòng:adv",
+    "target": "不用",
+    "reading": "búyòng",
+    "de": "nicht nötig; nicht brauchen",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "你不用来了。",
+      "reading": "Nǐ búyòng lái le.",
+      "de": "Du brauchst nicht mehr zu kommen."
+    }
+  },
+  {
+    "id": "zh:还有:háiyǒu:conj",
+    "target": "还有",
+    "reading": "háiyǒu",
+    "de": "außerdem; noch haben",
+    "pos": "conjunction",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我还有一个问题。",
+      "reading": "Wǒ háiyǒu yí gè wèntí.",
+      "de": "Ich habe noch eine Frage."
+    }
+  },
+  {
+    "id": "zh:没:méi:adv",
+    "target": "没",
+    "reading": "méi",
+    "de": "nicht (haben)",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我今天没吃早饭。",
+      "reading": "Wǒ jīntiān méi chī zǎofàn.",
+      "de": "Ich habe heute nicht gefrühstückt."
+    }
+  },
+  {
+    "id": "zh:太:tài:adv",
+    "target": "太",
+    "reading": "tài",
+    "de": "zu; äußerst",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "今天太热了！",
+      "reading": "Jīntiān tài rè le!",
+      "de": "Heute ist es zu heiß!"
+    }
+  },
+  {
+    "id": "zh:一块儿:yíkuàir:adv",
+    "target": "一块儿",
+    "reading": "yíkuàir",
+    "de": "zusammen",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我们一块儿去吧。",
+      "reading": "Wǒmen yíkuàir qù ba.",
+      "de": "Lass uns zusammen hingehen."
+    }
+  },
+  {
+    "id": "zh:真:zhēn:adv",
+    "target": "真",
+    "reading": "zhēn",
+    "de": "wirklich; echt",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "你的中文真好！",
+      "reading": "Nǐ de Zhōngwén zhēn hǎo!",
+      "de": "Dein Chinesisch ist wirklich gut!"
+    }
+  },
+  {
+    "id": "zh:正:zhèng:adv",
+    "target": "正",
+    "reading": "zhèng",
+    "de": "gerade (im Begriff)",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "我正要给你打电话。",
+      "reading": "Wǒ zhèng yào gěi nǐ dǎ diànhuà.",
+      "de": "Ich wollte dich gerade anrufen."
+    }
+  },
+  {
+    "id": "zh:正在:zhèngzài:adv",
+    "target": "正在",
+    "reading": "zhèngzài",
+    "de": "gerade (dabei sein)",
+    "pos": "adverb",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "他正在开会。",
+      "reading": "Tā zhèngzài kāihuì.",
+      "de": "Er ist gerade in einer Besprechung."
+    }
+  },
+  {
+    "id": "zh:子:zi:part",
+    "target": "子",
+    "reading": "zi",
+    "de": "(Nominalsuffix)",
+    "pos": "particle",
+    "category": "connectors",
+    "level": "A1",
+    "example": {
+      "target": "桌子上有个杯子。",
+      "reading": "Zhuōzi shang yǒu ge bēizi.",
+      "de": "Auf dem Tisch steht ein Becher."
+    }
+  }
+]

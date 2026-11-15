@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.db import IntegrityError, transaction
@@ -45,7 +46,7 @@ def account(request, action):
 
 
 def session_response(request):
-    return JsonResponse({"username": request.user.get_username() or None, "csrf": get_token(request)})
+    return JsonResponse({"username": request.user.get_username() or None, "csrf": get_token(request), "providers": list(settings.SOCIALACCOUNT_PROVIDERS)})
 
 
 @never_cache

@@ -1,4 +1,4 @@
-import { Welcome, MandarinEntry } from "./features/welcome/Welcome";
+import { MandarinEntry } from "./features/welcome/Welcome";
 import { useStore } from "./lib/store";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -22,7 +22,6 @@ export default function App() {
   const { lang } = useStore();
   return (
     <Routes>
-      <Route index element={<Welcome />} />
       <Route path="sprachen/zh" element={<MandarinEntry />} />
       <Route element={<Layout />}>
         <Route path="heute" element={<Dashboard />} />

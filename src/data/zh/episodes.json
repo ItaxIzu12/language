@@ -1,0 +1,410 @@
+[
+  {
+    "id": "zh-ep-1",
+    "glyph": "咖",
+    "title": "在咖啡店",
+    "titleDe": "Im Café",
+    "level": "A1",
+    "description": "Zwei Freunde bestellen Kaffee. Ganz einfache Sätze zum Einstieg.",
+    "lines": [
+      {
+        "speaker": "小林",
+        "target": "你好！你想喝什么？",
+        "reading": "Nǐ hǎo! Nǐ xiǎng hē shénme?",
+        "de": "Hallo! Was möchtest du trinken?"
+      },
+      {
+        "speaker": "我",
+        "target": "我想喝一杯咖啡。你呢？",
+        "reading": "Wǒ xiǎng hē yì bēi kāfēi. Nǐ ne?",
+        "de": "Ich möchte einen Kaffee. Und du?"
+      },
+      {
+        "speaker": "小林",
+        "target": "我喝茶。这里的茶很好喝。",
+        "reading": "Wǒ hē chá. Zhèlǐ de chá hěn hǎohē.",
+        "de": "Ich trinke Tee. Der Tee hier ist sehr lecker."
+      },
+      {
+        "speaker": "我",
+        "target": "咖啡多少钱？",
+        "reading": "Kāfēi duōshao qián?",
+        "de": "Wie viel kostet der Kaffee?"
+      },
+      {
+        "speaker": "小林",
+        "target": "二十块。有点儿贵。",
+        "reading": "Èrshí kuài. Yǒudiǎnr guì.",
+        "de": "Zwanzig Yuan. Etwas teuer."
+      },
+      {
+        "speaker": "我",
+        "target": "没关系，今天我请客。",
+        "reading": "Méi guānxi, jīntiān wǒ qǐngkè.",
+        "de": "Macht nichts, heute lade ich ein."
+      },
+      {
+        "speaker": "小林",
+        "target": "真的吗？谢谢你！",
+        "reading": "Zhēn de ma? Xièxie nǐ!",
+        "de": "Wirklich? Danke dir!"
+      },
+      {
+        "speaker": "我",
+        "target": "别客气！",
+        "reading": "Bié kèqi!",
+        "de": "Keine Ursache!"
+      }
+    ]
+  },
+  {
+    "id": "zh-ep-2",
+    "glyph": "球",
+    "title": "周末打羽毛球",
+    "titleDe": "Badminton am Wochenende",
+    "level": "A2",
+    "description": "Verabredung zum Sport: Zeit, Ort und eine kleine Planänderung.",
+    "lines": [
+      {
+        "speaker": "小林",
+        "target": "这个周末你有空吗？",
+        "reading": "Zhège zhōumò nǐ yǒu kòng ma?",
+        "de": "Hast du dieses Wochenende Zeit?"
+      },
+      {
+        "speaker": "我",
+        "target": "周六有空。怎么了？",
+        "reading": "Zhōuliù yǒu kòng. Zěnme le?",
+        "de": "Samstag habe ich Zeit. Was gibt's?"
+      },
+      {
+        "speaker": "小林",
+        "target": "我们一起去打羽毛球吧！",
+        "reading": "Wǒmen yìqǐ qù dǎ yǔmáoqiú ba!",
+        "de": "Lass uns zusammen Badminton spielen!"
+      },
+      {
+        "speaker": "我",
+        "target": "好主意！几点见面？",
+        "reading": "Hǎo zhǔyi! Jǐ diǎn jiànmiàn?",
+        "de": "Gute Idee! Um wie viel Uhr treffen wir uns?"
+      },
+      {
+        "speaker": "小林",
+        "target": "下午三点，可以吗？",
+        "reading": "Xiàwǔ sān diǎn, kěyǐ ma?",
+        "de": "Nachmittags um drei, geht das?"
+      },
+      {
+        "speaker": "我",
+        "target": "三点有点儿早。四点怎么样？",
+        "reading": "Sān diǎn yǒudiǎnr zǎo. Sì diǎn zěnmeyàng?",
+        "de": "Drei ist etwas früh. Wie wäre vier?"
+      },
+      {
+        "speaker": "小林",
+        "target": "行，那就四点。在哪儿见？",
+        "reading": "Xíng, nà jiù sì diǎn. Zài nǎr jiàn?",
+        "de": "Okay, dann um vier. Wo treffen wir uns?"
+      },
+      {
+        "speaker": "我",
+        "target": "在地铁站门口吧，离球馆很近。",
+        "reading": "Zài dìtiězhàn ménkǒu ba, lí qiúguǎn hěn jìn.",
+        "de": "Am Eingang der U-Bahn-Station, das ist nah an der Halle."
+      },
+      {
+        "speaker": "小林",
+        "target": "好的，说定了！别迟到！",
+        "reading": "Hǎo de, shuōdìng le! Bié chídào!",
+        "de": "Okay, abgemacht! Komm nicht zu spät!"
+      },
+      {
+        "speaker": "我",
+        "target": "放心，我一定准时到。",
+        "reading": "Fàngxīn, wǒ yídìng zhǔnshí dào.",
+        "de": "Keine Sorge, ich bin bestimmt pünktlich."
+      }
+    ]
+  },
+  {
+    "id": "zh-ep-3",
+    "glyph": "饿",
+    "title": "点外卖",
+    "titleDe": "Essen bestellen",
+    "level": "A2",
+    "description": "Hunger am Abend: gemeinsam Essen liefern lassen und über Geschmack reden.",
+    "lines": [
+      {
+        "speaker": "小林",
+        "target": "我饿死了！你吃饭了吗？",
+        "reading": "Wǒ è sǐ le! Nǐ chīfàn le ma?",
+        "de": "Ich verhungere! Hast du schon gegessen?"
+      },
+      {
+        "speaker": "我",
+        "target": "还没呢。我们点外卖吧。",
+        "reading": "Hái méi ne. Wǒmen diǎn wàimài ba.",
+        "de": "Noch nicht. Lass uns Essen bestellen."
+      },
+      {
+        "speaker": "小林",
+        "target": "好啊！你想吃什么？",
+        "reading": "Hǎo a! Nǐ xiǎng chī shénme?",
+        "de": "Gern! Was möchtest du essen?"
+      },
+      {
+        "speaker": "我",
+        "target": "我想吃清淡一点儿的。昨天的菜太油腻了。",
+        "reading": "Wǒ xiǎng chī qīngdàn yìdiǎnr de. Zuótiān de cài tài yóunì le.",
+        "de": "Ich möchte etwas Leichteres. Das Essen gestern war zu fettig."
+      },
+      {
+        "speaker": "小林",
+        "target": "那面条怎么样？这家店评价很好。",
+        "reading": "Nà miàntiáo zěnmeyàng? Zhè jiā diàn píngjià hěn hǎo.",
+        "de": "Wie wäre es dann mit Nudeln? Dieser Laden hat sehr gute Bewertungen."
+      },
+      {
+        "speaker": "我",
+        "target": "听起来不错。要等多久？",
+        "reading": "Tīng qǐlai búcuò. Yào děng duō jiǔ?",
+        "de": "Klingt gut. Wie lange müssen wir warten?"
+      },
+      {
+        "speaker": "小林",
+        "target": "大概三十分钟就送到。",
+        "reading": "Dàgài sānshí fēnzhōng jiù sòngdào.",
+        "de": "In etwa dreißig Minuten wird geliefert."
+      },
+      {
+        "speaker": "我",
+        "target": "好，下单吧！我来付款。",
+        "reading": "Hǎo, xiàdān ba! Wǒ lái fùkuǎn.",
+        "de": "Gut, bestell! Ich bezahle."
+      },
+      {
+        "speaker": "小林",
+        "target": "太好了！好吃的话，我给一个好评。",
+        "reading": "Tài hǎo le! Hǎochī dehuà, wǒ gěi yí ge hǎopíng.",
+        "de": "Super! Wenn es schmeckt, gebe ich eine gute Bewertung."
+      }
+    ]
+  },
+  {
+    "id": "zh-ep-4",
+    "glyph": "旅",
+    "title": "旅游计划",
+    "titleDe": "Reisepläne",
+    "level": "B1",
+    "description": "Kurz vor der Abreise: Tickets, Hotel, Gepäck und Vorfreude.",
+    "lines": [
+      {
+        "speaker": "小林",
+        "target": "听说你下个月要去旅游？",
+        "reading": "Tīngshuō nǐ xià ge yuè yào qù lǚyóu?",
+        "de": "Ich habe gehört, du verreist nächsten Monat?"
+      },
+      {
+        "speaker": "我",
+        "target": "对，我先去希腊，然后去中国。",
+        "reading": "Duì, wǒ xiān qù Xīlà, ránhòu qù Zhōngguó.",
+        "de": "Ja, ich fahre erst nach Griechenland und dann nach China."
+      },
+      {
+        "speaker": "小林",
+        "target": "哇，真羡慕你！机票订好了吗？",
+        "reading": "Wā, zhēn xiànmù nǐ! Jīpiào dìnghǎo le ma?",
+        "de": "Wow, ich beneide dich! Sind die Flüge gebucht?"
+      },
+      {
+        "speaker": "我",
+        "target": "机票和酒店都订好了，但是行李还没收拾呢。",
+        "reading": "Jīpiào hé jiǔdiàn dōu dìnghǎo le, dànshì xíngli hái méi shōushi ne.",
+        "de": "Flüge und Hotel sind gebucht, aber gepackt habe ich noch nicht."
+      },
+      {
+        "speaker": "小林",
+        "target": "别忘了带护照！",
+        "reading": "Bié wàngle dài hùzhào!",
+        "de": "Vergiss den Reisepass nicht!"
+      },
+      {
+        "speaker": "我",
+        "target": "放心，我做了一份攻略，什么都写好了。",
+        "reading": "Fàngxīn, wǒ zuòle yí fèn gōnglüè, shénme dōu xiěhǎo le.",
+        "de": "Keine Sorge, ich habe einen Reiseplan gemacht, da steht alles drin."
+      },
+      {
+        "speaker": "小林",
+        "target": "你打算去哪些景点？",
+        "reading": "Nǐ dǎsuàn qù nǎxiē jǐngdiǎn?",
+        "de": "Welche Sehenswürdigkeiten willst du besuchen?"
+      },
+      {
+        "speaker": "我",
+        "target": "还没确定。你能推荐几个地方吗？",
+        "reading": "Hái méi quèdìng. Nǐ néng tuījiàn jǐ ge dìfang ma?",
+        "de": "Steht noch nicht fest. Kannst du ein paar Orte empfehlen?"
+      },
+      {
+        "speaker": "小林",
+        "target": "当然！我把我的攻略转发给你。",
+        "reading": "Dāngrán! Wǒ bǎ wǒ de gōnglüè zhuǎnfā gěi nǐ.",
+        "de": "Klar! Ich leite dir meinen Reiseplan weiter."
+      },
+      {
+        "speaker": "我",
+        "target": "太好了！我很期待这次旅游。",
+        "reading": "Tài hǎo le! Wǒ hěn qīdài zhè cì lǚyóu.",
+        "de": "Super! Ich freue mich sehr auf diese Reise."
+      }
+    ]
+  },
+  {
+    "id": "zh-ep-5",
+    "glyph": "药",
+    "title": "你好点儿了吗？",
+    "titleDe": "Geht's dir besser?",
+    "level": "B1",
+    "description": "Ein Freund ist krank – Mitgefühl zeigen, Rat geben, gute Besserung wünschen.",
+    "lines": [
+      {
+        "speaker": "我",
+        "target": "你今天怎么没来上班？",
+        "reading": "Nǐ jīntiān zěnme méi lái shàngbān?",
+        "de": "Warum bist du heute nicht zur Arbeit gekommen?"
+      },
+      {
+        "speaker": "小林",
+        "target": "我感冒了，还发烧，一直咳嗽。",
+        "reading": "Wǒ gǎnmào le, hái fāshāo, yìzhí késou.",
+        "de": "Ich bin erkältet, habe Fieber und huste ständig."
+      },
+      {
+        "speaker": "我",
+        "target": "严重吗？你看医生了吗？",
+        "reading": "Yánzhòng ma? Nǐ kàn yīshēng le ma?",
+        "de": "Ist es schlimm? Warst du beim Arzt?"
+      },
+      {
+        "speaker": "小林",
+        "target": "还没去。我觉得不太严重。",
+        "reading": "Hái méi qù. Wǒ juéde bú tài yánzhòng.",
+        "de": "Noch nicht. Ich glaube, es ist nicht so schlimm."
+      },
+      {
+        "speaker": "我",
+        "target": "你吃药了吗？要不要我给你买药？",
+        "reading": "Nǐ chī yào le ma? Yào bu yào wǒ gěi nǐ mǎi yào?",
+        "de": "Hast du Medizin genommen? Soll ich dir welche kaufen?"
+      },
+      {
+        "speaker": "小林",
+        "target": "不用了，谢谢。家里有药。",
+        "reading": "Búyòng le, xièxie. Jiā lǐ yǒu yào.",
+        "de": "Nicht nötig, danke. Ich habe Medizin zu Hause."
+      },
+      {
+        "speaker": "我",
+        "target": "那你多喝水，多休息，别熬夜。",
+        "reading": "Nà nǐ duō hē shuǐ, duō xiūxi, bié áoyè.",
+        "de": "Dann trink viel, ruh dich aus und bleib nicht lange auf."
+      },
+      {
+        "speaker": "小林",
+        "target": "好的。我明天应该会好点儿。",
+        "reading": "Hǎo de. Wǒ míngtiān yīnggāi huì hǎo diǎnr.",
+        "de": "Okay. Morgen sollte es mir besser gehen."
+      },
+      {
+        "speaker": "我",
+        "target": "如果明天还发烧，一定要去看医生。",
+        "reading": "Rúguǒ míngtiān hái fāshāo, yídìng yào qù kàn yīshēng.",
+        "de": "Wenn du morgen noch Fieber hast, geh unbedingt zum Arzt."
+      },
+      {
+        "speaker": "小林",
+        "target": "知道了。谢谢你的关心！",
+        "reading": "Zhīdào le. Xièxie nǐ de guānxīn!",
+        "de": "Verstanden. Danke, dass du dich kümmerst!"
+      },
+      {
+        "speaker": "我",
+        "target": "保重身体，祝你早日康复！",
+        "reading": "Bǎozhòng shēntǐ, zhù nǐ zǎorì kāngfù!",
+        "de": "Pass auf dich auf, gute Besserung!"
+      }
+    ]
+  },
+  {
+    "id": "zh-ep-6",
+    "glyph": "递",
+    "title": "快递出问题了",
+    "titleDe": "Ärger mit dem Paket",
+    "level": "B1",
+    "description": "Eine Reklamation beim Kundenservice: Problem schildern und Lösung finden.",
+    "lines": [
+      {
+        "speaker": "客服",
+        "target": "您好，请问有什么可以帮您？",
+        "reading": "Nín hǎo, qǐngwèn yǒu shénme kěyǐ bāng nín?",
+        "de": "Guten Tag, wie kann ich Ihnen helfen?"
+      },
+      {
+        "speaker": "我",
+        "target": "你好，我上周下单的球拍今天到了，但是坏了。",
+        "reading": "Nǐ hǎo, wǒ shàng zhōu xiàdān de qiúpāi jīntiān dào le, dànshì huài le.",
+        "de": "Hallo, der Schläger, den ich letzte Woche bestellt habe, kam heute an, aber er ist kaputt."
+      },
+      {
+        "speaker": "客服",
+        "target": "非常抱歉！您能发一张照片给我吗？",
+        "reading": "Fēicháng bàoqiàn! Nín néng fā yì zhāng zhàopiàn gěi wǒ ma?",
+        "de": "Das tut mir sehr leid! Können Sie mir ein Foto schicken?"
+      },
+      {
+        "speaker": "我",
+        "target": "好的，我已经发了。这个能修吗？",
+        "reading": "Hǎo de, wǒ yǐjīng fā le. Zhège néng xiū ma?",
+        "de": "Okay, schon gesendet. Kann man das reparieren?"
+      },
+      {
+        "speaker": "客服",
+        "target": "这种情况修不好。我们可以给您换一个新的，或者退款。",
+        "reading": "Zhè zhǒng qíngkuàng xiū bu hǎo. Wǒmen kěyǐ gěi nín huàn yí ge xīn de, huòzhě tuìkuǎn.",
+        "de": "In diesem Fall lässt es sich nicht reparieren. Wir können ihn umtauschen oder das Geld erstatten."
+      },
+      {
+        "speaker": "我",
+        "target": "我想换一个新的。要等多久？",
+        "reading": "Wǒ xiǎng huàn yí ge xīn de. Yào děng duō jiǔ?",
+        "de": "Ich möchte einen neuen. Wie lange dauert das?"
+      },
+      {
+        "speaker": "客服",
+        "target": "大概三天到货，而且包邮。",
+        "reading": "Dàgài sān tiān dàohuò, érqiě bāoyóu.",
+        "de": "Etwa drei Tage, und der Versand ist kostenlos."
+      },
+      {
+        "speaker": "我",
+        "target": "好，那就这样吧。希望这次没问题。",
+        "reading": "Hǎo, nà jiù zhèyàng ba. Xīwàng zhè cì méi wèntí.",
+        "de": "Gut, dann machen wir das so. Hoffentlich klappt es diesmal."
+      },
+      {
+        "speaker": "客服",
+        "target": "请放心！耽误您的时间了，再次抱歉。",
+        "reading": "Qǐng fàngxīn! Dānwu nín de shíjiān le, zàicì bàoqiàn.",
+        "de": "Seien Sie unbesorgt! Entschuldigen Sie nochmals, dass wir Ihre Zeit beansprucht haben."
+      },
+      {
+        "speaker": "我",
+        "target": "没关系，问题解决了就好。",
+        "reading": "Méi guānxi, wèntí jiějué le jiù hǎo.",
+        "de": "Kein Problem, Hauptsache, es ist gelöst."
+      }
+    ]
+  }
+]

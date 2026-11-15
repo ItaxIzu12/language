@@ -1,10 +1,10 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { accountSession } from "./account";
+import { accountSession, socialOptions } from "./account";
 import { draftKey } from "./useAccountSync";
 import { useStore } from "../../lib/store";
 
-export default function AccountPanel() {
+export default function AccountPanel({ entry = false }: { entry?: boolean }) {
   const { username, sync, lang } = useStore();
   const [register, setRegister] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -19,6 +19,7 @@ export default function AccountPanel() {
       await accountSession(register ? "register" : "login", {
         username: String(fields.get("username")), password: String(fields.get("password")),
       });
+      if (entry) window.location.hash = "/heute";
       location.reload();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Verbindung fehlgeschlagen.");
@@ -43,7 +44,8 @@ export default function AccountPanel() {
       }}>Abmelden</button>
     </div>{error && <p role="alert">{error}</p>}
   </div>;
-  return <form onSubmit={submit} className="grid max-w-md gap-3">
+  const { csrf, providers } = socialOptions();
+  return <><form onSubmit={submit} className="grid max-w-md gap-3">
     <p>Mit einem Konto kannst du auf mehreren Geräten weiterlernen. Deinen Gaststand kannst du als Datei ins Konto übernehmen.</p>
     <label>Benutzername<input className="field" required name="username" autoComplete="username" maxLength={150}/></label>
     <label>Passwort<input className="field" required type="password" name="password" autoComplete={register ? "new-password" : "current-password"}/></label>
@@ -51,5 +53,18 @@ export default function AccountPanel() {
     <button className="btn-ink" disabled={busy}>{register ? "Konto erstellen" : "Anmelden"}</button>
     <button type="button" className="btn-line" disabled={busy} onClick={() => { setRegister(!register); setError(""); }}>
       {register ? "Zur Anmeldung" : "Neues Konto anlegen"}</button>
-  </form>;
+  </form>
+    <div className="mt-5 grid gap-2 border-t border-rule pt-4">
+      {["Google", "Apple"].map(label => {
+        const provider = label.toLowerCase();
+        const enabled = providers.includes(provider);
+        return <form method="post" action={`/api/oauth/${provider}/login/`} key={provider}>
+          <input type="hidden" name="csrfmiddlewaretoken" value={csrf}/>
+          <button className="btn-line w-full disabled:opacity-60" type="submit" disabled={!enabled}>
+            Mit {label} fortfahren{!enabled && " · nicht eingerichtet"}
+          </button>
+        </form>;
+      })}
+    </div>
+  </>;
 }

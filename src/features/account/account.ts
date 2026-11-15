@@ -16,6 +16,8 @@ export interface AccountState {
 
 export const accountEnabled = import.meta.env.VITE_ACCOUNT_BACKEND === "1";
 let csrf = "";
+let providers: string[] = [];
+export const socialOptions = () => ({ csrf, providers });
 
 export class ApiError extends Error {
   constructor(message: string, readonly status: number) { super(message); }
@@ -40,8 +42,9 @@ async function api<T>(path: string, method = "GET", data?: unknown, username?: s
 }
 
 export async function accountSession(action = "session", credentials?: { username: string; password: string }) {
-  const data = await api<{ csrf: string; username: string | null }>(action, action === "session" ? "GET" : "POST", credentials);
+  const data = await api<{ csrf: string; providers: string[]; username: string | null }>(action, action === "session" ? "GET" : "POST", credentials);
   csrf = data.csrf;
+  providers = data.providers ?? [];
   return data.username;
 }
 

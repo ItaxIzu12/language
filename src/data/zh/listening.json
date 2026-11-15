@@ -1,0 +1,338 @@
+[
+  {
+    "id": "zh-listen-1",
+    "target": "你好，最近怎么样？",
+    "reading": "Nǐ hǎo, zuìjìn zěnmeyàng?",
+    "de": "Hallo, wie geht's dir in letzter Zeit?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-2",
+    "target": "我今天很忙。",
+    "reading": "Wǒ jīntiān hěn máng.",
+    "de": "Ich bin heute sehr beschäftigt.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-3",
+    "target": "你吃饭了吗？",
+    "reading": "Nǐ chīfàn le ma?",
+    "de": "Hast du schon gegessen?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-4",
+    "target": "这个多少钱？",
+    "reading": "Zhège duōshao qián?",
+    "de": "Wie viel kostet das?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-5",
+    "target": "我想喝一杯咖啡。",
+    "reading": "Wǒ xiǎng hē yì bēi kāfēi.",
+    "de": "Ich möchte einen Kaffee trinken.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-6",
+    "target": "明天你有空吗？",
+    "reading": "Míngtiān nǐ yǒu kòng ma?",
+    "de": "Hast du morgen Zeit?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-7",
+    "target": "我们一起去吃饭吧。",
+    "reading": "Wǒmen yìqǐ qù chīfàn ba.",
+    "de": "Lass uns zusammen essen gehen.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-8",
+    "target": "洗手间在哪儿？",
+    "reading": "Xǐshǒujiān zài nǎr?",
+    "de": "Wo ist die Toilette?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-9",
+    "target": "我不知道。",
+    "reading": "Wǒ bù zhīdào.",
+    "de": "Ich weiß es nicht.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-10",
+    "target": "请说慢一点儿。",
+    "reading": "Qǐng shuō màn yìdiǎnr.",
+    "de": "Bitte sprich etwas langsamer.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-11",
+    "target": "我马上到。",
+    "reading": "Wǒ mǎshàng dào.",
+    "de": "Ich bin gleich da.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-12",
+    "target": "太贵了，便宜一点儿吧。",
+    "reading": "Tài guì le, piányi yìdiǎnr ba.",
+    "de": "Zu teuer, mach es etwas billiger.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-13",
+    "target": "我们几点见面？",
+    "reading": "Wǒmen jǐ diǎn jiànmiàn?",
+    "de": "Um wie viel Uhr treffen wir uns?",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-14",
+    "target": "我在家呢。",
+    "reading": "Wǒ zài jiā ne.",
+    "de": "Ich bin gerade zu Hause.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-15",
+    "target": "今天天气很好。",
+    "reading": "Jīntiān tiānqì hěn hǎo.",
+    "de": "Heute ist das Wetter schön.",
+    "level": "A1"
+  },
+  {
+    "id": "zh-listen-16",
+    "target": "这个有点儿贵。",
+    "reading": "Zhège yǒudiǎnr guì.",
+    "de": "Das ist etwas teuer.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-17",
+    "target": "我的手机跟你的一样。",
+    "reading": "Wǒ de shǒujī gēn nǐ de yíyàng.",
+    "de": "Mein Handy ist genauso wie deins.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-18",
+    "target": "今天比昨天冷。",
+    "reading": "Jīntiān bǐ zuótiān lěng.",
+    "de": "Heute ist es kälter als gestern.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-19",
+    "target": "听起来不错。",
+    "reading": "Tīng qǐlai búcuò.",
+    "de": "Klingt gut.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-20",
+    "target": "我的快递还没到。",
+    "reading": "Wǒ de kuàidì hái méi dào.",
+    "de": "Mein Paket ist noch nicht angekommen.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-21",
+    "target": "要下雨了，记得带伞。",
+    "reading": "Yào xiàyǔ le, jìde dài sǎn.",
+    "de": "Es regnet gleich, denk an den Schirm.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-22",
+    "target": "我饿死了，点外卖吧。",
+    "reading": "Wǒ è sǐ le, diǎn wàimài ba.",
+    "de": "Ich verhungere, lass uns Essen bestellen.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-23",
+    "target": "你周末打算做什么？",
+    "reading": "Nǐ zhōumò dǎsuàn zuò shénme?",
+    "de": "Was hast du am Wochenende vor?",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-24",
+    "target": "好久不见，你最近忙吗？",
+    "reading": "Hǎojiǔ bú jiàn, nǐ zuìjìn máng ma?",
+    "de": "Lange nicht gesehen, hast du gerade viel zu tun?",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-25",
+    "target": "我感冒了，想在家休息。",
+    "reading": "Wǒ gǎnmào le, xiǎng zài jiā xiūxi.",
+    "de": "Ich bin erkältet und möchte mich zu Hause ausruhen.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-26",
+    "target": "不好意思，我迟到了。",
+    "reading": "Bù hǎoyìsi, wǒ chídào le.",
+    "de": "Sorry, ich bin zu spät.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-27",
+    "target": "我可以跟你借充电器吗？",
+    "reading": "Wǒ kěyǐ gēn nǐ jiè chōngdiànqì ma?",
+    "de": "Kann ich mir dein Ladegerät leihen?",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-28",
+    "target": "一直走，然后往左拐。",
+    "reading": "Yìzhí zǒu, ránhòu wǎng zuǒ guǎi.",
+    "de": "Immer geradeaus, dann links abbiegen.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-29",
+    "target": "我给你发照片。",
+    "reading": "Wǒ gěi nǐ fā zhàopiàn.",
+    "de": "Ich schicke dir die Fotos.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-30",
+    "target": "要不我们改天去？",
+    "reading": "Yàobù wǒmen gǎitiān qù?",
+    "de": "Wie wär's, wenn wir ein andermal gehen?",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-31",
+    "target": "我已经订好机票了。",
+    "reading": "Wǒ yǐjīng dìnghǎo jīpiào le.",
+    "de": "Ich habe die Flugtickets schon gebucht.",
+    "level": "A2"
+  },
+  {
+    "id": "zh-listen-32",
+    "target": "如果下雨，我们就改天去。",
+    "reading": "Rúguǒ xiàyǔ, wǒmen jiù gǎitiān qù.",
+    "de": "Wenn es regnet, gehen wir ein andermal.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-33",
+    "target": "别剧透，我还没看呢！",
+    "reading": "Bié jùtòu, wǒ hái méi kàn ne!",
+    "de": "Nicht spoilern, ich hab's noch nicht gesehen!",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-34",
+    "target": "这个手机性价比很高。",
+    "reading": "Zhège shǒujī xìngjiàbǐ hěn gāo.",
+    "de": "Dieses Handy hat ein tolles Preis-Leistungs-Verhältnis.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-35",
+    "target": "我很期待这次旅游。",
+    "reading": "Wǒ hěn qīdài zhè cì lǚyóu.",
+    "de": "Ich freue mich sehr auf diese Reise.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-36",
+    "target": "这个问题解决不了。",
+    "reading": "Zhège wèntí jiějué bu liǎo.",
+    "de": "Dieses Problem lässt sich nicht lösen.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-37",
+    "target": "既然你不舒服，就别去了。",
+    "reading": "Jìrán nǐ bù shūfu, jiù bié qù le.",
+    "de": "Da es dir nicht gut geht, geh einfach nicht hin.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-38",
+    "target": "我们把时间改到三点吧。",
+    "reading": "Wǒmen bǎ shíjiān gǎidào sān diǎn ba.",
+    "de": "Verlegen wir die Zeit auf drei Uhr.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-39",
+    "target": "我差点儿迟到了。",
+    "reading": "Wǒ chàdiǎnr chídào le.",
+    "de": "Ich wäre fast zu spät gekommen.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-40",
+    "target": "说实话，我不太喜欢这部剧。",
+    "reading": "Shuō shíhuà, wǒ bú tài xǐhuan zhè bù jù.",
+    "de": "Ehrlich gesagt mag ich diese Serie nicht so.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-41",
+    "target": "祝你早日康复，多休息。",
+    "reading": "Zhù nǐ zǎorì kāngfù, duō xiūxi.",
+    "de": "Gute Besserung, ruh dich viel aus.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-42",
+    "target": "我一边吃饭一边看剧。",
+    "reading": "Wǒ yìbiān chīfàn yìbiān kàn jù.",
+    "de": "Ich esse und schaue dabei Serie.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-43",
+    "target": "虽然很累，但是很开心。",
+    "reading": "Suīrán hěn lèi, dànshì hěn kāixīn.",
+    "de": "Obwohl ich müde bin, bin ich glücklich.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-44",
+    "target": "这家店便宜，而且质量好。",
+    "reading": "Zhè jiā diàn piányi, érqiě zhìliàng hǎo.",
+    "de": "Der Laden ist günstig und außerdem ist die Qualität gut.",
+    "level": "B1"
+  },
+  {
+    "id": "zh-listen-45",
+    "target": "无论多忙，我都会学习。",
+    "reading": "Wúlùn duō máng, wǒ dōu huì xuéxí.",
+    "de": "Egal wie beschäftigt ich bin, ich lerne trotzdem.",
+    "level": "B2"
+  },
+  {
+    "id": "zh-listen-46",
+    "target": "即使下雨，我也要去。",
+    "reading": "Jíshǐ xiàyǔ, wǒ yě yào qù.",
+    "de": "Selbst wenn es regnet, gehe ich hin.",
+    "level": "B2"
+  },
+  {
+    "id": "zh-listen-47",
+    "target": "工作和生活要平衡。",
+    "reading": "Gōngzuò hé shēnghuó yào pínghéng.",
+    "de": "Arbeit und Leben müssen im Gleichgewicht sein.",
+    "level": "B2"
+  },
+  {
+    "id": "zh-listen-48",
+    "target": "人工智能发展得越来越快。",
+    "reading": "Réngōng zhìnéng fāzhǎn de yuè lái yuè kuài.",
+    "de": "KI entwickelt sich immer schneller.",
+    "level": "B2"
+  }
+]
