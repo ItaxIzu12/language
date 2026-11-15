@@ -26,7 +26,7 @@ export default function Review() {
 
   return (
     <div>
-      <PageHeader title="Karten" subtitle="Schwierige Wörter kommen öfter, sichere seltener." />
+      <PageHeader title="Wiederholen" subtitle="Schwierige Wörter kommen öfter, sichere seltener." />
 
       <div className="mb-8">
         <Segmented<Tab>

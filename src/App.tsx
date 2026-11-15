@@ -1,6 +1,10 @@
-import { MandarinEntry } from "./features/welcome/Welcome";
+import CoursePicker from "./features/account/CoursePicker";
+import Teahouse from "./features/welcome/Teahouse";
+import { AccountEntry } from "./features/welcome/Welcome";
 import { useStore } from "./lib/store";
 import { Navigate, Route, Routes } from "react-router-dom";
+import MandarinHome from "./features/progress/MandarinHome";
+import MandarinLayout from "./components/MandarinLayout";
 import Layout from "./components/Layout";
 import Category from "./features/study/Category";
 import Chronicle from "./features/progress/Chronicle";
@@ -22,15 +26,20 @@ export default function App() {
   const { lang } = useStore();
   return (
     <Routes>
-      <Route path="sprachen/zh" element={<MandarinEntry />} />
-      <Route element={<Layout />}>
-        <Route path="heute" element={<Dashboard />} />
+      <Route path="anmelden" element={<AccountEntry />} />
+      <Route path="sprachwahl" element={<CoursePicker />} />
+      <Route path="sprachen/:course" element={<AccountEntry />} />
+      <Route element={lang.code === "zh" ? <MandarinLayout /> : <Layout />}>
+        <Route path="sprachen/zh/teehaus" element={<Teahouse />} />
+        <Route path="heute" element={lang.code === "zh" ? <MandarinHome /> : <Navigate to="/lernplan" replace />} />
+        <Route path="lernplan" element={<Dashboard />} />
         <Route path="learn" element={<Learn />} />
+        <Route path="learn/custom" element={<Notebook key="category" startAdding />} />
         <Route path="learn/:categoryId" element={<Category />} />
         <Route path="lesson/:categoryId" element={<Lesson />} />
         <Route path="review" element={<Review />} />
         <Route path="notebook" element={<Notebook />} />
-        <Route path="practice" element={<Practice />} />
+        <Route path="practice" element={lang.code === "zh" ? <Navigate to="/heute" replace /> : <Practice />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="listen" element={<Listen />} />
         <Route path="speak" element={<Speak />} />

@@ -63,7 +63,7 @@ export default function Listen() {
 
   return (
     <div className="max-w-3xl">
-      <PageHeader title="Hören" subtitle="Einen Satz hören und seine Bedeutung wählen – erst danach siehst du ihn geschrieben." />
+      <PageHeader title="Hörtraining" subtitle="Einen Satz hören und seine Bedeutung wählen – erst danach siehst du ihn geschrieben." />
       <VoiceNotice />
       <div className="border-b border-rule">
         <Field label="Stufe">

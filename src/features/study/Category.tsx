@@ -47,10 +47,10 @@ export default function Category() {
   return (
     <div>
       <Link to="/learn" className="mb-5 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-dim hover:text-ink">
-        <ArrowLeft {...ICON} aria-hidden /> Wortschatz
+        <ArrowLeft {...ICON} aria-hidden /> Zurück zu den Vokabeln
       </Link>
 
-      <header className="mb-8 grid gap-5 border-b-2 border-ink pb-5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-end">
+      <header className="mh-section-title mb-8 grid gap-5 border-b-2 border-ink pb-5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-end">
         <Glyph char={set.glyph} size="lg" tone="red" />
         <div className="min-w-0">
           <h1 className="title">{set.name}</h1>

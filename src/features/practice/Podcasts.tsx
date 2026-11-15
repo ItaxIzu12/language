@@ -16,7 +16,7 @@ export default function Podcasts() {
 
   return (
     <div className="max-w-3xl">
-      <PageHeader title="Podcast" subtitle="Dialoge zum Mithören. Das Transkript läuft mit, Pinyin und Übersetzung lassen sich ausblenden." />
+      <PageHeader title="Hördialoge" subtitle="Dialoge zum Mithören. Das Transkript läuft mit, Pinyin und Übersetzung lassen sich ausblenden." />
       <VoiceNotice />
 
       <ol className="rows border-y border-rule">

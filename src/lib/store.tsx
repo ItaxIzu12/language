@@ -141,7 +141,8 @@ interface Store {
   markDone: (id: string) => void;
   /** Tears off today's calendar sheet. */
   tearToday: () => void;
-  addCustomWord: (word: Omit<VocabItem, "id" | "category">) => void;
+  addCustomWord: (word: Omit<VocabItem, "id" | "category">, schedule?: boolean) => void;
+  updateCustomWord: (id: string, word: Omit<VocabItem, "id" | "category">) => void;
   removeCustomWord: (id: string) => void;
   updateSettings: (patch: Partial<Settings>) => void;
   resetProgress: () => void;
@@ -197,7 +198,6 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
   // The learning language = shipped content + the learner's own words.
   const lang = useMemo<Language>(() => {
     const base = getLanguage(settings.lang);
-    if (!customWords.length) return base;
     return {
       ...base,
       categories: [...base.categories, customCategory(base.culture.customGlyph)],
@@ -311,13 +311,30 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
     finishLesson,
     markDone,
     tearToday,
-    addCustomWord: (word) =>
+    addCustomWord: (word, schedule = false) => {
+      const existing = customWords.find(w => w.target === word.target && w.reading === word.reading);
+      const id = existing?.id ?? `${settings.lang}:custom:${Array.from(crypto.getRandomValues(new Uint32Array(4))).join("-")}`;
       setCustomWords((list) => {
-        const id = `${settings.lang}:custom:${word.target}:${word.reading}`;
-        if (list.some((w) => w.id === id)) return list;
+        if (list.some(w => w.target === word.target && w.reading === word.reading)) return list;
         return [...list, { ...word, id, category: CUSTOM_ID, learned: true }];
-      }),
-    removeCustomWord: (id) => setCustomWords((list) => list.filter((w) => w.id !== id)),
+      });
+      if (schedule) {
+        const due = addDays(dayKey(), BOX_INTERVALS[1]);
+        setProgress(p => p.cards[id] ? p : {
+          ...p, cards: { ...p.cards, [id]: { box: 1, due, right: 0, wrong: 0 } },
+        });
+      }
+    },
+    updateCustomWord: (id, word) => setCustomWords(list => list.map(w => w.id === id ? { ...w, ...word } : w)),
+    removeCustomWord: (id) => {
+      setCustomWords(list => list.filter(w => w.id !== id));
+      setProgress(previous => {
+        if (!previous.cards[id]) return previous;
+        const cards = { ...previous.cards };
+        delete cards[id];
+        return { ...previous, cards };
+      });
+    },
     updateSettings: (patch) => {
       // Each language keeps its own progress and own words: swap them with the setting.
       if (patch.lang && patch.lang !== settings.lang) {
@@ -325,6 +342,7 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
           if (sync.pending) return;
           const url = new URL(window.location.href);
           url.searchParams.set("lang", patch.lang);
+          url.hash = "/heute";
           window.location.assign(url);
           return;
         }

@@ -1,0 +1,6 @@
+{
+  "teaId": "zh:茶:chá:n",
+  "question": { "target": "您想喝什么？", "reading": "Nín xiǎng hē shénme?", "de": "Was möchten Sie trinken?" },
+  "order": { "target": "我要一杯茶。", "reading": "Wǒ yào yì bēi chá.", "de": "Ich möchte eine Tasse Tee." },
+  "phrase": { "target": "一杯茶", "reading": "yì bēi chá", "de": "eine Tasse Tee" }
+}

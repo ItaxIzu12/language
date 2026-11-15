@@ -1,15 +1,15 @@
 import AccountPanel from "./AccountPanel";
 import { accountEnabled } from "./account";
-import { Check, Download, Moon, Sun, Upload } from "lucide-react";
+import { Download, Moon, Sun, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { ICON, PageHeader, Segmented, SpeakButton } from "../../components/ui";
-import { languages, upcomingLanguages } from "../../data/languages";
+import CourseSwitcher from "../../components/CourseSwitcher";
 import { useStore } from "../../lib/store";
 import { cx } from "../../lib/utils";
 
 export default function Settings() {
-  const { sync, username, lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
+  const { username, lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
   const fileInput = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -36,47 +36,12 @@ export default function Settings() {
 
   return (
     <div className="max-w-3xl">
-      <PageHeader title="Einstellungen" />
+      <PageHeader title="Profil und Einstellungen" subtitle={username ? "Angemeldet als " + username : "Du lernst als Gast."} />
 
       {accountEnabled && <Section title="Lernkonto"><AccountPanel /></Section>}
       <Section title="Sprache">
-        <p className="mb-3 text-sm text-dim">Jede Sprache bringt ihre eigene Gestaltung und ihren eigenen Fortschritt mit.</p>
-        <ul className="rows border-y border-rule">
-          {languages.map((l) => {
-            const active = l.code === lang.code;
-            return (
-              <li key={l.code}>
-                <button
-                  type="button"
-                  aria-pressed={active}
-                  disabled={!!username && sync.pending && !active}
-                  onClick={() => updateSettings({ lang: l.code })}
-                  className="flex min-h-[64px] w-full items-center gap-4 py-3 text-left"
-                >
-                  <span className={cx("inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border", active ? "border-ink bg-ink text-paper" : "border-ink/60")}>
-                    {active && <Check size={16} strokeWidth={2.5} aria-hidden />}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-semibold">
-                      {l.name} <span className="hanzi ml-1">{l.nativeName}</span>
-                    </span>
-                    <span className="block text-sm text-dim">
-                      {l.vocab.length} Wörter · Gestaltung: {l.culture.themeName}
-                    </span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-          {upcomingLanguages.map((l) => (
-            <li key={l.code} className="flex min-h-[56px] items-center gap-4 py-3 text-dim">
-              <span className="h-6 w-6 shrink-0 rounded-sm border border-dashed border-rule" aria-hidden />
-              <span>
-                {l.name} <span className="ml-1">{l.nativeName}</span> · in Vorbereitung
-              </span>
-            </li>
-          ))}
-        </ul>
+        <p className="mb-3">Aktueller Kurs: {lang.name}</p>
+        <CourseSwitcher/>
       </Section>
 
       <Section title="Darstellung">

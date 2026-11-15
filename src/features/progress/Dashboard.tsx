@@ -298,8 +298,8 @@ function NextSheet({ date, tornTotal, culture }: { date: Date; tornTotal: number
             <Link to="/review" className="btn-ink">
               Karten wiederholen
             </Link>
-            <Link to="/practice" className="btn-line">
-              Etwas üben
+            <Link to="/quiz" className="btn-line">
+              Quiz starten
             </Link>
           </div>
         </div>

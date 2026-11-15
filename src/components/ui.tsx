@@ -127,7 +127,7 @@ export function Glyph({
 
 export function PageHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: ReactNode }) {
   return (
-    <header className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-ink pb-4">
+    <header className="mh-section-title mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-ink pb-4">
       <div className="min-w-0">
         <h1 className="title">{title}</h1>
         {subtitle && <p className="mt-2 max-w-[65ch] text-dim">{subtitle}</p>}

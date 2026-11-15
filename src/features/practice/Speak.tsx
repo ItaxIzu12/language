@@ -61,7 +61,7 @@ export default function Speak() {
 
   return (
     <div>
-      <PageHeader title="Sprechen" subtitle="Nachsprechen, frei übersetzen oder im Rollenspiel antworten." />
+      <PageHeader title="Sprechtraining" subtitle="Nachsprechen, frei übersetzen oder im Rollenspiel antworten." />
       <VoiceNotice />
 
       <div className="mb-8">

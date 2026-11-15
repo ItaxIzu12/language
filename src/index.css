@@ -97,6 +97,7 @@
   }
   .hanzi {
     @apply font-hanzi;
+    align-self: center;
   }
   .reading {
     @apply text-cinnabar;

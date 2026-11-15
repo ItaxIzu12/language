@@ -65,3 +65,4 @@ credentials.json
 token.json
 secrets/
 .venv/
+*.p8

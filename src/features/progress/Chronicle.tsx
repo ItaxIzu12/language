@@ -41,7 +41,7 @@ export default function Chronicle() {
 
   return (
     <div>
-      <PageHeader title="Chronik" subtitle="Jeder Lerntag hinterlässt eine Spur. Rot sind die Tage, an denen du das Blatt abgerissen hast." />
+      <PageHeader title="Lernfortschritt" subtitle="Jeder Lerntag hinterlässt eine Spur. Rot sind die Tage, an denen du das Blatt abgerissen hast." />
 
       <div className="grid gap-12 xl:grid-cols-[minmax(0,7fr)_minmax(0,3fr)]">
         <section>

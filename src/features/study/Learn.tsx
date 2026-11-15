@@ -1,18 +1,19 @@
 import { ArrowRight, Search } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import WordRow from "../../components/WordRow";
 import { Bar, Glyph, ICON, PageHeader, Segmented, levelTone } from "../../components/ui";
 import { LEVELS } from "../../data/languages";
 import { LEVEL_INFO, levelSetId } from "../../lib/sets";
-import { useStore } from "../../lib/store";
+import { CUSTOM_ID, useStore } from "../../lib/store";
 import { cx } from "../../lib/utils";
 
 type View = "categories" | "levels";
 
 export default function Learn() {
   const { lang, status } = useStore();
-  const [query, setQuery] = useState("");
+  const [params] = useSearchParams();
+  const [query, setQuery] = useState(() => params.get("q") ?? "");
   const [view, setView] = useState<View>("categories");
 
   const q = query.trim().toLowerCase();
@@ -34,7 +35,7 @@ export default function Learn() {
   return (
     <div>
       <PageHeader
-        title="Wortschatz"
+        title="Vokabeln"
         subtitle={`${lang.vocab.length} Wörter in ${lang.categories.length} Kategorien und ${LEVELS.length} Stufen.`}
       />
 
@@ -115,15 +116,15 @@ export default function Learn() {
               })}
             </ul>
           ) : (
-            <ul className="grid grid-cols-1 gap-x-10 border-t-2 border-ink md:grid-cols-2">
+            <ul className="mh-categories grid grid-cols-1 gap-x-10 border-t-2 border-ink md:grid-cols-2">
               {lang.categories.map((c) => {
                 const words = lang.vocab.filter((w) => w.category === c.id);
-                if (!words.length) return null;
+                if (!words.length && c.id !== CUSTOM_ID) return null;
                 const done = words.filter((w) => status(w.id) !== "new").length;
                 return (
                   <li key={c.id} className="min-w-0 border-b border-rule">
                     <Link to={`/learn/${c.id}`} className="group flex items-center gap-4 py-4">
-                      <Glyph char={c.glyph} tone={done === words.length ? "red" : "ink"} />
+                      <Glyph char={c.glyph} tone={words.length && done === words.length ? "red" : "ink"} />
                       <span className="min-w-0 flex-1">
                         <span className="flex items-baseline justify-between gap-3">
                           <span className="truncate font-semibold">{c.name}</span>
@@ -131,8 +132,8 @@ export default function Learn() {
                             {done} / {words.length}
                           </span>
                         </span>
-                        <span className="block truncate text-sm text-dim">{c.description}</span>
-                        <Bar value={done / words.length} className="mt-2" />
+                        <span className="block truncate text-sm text-dim">{c.id === CUSTOM_ID ? "Eigene Wörter hinzufügen und bearbeiten" : c.description}</span>
+                        {words.length > 0 && <Bar value={done / words.length} className="mt-2" />}
                       </span>
                       <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
                     </Link>

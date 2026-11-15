@@ -1,3 +1,4 @@
+import CourseSwitcher from "./CourseSwitcher";
 import { useEffect } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useStore } from "../lib/store";
@@ -60,6 +61,7 @@ export default function Layout() {
       {/* The calendar's binding: red band with a row of punched holes. */}
       <header className="sticky top-0 z-30 bg-band text-white">
         <div className="mx-auto flex h-12 max-w-[1180px] items-center justify-between gap-4 px-4 sm:px-6">
+          <CourseSwitcher className="generic-course-switch"/>
           <Link to="/" className="flex items-baseline gap-2">
             <span className="font-display text-2xl font-extrabold uppercase leading-none tracking-wide">LinguaFlow</span>
             <span className="hanzi hidden text-sm font-bold opacity-90 sm:inline">{lang.nativeName}</span>

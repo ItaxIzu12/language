@@ -69,7 +69,7 @@ export default function SpeakCheck({
     return (
       <div>
         <p className="mb-3 text-sm text-dim">
-          Dieser Browser kann die Aussprache nicht prüfen. Sprich laut und beurteile dich selbst.
+          Dieser Browser unterstützt keine Spracherkennung. Sprich laut und beurteile dich selbst.
         </p>
         <div className="flex flex-wrap gap-3">
           <button type="button" className="btn-line" onClick={() => onResult(0)}>
@@ -110,10 +110,9 @@ export default function SpeakCheck({
         <div className="mt-4">
           <Verdict
             ok={score >= PASS_SCORE}
-            title={score >= 0.95 ? "Genau getroffen." : score >= PASS_SCORE ? "Gut verständlich." : "Noch nicht ganz – versuch es noch einmal."}
+            title={score >= PASS_SCORE ? "Satz erkannt" : "Vergleiche die beiden Sätze"}
           >
-            Verstanden wurde <span className="hanzi text-base font-medium">{heard}</span> · {Math.round(score * 100)} %
-            Übereinstimmung
+            Dein Browser hat erkannt: <span lang={lang.code} className="hanzi text-base font-medium">{heard}</span>
           </Verdict>
         </div>
       )}

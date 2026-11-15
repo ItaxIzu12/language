@@ -22,7 +22,7 @@ DATABASES = {"default": {
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation." + name}
     for name in ("UserAttributeSimilarityValidator", "MinimumLengthValidator", "CommonPasswordValidator", "NumericPasswordValidator")
-]
+] + [{"NAME": "accounts.validators.SpecialCharacterValidator"}]
 USE_TZ = True
 LANGUAGE_CODE = "de"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -37,11 +37,15 @@ CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("DJANGO_CSRF_TRUS
 
 # Only expose provider routes when the backend has the complete credentials.
 SOCIALACCOUNT_PROVIDERS = {}
-if os.getenv("GOOGLE_CLIENT_ID") and os.getenv("GOOGLE_CLIENT_SECRET"):
+if os.getenv("GOOGLE_LOGIN_ENABLED", "1") == "1" and all(
+    os.getenv(k) for k in ("GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET")
+):
     SOCIALACCOUNT_PROVIDERS["google"] = {"APPS": [{
         "client_id": os.environ["GOOGLE_CLIENT_ID"], "secret": os.environ["GOOGLE_CLIENT_SECRET"],
     }], "OAUTH_PKCE_ENABLED": True}
-if all(os.getenv(k) for k in ("APPLE_SERVICE_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY")):
+if os.getenv("APPLE_LOGIN_ENABLED", "1") == "1" and all(
+    os.getenv(k) for k in ("APPLE_SERVICE_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY")
+):
     SOCIALACCOUNT_PROVIDERS["apple"] = {"APPS": [{
         "client_id": os.environ["APPLE_SERVICE_ID"], "key": os.environ["APPLE_TEAM_ID"],
         "secret": os.environ["APPLE_KEY_ID"],
@@ -54,7 +58,7 @@ if SOCIALACCOUNT_PROVIDERS:
     TEMPLATES = [{"BACKEND": "django.template.backends.django.DjangoTemplates", "APP_DIRS": True,
                   "OPTIONS": {"context_processors": ["django.template.context_processors.request",
                                                      "django.contrib.messages.context_processors.messages"]}}]
-    LOGIN_REDIRECT_URL = "/#/heute"
+    LOGIN_REDIRECT_URL = "/#/sprachwahl"
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https" if SESSION_COOKIE_SECURE else "http"
     ACCOUNT_EMAIL_VERIFICATION = "none"
     SOCIALACCOUNT_ONLY = True

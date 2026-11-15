@@ -40,3 +40,4 @@ language
 **/token.json
 **/.venv
 **/*.log
+**/*.p8

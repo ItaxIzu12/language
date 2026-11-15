@@ -23,7 +23,7 @@ export default function Read() {
 
   return (
     <div className="max-w-3xl">
-      <PageHeader title="Lesen" subtitle={`${doneCount} von ${lang.texts.length} Texten gelesen. Jeder Text lässt sich vorlesen und endet mit drei Fragen.`} />
+      <PageHeader title="Lesetexte" subtitle={`${doneCount} von ${lang.texts.length} Texten gelesen. Jeder Text lässt sich vorlesen und endet mit drei Fragen.`} />
       <div className="mb-6">
         <Segmented<Level | "all">
           label="Stufe"
