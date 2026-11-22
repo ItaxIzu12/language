@@ -75,10 +75,6 @@ export function isModuleAvailable(lang: Language, path: string): boolean {
 export const navigationFor = (lang: Language) => NAVIGATION.filter((item) => isModuleAvailable(lang, item.to));
 const pick = (paths: string[]) => paths.map((path) => NAVIGATION.find((item) => item.to === path)!);
 export const modules = pick(["/learn", "/review", "/dialoge", "/speak", "/quiz"]);
-export const quickLinks = pick(["/heute", "/learn", "/dialoge", "/chronicle", "/settings"]).map((item) => ({
-  ...item,
-  title: item.to === "/heute" ? "Start" : item.to === "/chronicle" ? "Fortschritt" : item.title,
-}));
 export const LEARN = pick(["/learn", "/review", "/notebook"]);
 export const ARCHIVE = pick(["/chronicle", "/settings"]);
 export const practiceItems = (lang: Language) =>
@@ -92,3 +88,21 @@ export function sectionFor(path: string) {
   if (path.startsWith("/lesson/") || path.startsWith("/learn/")) return "/learn";
   return path;
 }
+
+/** The same five destinations on desktop and mobile; practice modes remain addressable. */
+export const primaryNavigation = [
+  item("/heute", "Heute", House),
+  item("/learn", "Wortschatz", BookOpen),
+  item("/practice", "Üben", MessageCircle),
+  item("/chronicle", "Fortschritt", ChartNoAxesColumnIncreasing),
+  item("/settings", "Profil", UserRound),
+];
+export function workspaceSection(path: string): string {
+  const root = "/" + path.split("/").filter(Boolean)[0];
+  if (["/learn", "/lesson", "/review", "/notebook"].includes(root)) return "/learn";
+  if (["/heute", "/lernplan", "/lernkalender"].includes(root)) return "/heute";
+  if (["/settings", "/chronicle"].includes(root)) return root;
+  return "/practice";
+}
+
+export const quickLinks = primaryNavigation;

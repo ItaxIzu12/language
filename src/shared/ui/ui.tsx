@@ -23,7 +23,7 @@ export function SpeakButton({
 }) {
   const { lang, settings } = useStore();
   const [active, setActive] = useState(false);
-  const dims = size === "lg" ? "h-14 w-14" : size === "sm" ? "h-9 w-9" : "h-11 w-11";
+  const dims = size === "lg" ? "h-14 w-14" : size === "sm" ? "h-11 w-11" : "h-11 w-11";
   const Icon = slow ? Turtle : Volume2;
   return (
     <button

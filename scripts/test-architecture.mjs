@@ -19,13 +19,27 @@ try {
     outfile: output,
     define: { "import.meta.env.DEV": "false" },
   });
-  const { languages, navigationFor, isModuleAvailable, quickLinks } = await import(pathToFileURL(output));
+  const { languages, navigationFor, isModuleAvailable, quickLinks, workspaceSection } = await import(
+    pathToFileURL(output)
+  );
   const zh = languages.find((language) => language.code === "zh");
   assert.ok(zh);
   assert.equal(zh.vocab.filter((word) => word.understanding).length, 20);
   assert.equal(zh.scenarios.length, 3);
   assert.equal(new Set(zh.vocab.map((word) => word.id)).size, zh.vocab.length);
-  assert.equal(quickLinks.length, 5);
+  assert.deepEqual(
+    quickLinks.map((n) => n.to),
+    ["/heute", "/learn", "/practice", "/chronicle", "/settings"],
+  );
+  for (const [path, area] of [
+    ["/read/reading-1", "/practice"],
+    ["/podcasts/episode-1", "/practice"],
+    ["/lesson/start", "/learn"],
+    ["/review", "/learn"],
+    ["/notebook", "/learn"],
+    ["/lernplan", "/heute"],
+  ])
+    assert.equal(workspaceSection(path), area);
   assert.ok(isModuleAvailable(zh, "/tones"));
   const empty = {
     ...zh,

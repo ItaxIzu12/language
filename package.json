@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.4.0",
   "type": "module",
-  "description": "LinguaFlow – modern multi-language learning app. Start: Mandarin Chinese (Flashcards, SRS, Quiz, TTS, Listening, Podcasts).",
+  "description": "LinguaFlow \u2013 modern multi-language learning app. Start: Mandarin Chinese (Flashcards, SRS, Quiz, TTS, Listening, Podcasts).",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
@@ -12,7 +12,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\" \"scripts/*.{ts,mjs}\" \"docs/**/*.md\" README.md",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\" \"scripts/*.{ts,mjs}\" \"docs/**/*.md\" README.md",
     "test:architecture": "node scripts/test-architecture.mjs",
-    "test:learning": "node scripts/test-learning.mjs"
+    "test:learning": "node scripts/test-learning.mjs",
+    "test:routes": "node scripts/test-routes.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

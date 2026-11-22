@@ -209,6 +209,7 @@ function LessonRun({ set, onRestart }: { set: WordSet; onRestart: () => void }) 
 
   return (
     <div className="mx-auto max-w-2xl">
+      <h1 className="mb-5 text-xl font-semibold">{set.name}</h1>
       <div className="mb-8 flex items-center gap-4">
         <Link
           to={`/learn/${set.id}`}
@@ -223,6 +224,10 @@ function LessonRun({ set, onRestart }: { set: WordSet; onRestart: () => void }) 
         </span>
       </div>
 
+      <p className="mb-5 text-sm text-dim" aria-live="polite">
+        Schritt {index + 1} von {steps.length} ·{" "}
+        {step.kind === "intro" ? "Kennenlernen" : step.kind === "build" ? "Satz bilden" : "Verstehen prüfen"}
+      </p>
       <div key={index} className="animate-enter">
         {step.kind === "intro" && <Intro word={step.word} />}
         {step.kind === "choice" && <ChoiceStep step={step} onPick={grade} />}

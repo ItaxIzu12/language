@@ -41,7 +41,6 @@ function SwitchDialog({ onClose }: { onClose: () => void }) {
   const title = useId();
   const navigate = useNavigate();
   const theme = {
-    image: lang.presentation?.switchImage ?? "landing/welt.webp",
     accent: lang.presentation?.accent ?? "#615046",
   };
   const courses = languages.filter((l) => l.available);
@@ -73,11 +72,7 @@ function SwitchDialog({ onClose }: { onClose: () => void }) {
         }
       }}
     >
-      <header
-        style={{
-          backgroundImage: `linear-gradient(0deg,#241b18dc,transparent),url("${import.meta.env.BASE_URL}${theme.image}")`,
-        }}
-      >
+      <header>
         <button type="button" aria-label="Schließen" onClick={close}>
           <X size={20} />
         </button>

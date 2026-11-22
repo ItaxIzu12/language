@@ -82,3 +82,23 @@ class LearningApiTests(TestCase):
         self.client.force_login(self.user)
         self.assertEqual(self.client.delete("/api/v1/me/", {"password": "confirm-test-185"}, content_type="application/json").status_code, 200)
         self.assertFalse(get_user_model().objects.filter(pk=self.user.pk).exists())
+
+    def test_redesigned_workspace_preserves_existing_learning_document(self):
+        """Navigation and deep links must not rename persisted learning identifiers."""
+        document = deepcopy(STATE)
+        document["settings"]["dailyMinutes"] = 20
+        document["progress"].update({
+            "cards": {"zh:你好:nǐ hǎo:phr": {"box": 2, "due": "2026-11-23", "right": 3, "wrong": 1}},
+            "done": {"scenario:zh:bestellen": True, "reading-1": True},
+            "days": {"2026-11-22": 120},
+            "activity": {"2026-11-22": {"lesson": 1, "review": 5, "apply": 1}},
+            "torn": {"2026-11-22": True},
+            "lessonsDone": 2,
+        })
+        self.assertEqual(self.put(doc=document).status_code, 200)
+        restored = self.client.get(self.url, HTTP_X_LEARNER="learner").json()
+        self.assertEqual(restored["document"], document)
+        # Preferences can change without losing any historical progress.
+        document["settings"]["theme"] = "dark"
+        self.assertEqual(self.put(1, document).status_code, 200)
+        self.assertEqual(self.client.get(self.url, HTTP_X_LEARNER="learner").json()["document"], document)

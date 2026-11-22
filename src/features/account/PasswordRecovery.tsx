@@ -36,6 +36,13 @@ export default function PasswordRecovery() {
     <div className="lf-landing min-h-screen">
       <main className="mx-auto max-w-lg px-6 py-12">
         <Link to="/" className="lf-logo">
+          <img
+            className="lf-brand-mark"
+            src={import.meta.env.BASE_URL + "linguaflow-logo.svg"}
+            width="40"
+            height="40"
+            alt=""
+          />
           LinguaFlow
         </Link>
         <h1 className="my-6 text-3xl font-bold">{confirming ? "Neues Passwort wählen" : "Passwort vergessen?"}</h1>

@@ -15,6 +15,7 @@ const PAGE = 100;
 export default function Category() {
   const { categoryId } = useParams();
   const { lang, status } = useStore();
+  const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [sub, setSub] = useState("all");
   const [limit, setLimit] = useState(PAGE);
@@ -27,6 +28,19 @@ export default function Category() {
   const mastered = words.filter((w) => status(w.id) === "mastered").length;
   const shown = words.filter(
     (w) =>
+      [w.target, w.reading, w.de].some((value) =>
+        value
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(
+            query
+              .trim()
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, ""),
+          ),
+      ) &&
       (filter === "all" ? true : filter === "course" ? w.learned : status(w.id) === filter) &&
       (sub === "all" || (set.kind === "category" ? w.level === sub : w.category === sub)),
   );
@@ -80,6 +94,19 @@ export default function Category() {
         </div>
       </dl>
 
+      <label className="mb-5 block">
+        <span className="mb-2 block text-sm text-dim">Diese Wortliste durchsuchen</span>
+        <input
+          type="search"
+          className="field"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setLimit(PAGE);
+          }}
+          placeholder="Deutsch, Schriftzeichen oder Pinyin"
+        />
+      </label>
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <Segmented<Filter>
           label="Status"
@@ -128,6 +155,7 @@ export default function Category() {
               type="button"
               className="btn-line"
               onClick={() => {
+                setQuery("");
                 setFilter("all");
                 setSub("all");
               }}

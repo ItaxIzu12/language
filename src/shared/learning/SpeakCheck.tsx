@@ -85,6 +85,10 @@ export default function SpeakCheck({
 
   return (
     <div>
+      <p className="mb-4 text-sm text-dim">
+        Vergleiche deine Antwort mit dem Vorbild. Die Spracherkennung prüft den erkannten Text, nicht die Genauigkeit
+        einzelner Laute oder Töne.
+      </p>
       <div className="flex items-center gap-4">
         <button
           type="button"

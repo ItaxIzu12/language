@@ -18,11 +18,11 @@ export interface Block {
 /** Rotates the evening suggestion through the week so every skill gets its turn. */
 const EVENING = [
   { to: "/read", detail: "Einen Text lesen und die Fragen beantworten" },
-  { to: "/podcasts", detail: "Eine Podcast-Episode mit Transkript hören" },
+  { to: "/podcasts", detail: "Einen Hördialog mit Transkript hören" },
   { to: "/speak", detail: "Ein Rollenspiel sprechen" },
   { to: "/listen", detail: "Eine Runde Hörverstehen" },
   { to: "/tones", detail: "Eine Runde im Tonlabor" },
-  { to: "/podcasts", detail: "Eine Podcast-Episode ohne Übersetzung hören" },
+  { to: "/podcasts", detail: "Einen Hördialog ohne Übersetzung hören" },
   { to: "/read", detail: "Einen Text lesen und laut mitsprechen" },
 ];
 
@@ -48,7 +48,7 @@ export function dayPlan(opts: {
   const blocks: Block[] = [
     {
       id: "lesson",
-      title: "Hauptlektion",
+      title: "Neue Wörter lernen",
       when: "Neue Wörter",
       detail: `${minutes === 5 ? "Zwei" : minutes === 10 ? "Drei" : "Fünf"} neue Wörter aus „${nextSetName}“`,
       to: `/lesson/${nextSetId}`,
@@ -57,7 +57,7 @@ export function dayPlan(opts: {
     },
     {
       id: "recall",
-      title: "Abruf",
+      title: "Wörter wiederholen",
       when: "Wissen auffrischen",
       detail: !hasCards
         ? "Kommt nach deiner ersten Lektion dazu"
@@ -81,5 +81,15 @@ export function dayPlan(opts: {
   // Short sessions focus on one task; a due queue takes precedence.
   if (minutes === 5) return [blocks[dueCount > 0 ? 1 : 0]];
   if (minutes === 10) return dueCount > 0 ? [blocks[1], blocks[2]] : [blocks[0], blocks[2]];
-  return dueCount > 0 ? [blocks[1], blocks[0], blocks[2]] : blocks;
+  return dueCount > 0 ? [blocks[1], blocks[0], blocks[2]] : blocks.filter((block) => block.id !== "recall" || hasCards);
+}
+
+export function recommendNext(plan: Block[], dueCount: number) {
+  if (dueCount > 0)
+    return {
+      title: `${dueCount} ${dueCount === 1 ? "Wort" : "Wörter"} wiederholen`,
+      detail: "Diese Lernkarten sind fällig. Frische sie auf, bevor neue Wörter dazukommen.",
+      to: "/review",
+    };
+  return plan.find((block) => !block.done);
 }

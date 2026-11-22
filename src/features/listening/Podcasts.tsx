@@ -1,3 +1,4 @@
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Glyph, ICON, LevelTag, PageHeader } from "../../shared/ui/ui";
@@ -10,9 +11,12 @@ import { Toggle } from "../reading/Read";
 
 export default function Podcasts() {
   const { lang } = useStore();
-  const [episode, setEpisode] = useState<Episode | null>(null);
+  const { episodeId } = useParams();
+  const navigate = useNavigate();
+  const episode = lang.episodes.find((item) => item.id === episodeId);
 
-  if (episode) return <Player key={episode.id} episode={episode} onBack={() => setEpisode(null)} />;
+  if (episodeId && !episode) return <Navigate to="/podcasts" replace />;
+  if (episode) return <Player key={episode.id} episode={episode} onBack={() => navigate("/podcasts")} />;
 
   return (
     <div className="max-w-3xl">
@@ -27,7 +31,7 @@ export default function Podcasts() {
           <li key={ep.id}>
             <button
               type="button"
-              onClick={() => setEpisode(ep)}
+              onClick={() => navigate("/podcasts/" + encodeURIComponent(ep.id))}
               className="group flex w-full items-center gap-4 py-4 text-left"
             >
               <span className="w-8 shrink-0 text-center font-display text-3xl font-extrabold leading-none text-dim">

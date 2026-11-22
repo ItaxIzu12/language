@@ -12,15 +12,17 @@ export default function Dialogs() {
   return (
     <div>
       <PageHeader title="Dialoge im Alltag" subtitle="Hören, antworten und einen Ausdruck für später mitnehmen." />
-      <ol className="space-y-4">
+      <ol className="study-scene-list">
         {scenarios.map((scene) => (
-          <li key={scene.id} className="rounded-lg border border-rule bg-paper p-5">
-            <h2 className="text-xl font-bold">{scene.title}</h2>
-            <p className="my-2">{scene.goal} · etwa 3 Minuten</p>
-            <Link className="btn-ink" to={`/dialoge/${scene.id}`}>
+          <li key={scene.id}>
+            <div>
+              <h2 className="text-xl font-bold">{scene.title}</h2>
+              <p className="my-2">{scene.goal} · etwa 3 Minuten</p>
+              {progress.done[scenarioKey(lang.code, scene.id)] && <small>Abschlussaufgabe gelöst</small>}
+            </div>
+            <Link className="btn-line" to={`/dialoge/${scene.id}`}>
               {progress.done[scenarioKey(lang.code, scene.id)] ? "Erneut üben" : "Szene starten"}
             </Link>
-            {progress.done[scenarioKey(lang.code, scene.id)] && <span className="ml-3">Abschlussaufgabe gelöst</span>}
           </li>
         ))}
       </ol>
@@ -63,6 +65,20 @@ function Scene({ scene }: { scene: Scenario }) {
         ← Alle Dialoge
       </Link>
       <PageHeader title={scene.title} subtitle={scene.goal} />
+      <ol className="study-scene-steps" aria-label="Ablauf der Szene">
+        {(
+          [
+            ["listen", "1 · Verstehen"],
+            ["answer", "2 · Antworten"],
+            ["check", "3 · Anwenden"],
+            ["done", "4 · Abschluss"],
+          ] as const
+        ).map(([id, label]) => (
+          <li key={id} aria-current={step === id ? "step" : undefined}>
+            {label}
+          </li>
+        ))}
+      </ol>
       {step === "listen" && (
         <>
           <h2 className="text-xl font-bold">Höre die Frage oder lies mit</h2>
@@ -92,7 +108,10 @@ function Scene({ scene }: { scene: Scenario }) {
               onResult={() => setFeedback("Du kannst deine Antwort jetzt in der Abschlussaufgabe prüfen.")}
             />
           </div>
-          <p className="my-4">{scene.note}</p>
+          <aside className="study-culture-note">
+            <strong>Im Gespräch</strong>
+            <p>{scene.note}</p>
+          </aside>
           <p role="status">{feedback}</p>
           <button
             className="btn-ink"

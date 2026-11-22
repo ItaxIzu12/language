@@ -20,7 +20,9 @@ try {
     outfile: output,
     define: { "import.meta.env.VITE_ACCOUNT_BACKEND": '"0"' },
   });
-  const { dayPlan, recallTarget, getDraft, discardDraft, draftKey } = await import(pathToFileURL(output));
+  const { dayPlan, recommendNext, recallTarget, getDraft, discardDraft, draftKey } = await import(
+    pathToFileURL(output)
+  );
   const options = {
     activity: { lesson: 0, review: 0, apply: 0 },
     nextSetId: "start",
@@ -35,6 +37,16 @@ try {
   assert.equal(dayPlan({ ...options, dailyMinutes: 10 }).length, 2);
   assert.equal(dayPlan({ ...options, dailyMinutes: 20 }).length, 3);
   assert.deepEqual([5, 10, 20].map(recallTarget), [5, 10, 15]);
+  const beginner = dayPlan({ ...options, hasCards: false, dueCount: 0, dailyMinutes: 20 });
+  assert.ok(!beginner.some((b) => b.id === "recall"), "Do not send a beginner to an empty repeat queue");
+  assert.equal(recommendNext(beginner, 0).id, "lesson");
+  const finished = beginner.map((b) => ({ ...b, done: true }));
+  assert.equal(recommendNext(finished, 0), undefined);
+  assert.equal(
+    recommendNext(finished, 3).to,
+    "/review",
+    "Due cards take precedence even when the daily plan is complete",
+  );
   class Storage {
     values = new Map();
     get length() {

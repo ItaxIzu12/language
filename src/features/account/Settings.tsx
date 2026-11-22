@@ -49,7 +49,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="max-w-3xl">
+    <div className="study-settings max-w-3xl">
       <PageHeader
         title="Profil und Einstellungen"
         subtitle={username ? "Angemeldet als " + username : "Du lernst als Gast."}
@@ -104,7 +104,7 @@ export default function Settings() {
         </Row>
       </Section>
 
-      <Section title="Lernen">
+      <Section title="Lernroutine">
         <Row
           label="Zeit zum Lernen"
           hint="Dein Lernplan passt die Aufgaben und die Anzahl neuer Wörter an. Die Zeit ist ein Richtwert."
@@ -121,11 +121,11 @@ export default function Settings() {
           />
         </Row>
         <Row
-          label="Tagesziel"
-          hint="Eine Lektion bringt etwa 100 bis 170 XP. Ab dem Tagesziel darfst du das Blatt abreißen."
+          label="Optionales XP-Ziel"
+          hint="Zusätzlich zu deinem Aufgabenplan: Punkte für den optionalen Lernkalender. XP sind keine Sprachstufe."
         >
           <Segmented<string>
-            label="Tagesziel"
+            label="Optionales XP-Ziel"
             value={String(settings.dailyGoal)}
             onChange={(v) => updateSettings({ dailyGoal: Number(v) })}
             options={[
@@ -136,6 +136,8 @@ export default function Settings() {
             ]}
           />
         </Row>
+      </Section>
+      <Section title="Audio und Aussprache">
         <Row
           label="Sprechtempo"
           hint={`${Math.round(settings.rate * 100)} % – der Schildkröten-Knopf liest immer besonders langsam.`}
@@ -156,7 +158,7 @@ export default function Settings() {
         </Row>
       </Section>
 
-      <Section title="Daten">
+      <Section title="Datensicherung und Wiederherstellung">
         <p className="max-w-[65ch] text-sm text-dim">
           Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) und deine{" "}
           {customWords.length} Fundstücke {username ? "werden im Konto gespeichert" : "liegen in diesem Browser"}. Mit

@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { languages, upcomingLanguages } from "../../languages/registry";
 import { useStore } from "../../state/learningStore";
@@ -18,7 +18,13 @@ export default function CoursePicker() {
       <header className="lf-top">
         <div className="lf-inner lf-bar">
           <Link className="lf-logo" to="/">
-            <BookOpen aria-hidden />
+            <img
+              className="lf-brand-mark"
+              src={import.meta.env.BASE_URL + "linguaflow-logo.svg"}
+              width="40"
+              height="40"
+              alt=""
+            />
             LinguaFlow
           </Link>
         </div>

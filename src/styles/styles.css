@@ -8,6 +8,7 @@
 @import "./learning-layout.css";
 @import "./course-switcher.css";
 @import "../languages/zh/presentation/theme.css";
+@import "./study.css";
 
 :root {
   --control-radius: 0.5rem;
@@ -40,4 +41,11 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.lf-brand-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
 }

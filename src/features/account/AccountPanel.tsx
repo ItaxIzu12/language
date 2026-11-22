@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { keepGuestProgress } from "./guestProgress";
-import { Check, Circle } from "lucide-react";
+import { Check, Circle, Eye, EyeOff } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { accountEnabled, accountSession, socialOptions } from "./account";
@@ -9,7 +9,27 @@ import ConfirmDialog from "../../shared/ui/ConfirmDialog";
 import RecoveryArchive from "./RecoveryArchive";
 import { useStore } from "../../state/learningStore";
 
-export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
+function PasswordInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  const [visible, setVisible] = useState(false);
+  return (
+    <div className="account-password-field">
+      <input {...props} type={visible ? "text" : "password"} />
+      <button
+        type="button"
+        className="account-password-eye"
+        aria-label={visible ? "Passwort verbergen" : "Passwort anzeigen"}
+        aria-controls={props.id}
+        disabled={props.disabled}
+        onClick={() => setVisible((value) => !value)}
+      >
+        {visible ? <EyeOff size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
+      </button>
+    </div>
+  );
+}
+
+export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAuth?: string; headingLevel?: 1 | 2 }) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
   const { username, sync, progress, customWords, settings } = useStore();
   const [resolution, setResolution] = useState<"device" | "server" | null>(null);
   const [keepGuest, setKeepGuest] = useState(true);
@@ -21,9 +41,8 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
   useEffect(() => {
     sessionStorage.removeItem("linguaflow.account.notice");
   }, []);
-  const [params] = useSearchParams();
-  const [register, setRegister] = useState(params.get("mode") === "register");
-  const [showPassword, setShowPassword] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const register = params.get("mode") === "register";
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const rules = [
@@ -143,7 +162,11 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
           </button>
         </div>
         <RecoveryArchive />
-        {error && <p role="alert">{error}</p>}
+        {error && (
+          <p className="account-error" role="alert">
+            {error}
+          </p>
+        )}
       </div>
     );
   const { csrf, providers } = socialOptions();
@@ -158,11 +181,18 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
             disabled={busy}
             onClick={() => {
               if (mode !== register) {
-                setShowPassword(false);
                 setPassword("");
                 setConfirmation("");
               }
-              setRegister(mode);
+              setParams(
+                (current) => {
+                  const updated = new URLSearchParams(current);
+                  if (mode) updated.set("mode", "register");
+                  else updated.delete("mode");
+                  return updated;
+                },
+                { replace: true },
+              );
               setError("");
             }}
           >
@@ -170,7 +200,7 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
           </button>
         ))}
       </div>
-      <h2>{register ? "Konto erstellen" : "Willkommen zurück"}</h2>
+      <Heading className="account-title">{register ? "Dein Lernen beginnt hier." : "Willkommen zurück."}</Heading>
       <p>
         {register
           ? "Lege deinen Zugang an, um deinen Lernfortschritt zu speichern."
@@ -178,16 +208,16 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
       </p>
       {!accountEnabled && (
         <p className="account-preview">
-          In dieser Vorschau kannst du als Gast lernen. Für ein Lernkonto starte die App mit Docker Compose.
+          Die Kontoanmeldung ist in dieser Vorschau nicht verfügbar. Du kannst ohne Konto starten.
         </p>
       )}
 
-      <form key={String(register)} onSubmit={submit} className="grid gap-3">
+      <form key={String(register)} onSubmit={submit} className="account-form grid gap-3" aria-busy={busy}>
         <label>
           Benutzername
           <input
             className="field"
-            disabled={!accountEnabled}
+            disabled={!accountEnabled || busy}
             required
             name="username"
             autoComplete="username"
@@ -196,47 +226,53 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
         </label>
         {register && (
           <label>
-            E-Mail für die Kontowiederherstellung
+            E-Mail-Adresse
             <input
               className="field"
               type="email"
               name="email"
+              aria-describedby="account-email-hint"
               autoComplete="email"
               required
-              disabled={!accountEnabled}
+              disabled={!accountEnabled || busy}
             />
+            <small id="account-email-hint" className="account-field-hint">
+              Damit du dein Passwort zurücksetzen kannst.
+            </small>
           </label>
         )}
-        <label>
-          Passwort
-          <input
+        <div>
+          <label htmlFor="account-password">Passwort</label>
+          <PasswordInput
+            key={String(register)}
+            id="account-password"
             className="field"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            disabled={!accountEnabled && !register}
+            disabled={!accountEnabled || busy}
             required
             minLength={register ? 8 : undefined}
             maxLength={1024}
             aria-describedby={register ? "password-rules" : undefined}
-            type={showPassword ? "text" : "password"}
             name="password"
             autoComplete={register ? "new-password" : "current-password"}
           />
-        </label>
+        </div>
         {register && (
           <>
-            <label>
-              Passwort bestätigen
-              <input
+            <div>
+              <label htmlFor="account-confirmation">Passwort bestätigen</label>
+              <PasswordInput
+                id="account-confirmation"
+                disabled={!accountEnabled || busy}
                 className="field"
                 value={confirmation}
                 onChange={(e) => setConfirmation(e.target.value)}
                 required
-                type={showPassword ? "text" : "password"}
                 name="confirmation"
                 autoComplete="new-password"
               />
-            </label>
+            </div>
             <ul id="password-rules" className="password-rules" aria-label="Passwortkriterien">
               {rules.map(({ label, met }) => (
                 <li key={label} data-met={met}>
@@ -246,29 +282,33 @@ export default function AccountPanel({ afterAuth }: { afterAuth?: string }) {
                 </li>
               ))}
             </ul>
-            <small>
-              Beim Erstellen prüft der Server zusätzlich auf häufig verwendete Passwörter und Ähnlichkeit zum
-              Benutzernamen.
+            <small className="account-field-hint">
+              Verwende ein eigenes Passwort, das du nicht für andere Konten nutzt.
             </small>
           </>
         )}
-        <label className="password-toggle">
-          <input type="checkbox" checked={showPassword} onChange={(e) => setShowPassword(e.target.checked)} /> Passwort
-          anzeigen
-        </label>
         {hasGuestProgress && (
-          <label>
-            <input type="checkbox" checked={keepGuest} onChange={(event) => setKeepGuest(event.target.checked)} />{" "}
+          <label className="account-keep-guest">
+            <input
+              disabled={busy}
+              type="checkbox"
+              checked={keepGuest}
+              onChange={(event) => setKeepGuest(event.target.checked)}
+            />{" "}
             Gastfortschritt behalten. Vorhandene Kontodaten bleiben erhalten, der Gaststand wird dann im Profil als
             Sicherung angeboten.
           </label>
         )}
-        {error && <p role="alert">{error}</p>}
+        {error && (
+          <p className="account-error" role="alert">
+            {error}
+          </p>
+        )}
         <button className="btn-ink" disabled={busy || !accountEnabled || (register && rules.some((rule) => !rule.met))}>
           {busy ? "Bitte warten …" : register ? "Konto erstellen" : "Anmelden"}
         </button>
         {!register && (
-          <Link className="underline" to="/passwort-vergessen">
+          <Link className="account-recovery-link" to="/passwort-vergessen">
             Passwort vergessen?
           </Link>
         )}

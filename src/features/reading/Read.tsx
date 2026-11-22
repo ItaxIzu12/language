@@ -1,3 +1,4 @@
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check, Pause, Play } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
@@ -14,9 +15,12 @@ import type { Level, ReadingText } from "../../languages/types";
 export default function Read() {
   const { lang, progress } = useStore();
   const [level, setLevel] = useState<Level | "all">("all");
-  const [open, setOpen] = useState<ReadingText | null>(null);
+  const { textId } = useParams();
+  const navigate = useNavigate();
+  const open = lang.texts.find((text) => text.id === textId);
 
-  if (open) return <Reader key={open.id} text={open} onBack={() => setOpen(null)} />;
+  if (textId && !open) return <Navigate to="/read" replace />;
+  if (open) return <Reader key={open.id} text={open} onBack={() => navigate("/read")} />;
 
   const shown = lang.texts.filter((t) => level === "all" || t.level === level);
   const doneCount = lang.texts.filter((t) => progress.done[t.id]).length;
@@ -40,7 +44,7 @@ export default function Read() {
           <li key={t.id}>
             <button
               type="button"
-              onClick={() => setOpen(t)}
+              onClick={() => navigate("/read/" + encodeURIComponent(t.id))}
               className="group flex w-full items-center gap-4 py-4 text-left"
             >
               <Glyph char={t.glyph} tone={progress.done[t.id] ? "red" : "ink"} />

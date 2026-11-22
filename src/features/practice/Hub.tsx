@@ -5,9 +5,9 @@ import { ARCHIVE, LEARN, practiceItems } from "../../app/navigation";
 import type { NavItem } from "../../app/navigation";
 import { ICON, PageHeader } from "../../shared/ui/ui";
 
-function Rows({ items, illustrated = false }: { items: NavItem[]; illustrated?: boolean }) {
+function Rows({ items }: { items: NavItem[] }) {
   return (
-    <ul className={illustrated ? "mh-practice-grid" : "rows border-y border-rule"}>
+    <ul className="rows border-y border-rule">
       {items.map((n) => {
         const Icon = n.icon;
         return (
@@ -39,7 +39,21 @@ export function Practice() {
   return (
     <div>
       <PageHeader title="Übungen" subtitle="Wähle, wie du das Gelernte anwenden möchtest." />
-      <Rows items={practiceItems(lang)} illustrated />
+      <div className="study-practice-groups">
+        {[
+          { title: "Ins Gespräch kommen", paths: ["/dialoge", "/speak", "/tones"] },
+          { title: "Hören und lesen", paths: ["/listen", "/podcasts", "/read"] },
+          { title: "Wissen prüfen", paths: ["/quiz"] },
+        ].map((group) => {
+          const items = practiceItems(lang).filter((n) => group.paths.includes(n.to));
+          return items.length ? (
+            <section key={group.title}>
+              <h2>{group.title}</h2>
+              <Rows items={items} />
+            </section>
+          ) : null;
+        })}
+      </div>
     </div>
   );
 }

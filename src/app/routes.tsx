@@ -11,8 +11,9 @@ import type { ReactNode } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import Category from "../features/vocabulary/Category";
 import Chronicle from "../features/progress/Chronicle";
+import LearningCalendar from "../features/progress/LearningCalendar";
 import Dashboard from "../features/progress/Dashboard";
-import { More } from "../features/practice/Hub";
+import { More, Practice } from "../features/practice/Hub";
 import Learn from "../features/vocabulary/Learn";
 import Lesson from "../features/lessons/Lesson";
 import Listen from "../features/listening/Listen";
@@ -48,19 +49,22 @@ export default function AppRoutes() {
           <Route path="dialoge/:sceneId" element={<DialogScene />} />
           <Route path="heute" element={<Home />} />
           <Route path="lernplan" element={<Dashboard />} />
+          <Route path="lernkalender" element={<LearningCalendar />} />
           <Route path="learn" element={<Learn />} />
           <Route path="learn/custom" element={<Notebook key="category" />} />
           <Route path="learn/:categoryId" element={<Category />} />
           <Route path="lesson/:categoryId" element={<Lesson />} />
           <Route path="review" element={<Review />} />
           <Route path="notebook" element={<Notebook />} />
-          <Route path="practice" element={<Navigate to="/heute" replace />} />
+          <Route path="practice" element={<Practice />} />
           <Route path="quiz" element={<Quiz />} />
           <Route path="listen" element={<Listen />} />
           <Route path="speak" element={<Speak />} />
           <Route path="tones" element={lang.tonePractice && Tones ? <Tones /> : <Navigate to="/practice" replace />} />
           <Route path="read" element={<Read />} />
+          <Route path="read/:textId" element={<Read />} />
           <Route path="podcasts" element={<Podcasts />} />
+          <Route path="podcasts/:episodeId" element={<Podcasts />} />
           <Route path="chronicle" element={<Chronicle />} />
           <Route path="more" element={<More />} />
           <Route path="settings" element={<Settings />} />

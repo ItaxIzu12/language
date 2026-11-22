@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Bell, CalendarCheck, Menu, Search, UserRound } from "lucide-react";
+import { useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import CourseSwitcher from "../../shared/ui/CourseSwitcher";
 import { useStore } from "../../state/learningStore";
 import { stopSpeaking } from "../../shared/audio/tts";
-import { navigationFor, quickLinks, isModuleAvailable, sectionFor } from "../navigation";
+import { primaryNavigation, workspaceSection, navigationFor } from "../navigation";
 
 export default function LearningLayout() {
   const { pathname, search } = useLocation();
-  const { lang, dueWords, sync } = useStore();
-  const links = navigationFor(lang).filter((item) => item.to !== "/settings");
-  const navigate = useNavigate();
-  const [menu, setMenu] = useState(false);
-  const home = pathname === "/heute";
-  const section = sectionFor(pathname);
+  const { lang, sync, username } = useStore();
+  const section = workspaceSection(pathname);
+  const wordArea = section === "/learn";
+  const subLinks = wordArea ? navigationFor(lang).filter((n) => ["/learn", "/review", "/notebook"].includes(n.to)) : [];
+  const focusMode =
+    pathname.startsWith("/lesson/") ||
+    pathname.startsWith("/dialoge/") ||
+    pathname.startsWith("/read/") ||
+    pathname.startsWith("/podcasts/");
   useEffect(() => {
-    setMenu(false);
     window.scrollTo(0, 0);
+    document.getElementById("learning-content")?.focus({ preventScroll: true });
     return stopSpeaking;
   }, [pathname]);
   return (
-    <div className={home ? "learning-layout" : "learning-layout mh-course"}>
+    <div className="study-app">
       <a
         href="#learning-content"
-        className="mh-skip"
+        className="study-skip"
         onClick={(e) => {
           e.preventDefault();
           document.getElementById("learning-content")?.focus();
@@ -31,88 +34,82 @@ export default function LearningLayout() {
       >
         Zum Lernbereich
       </a>
-      <aside className="mh-side">
-        <Link className="mh-brand" to={"/sprachen/" + lang.code}>
-          <strong lang={lang.code}>{lang.nativeName}</strong>
-          <span>{lang.presentation?.brandLabel ?? lang.name + " lernen"}</span>
+      <aside className="study-sidebar">
+        <Link className="study-brand" to="/heute" aria-label="LinguaFlow – Heute">
+          <img src={import.meta.env.BASE_URL + "linguaflow-logo.svg"} width="35" height="35" alt="" />
+          <span>LinguaFlow</span>
         </Link>
-        <button className="mh-menu" aria-expanded={menu} aria-controls="learning-nav" onClick={() => setMenu(!menu)}>
-          <Menu size={20} /> Menü
-        </button>
-        <nav id="learning-nav" aria-label={lang.name} className={menu ? "is-open" : ""}>
-          <CourseSwitcher />
-          {links.map(({ title, to, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              aria-current={to === pathname ? "page" : to === section ? "location" : undefined}
-              onClick={() => setMenu(false)}
-            >
-              <Icon size={21} />
+        <div className="study-course">
+          <span className="study-caption">Dein Kurs</span>
+          <strong>{lang.name}</strong>
+          <span lang={lang.code}>{lang.nativeName}</span>
+        </div>
+        <nav aria-label="Hauptnavigation">
+          {primaryNavigation.map(({ to, title, icon: Icon }) => (
+            <Link key={to} to={to} aria-current={section === to ? "page" : undefined}>
+              <Icon size={20} aria-hidden />
               {title}
             </Link>
           ))}
         </nav>
-      </aside>
-      <div className="mh-workspace">
-        <header className="mh-tools">
+        <div className="study-sidebar-bottom">
           <CourseSwitcher />
-          <form
-            role="search"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const q = String(new FormData(e.currentTarget).get("q") ?? "").trim();
-              navigate("/learn?q=" + encodeURIComponent(q));
-            }}
-          >
-            <button aria-label="Suche starten">
-              <Search size={20} />
-            </button>
-            <input type="search" name="q" aria-label="Wortschatz durchsuchen" placeholder="Wort suchen …" />
-          </form>
-          <Link to="/review" aria-label={dueWords.length + " fällige Karten"} title="Wiederholungen">
-            <Bell />
-            {dueWords.length > 0 && <i />}
-          </Link>
-          <Link to="/lernplan" aria-label="Lernplan öffnen" title="Lernplan">
-            <CalendarCheck />
-          </Link>
-          <Link to="/settings" aria-label="Konto und Einstellungen" title="Konto und Einstellungen">
-            <UserRound />
-          </Link>
+          <span>{username ? "Mit Lernkonto" : "Gast · auf diesem Gerät"}</span>
+          <Link to="/">Über LinguaFlow</Link>
+        </div>
+      </aside>
+      <div className="study-workspace">
+        <header className="study-topbar">
+          <span>
+            {lang.name}
+            <span className="study-topbar-separator">/</span>
+            {primaryNavigation.find((n) => n.to === section)?.title}
+          </span>
+          <CourseSwitcher />
         </header>
-        {pathname !== "/settings" && sync.pending && sync.status !== "Speichert …" && (
-          <p className="mh-sync" role="status">
-            {sync.status} <Link to="/settings">Zum Lernkonto</Link>
-          </p>
+        {sync.pending && (
+          <div className="study-sync" role="status">
+            {sync.status || "Änderungen werden gespeichert …"}
+            {sync.blocked && <Link to="/settings">Im Profil klären</Link>}
+          </div>
         )}
         <main
           id="learning-content"
           tabIndex={-1}
-          data-area={pathname.split("/")[1]}
-          className={home ? "mh-content" : "mh-course-page"}
+          className={"study-page" + (focusMode ? " study-focus" : "")}
           key={pathname + search}
         >
-          <Outlet />
-        </main>
-        <footer>
-          {lang.presentation?.illustrationCredit && <p className="mh-credit">{lang.presentation.illustrationCredit}</p>}
-          <nav className="mh-mobile-links" aria-label="Schnellzugriff">
-            {quickLinks
-              .filter((item) => isModuleAvailable(lang, item.to))
-              .map(({ title, to, icon: Icon }) => (
+          {section === "/practice" && pathname !== "/practice" && (
+            <Link className="study-back" to="/practice">
+              <ArrowLeft size={17} aria-hidden />
+              Alle Übungen
+            </Link>
+          )}
+          {subLinks.length > 0 && !focusMode && (
+            <nav className="study-subnav" aria-label="Wortschatz">
+              {subLinks.map((n) => (
                 <Link
-                  key={to}
-                  to={to}
-                  onClick={() => setMenu(false)}
-                  aria-current={to === pathname ? "page" : to === section ? "location" : undefined}
+                  key={n.to}
+                  to={n.to}
+                  aria-current={
+                    pathname === n.to || (n.to === "/learn" && pathname.startsWith("/learn/")) ? "page" : undefined
+                  }
                 >
-                  <Icon size={20} aria-hidden />
-                  {title}
+                  {n.title}
                 </Link>
               ))}
-          </nav>
-        </footer>
+            </nav>
+          )}
+          <Outlet />
+        </main>
+        <nav className="study-mobile" aria-label="Hauptnavigation mobil">
+          {primaryNavigation.map(({ to, title, icon: Icon }) => (
+            <Link key={to} to={to} aria-current={section === to ? "page" : undefined}>
+              <Icon size={20} aria-hidden />
+              <span>{title}</span>
+            </Link>
+          ))}
+        </nav>
       </div>
     </div>
   );
