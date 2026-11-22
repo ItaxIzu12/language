@@ -33,6 +33,8 @@ def validate_document(data, language):
     require(s["lang"] == language and s["theme"] in ("light", "dark"))
     require(type(s["dailyGoal"]) is int and 1 <= s["dailyGoal"] <= 10000)
     require(type(s["rate"]) in (float, int) and 0.5 <= s["rate"] <= 1.2 and type(s["showReading"]) is bool)
+    if "dailyMinutes" in s:
+        require(type(s["dailyMinutes"]) is int and s["dailyMinutes"] in (5, 10, 20))
     p = obj(data["progress"], {"xp", "lessonsDone", "days", "done", "torn", "activity", "cards"})
     count(p["xp"])
     count(p["lessonsDone"])

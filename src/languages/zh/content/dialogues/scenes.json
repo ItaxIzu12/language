@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bestellen",
+    "title": "Ein Getränk bestellen",
+    "goal": "Ein Getränk bestellen",
+    "prompt": "Bestelle höflich eine Tasse Tee.",
+    "question": {
+      "target": "您想喝什么？",
+      "reading": "Nín xiǎng hē shénme?",
+      "de": "Was möchten Sie trinken?"
+    },
+    "answer": {
+      "target": "我要一杯茶。",
+      "reading": "Wǒ yào yì bēi chá.",
+      "de": "Ich möchte eine Tasse Tee."
+    },
+    "phrase": {
+      "target": "一杯茶",
+      "reading": "yì bēi chá",
+      "de": "eine Tasse Tee"
+    },
+    "choices": ["Ich möchte eine Tasse Tee.", "Wo ist die Toilette?", "Ich möchte bezahlen."],
+    "correct": 0,
+    "note": "您 ist eine höfliche Anrede. Die Antwort mit 我要 ist im Bestellkontext gebräuchlich. Ein 谢谢 am Ende drückt Dank aus."
+  },
+  {
+    "id": "nachfragen",
+    "title": "Eine Rückfrage beantworten",
+    "goal": "Eine Rückfrage zur Bestellung verstehen",
+    "prompt": "Du möchtest deinen Tee heiß trinken.",
+    "question": {
+      "target": "您要热茶还是冰茶？",
+      "reading": "Nín yào rè chá háishi bīng chá?",
+      "de": "Möchten Sie heißen Tee oder Eistee?"
+    },
+    "answer": {
+      "target": "我要热茶，谢谢。",
+      "reading": "Wǒ yào rè chá, xièxie.",
+      "de": "Ich möchte heißen Tee, danke."
+    },
+    "phrase": {
+      "target": "热茶",
+      "reading": "rè chá",
+      "de": "heißer Tee"
+    },
+    "choices": ["Ich möchte Eistee.", "Ich möchte heißen Tee, danke.", "Ich habe keinen Tee bestellt."],
+    "correct": 1,
+    "note": "还是 verbindet hier zwei Möglichkeiten in einer Frage. Mit 热茶 oder 冰茶 kannst du deine Wahl kurz und verständlich ausdrücken."
+  },
+  {
+    "id": "bezahlen",
+    "title": "Nach dem Preis fragen",
+    "goal": "Nach dem Preis der Bestellung fragen",
+    "prompt": "Frage nach dem Preis für eine Tasse Tee.",
+    "question": {
+      "target": "这是您的茶。",
+      "reading": "Zhè shì nín de chá.",
+      "de": "Hier ist Ihr Tee."
+    },
+    "answer": {
+      "target": "一杯茶多少钱？",
+      "reading": "Yì bēi chá duōshao qián?",
+      "de": "Wie viel kostet eine Tasse Tee?"
+    },
+    "phrase": {
+      "target": "多少钱",
+      "reading": "duōshao qián",
+      "de": "wie viel kostet es"
+    },
+    "choices": ["Wo kann ich sitzen?", "Ist der Tee heiß?", "Wie viel kostet eine Tasse Tee?"],
+    "correct": 2,
+    "note": "多少钱 fragt nach dem Preis. In dieser Szene verwendest du 一杯茶 aus deiner ersten Bestellung erneut."
+  }
+]

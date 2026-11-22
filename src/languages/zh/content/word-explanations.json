@@ -1,0 +1,342 @@
+{
+  "zh:电脑:diànnǎo:n": {
+    "parts": [
+      {
+        "target": "电",
+        "reading": "diàn",
+        "meaning": "Strom; elektrisch"
+      },
+      {
+        "target": "脑",
+        "reading": "nǎo",
+        "meaning": "Gehirn"
+      }
+    ],
+    "explanation": "Die Verbindung lässt sich als „elektrisches Gehirn“ verstehen. Das ganze Wort bezeichnet einen Computer.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:电话:diànhuà:n": {
+    "parts": [
+      {
+        "target": "电",
+        "reading": "diàn",
+        "meaning": "elektrisch"
+      },
+      {
+        "target": "话",
+        "reading": "huà",
+        "meaning": "Rede; Worte"
+      }
+    ],
+    "explanation": "Elektrisch übertragene Sprache: 电话 bezeichnet das Telefon oder einen Anruf.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:手机:shǒujī:n": {
+    "parts": [
+      {
+        "target": "手",
+        "reading": "shǒu",
+        "meaning": "Hand"
+      },
+      {
+        "target": "机",
+        "reading": "jī",
+        "meaning": "Gerät; Maschine"
+      }
+    ],
+    "explanation": "Ein Gerät für die Hand: Als festes Wort bezeichnet 手机 ein Mobiltelefon.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:电视:diànshì:n": {
+    "parts": [
+      {
+        "target": "电",
+        "reading": "diàn",
+        "meaning": "elektrisch"
+      },
+      {
+        "target": "视",
+        "reading": "shì",
+        "meaning": "sehen"
+      }
+    ],
+    "explanation": "Die Bestandteile verbinden Elektrizität und Sehen. Gemeint sind Fernsehen oder ein Fernsehgerät.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:电影:diànyǐng:n": {
+    "parts": [
+      {
+        "target": "电",
+        "reading": "diàn",
+        "meaning": "elektrisch"
+      },
+      {
+        "target": "影",
+        "reading": "yǐng",
+        "meaning": "Schatten; Bild"
+      }
+    ],
+    "explanation": "Die Verbindung von Elektrizität und Bild bezeichnet einen Film. Lerne die feste Gesamtbedeutung mit.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:飞机:fēijī:n": {
+    "parts": [
+      {
+        "target": "飞",
+        "reading": "fēi",
+        "meaning": "fliegen"
+      },
+      {
+        "target": "机",
+        "reading": "jī",
+        "meaning": "Maschine"
+      }
+    ],
+    "explanation": "Eine fliegende Maschine: Zusammen bedeutet 飞机 „Flugzeug“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:火车:huǒchē:n": {
+    "parts": [
+      {
+        "target": "火",
+        "reading": "huǒ",
+        "meaning": "Feuer"
+      },
+      {
+        "target": "车",
+        "reading": "chē",
+        "meaning": "Fahrzeug"
+      }
+    ],
+    "explanation": "Die Bestandteile ergeben das Bild eines Feuerfahrzeugs. Heute bezeichnet 火车 einen Zug, unabhängig von seinem Antrieb.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:地铁:dìtiě:n": {
+    "parts": [
+      {
+        "target": "地",
+        "reading": "dì",
+        "meaning": "Erde; Boden"
+      },
+      {
+        "target": "铁",
+        "reading": "tiě",
+        "meaning": "Eisen"
+      }
+    ],
+    "explanation": "地铁 ist die Kurzform von 地下铁路, einer unterirdischen Eisenbahn. Die Kurzform bedeutet „U-Bahn“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:机场:jīchǎng:n": {
+    "parts": [
+      {
+        "target": "机",
+        "reading": "jī",
+        "meaning": "hier: Flugzeug"
+      },
+      {
+        "target": "场",
+        "reading": "chǎng",
+        "meaning": "Platz; Gelände"
+      }
+    ],
+    "explanation": "机 steht hier verkürzt für 飞机. Zusammen ist damit ein Flughafen gemeint.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:牛奶:niúnǎi:n": {
+    "parts": [
+      {
+        "target": "牛",
+        "reading": "niú",
+        "meaning": "Rind; Kuh"
+      },
+      {
+        "target": "奶",
+        "reading": "nǎi",
+        "meaning": "Milch"
+      }
+    ],
+    "explanation": "牛 benennt das Tier, 奶 das Produkt. Zusammen heißt das Wort „Kuhmilch“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:水果:shuǐguǒ:n": {
+    "parts": [
+      {
+        "target": "水",
+        "reading": "shuǐ",
+        "meaning": "Wasser"
+      },
+      {
+        "target": "果",
+        "reading": "guǒ",
+        "meaning": "Frucht"
+      }
+    ],
+    "explanation": "Das feste Wort bedeutet „Obst“. Die Einzelbedeutungen helfen beim Merken, sind aber keine wörtliche Übersetzung des ganzen Wortes.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:书店:shūdiàn:n": {
+    "parts": [
+      {
+        "target": "书",
+        "reading": "shū",
+        "meaning": "Buch"
+      },
+      {
+        "target": "店",
+        "reading": "diàn",
+        "meaning": "Geschäft"
+      }
+    ],
+    "explanation": "Ein Geschäft für Bücher: 书店 bedeutet „Buchhandlung“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:书包:shūbāo:n": {
+    "parts": [
+      {
+        "target": "书",
+        "reading": "shū",
+        "meaning": "Buch"
+      },
+      {
+        "target": "包",
+        "reading": "bāo",
+        "meaning": "Tasche"
+      }
+    ],
+    "explanation": "Eine Tasche für Bücher und Schulsachen: Gemeint ist eine Schultasche oder ein Schulranzen.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:商店:shāngdiàn:n": {
+    "parts": [
+      {
+        "target": "商",
+        "reading": "shāng",
+        "meaning": "Handel"
+      },
+      {
+        "target": "店",
+        "reading": "diàn",
+        "meaning": "Geschäft"
+      }
+    ],
+    "explanation": "Beide Bestandteile gehören zum Einkaufen und Handeln. 商店 bezeichnet ein Geschäft oder einen Laden.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:学校:xuéxiào:n": {
+    "parts": [
+      {
+        "target": "学",
+        "reading": "xué",
+        "meaning": "lernen"
+      },
+      {
+        "target": "校",
+        "reading": "xiào",
+        "meaning": "Schule"
+      }
+    ],
+    "explanation": "学 bringt das Lernen ein, 校 bezeichnet die Schule. Zusammen ist 学校 das übliche Wort für „Schule“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:学生:xuésheng:n": {
+    "parts": [
+      {
+        "target": "学",
+        "reading": "xué",
+        "meaning": "lernen"
+      },
+      {
+        "target": "生",
+        "reading": "shēng",
+        "meaning": "hier: Lernender; Schüler"
+      }
+    ],
+    "explanation": "生 hat mehrere Bedeutungen. In dieser Verbindung bezeichnet es einen Lernenden. 学生 bedeutet Schüler oder Student, nicht „Lernen + Leben“.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:老师:lǎoshī:n": {
+    "parts": [
+      {
+        "target": "老",
+        "reading": "lǎo",
+        "meaning": "hier: respektvolle Bezeichnung"
+      },
+      {
+        "target": "师",
+        "reading": "shī",
+        "meaning": "Lehrer; Meister"
+      }
+    ],
+    "explanation": "老 bedeutet oft „alt“, dient hier aber als Bestandteil einer respektvollen Bezeichnung. 老师 heißt „Lehrer“ und sagt nichts über dessen Alter aus.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:医院:yīyuàn:n": {
+    "parts": [
+      {
+        "target": "医",
+        "reading": "yī",
+        "meaning": "Medizin; heilen"
+      },
+      {
+        "target": "院",
+        "reading": "yuàn",
+        "meaning": "Einrichtung; Institution"
+      }
+    ],
+    "explanation": "医 bestimmt den medizinischen Bereich. Die ganze Verbindung bezeichnet ein Krankenhaus.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:汉语:Hànyǔ:n": {
+    "parts": [
+      {
+        "target": "汉",
+        "reading": "Hàn",
+        "meaning": "Han; hier: chinesisch"
+      },
+      {
+        "target": "语",
+        "reading": "yǔ",
+        "meaning": "Sprache"
+      }
+    ],
+    "explanation": "汉 bestimmt, welche Sprache gemeint ist. 汉语 bezeichnet die chinesische Sprache; im Lernkontext ist häufig Mandarin gemeint.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  },
+  "zh:中文:Zhōngwén:n": {
+    "parts": [
+      {
+        "target": "中",
+        "reading": "Zhōng",
+        "meaning": "hier: chinesisch"
+      },
+      {
+        "target": "文",
+        "reading": "wén",
+        "meaning": "Schrift; Sprache"
+      }
+    ],
+    "explanation": "中 steht hier für China beziehungsweise chinesisch. 中文 bezeichnet die chinesische Sprache oder chinesischen Text, je nach Zusammenhang.",
+    "status": "draft",
+    "sourceNote": "Eigene didaktische Erklärung der heutigen Wortverwendung; muttersprachliche Prüfung ausstehend. Keine historische Zeichenherleitung."
+  }
+}

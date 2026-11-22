@@ -1,0 +1,8 @@
+Hallo {{ user.get_username }},
+
+für dein LinguaFlow-Konto wurde ein neues Passwort angefordert.
+Über diesen Link kannst du dein Passwort innerhalb einer Stunde ändern:
+
+{{ protocol }}://{{ domain }}/#/passwort-zuruecksetzen?uid={{ uid }}&token={{ token }}
+
+Falls du die Anfrage nicht gestellt hast, kannst du diese Nachricht ignorieren.

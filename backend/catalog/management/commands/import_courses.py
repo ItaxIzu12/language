@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
 from catalog.models import Course, Word
+from catalog.explanations import WordExplanationSerializer
 
 
 class Command(BaseCommand):
@@ -32,6 +33,11 @@ class Command(BaseCommand):
                 key = word["id"]
                 if key in keys or not key.startswith(code + ":") or word["category"] not in categories:
                     raise CommandError(f"{code}: ungültige Kategorie oder Wort-ID {key}")
+                if "understanding" in word:
+                    explanation = WordExplanationSerializer(data=word["understanding"])
+                    if not explanation.is_valid():
+                        raise CommandError(f"{code}: ungültige Worterklärung für {key}: {explanation.errors}")
+                    word["understanding"] = explanation.validated_data
                 keys.add(key)
                 rows.append(Word(course=course, key=key, category=word["category"], level=word["level"],
                                  position=position, content=word, active=True))

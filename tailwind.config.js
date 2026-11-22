@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Set per language world in index.css.
+        // Set per language world in styles/styles.css.
         sans: ["var(--font-sans)"],
         display: ["var(--font-display)"],
         hanzi: ["var(--font-script)"],

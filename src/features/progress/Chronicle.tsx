@@ -1,10 +1,25 @@
+import { getScenarios, scenarioKey } from "../dialogues/scenarios";
+import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
-import { ICON, PageHeader } from "../../components/ui";
-import { MASTERED_BOX, useStore } from "../../lib/store";
-import { addDays, cx, dayKey } from "../../lib/utils";
+import { ICON, PageHeader } from "../../shared/ui/ui";
+import { MASTERED_BOX, useStore } from "../../state/learningStore";
+import { addDays, cx, dayKey } from "../../shared/lib/utils";
 
-const MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const MONTHS = [
+  "Januar",
+  "Februar",
+  "März",
+  "April",
+  "Mai",
+  "Juni",
+  "Juli",
+  "August",
+  "September",
+  "Oktober",
+  "November",
+  "Dezember",
+];
 const WEEKDAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
 /** The learning year as twelve small calendar sheets, plus running totals. */
@@ -14,7 +29,9 @@ export default function Chronicle() {
   const [year, setYear] = useState(thisYear);
 
   const stats = useMemo(() => {
-    const days = Object.keys(progress.days).filter((d) => progress.days[d] > 0).sort();
+    const days = Object.keys(progress.days)
+      .filter((d) => progress.days[d] > 0)
+      .sort();
     let longest = 0;
     let run = 0;
     let prev = "";
@@ -41,17 +58,50 @@ export default function Chronicle() {
 
   return (
     <div>
-      <PageHeader title="Lernfortschritt" subtitle="Jeder Lerntag hinterlässt eine Spur. Rot sind die Tage, an denen du das Blatt abgerissen hast." />
+      <PageHeader
+        title="Lernfortschritt"
+        subtitle="Jeder Lerntag hinterlässt eine Spur. Rot sind die Tage, an denen du das Blatt abgerissen hast."
+      />
 
+      {getScenarios(lang.code).length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 text-xl font-bold">Deine Alltagsszenen</h2>
+          <ul className="space-y-2">
+            {getScenarios(lang.code).map((scene) => (
+              <li key={scene.id}>
+                <Link className="underline" to={`/dialoge/${scene.id}`}>
+                  {scene.goal}
+                </Link>
+                <span>
+                  {" "}
+                  · {progress.done[scenarioKey(lang.code, scene.id)] ? "Abschlussaufgabe gelöst" : "Noch üben"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <div className="grid gap-12 xl:grid-cols-[minmax(0,7fr)_minmax(0,3fr)]">
         <section>
           <div className="mb-4 flex items-center justify-between border-b-2 border-ink pb-2">
             <h2 className="font-display text-4xl font-extrabold leading-none">{year}</h2>
             <div className="flex gap-2">
-              <button type="button" className="btn-line w-11 px-0" aria-label="Vorheriges Jahr" disabled={year <= firstYear} onClick={() => setYear((y) => y - 1)}>
+              <button
+                type="button"
+                className="btn-line w-11 px-0"
+                aria-label="Vorheriges Jahr"
+                disabled={year <= firstYear}
+                onClick={() => setYear((y) => y - 1)}
+              >
                 <ChevronLeft {...ICON} aria-hidden />
               </button>
-              <button type="button" className="btn-line w-11 px-0" aria-label="Nächstes Jahr" disabled={year >= thisYear} onClick={() => setYear((y) => y + 1)}>
+              <button
+                type="button"
+                className="btn-line w-11 px-0"
+                aria-label="Nächstes Jahr"
+                disabled={year >= thisYear}
+                onClick={() => setYear((y) => y + 1)}
+              >
                 <ChevronRight {...ICON} aria-hidden />
               </button>
             </div>
@@ -84,7 +134,13 @@ export default function Chronicle() {
                           title={`${i + 1}. ${name}: ${xp} XP${torn ? ", Blatt abgerissen" : ""}`}
                           className={cx(
                             "aspect-square rounded-[1px]",
-                            torn ? "bg-cinnabar" : xp >= settings.dailyGoal ? "bg-ink" : xp > 0 ? "bg-ink/35" : "bg-wash",
+                            torn
+                              ? "bg-cinnabar"
+                              : xp >= settings.dailyGoal
+                                ? "bg-ink"
+                                : xp > 0
+                                  ? "bg-ink/35"
+                                  : "bg-wash",
                             key === today && "outline outline-2 outline-offset-1 outline-ink",
                           )}
                         />

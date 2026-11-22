@@ -1,0 +1,18 @@
+@import "@fontsource/noto-serif-sc/500.css";
+@import "@fontsource/noto-serif-sc/900.css";
+
+/* Mandarin-only artwork and script font. Structure and controls are global. */
+[data-theme="almanac"] {
+  --font-script: "Noto Serif SC", "Songti SC", STSong, SimSun, serif;
+  --art-book: url(/mandarin/book.webp);
+  --art-lantern: url(/mandarin/lantern.webp);
+  --art-microphone: url(/mandarin/microphone.webp);
+  --art-mountains: url(/mandarin/mountains.webp);
+  --art-palace: url(/mandarin/palace.webp);
+  --art-palace-line: url(/mandarin/palace-line.webp);
+  --art-plum: url(/mandarin/plum.webp);
+  --art-roof: url(/mandarin/roof.webp);
+  --art-scroll: url(/mandarin/scroll.webp);
+  --art-street: url(/mandarin/street.webp);
+  --art-tea: url(/mandarin/tea.webp);
+}

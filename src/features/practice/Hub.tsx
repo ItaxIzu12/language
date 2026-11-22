@@ -1,9 +1,9 @@
-import { useStore } from "../../lib/store";
+import { useStore } from "../../state/learningStore";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ARCHIVE, LEARN, practiceItems } from "../../components/nav";
-import type { NavItem } from "../../components/nav";
-import { ICON, PageHeader } from "../../components/ui";
+import { ARCHIVE, LEARN, practiceItems } from "../../app/navigation";
+import type { NavItem } from "../../app/navigation";
+import { ICON, PageHeader } from "../../shared/ui/ui";
 
 function Rows({ items, illustrated = false }: { items: NavItem[]; illustrated?: boolean }) {
   return (
@@ -20,7 +20,11 @@ function Rows({ items, illustrated = false }: { items: NavItem[]; illustrated?: 
                 <span className="block font-semibold">{n.label}</span>
                 <span className="block text-sm text-dim">{n.hint}</span>
               </span>
-              <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+              <ArrowRight
+                {...ICON}
+                aria-hidden
+                className="shrink-0 text-dim transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </li>
         );
@@ -35,7 +39,7 @@ export function Practice() {
   return (
     <div>
       <PageHeader title="Übungen" subtitle="Wähle, wie du das Gelernte anwenden möchtest." />
-      <Rows items={practiceItems(lang.tonePractice)} illustrated={lang.code === "zh"} />
+      <Rows items={practiceItems(lang)} illustrated />
     </div>
   );
 }

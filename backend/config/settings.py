@@ -63,3 +63,17 @@ if SOCIALACCOUNT_PROVIDERS:
     ACCOUNT_EMAIL_VERIFICATION = "none"
     SOCIALACCOUNT_ONLY = True
     SOCIALACCOUNT_STORE_TOKENS = False
+
+# Recovery mail is configured explicitly; the default sends no mail.
+PUBLIC_APP_URL = os.getenv("PUBLIC_APP_URL", "http://localhost:8080").rstrip("/")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.getenv("EMAIL_HOST", "")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "1") == "1"
+EMAIL_TIMEOUT = 10
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@localhost")
+PASSWORD_RESET_TIMEOUT = 3600
+if "TEMPLATES" not in globals():
+    TEMPLATES = [{"BACKEND": "django.template.backends.django.DjangoTemplates", "APP_DIRS": True}]

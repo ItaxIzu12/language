@@ -10,36 +10,68 @@ Das Web-Manifest und das responsive Layout bilden die mobile Basis. Der Gastmodu
 
 ## Projektstruktur und Zuständigkeiten
 
-| Pfad ab Projektwurzel | Verantwortung |
-|---|---|
-| src/main.tsx, src/App.tsx, src/types.ts | Einstieg, Routen, öffentliche Lern- und Sprachtypen |
-| src/features/account/ | Konto, Einstellungen, Sitzungsaufbau, API-Client und Synchronisierung |
-| src/features/study/ | Wortschatz, Lektion, Quiz, Fundstücke, Wiederholen |
-| src/features/practice/ | Hören, Lesen, Sprechen, Podcast und sprachabhängiges Tonlabor |
-| src/features/progress/ | Tagesblatt und Chronik |
-| src/components/ | Gemeinsame Navigation, Layout, Rückmeldungen und Übungsbausteine |
-| src/lib/ | Store, SRS, Tagesplan, Übungserzeugung, Pinyin, Audio-Hilfen |
-| src/data/languages.ts | Registrierung und Auswahl der verfügbaren Pakete |
-| src/data/zh/, src/data/zh/vocab/ | Mandarin-Konfiguration und versionierte Lerninhalte |
-| src/themes/zh/, src/index.css | Kulturspezifische Datumsanzeige, Schriftzeichen und Gestaltung |
-| public/ | Manifest und App-Icon. Künftige Kulturbilder unter public/themes/&lt;code&gt;/ mit Alt-Text, Lizenz bzw. KI-Kennzeichnung im Paket |
-| scripts/ | Export derselben Lerninhalte für Django, lokale Initialisierung |
-| backend/config/ | URL-Konfiguration, Einstellungen, WSGI, gemeinsame HTTP-Helfer |
-| backend/accounts/ | Anmeldung, Sitzung, persönlicher Export und Kontolöschung |
-| backend/catalog/ | Globale Kurse und Wörter, DRF-Abfragen |
-| backend/catalog/management/commands/ | Transaktionaler Paketimport |
-| backend/learning/ | Private Lernstände, Validierung und Synchronisierung |
-| backend/{catalog,learning}/migrations/ | Versionierte Schema- und Datenmigrationen |
-| backend/catalog/tests/, backend/learning/tests.py | Unit- und API-Integrationstests |
-| backend/manage.py, backend/requirements.txt, backend/Dockerfile | Django-CLI, Python-Abhängigkeiten und API-Image |
-| Dockerfile, nginx.conf, docker-compose.yml | Frontend-Image, Proxy und lokaler Betrieb |
-| package*.json, vite.config.ts, tsconfig.json, tailwind.config.js, postcss.config.js, index.html | Frontend-Build im bestehenden Repository-Root |
-| .github/workflows/ | Pages-Veröffentlichung und Full-Stack-Test mit PostgreSQL |
-| docs/, README.md, PRODUCT.md, DESIGN.md | Architektur, Einstieg, Produkt und Gestaltung |
+| Pfad ab Projektwurzel                | Verantwortung                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------- |
+| `src/main.tsx`                       | React-Einstieg, globale Styles und Sitzungsaufbau                                |
+| `src/app/`                           | App-Komposition, Routen, gemeinsame Navigation und registrierte UI-Erweiterungen |
+| `src/app/layouts/LearningLayout.tsx` | Gemeinsamer Sticky Header, Seitenleiste, Sprachwechsel und mobile Navigation     |
+| `src/features/`                      | Sprachübergreifende Funktionen, jeweils ein Ordner pro Lernbereich               |
+| `src/shared/ui/`                     | Dialoge, Bedienelemente und Sprachwechsel                                        |
+| `src/shared/learning/`               | Wiederverwendete Lernkarten, Wortdetails und Rückmeldungen                       |
+| `src/shared/lib/`                    | Tagesplan, Übungserzeugung, Wortgruppen und allgemeine Hilfen                    |
+| `src/shared/audio/`                  | Sprachsynthese und Spracherkennung                                               |
+| `src/state/learningStore.tsx`        | Persönlicher Lernzustand und Verbindung zur Synchronisierung                     |
+| `src/languages/registry.ts`          | Datenregistrierung aller verfügbaren Sprachpakete                                |
+| `src/languages/types.ts`             | Sprachübergreifende Inhaltsverträge                                              |
+| `src/languages/zh/config.ts`         | Mandarin-Metadaten und verfügbare Spezialfunktionen                              |
+| `src/languages/zh/content/`          | Wortschatz, Erklärungen, Dialoge, Lesetexte und Hörinhalte                       |
+| `src/languages/zh/linguistics/`      | Pinyin-Verarbeitung                                                              |
+| `src/languages/zh/exercises/tones/`  | Mandarin-Tonlabor                                                                |
+| `src/languages/zh/presentation/`     | Mandarin-Startseite, Bilderzuordnung, Schrift und Kulturkalender                 |
+| `src/styles/styles.css`              | Einziger CSS-Einstieg und globale Anpassungen                                    |
+| `src/styles/`                        | Gemeinsame CSS-Bausteine, ausschließlich über styles.css geladen                 |
+| `public/mandarin/`                   | Mandarin-Bilder; öffentliche URLs bleiben kompatibel                             |
+| `scripts/`                           | Export, Initialisierung, Backups und Architektur-/Regressionstests               |
+| `backend/accounts/`                  | Konten und Authentifizierung                                                     |
+| `backend/catalog/`                   | Globale Kurse und Wortinhalte, Import und Katalog-API                            |
+| `backend/learning/`                  | Private Lernstände und Synchronisierung                                          |
+| `backend/*/migrations/`              | Bestehende Datenbankmigrationen                                                  |
 
-Geplante Fachmodule werden mit ihrer ersten Funktion angelegt. Dazu gehören backend/curriculum/ für Grammatik und Szenarien, backend/tutor/ für Gespräche, backend/translation/ für Übersetzungen und backend/integrations/ai/ für Anbieter. Integrationstests bleiben bei der jeweiligen Fach-App.
+### Abhängigkeiten und Erweiterungen
 
-**Abhängigkeiten.** Der Katalog kennt keine Benutzer. Private Lernstände referenzieren den Katalog. Die Kontoverwaltung darf private Daten für den Export lesen. Fachmodule greifen über schmale Funktionen auf KI-Anbieter zu. Anbieter importieren keine Django-Views. React-Routen importieren Features, UI-Bausteine verwenden gemeinsame Datentypen. Der Store und der Sync-Client teilen TS-Typen über reine Typimporte. Paket-IDs sind stabile technische Schlüssel, Anzeigenamen sind übersetzbar. Python verwendet snake_case, Modell- und React-Komponentennamen PascalCase, bestehende JSON-v1-Felder camelCase. Schemaänderungen am API-Vertrag bekommen explizite Adapter.
+Die Datenregistrierung importiert ausschließlich serialisierbare Inhalte und reine
+Sprachhilfen; sie importiert keine React-Komponenten. Damit kann derselbe Export
+weiterhin im Django-Docker-Build verwendet werden. UI-Erweiterungen werden separat
+in `app/languageViews.ts` eingebunden. Neue Sprachen verwenden standardmäßig das
+gemeinsame Layout und den Tagesplan; eine eigene Startseite ist optional.
+
+Gemeinsame Features dürfen keine Mandarin-Inhaltsdateien direkt importieren.
+Sie beziehen Sprache und Inhalte über den Store beziehungsweise die Registrierung.
+Das Mandarin-Tonlabor bleibt ein explizites Spezialmodul (`toneModule: "mandarin"`).
+Eine Tonsprache bekommt dieses Modul nicht allein dadurch, dass sie Töne besitzt.
+
+Navigation und direkte Routen verwenden beide `isModuleAvailable`. Fehlende
+Dialog-, Hör- oder Leseinhalte blenden den jeweiligen Menüeintrag aus und leiten
+direkte Aufrufe zur Startseite um. Die mobile Leiste hat maximal fünf Einträge.
+Wort-IDs, API-v1-Endpunkte, Sprachcodes und lokale Speicherschlüssel bleiben stabil.
+Die alte Teehaus-URL und `/practice` behalten ihre Weiterleitungen.
+
+React-Komponenten verwenden PascalCase, Hilfsdateien camelCase, Python snake_case.
+`npm run format` formatiert Frontend, Skripte und Dokumentation mit Prettier;
+`npm run format:check` prüft dies ohne Änderungen. Die Datenbank bleibt ein modularer
+Monolith mit einer gemeinsamen PostgreSQL-Datenbank. Diese Ordnerumstellung
+benötigt keine Schema-Migration.
+
+### Globale Styles
+
+`src/main.tsx` importiert genau einmal `src/styles/styles.css`. Die Datei lädt
+Basis-, Landingpage-, Formular- und Layoutregeln in fester Reihenfolge und danach
+die Sprachthemen. Globale Anpassungen werden am Ende von `styles.css` ergänzt.
+Dort stehen auch `--control-radius`, `--touch-target` und `--focus-color`.
+Sprachthemen definieren ausschließlich ihre Bilder und Schriftarten; sie kopieren
+keine Navigation, Formulare oder Lernlogik. Die vorhandene Mandarin-Gestaltung
+bleibt durch dieselben Bild-URLs und CSS-Regeln erhalten. Layoutklassen mit dem
+Präfix `mh-` bleiben aus Kompatibilitätsgründen bestehen und werden gemeinsam genutzt.
 
 ## Datenbank im MVP
 
@@ -50,13 +82,13 @@ erDiagram
     COURSE ||--o{ WORD : enthaelt
 ```
 
-| Physische Tabelle | Schlüssel, Beziehungen und Regeln |
-|---|---|
-| auth_user, auth_group, auth_permission und Django-Zuordnungstabellen | Django-Primärschlüssel, eindeutiger Benutzername, Passwort-Hash und Gruppenrechte |
-| django_session | Sitzungsschlüssel als PK, Ablaufzeit indexiert; Cookie enthält den Sitzungsschlüssel |
-| learning_course | code als PK, name und content JSONB für das ausgelieferte Paket |
-| learning_word | id als PK, course_id als FK, UNIQUE(course_id,key), Index über (course_id,category,level), position bestimmt die Reihenfolge, active steuert Sichtbarkeit |
-| learning_learningstate | id als PK, user_id als FK mit Kaskade, language als FK auf Kurscode mit Löschschutz, UNIQUE(user_id,language), revision, updated_at, document JSONB |
+| Physische Tabelle                                                    | Schlüssel, Beziehungen und Regeln                                                                                                                         |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| auth_user, auth_group, auth_permission und Django-Zuordnungstabellen | Django-Primärschlüssel, eindeutiger Benutzername, Passwort-Hash und Gruppenrechte                                                                         |
+| django_session                                                       | Sitzungsschlüssel als PK, Ablaufzeit indexiert; Cookie enthält den Sitzungsschlüssel                                                                      |
+| learning_course                                                      | code als PK, name und content JSONB für das ausgelieferte Paket                                                                                           |
+| learning_word                                                        | id als PK, course_id als FK, UNIQUE(course_id,key), Index über (course_id,category,level), position bestimmt die Reihenfolge, active steuert Sichtbarkeit |
+| learning_learningstate                                               | id als PK, user_id als FK mit Kaskade, language als FK auf Kurscode mit Löschschutz, UNIQUE(user_id,language), revision, updated_at, document JSONB       |
 
 Ein Wort kann im aktuellen Austauschformat eine deutsche Glosse, ein Beispiel und eine Hauptkategorie tragen. Die Lernstand-Revision ist pro Konto **und** Kurs. Anwendungsvalidierung kontrolliert Box, Fälligkeit, Zähler, Einstellungen und eigene Wörter. Der Client berechnet XP für die persönliche Lernhilfe. Ein Wettbewerbsranking bräuchte eine serverseitige Bewertung. Private Fundstücke liegen im Lernstand und erscheinen nie im öffentlichen Wörter-Endpunkt.
 
@@ -64,19 +96,19 @@ Ein Wort kann im aktuellen Austauschformat eine deutsche Glosse, ein Beispiel un
 
 Die folgenden Tabellen sind der Ausbauentwurf. Die Namen bezeichnen logische Tabellen, bis eine App-Migration sie tatsächlich einführt. Jede Tabelle erhält einen bigint-PK, sofern unten ein anderer Schlüssel genannt ist. Alle genannten Verweise sind Fremdschlüssel. Zuordnungstabellen haben einen zusammengesetzten UNIQUE-Schlüssel bzw. PK. Für die konkrete PostgreSQL-Migration gelten zusätzlich die unten genannten sprachübergreifenden Integritätsregeln.
 
-| Bereich | Tabellen und Integrität |
-|---|---|
-| Pakete und Herkunft | package_release(course_id, version, digest, imported_at), UNIQUE(course_id,version). source(id, title, locator, license). content_revision(release_id, source_id, quality_status, reviewed_by, reviewed_at), mit Status draft, generated, reviewed, retired. Wortbedeutungen, Beispiele und Lektionen referenzieren ihre Revision. Prüfer ist optional und wird bei Kontolöschung auf NULL gesetzt. |
-| Bedeutungen und Übersetzungen | word_sense(word_id, stable_key, register, revision_id), UNIQUE(word_id,stable_key). gloss(sense_id, locale, text), UNIQUE(sense_id,locale,text). example(sense_id, text, reading, revision_id) und example_translation(example_id, locale, text). Register liegt an der Bedeutung und erlaubt neutral, formal, informal, unspecified. |
-| Sprachvarianten | variety(course_id, tag, label), UNIQUE(course_id,tag). sense_variant(sense_id,variety_id,surface,reading), UNIQUE(sense_id,variety_id,surface). Ein Mandarin-Eintrag kann etwa Formen aus zh-CN und zh-TW verbinden. |
-| Kategorien und Stufen | category(course_id,slug,label), UNIQUE(course_id,slug). word_category(word_id,category_id). level_system(code,edition), UNIQUE(code,edition). level(system_id,code,rank), UNIQUE(system_id,code). course_level(course_id,level_id). word_level(word_id,level_id,source_id). Ohne Zuordnung bleibt ein Wort normal trainierbar. CEFR-Einschätzungen separat von belegten HSK- oder JLPT-Listeneinträgen führen. |
-| Grammatik und Übungen | grammar_lesson(course_id,slug,title,revision_id), UNIQUE(course_id,slug). exercise(lesson_id,position,kind,prompt,answer_spec), UNIQUE(lesson_id,position). Antwortschema pro kind validieren. Übungsversuche gehören zum Lernkonto. |
-| Szenarien | scenario(course_id,slug,title,revision_id), UNIQUE(course_id,slug). scenario_line(scenario_id,position,role,text,reading), UNIQUE(scenario_id,position). Kuratierte Beispieldialoge bleiben für alle Lernenden gleich. |
-| Persönliche Karten | Der bestehende LearningState bildet die Einschreibung. personal_word(enrollment_id,key,surface,reading), UNIQUE(enrollment_id,key). review_card(enrollment_id,word_id NULL,personal_word_id NULL,box,due_on,right_count,wrong_count). CHECK genau ein Wortbezug, nichtnegative Zähler, Box 0–6. Zwei partielle UNIQUE-Indizes je Einschreibung und Wortbezug, Index (enrollment_id,due_on). |
-| Fortschritt | daily_activity(enrollment_id,local_date,xp,lesson_count,review_count,apply_count), UNIQUE(enrollment_id,local_date). exercise_attempt(enrollment_id,exercise_id,client_event_id,result,occurred_at), UNIQUE(enrollment_id,client_event_id) für idempotente Wiederholungen. |
-| Gespräche und KI-Feedback | tutor_session(enrollment_id,scenario_id NULL,provider,model,created_at,expires_at). turn(session_id,position,role,text), UNIQUE(session_id,position). feedback(turn_id,kind,original_span,suggestion,explanation). Ein Szenario ist optional, der Eigentümer ergibt sich aus der Einschreibung. |
-| Übersetzungen | translation_entry(enrollment_id,source_locale,target_locale,input,output,provider,created_at,expires_at). Index (enrollment_id,created_at). Nur bei aktiviertem Verlauf persistieren. |
-| Aufnahmen | Bei einem Bedarf an gespeichertem Audio recording(turn_id,object_key,expires_at,deleted_at) mit Index auf expires_at. Audio selbst liegt in privatem Objektspeicher. |
+| Bereich                       | Tabellen und Integrität                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pakete und Herkunft           | package_release(course_id, version, digest, imported_at), UNIQUE(course_id,version). source(id, title, locator, license). content_revision(release_id, source_id, quality_status, reviewed_by, reviewed_at), mit Status draft, generated, reviewed, retired. Wortbedeutungen, Beispiele und Lektionen referenzieren ihre Revision. Prüfer ist optional und wird bei Kontolöschung auf NULL gesetzt.            |
+| Bedeutungen und Übersetzungen | word_sense(word_id, stable_key, register, revision_id), UNIQUE(word_id,stable_key). gloss(sense_id, locale, text), UNIQUE(sense_id,locale,text). example(sense_id, text, reading, revision_id) und example_translation(example_id, locale, text). Register liegt an der Bedeutung und erlaubt neutral, formal, informal, unspecified.                                                                          |
+| Sprachvarianten               | variety(course_id, tag, label), UNIQUE(course_id,tag). sense_variant(sense_id,variety_id,surface,reading), UNIQUE(sense_id,variety_id,surface). Ein Mandarin-Eintrag kann etwa Formen aus zh-CN und zh-TW verbinden.                                                                                                                                                                                           |
+| Kategorien und Stufen         | category(course_id,slug,label), UNIQUE(course_id,slug). word_category(word_id,category_id). level_system(code,edition), UNIQUE(code,edition). level(system_id,code,rank), UNIQUE(system_id,code). course_level(course_id,level_id). word_level(word_id,level_id,source_id). Ohne Zuordnung bleibt ein Wort normal trainierbar. CEFR-Einschätzungen separat von belegten HSK- oder JLPT-Listeneinträgen führen. |
+| Grammatik und Übungen         | grammar_lesson(course_id,slug,title,revision_id), UNIQUE(course_id,slug). exercise(lesson_id,position,kind,prompt,answer_spec), UNIQUE(lesson_id,position). Antwortschema pro kind validieren. Übungsversuche gehören zum Lernkonto.                                                                                                                                                                           |
+| Szenarien                     | scenario(course_id,slug,title,revision_id), UNIQUE(course_id,slug). scenario_line(scenario_id,position,role,text,reading), UNIQUE(scenario_id,position). Kuratierte Beispieldialoge bleiben für alle Lernenden gleich.                                                                                                                                                                                         |
+| Persönliche Karten            | Der bestehende LearningState bildet die Einschreibung. personal_word(enrollment_id,key,surface,reading), UNIQUE(enrollment_id,key). review_card(enrollment_id,word_id NULL,personal_word_id NULL,box,due_on,right_count,wrong_count). CHECK genau ein Wortbezug, nichtnegative Zähler, Box 0–6. Zwei partielle UNIQUE-Indizes je Einschreibung und Wortbezug, Index (enrollment_id,due_on).                    |
+| Fortschritt                   | daily_activity(enrollment_id,local_date,xp,lesson_count,review_count,apply_count), UNIQUE(enrollment_id,local_date). exercise_attempt(enrollment_id,exercise_id,client_event_id,result,occurred_at), UNIQUE(enrollment_id,client_event_id) für idempotente Wiederholungen.                                                                                                                                     |
+| Gespräche und KI-Feedback     | tutor_session(enrollment_id,scenario_id NULL,provider,model,created_at,expires_at). turn(session_id,position,role,text), UNIQUE(session_id,position). feedback(turn_id,kind,original_span,suggestion,explanation). Ein Szenario ist optional, der Eigentümer ergibt sich aus der Einschreibung.                                                                                                                |
+| Übersetzungen                 | translation_entry(enrollment_id,source_locale,target_locale,input,output,provider,created_at,expires_at). Index (enrollment_id,created_at). Nur bei aktiviertem Verlauf persistieren.                                                                                                                                                                                                                          |
+| Aufnahmen                     | Bei einem Bedarf an gespeichertem Audio recording(turn_id,object_key,expires_at,deleted_at) mit Index auf expires_at. Audio selbst liegt in privatem Objektspeicher.                                                                                                                                                                                                                                           |
 
 **Sprachgrenzen in PostgreSQL.** Wo zwei FKs dieselbe Sprache haben müssen, auf beiden Eltern UNIQUE(id,course_id) und auf der Zuordnung zusammengesetzte FKs (word_id,course_id) und (category_id,course_id) setzen. Entsprechend für Einschreibung/Katalogwort, Szenario/Einschreibung und Übung/Versuch. Für Privatwörter mit UNIQUE(id,enrollment_id) Eigentum bis zur Karte erzwingen. Diese Regeln gehören in dieselbe Migration wie die neuen Tabellen. Die Anwendung beschränkt zusätzlich jede private Abfrage auf request.user. Katalogeinträge mit Lernhistorie werden deaktiviert. Ein gelöschtes Lernkonto kaskadiert nur in private Tabellen.
 
@@ -107,10 +139,33 @@ Ein neues Paket implementiert Language mit Code, Lerninhalten, TTS-Locale, Lesun
 Beispiel eines Mandarin-Paketausschnitts für den Import-Test:
 
 ```json
-[{"code":"zh","name":"Mandarin","categories":[{"id":"food"}],"vocab":[
-  {"id":"zh:茶:chá:n","target":"茶","reading":"chá","de":"Tee","category":"food","pos":"noun","level":"A1"},
-  {"id":"zh:水:shuǐ:n","target":"水","reading":"shuǐ","de":"Wasser","category":"food","pos":"noun","level":"A1"}
-]}]
+[
+  {
+    "code": "zh",
+    "name": "Mandarin",
+    "categories": [{ "id": "food" }],
+    "vocab": [
+      {
+        "id": "zh:茶:chá:n",
+        "target": "茶",
+        "reading": "chá",
+        "de": "Tee",
+        "category": "food",
+        "pos": "noun",
+        "level": "A1"
+      },
+      {
+        "id": "zh:水:shuǐ:n",
+        "target": "水",
+        "reading": "shuǐ",
+        "de": "Wasser",
+        "category": "food",
+        "pos": "noun",
+        "level": "A1"
+      }
+    ]
+  }
+]
 ```
 
 Im Zielmodell könnte eine Bedeutung von 您 (nín) das Register formal und die deutsche Glosse „Sie“ erhalten. Dieselbe Bedeutung darf den Kategorien „Anrede“ und „Höflichkeit“ angehören. Eine Prüfungsstufe wird erst mit Quelle und Listenausgabe eingetragen.
@@ -119,15 +174,15 @@ Die Autoren pflegen Paketquellen im Repository. Der Build exportiert sie über d
 
 ## API v1
 
-| Ressource | Zugriff und Vertrag |
-|---|---|
-| GET /api/v1/courses/ und /courses/{code}/ | Öffentlich. Paketübersicht bzw. Sprachkonfiguration einschließlich Lesetexten und Dialogen |
-| GET /api/v1/courses/{code}/words/ | Öffentlich. q durchsucht Schrift, Lesung und deutsche Bedeutung. category und level filtern exakt. offset ≥ 0, limit 1–200, Standard 50 |
-| GET /api/v1/session/ | Aktuelle Sitzung und CSRF-Token |
-| POST /api/v1/register/, /login/, /logout/ | Anmeldung/Registrierung mit username und password, CSRF für alle drei Endpunkte |
-| GET, PUT /api/v1/state/{code}/ | Eigentümer aus der Sitzung. X-Learner schützt vor versehentlichem Schreiben nach Kontowechsel. PUT enthält revision und document |
-| GET, DELETE /api/v1/me/ | Export aller Sprachstände bzw. Kontolöschung nach Passwortbestätigung per JSON. Beides erfordert eine Sitzung, DELETE zusätzlich CSRF |
-| GET /api/v1/health/ | Prüft die Datenbankverbindung |
+| Ressource                                 | Zugriff und Vertrag                                                                                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| GET /api/v1/courses/ und /courses/{code}/ | Öffentlich. Paketübersicht bzw. Sprachkonfiguration einschließlich Lesetexten und Dialogen                                              |
+| GET /api/v1/courses/{code}/words/         | Öffentlich. q durchsucht Schrift, Lesung und deutsche Bedeutung. category und level filtern exakt. offset ≥ 0, limit 1–200, Standard 50 |
+| GET /api/v1/session/                      | Aktuelle Sitzung und CSRF-Token                                                                                                         |
+| POST /api/v1/register/, /login/, /logout/ | Anmeldung/Registrierung mit username und password, CSRF für alle drei Endpunkte                                                         |
+| GET, PUT /api/v1/state/{code}/            | Eigentümer aus der Sitzung. X-Learner schützt vor versehentlichem Schreiben nach Kontowechsel. PUT enthält revision und document        |
+| GET, DELETE /api/v1/me/                   | Export aller Sprachstände bzw. Kontolöschung nach Passwortbestätigung per JSON. Beides erfordert eine Sitzung, DELETE zusätzlich CSRF   |
+| GET /api/v1/health/                       | Prüft die Datenbankverbindung                                                                                                           |
 
 Beispiel: GET /api/v1/courses/zh/words/?q=chá&limit=1 liefert {"count":N,"results":[…]}. Ein neuer Lernstand liefert {"revision":0,"document":null}. Beim Speichern folgt {"revision":1}. HTTP 400 kennzeichnet ungültige Daten, 401 eine fehlende Sitzung bei privaten Ressourcen, 403 abgewiesenes CSRF/Passwort, 404 einen unbekannten Kurs, 409 eine veraltete Revision oder einen Kontowechsel und 429 zu viele Anmeldeversuche. DRF liefert Validierungsfehler nach Feld und 404 mit detail; die bisherigen JSON-Views verwenden error, die Django-CSRF-Middleware kann HTML zurückgeben. Clients behandeln zuerst den Status. Additive Felder sind mit v1 vereinbar, eine Umdeutung bestehender Felder benötigt v2 und eine dokumentierte Übergangsfrist.
 
@@ -161,3 +216,31 @@ Prüfe zusätzlich Benutzerzahl, Lernstandrevisionen und eine stichprobenartige 
 5. **Neue Lernmodule.** Eine Grammatiklektion samt auswertbarer Übung und einen Dialog zuerst vertikal liefern. Dann lokalen KI-Adapter anbinden und mit einem deterministischen Testadapter prüfen. Externen Anbieter und freiwilligen Verlauf erst nach Löschen, Export, Timeout- und Datenschutztests aktivieren.
 
 Für jede Schemaänderung Migration ins Repository legen, gegen ein leeres Schema und gegen eine Kopie des vorherigen Releases prüfen. CI baut beide Images, startet PostgreSQL, führt Django-Tests aus und prüft die Wort-API über nginx. Vor einem produktiven Rollout zusätzlich Backup-Wiederherstellung und Browser-Lernablauf verifizieren.
+
+## Abgleich mit dem Architekturplan
+
+| Geplant                                    | Umgesetzt                                                                                                |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| Mandarin in einem erkennbaren Sprachordner | `src/languages/zh/` mit Konfiguration, Inhalten, Pinyin, Tonlabor und Darstellung                        |
+| Gemeinsame Lernfunktionen                  | Featureordner für Vokabeln, Lektionen, Wiederholen, Dialoge, Sprechen, Hören, Lesen, Quiz und Fundstücke |
+| Einheitliche Navigation                    | `app/navigation.ts`; dieselbe Verfügbarkeitsprüfung für Menüs und Routen                                 |
+| Gemeinsamer Header und mobile Navigation   | `LearningLayout`; Mandarin nutzt weiterhin seine kulturelle Gestaltung                                   |
+| Globale Styles                             | `styles/styles.css` als einziger CSS-Einstieg mit gemeinsamen Variablen und Regeln                       |
+| Erweiterbare Sprachoberflächen             | Reine Datenregistrierung getrennt von `app/languageViews.ts`                                             |
+| Erhalt bestehender Daten                   | Alle 4.691 Wort-IDs samt Reihenfolge gegen den bisherigen Git-Katalog abgeglichen                        |
+| Einheitliche Formatierung                  | Prettier-Konfiguration und Formatierungsbefehle                                                          |
+
+Bewusste Vereinfachungen: Es gibt keinen leeren `providers/`-Ordner; der bestehende
+Kontoeinstieg und der Lernstore bleiben an ihren fachlichen Orten. Globale
+Designvariablen stehen direkt in `styles.css` beziehungsweise dessen Basisdatei;
+eine zusätzliche `tokens.css` ist dafür derzeit nicht nötig. Öffentliche Bilder
+bleiben unter `public/mandarin/`, damit vorhandene URLs stabil bleiben.
+
+Geprüft wurden der Produktionsbuild, Formatierung, Architektur- und Lernplantests,
+14 Django-Tests auf einer isolierten SQLite-Datenbank sowie Export und Import des
+gesamten Katalogs. Im Browser wurden Mandarin-Startseite, Wortdetails mit Erklärung,
+Dialogliste und die mobile Navigation mit fünf Bereichen geprüft. Ein echter
+Sprachwechsel auf einen zweiten vollständigen Kurs bleibt zu prüfen, sobald ein
+solcher Kurs existiert. Der laufende Docker-Stack wurde bei dieser Umstrukturierung
+nicht neu gebaut. Der Build meldet weiterhin einen großen Inhalts-Chunk; späteres
+Laden einzelner Sprachpakete ist eine separate Performance-Verbesserung.

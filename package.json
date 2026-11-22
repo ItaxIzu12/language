@@ -8,7 +8,11 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\" \"scripts/*.{ts,mjs}\" \"docs/**/*.md\" README.md",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\" \"scripts/*.{ts,mjs}\" \"docs/**/*.md\" README.md",
+    "test:architecture": "node scripts/test-architecture.mjs",
+    "test:learning": "node scripts/test-learning.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
@@ -25,6 +29,7 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
+    "prettier": "^3.10.1",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2",
     "vite": "^5.4.8"

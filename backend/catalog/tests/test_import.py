@@ -40,3 +40,22 @@ class ImportTests(TestCase):
             self.import_package(invalid)
         data = self.client.get("/api/v1/courses/zh/words/", {"q": "getränk"}).json()
         self.assertEqual(data["results"], pack["vocab"])
+
+    def test_explanations_roundtrip_optional_and_atomic(self):
+        word = {"id": "de:Handschuh:n", "target": "Handschuh", "category": "basic", "level": "A1",
+                "understanding": {"parts": [{"target": "Hand", "meaning": "Körperteil"},
+                                            {"target": "Schuh", "meaning": "Bekleidung"}],
+                                  "explanation": "Ein Kleidungsstück für die Hand.",
+                                  "status": "draft", "sourceNote": "Testinhalt"}}
+        pack = {"code": "de", "name": "Deutsch", "categories": [{"id": "basic"}], "vocab": [word]}
+        self.import_package(pack)
+        result = self.client.get("/api/v1/courses/de/words/").json()["results"][0]
+        self.assertEqual(result["understanding"], word["understanding"])
+        invalid = deepcopy(pack)
+        invalid["vocab"][0]["understanding"]["parts"] = []
+        with self.assertRaises(CommandError):
+            self.import_package(invalid)
+        self.assertEqual(Word.objects.get(key=word["id"]).content, result)
+        del word["understanding"]
+        self.import_package(pack)
+        self.assertNotIn("understanding", Word.objects.get(key=word["id"]).content)

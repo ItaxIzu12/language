@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Keep the (large) learning content in its own cacheable file.
-        manualChunks: (id) => (id.includes("/src/data/") ? "content" : undefined),
+        manualChunks: (id) => (id.includes("/src/languages/") && id.includes("/content/") ? "content" : undefined),
       },
     },
   },

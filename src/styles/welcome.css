@@ -1,0 +1,261 @@
+.lf-main-action {
+  width: fit-content;
+}
+.account-back,
+.account-guest,
+.account-art a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+.account-entry {
+  width: min(90%, 1020px);
+  margin: clamp(22px, 5vw, 78px) auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fffaf4;
+}
+.account-entry {
+  --course-art: url(/landing/welt.webp);
+}
+.account-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 480px;
+  padding: clamp(22px, 3vw, 44px);
+  color: #fff7e6;
+  background:
+    linear-gradient(0deg, #291913ec, transparent 80%),
+    var(--course-art) 68% center/cover;
+}
+.account-art h1 {
+  font-size: clamp(44px, 5vw, 78px);
+  margin: 0;
+}
+.account-art h1 em {
+  color: #f4cb9c;
+}
+.account-art small {
+  margin-top: 20px;
+  color: #eee0cb;
+  font-size: 0.72rem;
+}
+.account-paper {
+  padding: clamp(22px, 3.5vw, 55px);
+  align-self: center;
+}
+.account-paper p {
+  color: #66594c;
+  margin-block: 9px 18px;
+}
+.account-paper .field {
+  display: block;
+  background: #fffdf9;
+  color: #261e19;
+  border: 1px solid #bcae9f;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+.account-paper .btn-ink {
+  background: var(--red);
+  color: white;
+  border-radius: 30px;
+}
+.account-paper .btn-line {
+  border-color: #bcae9f;
+  color: #3c2c23;
+  border-radius: 30px;
+}
+.account-paper label {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.account-modes {
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+  border-radius: 24px;
+  background: #8c70561c;
+  margin-bottom: 20px;
+}
+.account-modes button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 22px;
+  font-weight: 600;
+}
+.account-modes button[aria-pressed="true"] {
+  background: #893026;
+  color: white;
+}
+.account-fields > h2 {
+  font:
+    normal 2rem/1.15 Georgia,
+    serif;
+}
+.account-fields > form {
+  margin-top: 16px;
+}
+.account-preview {
+  padding: 9px 12px;
+  border-left: 2px solid #ab8367;
+  font-size: 0.84rem;
+}
+.account-guest {
+  margin-top: 12px;
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .account-entry {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  .account-art {
+    min-height: 128px;
+    padding: 16px 22px;
+    background-position:
+      center,
+      center 55%;
+  }
+  .account-art h1 {
+    font-size: 32px;
+  }
+  .account-art h1 br {
+    display: none;
+  }
+  .account-art h1 em {
+    margin-left: 0.2em;
+  }
+  .account-art small {
+    margin: 0;
+    align-self: flex-end;
+    font-size: 0.65rem;
+  }
+}
+.auth-providers {
+  display: grid;
+  gap: 9px;
+  margin-block: 18px 12px;
+}
+.auth-provider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 46px;
+  padding: 9px 12px;
+  border-radius: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.auth-provider svg {
+  width: 19px;
+  height: 19px;
+  flex: none;
+}
+.auth-google {
+  background: white;
+  color: #252525;
+  border: 1px solid #968e87;
+}
+.auth-apple {
+  background: #191919;
+  color: white;
+  border: 1px solid #191919;
+}
+.auth-provider:enabled:hover {
+  box-shadow: 0 2px 6px #321f172a;
+}
+.auth-provider:disabled {
+  cursor: not-allowed;
+}
+.auth-provider small {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 0.82rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.25;
+}
+.course-picker {
+  width: min(90%, 680px);
+  margin: clamp(35px, 8vw, 96px) auto;
+}
+.course-picker h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+.pick-course {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  margin: 24px 0;
+  padding: 20px;
+  background: #fffaf4;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: left;
+}
+.pick-course span {
+  color: var(--red);
+  font-size: 1.7rem;
+}
+.pick-course svg {
+  margin-left: auto;
+}
+.course-planned,
+.account-fields small {
+  color: #675444;
+}
+.account-fields .auth-apple small {
+  color: inherit;
+}
+.password-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 35px;
+}
+.password-rules {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  font-size: 0.87rem;
+}
+.password-rules li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.password-rules svg {
+  flex: none;
+}
+.password-rules li[data-met="true"] {
+  color: #186642;
+  font-weight: 600;
+}
+.dark .mh-course-page .password-rules li[data-met="true"] {
+  color: #9ae5b3;
+}

@@ -1,0 +1,43 @@
+/* Global stylesheet entry, imported exactly once in main.tsx.
+ * Shared rules apply to all languages. Language themes supply artwork/fonts only.
+ * Add application-wide overrides at the end of this file; avoid per-page copies.
+ */
+@import "./base.css";
+@import "./landing.css";
+@import "./welcome.css";
+@import "./learning-layout.css";
+@import "./course-switcher.css";
+@import "../languages/zh/presentation/theme.css";
+
+:root {
+  --control-radius: 0.5rem;
+  --focus-color: #1677a1;
+  --touch-target: 44px;
+}
+
+/* Accessible interaction defaults shared by every learning world. */
+:where(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+}
+:where(button, input, select, textarea) {
+  font: inherit;
+}
+.btn-ink,
+.btn-line,
+.btn-red,
+.btn-quiet,
+.field {
+  min-height: var(--touch-target);
+  border-radius: var(--control-radius);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

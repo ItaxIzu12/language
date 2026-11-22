@@ -1,0 +1,1 @@
+scenes.json enthält die aktiven Alltagsszenen. teahouse.json bleibt als ursprüngliche Inhaltsvorlage erhalten und wird aktuell nicht geladen. Die alte Route /sprachen/zh/teehaus leitet zur ersten aktiven Szene weiter.

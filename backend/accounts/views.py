@@ -1,3 +1,4 @@
+from django import forms
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -33,8 +34,14 @@ def account(request, action):
         if not form.is_valid():
             return error(" ".join(str(m) for errors in form.errors.values() for m in errors), 400)
         try:
+            email = forms.EmailField(required=False).clean(credentials.get("email", ""))
+        except forms.ValidationError:
+            return error("Bitte eine gültige E-Mail-Adresse eingeben.", 400)
+        try:
             with transaction.atomic():
-                user = form.save()
+                user = form.save(commit=False)
+                user.email = email
+                user.save()
         except IntegrityError:
             return error("Benutzername bereits vergeben.", 409)
     else:

@@ -1,15 +1,28 @@
 import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Bar, Glyph, ICON, Seal, SpeakButton, levelTone } from "../../components/ui";
-import { LEVELS } from "../../data/languages";
-import { mistakeWords } from "../../lib/mistakes";
-import { dayPlan } from "../../lib/plan";
-import { useStore } from "../../lib/store";
-import { addDays, cx } from "../../lib/utils";
-import type { Culture } from "../../types";
+import { Bar, Glyph, ICON, Seal, SpeakButton, levelTone } from "../../shared/ui/ui";
+import { LEVELS } from "../../languages/registry";
+import { mistakeWords } from "../../shared/lib/mistakes";
+import { dayPlan } from "../../shared/lib/plan";
+import { useStore } from "../../state/learningStore";
+import { addDays, cx } from "../../shared/lib/utils";
+import type { Culture } from "../../languages/types";
 
-const MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const MONTHS = [
+  "Januar",
+  "Februar",
+  "März",
+  "April",
+  "Mai",
+  "Juni",
+  "Juli",
+  "August",
+  "September",
+  "Oktober",
+  "November",
+  "Dezember",
+];
 const WEEKDAYS = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
 const WEEKDAYS_SHORT = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
@@ -40,6 +53,7 @@ export default function Dashboard() {
     dueCount: dueWords.length,
     hasCards: Object.keys(progress.cards).length > 0,
     weekday: date.getDay(),
+    dailyMinutes: settings.dailyMinutes,
     tonePractice: lang.tonePractice,
   });
   const blocksDone = blocks.filter((b) => b.done).length;
@@ -65,9 +79,17 @@ export default function Dashboard() {
     <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)]">
       {/* The sheet(s): today's on top, tomorrow's underneath. */}
       <div className="grid [&>*]:col-start-1 [&>*]:row-start-1">
-        {(torn || tearing) && <NextSheet date={parseDay(addDays(today, 1))} tornTotal={tornTotal + (tearing ? 1 : 0)} culture={lang.culture} />}
+        {(torn || tearing) && (
+          <NextSheet
+            date={parseDay(addDays(today, 1))}
+            tornTotal={tornTotal + (tearing ? 1 : 0)}
+            culture={lang.culture}
+          />
+        )}
         {!torn && (
-          <article className={cx("sheet overflow-hidden", tearing && "pointer-events-none origin-top-left animate-tear")}>
+          <article
+            className={cx("sheet overflow-hidden", tearing && "pointer-events-none origin-top-left animate-tear")}
+          >
             <SheetHead date={date} culture={lang.culture} />
 
             <div className="grid sm:grid-cols-2">
@@ -94,12 +116,18 @@ export default function Dashboard() {
                           {b.done && <Check size={16} strokeWidth={2.5} aria-hidden />}
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className={cx("block font-semibold", b.done && "text-dim line-through")}>{b.title}</span>
+                          <span className={cx("block font-semibold", b.done && "text-dim line-through")}>
+                            {b.title}
+                          </span>
                           <span className="block text-sm text-dim">{b.when}</span>
                           <span className="block text-sm">{b.detail}</span>
                           {!b.done && b.progress > 0 && <Bar value={b.progress} tone="jade" className="mt-2" />}
                         </span>
-                        <ArrowRight {...ICON} aria-hidden className="mt-1 shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+                        <ArrowRight
+                          {...ICON}
+                          aria-hidden
+                          className="mt-1 shrink-0 text-dim transition-transform group-hover:translate-x-1"
+                        />
                       </Link>
                     </li>
                   ))}
@@ -135,8 +163,8 @@ export default function Dashboard() {
                   </>
                 ) : (
                   <p className="mt-3 text-sm text-dim">
-                    Noch keine. Wörter, die du falsch beantwortest, sammeln sich hier – damit du weißt, worauf du heute achten
-                    solltest.
+                    Noch keine. Wörter, die du falsch beantwortest, sammeln sich hier – damit du weißt, worauf du heute
+                    achten solltest.
                   </p>
                 )}
               </section>
@@ -207,7 +235,11 @@ export default function Dashboard() {
               </span>
               <Bar value={nextWords.length ? nextDone / nextWords.length : 0} className="mt-2" />
             </span>
-            <ArrowRight {...ICON} aria-hidden className="shrink-0 text-dim transition-transform group-hover:translate-x-1" />
+            <ArrowRight
+              {...ICON}
+              aria-hidden
+              className="shrink-0 text-dim transition-transform group-hover:translate-x-1"
+            />
           </Link>
         </section>
 
@@ -250,13 +282,19 @@ function SheetHead({ date, culture, quiet }: { date: Date; culture: Culture; qui
       </div>
       <div className="grid grid-cols-[auto_minmax(0,1fr)] items-end gap-x-5 gap-y-2 p-5">
         <div
-          className={cx("font-display font-black leading-[0.8]", weekend ? "text-cinnabar" : "text-ink", quiet && "opacity-40")}
+          className={cx(
+            "font-display font-black leading-[0.8]",
+            weekend ? "text-cinnabar" : "text-ink",
+            quiet && "opacity-40",
+          )}
           style={{ fontSize: "clamp(7.5rem, 24vw, 13rem)" }}
         >
           {date.getDate()}
         </div>
         <div className="min-w-0 pb-2">
-          <h1 className="font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl">{WEEKDAYS[date.getDay()]}</h1>
+          <h1 className="font-display text-4xl font-extrabold uppercase leading-none sm:text-5xl">
+            {WEEKDAYS[date.getDay()]}
+          </h1>
           {zh && (
             <>
               <p className="hanzi mt-2 text-3xl font-bold leading-tight">{zh.weekday}</p>
@@ -292,7 +330,8 @@ function NextSheet({ date, tornTotal, culture }: { date: Date; tornTotal: number
         <div className="min-w-0 flex-1">
           <h2 className="text-xl font-bold">Das Blatt von heute ist abgerissen.</h2>
           <p className="mt-1 max-w-[52ch] text-dim">
-            Blatt Nummer {tornTotal}. Das nächste wartet morgen – wer mag, lernt einfach weiter, die Punkte zählen trotzdem.
+            Blatt Nummer {tornTotal}. Das nächste wartet morgen – wer mag, lernt einfach weiter, die Punkte zählen
+            trotzdem.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link to="/review" className="btn-ink">

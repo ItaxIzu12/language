@@ -1,15 +1,26 @@
+import { RecoveryEmail } from "./PasswordRecovery";
 import AccountPanel from "./AccountPanel";
 import { accountEnabled } from "./account";
 import { Download, Moon, Sun, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";
-import { ICON, PageHeader, Segmented, SpeakButton } from "../../components/ui";
-import CourseSwitcher from "../../components/CourseSwitcher";
-import { useStore } from "../../lib/store";
-import { cx } from "../../lib/utils";
+import { ICON, PageHeader, Segmented, SpeakButton } from "../../shared/ui/ui";
+import CourseSwitcher from "../../shared/ui/CourseSwitcher";
+import { useStore } from "../../state/learningStore";
+import { cx } from "../../shared/lib/utils";
 
 export default function Settings() {
-  const { username, lang, settings, updateSettings, progress, customWords, resetProgress, exportProgress, importProgress } = useStore();
+  const {
+    username,
+    lang,
+    settings,
+    updateSettings,
+    progress,
+    customWords,
+    resetProgress,
+    exportProgress,
+    importProgress,
+  } = useStore();
   const fileInput = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -30,18 +41,29 @@ export default function Settings() {
     setMessage(
       ok
         ? { ok: true, text: "Sicherung eingelesen." }
-        : { ok: false, text: "Die Datei ist keine LinguaFlow-Sicherung. Wähle eine Datei, die du hier exportiert hast." },
+        : {
+            ok: false,
+            text: "Die Datei ist keine LinguaFlow-Sicherung. Wähle eine Datei, die du hier exportiert hast.",
+          },
     );
   };
 
   return (
     <div className="max-w-3xl">
-      <PageHeader title="Profil und Einstellungen" subtitle={username ? "Angemeldet als " + username : "Du lernst als Gast."} />
+      <PageHeader
+        title="Profil und Einstellungen"
+        subtitle={username ? "Angemeldet als " + username : "Du lernst als Gast."}
+      />
 
-      {accountEnabled && <Section title="Lernkonto"><AccountPanel /></Section>}
+      {accountEnabled && (
+        <Section title="Lernkonto">
+          <AccountPanel />
+          {username && <RecoveryEmail />}
+        </Section>
+      )}
       <Section title="Sprache">
         <p className="mb-3">Aktueller Kurs: {lang.name}</p>
-        <CourseSwitcher/>
+        <CourseSwitcher />
       </Section>
 
       <Section title="Darstellung">
@@ -83,7 +105,25 @@ export default function Settings() {
       </Section>
 
       <Section title="Lernen">
-        <Row label="Tagesziel" hint="Eine Lektion bringt etwa 100 bis 170 XP. Ab dem Tagesziel darfst du das Blatt abreißen.">
+        <Row
+          label="Zeit zum Lernen"
+          hint="Dein Lernplan passt die Aufgaben und die Anzahl neuer Wörter an. Die Zeit ist ein Richtwert."
+        >
+          <Segmented<string>
+            label="Tägliche Lernzeit"
+            value={String(settings.dailyMinutes ?? 10)}
+            onChange={(value) => updateSettings({ dailyMinutes: Number(value) as 5 | 10 | 20 })}
+            options={[
+              { value: "5", label: "5 Min." },
+              { value: "10", label: "10 Min." },
+              { value: "20", label: "20 Min." },
+            ]}
+          />
+        </Row>
+        <Row
+          label="Tagesziel"
+          hint="Eine Lektion bringt etwa 100 bis 170 XP. Ab dem Tagesziel darfst du das Blatt abreißen."
+        >
           <Segmented<string>
             label="Tagesziel"
             value={String(settings.dailyGoal)}
@@ -96,7 +136,10 @@ export default function Settings() {
             ]}
           />
         </Row>
-        <Row label="Sprechtempo" hint={`${Math.round(settings.rate * 100)} % – der Schildkröten-Knopf liest immer besonders langsam.`}>
+        <Row
+          label="Sprechtempo"
+          hint={`${Math.round(settings.rate * 100)} % – der Schildkröten-Knopf liest immer besonders langsam.`}
+        >
           <div className="flex items-center gap-3">
             <input
               type="range"
@@ -116,8 +159,8 @@ export default function Settings() {
       <Section title="Daten">
         <p className="max-w-[65ch] text-sm text-dim">
           Dein Fortschritt ({Object.keys(progress.cards).length} Wörter, {progress.xp} XP) und deine{" "}
-          {customWords.length} Fundstücke {username ? "werden im Konto gespeichert" : "liegen in diesem Browser"}. Mit einer Sicherung ziehst
-          du auch auf ein anderes Gerät um.
+          {customWords.length} Fundstücke {username ? "werden im Konto gespeichert" : "liegen in diesem Browser"}. Mit
+          einer Sicherung ziehst du auch auf ein anderes Gerät um.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <button type="button" className="btn-ink" onClick={download}>
@@ -147,7 +190,11 @@ export default function Settings() {
             type="button"
             className="btn border border-cinnabar text-cinnabar hover:bg-wash"
             onClick={() => {
-              if (window.confirm(`Den gesamten Fortschritt für ${lang.name} löschen? Das lässt sich nur mit einer Sicherung rückgängig machen.`)) {
+              if (
+                window.confirm(
+                  `Den gesamten Fortschritt für ${lang.name} löschen? Das lässt sich nur mit einer Sicherung rückgängig machen.`,
+                )
+              ) {
                 resetProgress();
                 setMessage({ ok: true, text: "Fortschritt gelöscht." });
               }

@@ -1,0 +1,677 @@
+[
+  {
+    "id": "zh-read-1",
+    "glyph": "日",
+    "title": "我的一天",
+    "titleDe": "Mein Tag",
+    "level": "A1",
+    "sentences": [
+      {
+        "target": "我叫小明，我是学生。",
+        "reading": "Wǒ jiào Xiǎomíng, wǒ shì xuésheng.",
+        "de": "Ich heiße Xiaoming, ich bin Student."
+      },
+      {
+        "target": "我每天七点起床。",
+        "reading": "Wǒ měi tiān qī diǎn qǐchuáng.",
+        "de": "Ich stehe jeden Tag um sieben auf."
+      },
+      {
+        "target": "早上我喝咖啡，吃面包。",
+        "reading": "Zǎoshang wǒ hē kāfēi, chī miànbāo.",
+        "de": "Morgens trinke ich Kaffee und esse Brot."
+      },
+      {
+        "target": "八点我坐地铁去学校。",
+        "reading": "Bā diǎn wǒ zuò dìtiě qù xuéxiào.",
+        "de": "Um acht fahre ich mit der U-Bahn zur Schule."
+      },
+      {
+        "target": "中午我和朋友一起吃饭。",
+        "reading": "Zhōngwǔ wǒ hé péngyou yìqǐ chīfàn.",
+        "de": "Mittags esse ich mit Freunden zusammen."
+      },
+      {
+        "target": "下午我在家学习中文。",
+        "reading": "Xiàwǔ wǒ zài jiā xuéxí Zhōngwén.",
+        "de": "Nachmittags lerne ich zu Hause Chinesisch."
+      },
+      {
+        "target": "晚上我看电视，十一点睡觉。",
+        "reading": "Wǎnshang wǒ kàn diànshì, shíyī diǎn shuìjiào.",
+        "de": "Abends sehe ich fern, um elf gehe ich schlafen."
+      },
+      {
+        "target": "我很喜欢我的生活。",
+        "reading": "Wǒ hěn xǐhuan wǒ de shēnghuó.",
+        "de": "Ich mag mein Leben sehr."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Wann steht Xiaoming auf?",
+        "answer": "Um sieben Uhr",
+        "wrong": ["Um acht Uhr", "Um elf Uhr"]
+      },
+      {
+        "question": "Wie kommt er zur Schule?",
+        "answer": "Mit der U-Bahn",
+        "wrong": ["Mit dem Bus", "Zu Fuß"]
+      },
+      {
+        "question": "Was macht er am Nachmittag?",
+        "answer": "Er lernt Chinesisch",
+        "wrong": ["Er sieht fern", "Er trifft Freunde"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-2",
+    "glyph": "家",
+    "title": "我的家",
+    "titleDe": "Meine Familie",
+    "level": "A1",
+    "sentences": [
+      {
+        "target": "我家有四个人。",
+        "reading": "Wǒ jiā yǒu sì ge rén.",
+        "de": "Meine Familie hat vier Personen."
+      },
+      {
+        "target": "爸爸、妈妈、姐姐和我。",
+        "reading": "Bàba, māma, jiějie hé wǒ.",
+        "de": "Papa, Mama, meine ältere Schwester und ich."
+      },
+      {
+        "target": "爸爸是医生，他工作很忙。",
+        "reading": "Bàba shì yīshēng, tā gōngzuò hěn máng.",
+        "de": "Papa ist Arzt, er hat viel zu tun."
+      },
+      {
+        "target": "妈妈是老师，她做饭很好吃。",
+        "reading": "Māma shì lǎoshī, tā zuòfàn hěn hǎochī.",
+        "de": "Mama ist Lehrerin, sie kocht sehr lecker."
+      },
+      {
+        "target": "姐姐在北京工作。",
+        "reading": "Jiějie zài Běijīng gōngzuò.",
+        "de": "Meine Schwester arbeitet in Peking."
+      },
+      {
+        "target": "她周末常常回家。",
+        "reading": "Tā zhōumò chángcháng huíjiā.",
+        "de": "Am Wochenende kommt sie oft nach Hause."
+      },
+      {
+        "target": "我们一起吃饭，一起聊天。",
+        "reading": "Wǒmen yìqǐ chīfàn, yìqǐ liáotiān.",
+        "de": "Wir essen zusammen und plaudern zusammen."
+      },
+      {
+        "target": "我爱我的家。",
+        "reading": "Wǒ ài wǒ de jiā.",
+        "de": "Ich liebe meine Familie."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Wie viele Personen hat die Familie?",
+        "answer": "Vier",
+        "wrong": ["Drei", "Fünf"]
+      },
+      {
+        "question": "Was ist der Vater von Beruf?",
+        "answer": "Arzt",
+        "wrong": ["Lehrer", "Student"]
+      },
+      {
+        "question": "Wo arbeitet die Schwester?",
+        "answer": "In Peking",
+        "wrong": ["In Shanghai", "Zu Hause"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-3",
+    "glyph": "饭",
+    "title": "在饭店",
+    "titleDe": "Im Restaurant",
+    "level": "A1",
+    "sentences": [
+      {
+        "target": "今天是我的生日。",
+        "reading": "Jīntiān shì wǒ de shēngrì.",
+        "de": "Heute ist mein Geburtstag."
+      },
+      {
+        "target": "我和朋友去饭店吃饭。",
+        "reading": "Wǒ hé péngyou qù fàndiàn chīfàn.",
+        "de": "Ich gehe mit Freunden ins Restaurant."
+      },
+      {
+        "target": "这家饭店不大，但是菜很好吃。",
+        "reading": "Zhè jiā fàndiàn bú dà, dànshì cài hěn hǎochī.",
+        "de": "Das Restaurant ist nicht groß, aber das Essen ist lecker."
+      },
+      {
+        "target": "我们点了三个菜和一个汤。",
+        "reading": "Wǒmen diǎnle sān ge cài hé yí ge tāng.",
+        "de": "Wir haben drei Gerichte und eine Suppe bestellt."
+      },
+      {
+        "target": "我喜欢吃辣的，朋友不能吃辣。",
+        "reading": "Wǒ xǐhuan chī là de, péngyou bù néng chī là.",
+        "de": "Ich esse gern scharf, mein Freund kann nicht scharf essen."
+      },
+      {
+        "target": "我们喝茶，不喝啤酒。",
+        "reading": "Wǒmen hē chá, bù hē píjiǔ.",
+        "de": "Wir trinken Tee, kein Bier."
+      },
+      {
+        "target": "一共一百二十块，不贵。",
+        "reading": "Yígòng yìbǎi èrshí kuài, bú guì.",
+        "de": "Insgesamt 120 Yuan, nicht teuer."
+      },
+      {
+        "target": "朋友说：“今天我请客！”",
+        "reading": "Péngyou shuō: “Jīntiān wǒ qǐngkè!”",
+        "de": "Mein Freund sagt: „Heute lade ich ein!“"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Warum gehen sie ins Restaurant?",
+        "answer": "Es ist Geburtstag",
+        "wrong": ["Sie haben Hunger nach der Arbeit", "Das Restaurant ist neu"]
+      },
+      {
+        "question": "Was trinken sie?",
+        "answer": "Tee",
+        "wrong": ["Bier", "Kaffee"]
+      },
+      {
+        "question": "Wer bezahlt?",
+        "answer": "Der Freund",
+        "wrong": ["Der Erzähler", "Jeder für sich"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-4",
+    "glyph": "雨",
+    "title": "周末计划",
+    "titleDe": "Wochenendpläne",
+    "level": "A2",
+    "sentences": [
+      {
+        "target": "这个周末我本来打算跟朋友去爬山。",
+        "reading": "Zhège zhōumò wǒ běnlái dǎsuàn gēn péngyou qù páshān.",
+        "de": "Dieses Wochenende wollte ich eigentlich mit Freunden wandern gehen."
+      },
+      {
+        "target": "可是天气预报说周六要下雨。",
+        "reading": "Kěshì tiānqì yùbào shuō zhōuliù yào xiàyǔ.",
+        "de": "Aber der Wetterbericht sagt, dass es am Samstag regnet."
+      },
+      {
+        "target": "我给朋友发微信，问他怎么办。",
+        "reading": "Wǒ gěi péngyou fā Wēixìn, wèn tā zěnme bàn.",
+        "de": "Ich schreibe meinem Freund auf WeChat und frage, was wir machen."
+      },
+      {
+        "target": "他说：“要不我们改天去吧。”",
+        "reading": "Tā shuō: “Yàobù wǒmen gǎitiān qù ba.”",
+        "de": "Er sagt: „Wie wär's, wenn wir ein andermal gehen?“"
+      },
+      {
+        "target": "我觉得这是个好主意。",
+        "reading": "Wǒ juéde zhè shì ge hǎo zhǔyi.",
+        "de": "Ich finde, das ist eine gute Idee."
+      },
+      {
+        "target": "所以周六我们在家看电影，点外卖。",
+        "reading": "Suǒyǐ zhōuliù wǒmen zài jiā kàn diànyǐng, diǎn wàimài.",
+        "de": "Deshalb schauen wir am Samstag zu Hause Filme und bestellen Essen."
+      },
+      {
+        "target": "周日天气好的话，我们去公园打羽毛球。",
+        "reading": "Zhōurì tiānqì hǎo dehuà, wǒmen qù gōngyuán dǎ yǔmáoqiú.",
+        "de": "Wenn am Sonntag das Wetter gut ist, spielen wir im Park Badminton."
+      },
+      {
+        "target": "虽然不能爬山，但是我还是很开心。",
+        "reading": "Suīrán bù néng páshān, dànshì wǒ háishi hěn kāixīn.",
+        "de": "Obwohl wir nicht wandern können, bin ich trotzdem glücklich."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Was war der ursprüngliche Plan?",
+        "answer": "Wandern gehen",
+        "wrong": ["Ins Kino gehen", "Badminton spielen"]
+      },
+      {
+        "question": "Warum ändern sie den Plan?",
+        "answer": "Es soll regnen",
+        "wrong": ["Der Freund ist krank", "Sie haben keine Zeit"]
+      },
+      {
+        "question": "Was machen sie am Samstag?",
+        "answer": "Filme schauen und Essen bestellen",
+        "wrong": ["Im Park Badminton spielen", "Einkaufen gehen"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-5",
+    "glyph": "购",
+    "title": "网上购物",
+    "titleDe": "Online-Shopping",
+    "level": "A2",
+    "sentences": [
+      {
+        "target": "我很喜欢在网上买东西，又方便又便宜。",
+        "reading": "Wǒ hěn xǐhuan zài wǎngshàng mǎi dōngxi, yòu fāngbiàn yòu piányi.",
+        "de": "Ich kaufe sehr gern online ein, es ist praktisch und günstig."
+      },
+      {
+        "target": "上个星期我买了一双运动鞋。",
+        "reading": "Shàng ge xīngqī wǒ mǎile yì shuāng yùndòngxié.",
+        "de": "Letzte Woche habe ich ein Paar Sportschuhe gekauft."
+      },
+      {
+        "target": "三天以后快递就到了。",
+        "reading": "Sān tiān yǐhòu kuàidì jiù dào le.",
+        "de": "Nach drei Tagen war das Paket schon da."
+      },
+      {
+        "target": "可是我试了一下，鞋有点儿小。",
+        "reading": "Kěshì wǒ shìle yíxià, xié yǒudiǎnr xiǎo.",
+        "de": "Aber als ich sie anprobierte, waren die Schuhe etwas klein."
+      },
+      {
+        "target": "我联系了客服，问能不能换。",
+        "reading": "Wǒ liánxìle kèfú, wèn néng bu néng huàn.",
+        "de": "Ich habe den Kundenservice kontaktiert und gefragt, ob ich umtauschen kann."
+      },
+      {
+        "target": "客服很客气，说没问题。",
+        "reading": "Kèfú hěn kèqi, shuō méi wèntí.",
+        "de": "Der Kundenservice war sehr freundlich und sagte, kein Problem."
+      },
+      {
+        "target": "现在我在等大一号的鞋。",
+        "reading": "Xiànzài wǒ zài děng dà yí hào de xié.",
+        "de": "Jetzt warte ich auf die Schuhe eine Nummer größer."
+      },
+      {
+        "target": "我对这家店很满意，打算给一个好评。",
+        "reading": "Wǒ duì zhè jiā diàn hěn mǎnyì, dǎsuàn gěi yí ge hǎopíng.",
+        "de": "Ich bin mit dem Laden sehr zufrieden und will eine gute Bewertung geben."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Was hat die Person gekauft?",
+        "answer": "Sportschuhe",
+        "wrong": ["Ein Handy", "Eine Hose"]
+      },
+      {
+        "question": "Was war das Problem?",
+        "answer": "Die Schuhe waren zu klein",
+        "wrong": ["Das Paket kam nicht an", "Die Schuhe waren kaputt"]
+      },
+      {
+        "question": "Wie reagiert der Kundenservice?",
+        "answer": "Freundlich, Umtausch ist möglich",
+        "wrong": ["Er antwortet nicht", "Er lehnt den Umtausch ab"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-6",
+    "glyph": "好",
+    "title": "我的爱好",
+    "titleDe": "Mein Hobby",
+    "level": "A2",
+    "sentences": [
+      {
+        "target": "我的爱好是打羽毛球。",
+        "reading": "Wǒ de àihào shì dǎ yǔmáoqiú.",
+        "de": "Mein Hobby ist Badminton."
+      },
+      {
+        "target": "我从十岁开始学，已经打了很多年了。",
+        "reading": "Wǒ cóng shí suì kāishǐ xué, yǐjīng dǎle hěn duō nián le.",
+        "de": "Ich habe mit zehn angefangen und spiele schon viele Jahre."
+      },
+      {
+        "target": "我每个星期打两次，一次两个小时。",
+        "reading": "Wǒ měi ge xīngqī dǎ liǎng cì, yí cì liǎng ge xiǎoshí.",
+        "de": "Ich spiele zweimal pro Woche, jeweils zwei Stunden."
+      },
+      {
+        "target": "打球的时候，我可以认识很多新朋友。",
+        "reading": "Dǎqiú de shíhou, wǒ kěyǐ rènshi hěn duō xīn péngyou.",
+        "de": "Beim Spielen kann ich viele neue Freunde kennenlernen."
+      },
+      {
+        "target": "运动以后，我觉得身体很舒服。",
+        "reading": "Yùndòng yǐhòu, wǒ juéde shēntǐ hěn shūfu.",
+        "de": "Nach dem Sport fühlt sich mein Körper richtig gut an."
+      },
+      {
+        "target": "上个月我参加了一个比赛。",
+        "reading": "Shàng ge yuè wǒ cānjiāle yí ge bǐsài.",
+        "de": "Letzten Monat habe ich an einem Turnier teilgenommen."
+      },
+      {
+        "target": "我没有赢，但是玩儿得很开心。",
+        "reading": "Wǒ méiyǒu yíng, dànshì wánr de hěn kāixīn.",
+        "de": "Ich habe nicht gewonnen, aber es hat viel Spaß gemacht."
+      },
+      {
+        "target": "你也喜欢运动吗？我们一起打球吧！",
+        "reading": "Nǐ yě xǐhuan yùndòng ma? Wǒmen yìqǐ dǎqiú ba!",
+        "de": "Magst du auch Sport? Lass uns zusammen spielen!"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Wie oft spielt die Person Badminton?",
+        "answer": "Zweimal pro Woche",
+        "wrong": ["Jeden Tag", "Einmal im Monat"]
+      },
+      {
+        "question": "Was gefällt ihr am Spielen?",
+        "answer": "Neue Freunde kennenlernen",
+        "wrong": ["Geld verdienen", "Früh aufstehen"]
+      },
+      {
+        "question": "Wie lief das Turnier?",
+        "answer": "Nicht gewonnen, aber Spaß gehabt",
+        "wrong": ["Gewonnen", "Nicht teilgenommen"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-7",
+    "glyph": "游",
+    "title": "第一次去中国",
+    "titleDe": "Zum ersten Mal in China",
+    "level": "B1",
+    "sentences": [
+      {
+        "target": "去年冬天，我第一次去中国旅游。",
+        "reading": "Qùnián dōngtiān, wǒ dì-yī cì qù Zhōngguó lǚyóu.",
+        "de": "Letzten Winter bin ich zum ersten Mal nach China gereist."
+      },
+      {
+        "target": "出发以前，我提前订好了机票和酒店，还做了一份攻略。",
+        "reading": "Chūfā yǐqián, wǒ tíqián dìnghǎole jīpiào hé jiǔdiàn, hái zuòle yí fèn gōnglüè.",
+        "de": "Vor der Abreise hatte ich Flug und Hotel gebucht und einen Reiseplan erstellt."
+      },
+      {
+        "target": "到了深圳以后，我发现这个城市比我想的更现代。",
+        "reading": "Dàole Shēnzhèn yǐhòu, wǒ fāxiàn zhège chéngshì bǐ wǒ xiǎng de gèng xiàndài.",
+        "de": "In Shenzhen angekommen, merkte ich, dass die Stadt moderner ist, als ich dachte."
+      },
+      {
+        "target": "在这里，几乎没有人用现金，大家都用手机付款。",
+        "reading": "Zài zhèlǐ, jīhū méiyǒu rén yòng xiànjīn, dàjiā dōu yòng shǒujī fùkuǎn.",
+        "de": "Hier benutzt fast niemand Bargeld, alle bezahlen mit dem Handy."
+      },
+      {
+        "target": "刚开始我听不懂别人说的话，有点儿紧张。",
+        "reading": "Gāng kāishǐ wǒ tīng bu dǒng biérén shuō de huà, yǒudiǎnr jǐnzhāng.",
+        "de": "Anfangs verstand ich nicht, was die Leute sagten, und war etwas nervös."
+      },
+      {
+        "target": "但是我试着用中文点菜、问路，大家都很有耐心。",
+        "reading": "Dànshì wǒ shìzhe yòng Zhōngwén diǎncài, wèn lù, dàjiā dōu hěn yǒu nàixīn.",
+        "de": "Aber ich versuchte, auf Chinesisch zu bestellen und nach dem Weg zu fragen – alle waren sehr geduldig."
+      },
+      {
+        "target": "有一位老板听说我在学中文，还送了我一杯茶。",
+        "reading": "Yǒu yí wèi lǎobǎn tīngshuō wǒ zài xué Zhōngwén, hái sòngle wǒ yì bēi chá.",
+        "de": "Ein Ladenbesitzer hörte, dass ich Chinesisch lerne, und schenkte mir sogar einen Tee."
+      },
+      {
+        "target": "这次旅行让我更有信心了。",
+        "reading": "Zhè cì lǚxíng ràng wǒ gèng yǒu xìnxīn le.",
+        "de": "Diese Reise hat mir mehr Selbstvertrauen gegeben."
+      },
+      {
+        "target": "回国以后，我决定继续努力学习，明年再去一次。",
+        "reading": "Huíguó yǐhòu, wǒ juédìng jìxù nǔlì xuéxí, míngnián zài qù yí cì.",
+        "de": "Zurück zu Hause beschloss ich, fleißig weiterzulernen und nächstes Jahr wieder hinzufahren."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Was überraschte die Person in Shenzhen?",
+        "answer": "Die Stadt ist sehr modern, alle zahlen mit dem Handy",
+        "wrong": ["Es war sehr kalt", "Niemand sprach mit ihr"]
+      },
+      {
+        "question": "Wie fühlte sie sich am Anfang?",
+        "answer": "Etwas nervös, weil sie wenig verstand",
+        "wrong": ["Gelangweilt", "Völlig entspannt"]
+      },
+      {
+        "question": "Was beschließt sie nach der Reise?",
+        "answer": "Weiterzulernen und wieder hinzufahren",
+        "wrong": ["Nie wieder zu reisen", "Nach China umzuziehen"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-8",
+    "glyph": "学",
+    "title": "怎么学好中文",
+    "titleDe": "Wie man gut Chinesisch lernt",
+    "level": "B1",
+    "sentences": [
+      {
+        "target": "很多人觉得中文很难，尤其是声调和汉字。",
+        "reading": "Hěn duō rén juéde Zhōngwén hěn nán, yóuqí shì shēngdiào hé Hànzì.",
+        "de": "Viele finden Chinesisch schwer, besonders die Töne und die Schriftzeichen."
+      },
+      {
+        "target": "其实，只要方法对，每天坚持，就一定能进步。",
+        "reading": "Qíshí, zhǐyào fāngfǎ duì, měi tiān jiānchí, jiù yídìng néng jìnbù.",
+        "de": "Eigentlich macht man sicher Fortschritte, wenn die Methode stimmt und man täglich dranbleibt."
+      },
+      {
+        "target": "第一，不要一次学太多生词。",
+        "reading": "Dì-yī, búyào yí cì xué tài duō shēngcí.",
+        "de": "Erstens: Lerne nicht zu viele neue Wörter auf einmal."
+      },
+      {
+        "target": "每天学十个，然后经常复习，效果更好。",
+        "reading": "Měi tiān xué shí ge, ránhòu jīngcháng fùxí, xiàoguǒ gèng hǎo.",
+        "de": "Zehn pro Tag lernen und oft wiederholen wirkt besser."
+      },
+      {
+        "target": "第二，多听多说。",
+        "reading": "Dì-èr, duō tīng duō shuō.",
+        "de": "Zweitens: viel hören und viel sprechen."
+      },
+      {
+        "target": "你可以一边坐地铁一边听播客，也可以跟着电视剧练习。",
+        "reading": "Nǐ kěyǐ yìbiān zuò dìtiě yìbiān tīng bōkè, yě kěyǐ gēnzhe diànshìjù liànxí.",
+        "de": "Du kannst in der U-Bahn Podcasts hören oder mit Serien üben."
+      },
+      {
+        "target": "第三，别怕说错。",
+        "reading": "Dì-sān, bié pà shuō cuò.",
+        "de": "Drittens: Hab keine Angst vor Fehlern."
+      },
+      {
+        "target": "说错了没关系，重要的是别人能听懂你的意思。",
+        "reading": "Shuō cuò le méi guānxi, zhòngyào de shì biérén néng tīngdǒng nǐ de yìsi.",
+        "de": "Fehler machen nichts – wichtig ist, dass andere verstehen, was du meinst."
+      },
+      {
+        "target": "最后，给自己定一个小目标，比如每天学习二十分钟。",
+        "reading": "Zuìhòu, gěi zìjǐ dìng yí ge xiǎo mùbiāo, bǐrú měi tiān xuéxí èrshí fēnzhōng.",
+        "de": "Zum Schluss: Setz dir ein kleines Ziel, zum Beispiel täglich zwanzig Minuten lernen."
+      },
+      {
+        "target": "慢慢来，你的中文会越来越好。",
+        "reading": "Mànmàn lái, nǐ de Zhōngwén huì yuè lái yuè hǎo.",
+        "de": "Immer mit der Ruhe – dein Chinesisch wird immer besser."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Was finden viele am Chinesischen schwer?",
+        "answer": "Töne und Schriftzeichen",
+        "wrong": ["Die Grammatik", "Das Alphabet"]
+      },
+      {
+        "question": "Welcher Rat wird zu neuen Wörtern gegeben?",
+        "answer": "Wenige pro Tag lernen und oft wiederholen",
+        "wrong": ["Möglichst viele auf einmal lernen", "Wörter nur aufschreiben"]
+      },
+      {
+        "question": "Was sagt der Text über Fehler?",
+        "answer": "Sie sind nicht schlimm, Hauptsache man wird verstanden",
+        "wrong": ["Man sollte erst sprechen, wenn man fehlerfrei ist", "Fehler muss man sofort korrigieren lassen"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-9",
+    "glyph": "机",
+    "title": "手机和我们的生活",
+    "titleDe": "Das Handy und unser Leben",
+    "level": "B1",
+    "sentences": [
+      {
+        "target": "现在，手机已经成了我们生活中最重要的东西之一。",
+        "reading": "Xiànzài, shǒujī yǐjīng chéngle wǒmen shēnghuó zhōng zuì zhòngyào de dōngxi zhī yī.",
+        "de": "Heute ist das Handy eines der wichtigsten Dinge in unserem Leben geworden."
+      },
+      {
+        "target": "我们用手机聊天、购物、点外卖、看新闻。",
+        "reading": "Wǒmen yòng shǒujī liáotiān, gòuwù, diǎn wàimài, kàn xīnwén.",
+        "de": "Wir chatten, kaufen ein, bestellen Essen und lesen Nachrichten mit dem Handy."
+      },
+      {
+        "target": "出门的时候，可以不带钱包，但是不能不带手机。",
+        "reading": "Chūmén de shíhou, kěyǐ bú dài qiánbāo, dànshì bù néng bú dài shǒujī.",
+        "de": "Beim Rausgehen kann man das Portemonnaie vergessen, aber nicht das Handy."
+      },
+      {
+        "target": "手机让生活方便了很多，不过也带来了一些问题。",
+        "reading": "Shǒujī ràng shēnghuó fāngbiànle hěn duō, búguò yě dàiláile yìxiē wèntí.",
+        "de": "Das Handy macht das Leben viel bequemer, bringt aber auch einige Probleme."
+      },
+      {
+        "target": "比如，很多人睡觉以前一直刷手机，结果睡得越来越晚。",
+        "reading": "Bǐrú, hěn duō rén shuìjiào yǐqián yìzhí shuā shǒujī, jiéguǒ shuì de yuè lái yuè wǎn.",
+        "de": "Viele scrollen zum Beispiel vor dem Schlafen ständig am Handy und gehen dadurch immer später ins Bett."
+      },
+      {
+        "target": "朋友一起吃饭的时候，大家都在看手机，很少聊天。",
+        "reading": "Péngyou yìqǐ chīfàn de shíhou, dàjiā dōu zài kàn shǒujī, hěn shǎo liáotiān.",
+        "de": "Wenn Freunde zusammen essen, schauen alle aufs Handy und reden kaum."
+      },
+      {
+        "target": "我觉得手机本身没有问题，重要的是我们怎么用它。",
+        "reading": "Wǒ juéde shǒujī běnshēn méiyǒu wèntí, zhòngyào de shì wǒmen zěnme yòng tā.",
+        "de": "Ich finde, das Handy selbst ist nicht das Problem – wichtig ist, wie wir es nutzen."
+      },
+      {
+        "target": "所以我给自己定了一个规定：吃饭和睡觉以前不看手机。",
+        "reading": "Suǒyǐ wǒ gěi zìjǐ dìngle yí ge guīdìng: chīfàn hé shuìjiào yǐqián bú kàn shǒujī.",
+        "de": "Deshalb habe ich mir eine Regel gesetzt: beim Essen und vor dem Schlafen kein Handy."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Wofür nutzen Menschen laut Text das Handy?",
+        "answer": "Chatten, einkaufen, Essen bestellen, Nachrichten",
+        "wrong": ["Nur zum Telefonieren", "Nur zum Spielen"]
+      },
+      {
+        "question": "Welches Problem wird genannt?",
+        "answer": "Man geht immer später schlafen",
+        "wrong": ["Handys sind zu teuer", "Man verliert das Handy oft"]
+      },
+      {
+        "question": "Welche Regel setzt sich die Person?",
+        "answer": "Kein Handy beim Essen und vor dem Schlafen",
+        "wrong": ["Das Handy nur am Wochenende nutzen", "Kein Handy bei der Arbeit"]
+      }
+    ]
+  },
+  {
+    "id": "zh-read-10",
+    "glyph": "衡",
+    "title": "工作和生活的平衡",
+    "titleDe": "Balance zwischen Arbeit und Leben",
+    "level": "B2",
+    "sentences": [
+      {
+        "target": "随着社会的发展，人们的工作压力越来越大。",
+        "reading": "Suízhe shèhuì de fāzhǎn, rénmen de gōngzuò yālì yuè lái yuè dà.",
+        "de": "Mit der Entwicklung der Gesellschaft wird der Arbeitsdruck immer größer."
+      },
+      {
+        "target": "不少年轻人每天加班，几乎没有自己的时间。",
+        "reading": "Bù shǎo niánqīngrén měi tiān jiābān, jīhū méiyǒu zìjǐ de shíjiān.",
+        "de": "Nicht wenige junge Leute machen täglich Überstunden und haben kaum Zeit für sich."
+      },
+      {
+        "target": "有人认为，年轻的时候应该努力工作，否则以后会后悔。",
+        "reading": "Yǒu rén rènwéi, niánqīng de shíhou yīnggāi nǔlì gōngzuò, fǒuzé yǐhòu huì hòuhuǐ.",
+        "de": "Manche meinen, man solle in jungen Jahren hart arbeiten, sonst bereue man es später."
+      },
+      {
+        "target": "然而，也有人认为健康和家人比工作更重要。",
+        "reading": "Rán'ér, yě yǒu rén rènwéi jiànkāng hé jiārén bǐ gōngzuò gèng zhòngyào.",
+        "de": "Andere hingegen finden Gesundheit und Familie wichtiger als die Arbeit."
+      },
+      {
+        "target": "在我看来，这两种观点都有道理。",
+        "reading": "Zài wǒ kànlái, zhè liǎng zhǒng guāndiǎn dōu yǒu dàolǐ.",
+        "de": "Aus meiner Sicht haben beide Standpunkte etwas für sich."
+      },
+      {
+        "target": "工作可以让我们实现目标，但是如果身体出了问题，一切都没有意义。",
+        "reading": "Gōngzuò kěyǐ ràng wǒmen shíxiàn mùbiāo, dànshì rúguǒ shēntǐ chūle wèntí, yíqiè dōu méiyǒu yìyì.",
+        "de": "Arbeit lässt uns Ziele erreichen, aber wenn die Gesundheit leidet, ist alles bedeutungslos."
+      },
+      {
+        "target": "因此，无论多忙，我们都应该留出时间休息、运动、陪家人。",
+        "reading": "Yīncǐ, wúlùn duō máng, wǒmen dōu yīnggāi liúchū shíjiān xiūxi, yùndòng, péi jiārén.",
+        "de": "Deshalb sollten wir uns, egal wie beschäftigt wir sind, Zeit für Erholung, Sport und Familie nehmen."
+      },
+      {
+        "target": "总之，平衡不是少工作，而是更聪明地安排时间。",
+        "reading": "Zǒngzhī, pínghéng bú shì shǎo gōngzuò, ér shì gèng cōngming de ānpái shíjiān.",
+        "de": "Kurz gesagt: Balance heißt nicht weniger arbeiten, sondern die Zeit klüger einteilen."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Welche zwei Standpunkte stellt der Text gegenüber?",
+        "answer": "Hart arbeiten in jungen Jahren – oder Gesundheit und Familie zuerst",
+        "wrong": ["Stadtleben – oder Landleben", "Studium – oder Ausbildung"]
+      },
+      {
+        "question": "Was meint die Autorin oder der Autor dazu?",
+        "answer": "Beide Seiten haben recht",
+        "wrong": ["Nur Arbeit zählt", "Arbeit ist unwichtig"]
+      },
+      {
+        "question": "Was bedeutet Balance laut dem Schlusssatz?",
+        "answer": "Die Zeit klüger einteilen",
+        "wrong": ["Weniger arbeiten", "Den Job wechseln"]
+      }
+    ]
+  }
+]
