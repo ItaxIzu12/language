@@ -196,7 +196,7 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
               setError("");
             }}
           >
-            {mode ? "Registrieren" : "Anmelden"}
+            {mode ? "test" : "Anmelden"}
           </button>
         ))}
       </div>
