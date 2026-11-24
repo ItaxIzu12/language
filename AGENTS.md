@@ -1,7 +1,40 @@
 # Projekt language / LinguaFlow
 
-Dieses Projekt ist eine Sprachlern-App. Bewahre bestehende Funktionen und lokale
+Dieses Projekt ist eine Sprachlern-App. Bewahre bestehende Funktionen, Daten und lokale
 Änderungen. Lies vor Änderungen die betroffenen Komponenten und Projektkonventionen.
+
+## Architekturgrundsätze
+
+Diese Grundsätze gelten dauerhaft für alle Erweiterungen. Details und Begründungen
+stehen in den Architekturdokumenten; dort wird nichts hier Gesagtes wiederholt.
+
+| Dokument                        | Inhalt                                                                |
+| ------------------------------- | --------------------------------------------------------------------- |
+| `docs/ARCHITEKTUR.md`           | Bestehende, verbindliche Entscheidungen, Datenmodell, API v1, Betrieb |
+| `docs/ARCHITECTURE.md`          | Mehrsprachige Zielarchitektur und priorisierter Maßnahmenplan         |
+| `docs/LANGUAGE_CAPABILITIES.md` | Capability-System der Sprachpakete, Integration neuer Sprachen        |
+| `docs/KNOWLEDGE_TREE.md`        | Sprachspezifischer Wissensgraph                                       |
+| `docs/AI_INTEGRATION.md`        | Anbindung an den Personal AI Core                                     |
+
+- **Modularer Monolith:** React/Vite/TypeScript, Django REST Framework, PostgreSQL,
+  Docker Compose. Keine Framework-Wechsel, keine Microservices.
+- **Sprachneutraler Kern:** Lernfunktionen (Vokabeln, Dialoge, Grammatik, Wiederholung,
+  Fortschritt, Hören, Aussprache, Statistik) existieren einmal. Sprachspezifisches
+  liegt im Sprachpaket und wird als Capability deklariert; gemeinsamer Code fragt
+  Capabilities ab, nie den Sprachcode.
+- **Trennung:** Lerninhalte, Lernlogik und KI-Dienste bleiben getrennt.
+- **KI nur über den Personal AI Core:** über den zentralen AI Service Adapter im
+  Backend und versionierte REST-Schnittstellen; keine eingebundenen Modelle, keine
+  fest codierten Anbieter, Mock-Provider bis zur Verfügbarkeit des Core. Neue
+  KI-Fähigkeiten werden als Erweiterung der gemeinsamen Infrastruktur geplant und in
+  `docs/AI_INTEGRATION.md` dokumentiert.
+- **Ohne KI vollständig:** Alle grundlegenden Funktionen, Lernfortschritt und
+  Wiederholungslogik funktionieren unabhängig vom Personal AI Core.
+- **Überprüfbare Inhalte:** KI-generierte Inhalte gelten erst nach redaktioneller
+  Freigabe als geprüft.
+- **Unabhängigkeit:** LinguaFlow bleibt unabhängig von 4inOne, Denkraum und Prüfraum.
+- **Freigabe:** Architekturänderungen und Phasen des Maßnahmenplans werden erst nach
+  ausdrücklicher Freigabe durch den Nutzer umgesetzt.
 
 ## Produktidentität
 
@@ -99,11 +132,12 @@ Bildern Quelle und Nutzungsrechte; verwende keine ungeprüften Bildrechte.
 ## Ablauf für neue Funktionen
 
 Behandle jede neue Funktionsbeschreibung als fachliche Anforderung innerhalb der
-bestehenden Architektur (`ARCHITECTURE.md`, `LANGUAGE_CAPABILITIES.md`,
-`KNOWLEDGE_TREE.md`, `AI_INTEGRATION.md`, `docs/ARCHITEKTUR.md`). Arbeite eindeutig
-beschriebene Anforderungen ohne unnötige Rückfragen in diesen Schritten ab:
+bestehenden Architektur. Arbeite eindeutig beschriebene Anforderungen ohne unnötige
+Rückfragen in diesen Schritten ab:
 
-1. Anforderung analysieren; vorhandenen Code und Architekturdokumentation prüfen.
+1. Anforderung analysieren; vorhandenen Code sowie die Architekturgrundsätze und
+   -dokumente oben prüfen. Erfordert die Anforderung eine Architekturänderung, diese
+   begründet vorschlagen und erst nach Freigabe umsetzen.
 2. Wiederverwendbare Module, Komponenten, Services, API-Schnittstellen und
    Design-Komponenten identifizieren.
 3. Abhängigkeiten und Auswirkungen auf bestehende Funktionen prüfen.
@@ -111,10 +145,11 @@ beschriebene Anforderungen ohne unnötige Rückfragen in diesen Schritten ab:
 5. Frontend- und Backend-Komponenten implementieren, bei Bedarf mit
    Datenbankmigrationen.
 6. KI-Funktionen nur über den zentralen AI Service Adapter und die vorhandenen
-   Personal-AI-Core-Schnittstellen anbinden (siehe `AI_INTEGRATION.md`).
+   Personal-AI-Core-Schnittstellen anbinden (siehe `docs/AI_INTEGRATION.md`).
 7. Automatisierte Tests für Lernlogik, Sprachpakete und Schnittstellen ergänzen
    und ausführen; gefundene Fehler beheben.
-8. Projektdokumentation aktualisieren.
+8. Projektdokumentation aktualisieren; bei Architekturänderungen die betroffenen
+   Dokumente unter `docs/` anpassen.
 9. Sicherheit, Performance und Ressourcenverbrauch (Zielsystem: Heimserver mit
    16 GB RAM) prüfen.
 10. Änderungen zur Überprüfung bereitstellen und knapp berichten.
@@ -122,11 +157,10 @@ beschriebene Anforderungen ohne unnötige Rückfragen in diesen Schritten ab:
 Verbindlich:
 
 - Keine unnötigen Architekturänderungen und keine Duplizierung bestehender Funktionen.
-- Keine fest codierten KI-Anbieter.
-- Keine ungefragte Entfernung bestehender Funktionen.
+- Keine ungefragte Entfernung bestehender Funktionen oder Daten.
 - Keine destruktiven Datenbankänderungen (Löschen von Tabellen, Spalten oder Daten)
   ohne ausdrückliche Freigabe.
 - Keine produktive Bereitstellung, kein Commit auf `main` und kein Push ohne Freigabe.
 - Keine erfundenen Testergebnisse; nicht ausgeführte oder fehlgeschlagene Prüfungen
   klar benennen.
-- Alle Erweiterungen bleiben mit der modularen Architektur kompatibel.
+- Alle Erweiterungen bleiben mit der Zielarchitektur kompatibel.

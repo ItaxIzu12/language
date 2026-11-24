@@ -1,6 +1,6 @@
 # LinguaFlow · Modulare Zielarchitektur für mehrere Sprachen
 
-Dieses Dokument beschreibt, wie LinguaFlow vom heute einzigen vollständigen Mandarin-Kurs zu einer mehrsprachigen Plattform wächst. Es ergänzt das bestehende [Architekturhandbuch](docs/ARCHITEKTUR.md) und wiederholt dessen Inhalte nicht. Dort stehen Datenbankmodell, relationales Zielmodell, API v1, Datenschutz, Backups und die bisherige Migrationsreihenfolge. Hier stehen die Ist-Analyse aus Sicht der Mehrsprachigkeit, die modulare Zielarchitektur und der priorisierte Implementierungsplan.
+Dieses Dokument beschreibt, wie LinguaFlow vom heute einzigen vollständigen Mandarin-Kurs zu einer mehrsprachigen Plattform wächst. Es ergänzt das bestehende [Architekturhandbuch](ARCHITEKTUR.md) und wiederholt dessen Inhalte nicht. Dort stehen Datenbankmodell, relationales Zielmodell, API v1, Datenschutz, Backups und die bisherige Migrationsreihenfolge. Hier stehen die Ist-Analyse aus Sicht der Mehrsprachigkeit, die modulare Zielarchitektur und der priorisierte Implementierungsplan.
 
 | Dokument                                             | Inhalt                                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -8,9 +8,9 @@ Dieses Dokument beschreibt, wie LinguaFlow vom heute einzigen vollständigen Man
 | [LANGUAGE_CAPABILITIES.md](LANGUAGE_CAPABILITIES.md) | Capability-System der Sprachpakete und Plan für die Integration neuer Sprachen |
 | [KNOWLEDGE_TREE.md](KNOWLEDGE_TREE.md)               | Didaktisch begründeter, sprachspezifischer Wissensgraph                        |
 | [AI_INTEGRATION.md](AI_INTEGRATION.md)               | KI nur über den Personal AI Core und den AI Service Adapter im Backend         |
-| [docs/ARCHITEKTUR.md](docs/ARCHITEKTUR.md)           | Bestehende Entscheidungen, Datenmodell, API v1, Betrieb (verbindlich)          |
+| [ARCHITEKTUR.md](ARCHITEKTUR.md)                     | Bestehende Entscheidungen, Datenmodell, API v1, Betrieb (verbindlich)          |
 
-Alle Vorschläge sind Planung. Bis auf die genannten Ist-Befunde ist nichts davon implementiert.
+Alle Vorschläge sind Planung. Bis auf die genannten Ist-Befunde ist nichts davon implementiert. Bei Widersprüchen gilt `ARCHITEKTUR.md` für bestehende Entscheidungen; dieses Dokument wird dann angepasst.
 
 ---
 
@@ -200,6 +200,8 @@ Diese Regeln ergänzen `scripts/test-architecture.mjs`:
 ## 4. Priorisierter Implementierungsplan
 
 Reihenfolge nach Risiko und Abhängigkeit: zuerst absichern, dann Deklaration, dann Laden und Schema, dann didaktische Erweiterungen, dann Sprachen, zuletzt KI. Jede Phase ist einzeln auslieferbar und ändert das Mandarin-Verhalten nicht ohne ausdrückliche Entscheidung.
+
+**Status: Maßnahmenplan, wartet auf Freigabe.** Mit der Umsetzung einer Phase wird erst nach ausdrücklicher Freigabe durch den Betreiber begonnen. Freigegebene und abgeschlossene Phasen werden hier vermerkt.
 
 ### P0 · Absicherung ohne Verhaltensänderung
 

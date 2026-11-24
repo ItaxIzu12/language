@@ -1,5 +1,7 @@
 # LinguaFlow · Architektur und Datenmodell
 
+Dieses Handbuch hält die bestehenden, verbindlichen Entscheidungen fest. Die mehrsprachige Zielarchitektur und der priorisierte Maßnahmenplan stehen in [ARCHITECTURE.md](ARCHITECTURE.md), ergänzt durch [LANGUAGE_CAPABILITIES.md](LANGUAGE_CAPABILITIES.md), [KNOWLEDGE_TREE.md](KNOWLEDGE_TREE.md) und [AI_INTEGRATION.md](AI_INTEGRATION.md).
+
 ## Entscheidung
 
 Eine React-Anwendung, ein Django-Prozess und eine PostgreSQL-Datenbank bedienen alle Lernsprachen. nginx liefert das gebaute Frontend aus und leitet die API derselben Origin an Gunicorn weiter. Das Paket für GitHub Pages verwendet dieselbe Lernoberfläche im Gastmodus. React/Vite, TypeScript und Compose sind bereits in den Build-, Styling- und Veröffentlichungsablauf integriert. DRF ergänzt die öffentliche Katalog-API um typisierte Abfrageparameter. Die vorhandenen Sitzungs- und Synchronisierungsendpunkte behalten ihre Django-Implementierung und ihre v1-Verträge.

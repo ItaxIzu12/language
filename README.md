@@ -3,7 +3,7 @@
 Moderne Web-App zum Sprachenlernen – gebaut für langfristiges Lernen und einfach erweiterbar.
 Erste Sprache: **Chinesisch (Mandarin)**, von A1 Richtung B2.
 
-Das [Architekturhandbuch](docs/ARCHITEKTUR.md) enthält Datenmodell, Schnittstellen, Betrieb und Ausbauplan.
+Das [Architekturhandbuch](docs/ARCHITEKTUR.md) enthält Datenmodell, Schnittstellen, Betrieb und Ausbauplan. Die mehrsprachige Zielarchitektur mit Maßnahmenplan steht in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), die KI-Anbindung in [docs/AI_INTEGRATION.md](docs/AI_INTEGRATION.md).
 
 ## Lokaler Start mit Docker Compose
 
