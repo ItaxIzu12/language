@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, BookOpen, Bookmark, Languages } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Bookmark } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { languages } from "../../languages/registry";
 import { useStore } from "../../state/learningStore";
@@ -26,14 +26,14 @@ export function AccountEntry() {
       </header>
       <main className="account-entry">
         <aside className="account-story" aria-label="Dein Lernen mit LinguaFlow">
-          <p className="auth-eyebrow">Dein Raum für neue Perspektiven</p>
+          <p className="auth-eyebrow">Dein Lernkonto</p>
           <h2>
-            Ein Zugang.
+            Deine Sprachen.
             <br />
-            <em>Deine ganze Lernwelt.</em>
+            <em>Dein Fortschritt.</em>
           </h2>
           <p className="account-story-lead">
-            Für die ersten Worte, neue Begegnungen und alles, was du noch verstehen möchtest.
+            Wörter lernen, Gespräche üben und dort weitermachen, wo du aufgehört hast.
           </p>
           <ul className="account-benefits">
             <li>
@@ -46,20 +46,13 @@ export function AccountEntry() {
             <li>
               <Bookmark size={20} aria-hidden />
               <div>
-                <strong>Eigene Wörter mitnehmen</strong>
-                <span>Sammle Ausdrücke aus deinem Alltag als Fundstücke.</span>
-              </div>
-            </li>
-            <li>
-              <Languages size={20} aria-hidden />
-              <div>
-                <strong>Sprache im Zusammenhang lernen</strong>
-                <span>Entdecke Gespräche und die Kultur dahinter.</span>
+                <strong>Deinen Wortschatz erweitern</strong>
+                <span>Sammle eigene Ausdrücke als Fundstücke.</span>
               </div>
             </li>
           </ul>
           <div className="account-story-footer">
-            Sprache verbindet.<span>LinguaFlow</span>
+            Schritt für Schritt weiterlernen.<span>LinguaFlow</span>
           </div>
         </aside>
         <section className="account-paper" aria-label="Lernkonto">
@@ -87,7 +80,7 @@ export function AccountEntry() {
           </div>
         </section>
       </main>
-      <footer className="auth-footer">In deinem Tempo. Mit Neugier auf die Welt.</footer>
+      <footer className="auth-footer">LinguaFlow · Sprachen lernen, Schritt für Schritt.</footer>
     </div>
   );
 }

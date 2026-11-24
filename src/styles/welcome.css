@@ -3,7 +3,7 @@
 }
 /* Account entry: typography-led introduction and a focused form, without artwork. */
 .lf-account {
-  background: #faf8f3;
+  background: var(--public-bg);
 }
 .auth-header {
   width: min(90%, 1200px);
@@ -34,13 +34,13 @@
 }
 .account-back {
   font-size: 0.85rem;
-  color: #645c52;
+  color: var(--public-muted);
 }
 .account-entry {
   width: min(90%, 1060px);
   margin: 35px auto 48px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: start;
   column-gap: clamp(45px, 7vw, 105px);
 }
@@ -50,15 +50,12 @@
   top: 35px;
 }
 .auth-eyebrow {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  color: #85614b;
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: var(--public-muted);
 }
 .lf-account .account-story h2 {
-  font:
-    400 clamp(36px, 4vw, 52px)/1.14 Georgia,
-    serif;
+  font: 600 clamp(32px, 3.6vw, 46px)/1.2 var(--font-sans);
   letter-spacing: -0.045em;
   margin: 22px 0;
 }
@@ -67,7 +64,7 @@
 }
 .account-story-lead {
   max-width: 36ch;
-  color: #685e52;
+  color: var(--public-muted);
   font-size: 1rem;
   line-height: 1.8;
 }
@@ -95,7 +92,7 @@
 .account-benefits span {
   display: block;
   font-size: 0.81rem;
-  color: #6b6156;
+  color: var(--public-muted);
   line-height: 1.6;
   margin-top: 4px;
   max-width: 35ch;
@@ -103,28 +100,28 @@
 .account-story-footer {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #ded5c9;
+  border-top: 1px solid var(--line);
   padding-top: 20px;
   margin-top: 42px;
   font-size: 0.76rem;
-  color: #75695c;
+  color: var(--public-muted);
 }
 .account-story-footer span {
   font-weight: 600;
 }
 .account-paper {
-  background: #fffefa;
-  border: 1px solid #e1d9cd;
+  background: var(--public-surface);
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: clamp(24px, 3vw, 38px);
 }
 .account-course-label {
   font-size: 0.76rem;
   margin-bottom: 20px;
-  color: #75695c;
+  color: var(--public-muted);
 }
 .account-paper p {
-  color: #6a6054;
+  color: var(--public-muted);
   line-height: 1.65;
 }
 .account-fields > .account-title {
@@ -136,22 +133,49 @@
   font-size: 0.88rem;
 }
 .account-modes {
-  display: flex;
-  border-bottom: 1px solid #ddd4c7;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 320px);
+  margin-inline: auto;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid #dce0e5;
+  border-radius: 8px;
+  background: #edf0f3;
 }
 .account-modes button {
-  position: relative;
-  min-height: 46px;
-  padding: 8px 0 14px;
-  border-bottom: 2px solid transparent;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 5px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #766b5e;
+  color: var(--public-muted);
+  overflow-wrap: anywhere;
 }
 .account-modes button[aria-pressed="true"] {
   color: #9d261b;
-  border-bottom-color: currentColor;
+  background: var(--public-surface);
+  border-color: #a5acb5;
+}
+.account-modes button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.account-paper,
+.account-fields,
+.account-form > * {
+  min-width: 0;
+}
+.account-error,
+.account-field-hint {
+  overflow-wrap: anywhere;
+}
+.account-form .account-confirmation-hint[data-match="true"] {
+  color: #186642;
+}
+.account-form .account-confirmation-hint[data-match="false"] {
+  color: #832c20;
 }
 .account-fields > .account-form {
   margin-top: 26px;
@@ -159,25 +183,26 @@
 }
 .account-form label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 550;
 }
 .account-paper .field {
   display: block;
   width: 100%;
   min-height: 48px;
+  font-size: 1rem;
   margin-top: 7px;
-  background: #fffefa;
-  border: 1px solid #c9beae;
+  background: var(--public-surface);
+  border: 1px solid #a5acb5;
   border-radius: 6px;
-  color: #302820;
+  color: var(--public-ink);
 }
 .account-paper .field:focus {
   border-color: #8d3b2c;
 }
 .account-field-hint {
   display: block;
-  font-size: 0.73rem;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.6;
   margin-top: 7px;
@@ -197,15 +222,15 @@
   opacity: 0.55;
 }
 .account-paper .btn-line {
-  border-color: #c9beae;
-  color: #302820;
+  border-color: #a5acb5;
+  color: var(--public-ink);
   border-radius: 6px;
 }
 .account-preview {
   margin-top: 16px;
   padding: 12px 14px;
   border-left: 2px solid #b69b7b;
-  background: #f4efe6;
+  background: #edf0f3;
   font-size: 0.8rem;
 }
 .account-keep-guest {
@@ -238,7 +263,7 @@
   font-size: 0.85rem;
 }
 .account-guest-section {
-  border-top: 1px solid #e1d9cd;
+  border-top: 1px solid var(--line);
   margin-top: 26px;
   padding-top: 22px;
   text-align: center;
@@ -257,14 +282,14 @@
 }
 .account-guest-section small {
   display: block;
-  font-size: 0.72rem;
-  color: #786c5e;
+  font-size: 0.8rem;
+  color: var(--public-muted);
   line-height: 1.6;
 }
 .auth-footer {
   text-align: center;
   padding: 10px 20px 30px;
-  color: #7b7063;
+  color: var(--public-muted);
   font-size: 0.76rem;
 }
 @media (max-width: 800px) {
@@ -286,7 +311,7 @@
     gap: 8px;
   }
   .account-back {
-    font-size: 0.73rem;
+    font-size: 0.8rem;
   }
   .account-paper {
     padding: 24px 20px;
@@ -388,6 +413,7 @@
   display: grid;
   gap: 0.35rem;
   padding: 0;
+  margin-top: 10px;
   font-size: 0.75rem;
 }
 .password-rules li {
@@ -444,11 +470,21 @@
   color: rgb(var(--dim));
 }
 .study-page .account-modes {
+  background: rgb(var(--paper));
   border-color: rgb(var(--rule));
 }
 .study-page .account-modes button {
   color: rgb(var(--dim));
 }
 .study-page .account-modes button[aria-pressed="true"] {
+  background: rgb(var(--rule) / 0.3);
+  border-color: rgb(var(--rule));
   color: rgb(var(--cinnabar));
+}
+
+.dark .study-page .account-confirmation-hint[data-match="true"] {
+  color: #9ae5b3;
+}
+.dark .study-page .account-confirmation-hint[data-match="false"] {
+  color: #ffb4a8;
 }

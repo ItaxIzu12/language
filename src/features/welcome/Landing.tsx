@@ -32,16 +32,21 @@ function LearningPreview() {
     <div className="home-demo">
       <div className="home-demo-bar">
         <span className="home-demo-brand">
-          LinguaFlow <span>/ Lernkarten</span>
+          <span>Lernkarten</span>
         </span>
         <span className="home-demo-tag">Vorschau</span>
       </div>
+      <ol className="home-demo-stages" aria-label="Ablauf des Lernbeispiels">
+        <li aria-current={!revealed ? "step" : undefined}>1 · Entdecken</li>
+        <li aria-current={revealed ? "step" : undefined}>2 · Verstehen</li>
+        <li>3 · Wiederholen</li>
+      </ol>
       <div className="home-demo-content">
         <div className="home-demo-meta">
           <span>Mandarin · Erste Begegnungen</span>
           <span>01</span>
         </div>
-        <p className="home-demo-question">Ein kleines Wort. Ein guter Anfang.</p>
+        <p className="home-demo-question">Wie begrüßt du jemanden?</p>
         <div className="home-demo-word" lang="zh">
           你好
         </div>
@@ -108,15 +113,15 @@ export default function Landing() {
       <main id="home-main" tabIndex={-1}>
         <section className="lf-inner home-hero" aria-labelledby="home-title">
           <div className="home-intro">
-            <p className="home-kicker">Sprache verbindet.</p>
+            <p className="home-kicker">Deine App zum Sprachenlernen</p>
             <h1 id="home-title">
-              Sprachen lernen.
+              Eine neue Sprache.
               <br />
-              <em>Menschen verstehen.</em>
+              <em>Ein Schritt am Tag.</em>
             </h1>
             <p className="home-lead">
-              Entdecke neue Wörter in echten Zusammenhängen. Übe für Gespräche im Alltag und lerne die Kultur hinter
-              einer Sprache kennen – Schritt für Schritt, in deinem Tempo.
+              Baue deinen Wortschatz auf, übe Gespräche und wiederhole, was du gelernt hast. Alles an einem Ort. In
+              deinem Tempo.
             </p>
             <button type="button" className="lf-primary home-start" onClick={() => jumpTo("sprachen")}>
               Sprache wählen <ArrowRight size={18} aria-hidden />
@@ -126,17 +131,17 @@ export default function Landing() {
           <LearningPreview />
         </section>
         <div className="home-topics lf-inner" aria-label="Lernen im Alltag">
-          <span>Für die kleinen Momente, die verbinden.</span>
+          <span>Ein Lernweg. Mehrere Möglichkeiten.</span>
           <ul>
-            <li>Menschen kennenlernen</li>
-            <li>Gemeinsam essen</li>
-            <li>Unterwegs sein</li>
+            <li>Wortschatz aufbauen</li>
+            <li>Gespräche üben</li>
+            <li>Gezielt wiederholen</li>
           </ul>
         </div>
         <section className="home-method" id="lernweise" tabIndex={-1} aria-labelledby="method-title">
           <div className="lf-inner">
             <div className="home-section-heading">
-              <p className="home-kicker">Dein Weg ins Gespräch</p>
+              <p className="home-kicker">So funktioniert LinguaFlow</p>
               <h2 id="method-title">Verstehen. Ausprobieren. Behalten.</h2>
               <p>Kleine Schritte, die zusammengehören – in deinem eigenen Tempo.</p>
             </div>
@@ -157,7 +162,7 @@ export default function Landing() {
         <section className="lf-inner home-languages" id="sprachen" tabIndex={-1} aria-labelledby="languages-title">
           <div className="home-section-heading">
             <p className="home-kicker">Deine nächste Sprache</p>
-            <h2 id="languages-title">Welche Sprache macht dich neugierig?</h2>
+            <h2 id="languages-title">Mit welcher Sprache startest du?</h2>
             <p>LinguaFlow wächst Sprache für Sprache. Diese Kurse kannst du bereits entdecken.</p>
           </div>
           <div className="home-available">
@@ -166,7 +171,7 @@ export default function Landing() {
                 <div>
                   <span className="home-status">Jetzt verfügbar</span>
                   <h3>{language.name}</h3>
-                  <p>Dialoge, Wortschatz und Kultur entdecken</p>
+                  <p>Lernkarten, Dialoge und Hörübungen</p>
                 </div>
                 <span className="home-course-native" lang={language.code}>
                   {language.nativeName}
@@ -190,27 +195,32 @@ export default function Landing() {
             </div>
           )}
         </section>
-        <section className="lf-inner home-culture" aria-labelledby="culture-title">
+        <section className="lf-inner home-routine" aria-labelledby="routine-title">
           <div>
-            <p className="home-kicker">Sprache & Kultur</p>
-            <h2 id="culture-title">
-              Worte gehören
+            <p className="home-kicker">Dein persönlicher Lernweg</p>
+            <h2 id="routine-title">
+              Heute etwas lernen.
               <br />
-              <em>mitten ins Leben.</em>
+              Morgen daran anknüpfen.
             </h2>
           </div>
-          <div>
-            <p className="home-culture-lead">Beim Kennenlernen. Unterwegs. Am gemeinsamen Tisch.</p>
-            <p>
-              Eine Begrüßung, eine Einladung, ein gemeinsames Essen: Sprache gehört zum Leben. Deshalb stehen bei
-              LinguaFlow Wörter und Grammatik im Zusammenhang mit Menschen und Alltagssituationen.
-            </p>
-            <p>Jede Sprache bekommt ihre eigene Lernwelt. Was sie verbindet: die Neugier auf andere Perspektiven.</p>
+          <div className="home-routine-details">
+            <article>
+              <h3>Dein Fortschritt bleibt sichtbar</h3>
+              <p>
+                Behalte deine Übungen und Wiederholungen im Blick. Mit einem Konto kannst du auf anderen Geräten
+                weiterlernen.
+              </p>
+            </article>
+            <article>
+              <h3>Platz für deine eigenen Wörter</h3>
+              <p>Speichere Ausdrücke, die dir begegnen, als Fundstücke. So ergänzt dein Alltag den Kurs.</p>
+            </article>
           </div>
         </section>
       </main>
       <footer className="lf-inner home-footer">
-        <span>LinguaFlow · Sprache verbindet.</span>
+        <span>LinguaFlow · Sprachen lernen, Schritt für Schritt.</span>
       </footer>
     </div>
   );

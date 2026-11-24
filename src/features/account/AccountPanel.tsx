@@ -48,8 +48,8 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
   const rules = [
     { label: "Mindestens 8 Zeichen", met: Array.from(password).length >= 8 },
     { label: "Mindestens ein Sonderzeichen (z. B. !, ? oder #)", met: /[\p{P}\p{S}]/u.test(password) },
-    { label: "Beide Passwörter stimmen überein", met: password.length > 0 && password === confirmation },
   ];
+  const passwordsMatch = password.length > 0 && password === confirmation;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -200,7 +200,7 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
           </button>
         ))}
       </div>
-      <Heading className="account-title">{register ? "Dein Lernen beginnt hier." : "Willkommen zurück."}</Heading>
+      <Heading className="account-title">{register ? "Konto erstellen" : "Anmelden"}</Heading>
       <p>
         {register
           ? "Lege deinen Zugang an, um deinen Lernfortschritt zu speichern."
@@ -257,6 +257,22 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
             name="password"
             autoComplete={register ? "new-password" : "current-password"}
           />
+          {register && (
+            <>
+              <ul id="password-rules" className="password-rules" aria-label="Passwortkriterien">
+                {rules.map(({ label, met }) => (
+                  <li key={label} data-met={met}>
+                    {met ? <Check size={16} aria-hidden /> : <Circle size={14} aria-hidden />}
+                    <span className="sr-only">{met ? "Erfüllt: " : "Offen: "}</span>
+                    {label}
+                  </li>
+                ))}
+              </ul>
+              <small className="account-field-hint">
+                Verwende ein eigenes Passwort, das du nicht für andere Konten nutzt.
+              </small>
+            </>
+          )}
         </div>
         {register && (
           <>
@@ -269,22 +285,24 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
                 value={confirmation}
                 onChange={(e) => setConfirmation(e.target.value)}
                 required
+                aria-describedby="account-confirmation-hint"
+                aria-invalid={confirmation.length > 0 && !passwordsMatch}
                 name="confirmation"
                 autoComplete="new-password"
               />
+              <p
+                id="account-confirmation-hint"
+                className="account-field-hint account-confirmation-hint"
+                role="status"
+                data-match={confirmation ? passwordsMatch : undefined}
+              >
+                {!confirmation
+                  ? "Gib dein Passwort erneut ein."
+                  : passwordsMatch
+                    ? "Die Passwörter stimmen überein."
+                    : "Die Passwörter stimmen noch nicht überein."}
+              </p>
             </div>
-            <ul id="password-rules" className="password-rules" aria-label="Passwortkriterien">
-              {rules.map(({ label, met }) => (
-                <li key={label} data-met={met}>
-                  {met ? <Check size={16} aria-hidden /> : <Circle size={14} aria-hidden />}
-                  <span className="sr-only">{met ? "Erfüllt: " : "Offen: "}</span>
-                  {label}
-                </li>
-              ))}
-            </ul>
-            <small className="account-field-hint">
-              Verwende ein eigenes Passwort, das du nicht für andere Konten nutzt.
-            </small>
           </>
         )}
         {hasGuestProgress && (
@@ -304,7 +322,10 @@ export default function AccountPanel({ afterAuth, headingLevel = 2 }: { afterAut
             {error}
           </p>
         )}
-        <button className="btn-ink" disabled={busy || !accountEnabled || (register && rules.some((rule) => !rule.met))}>
+        <button
+          className="btn-ink"
+          disabled={busy || !accountEnabled || (register && (!passwordsMatch || rules.some((rule) => !rule.met)))}
+        >
           {busy ? "Bitte warten …" : register ? "Konto erstellen" : "Anmelden"}
         </button>
         {!register && (

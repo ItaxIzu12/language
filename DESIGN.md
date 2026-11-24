@@ -1,7 +1,28 @@
-# Design System: LinguaFlow
+# Öffentlicher Einstieg: LinguaFlow
+
+Startseite, Anmeldung und Registrierung teilen eine globale Sprachlern-Marke.
+Die Kultur einer Sprache erscheint dezent innerhalb ihres Kurses.
+
+- Atmosphäre: ruhige, moderne Produktsoftware; klare Aufgaben statt Dekoration.
+- Hintergrund: #F7F8FA; Fläche: #FFFFFF; Text: #20252B; Nebenfarbe: #59616B;
+  Linie: #DCE0E5. Markenakzent #9D261B für Hauptaktionen, Fokus und aktive Auswahl.
+- Schrift: vorhandene Archivo, 16px Fließtext, Zeilenhöhe 1.6; Überschriften
+  600–650, responsive mit clamp(), maximal 64px. Kein Kurs-Schriftstil im Einstieg.
+- Raster: 1200px Maximalbreite, asymmetrischer Hero; unter 768px einspaltig.
+- Interaktion: 44px Mindestziel, sichtbarer Fokus, 8px Radius, klarer aktiver Zustand.
+- Formulare: Labels über Feldern, Hilfen und Rückmeldungen unmittelbar am Feld;
+  ein Submit-Button je Formular, separater mittiger Moduswechsel.
+- Vorschau: ausdrücklich gekennzeichnetes Mandarin-Lernbeispiel, von Hand bedienbar;
+  keine erfundenen Lernstände, keine automatische Animation.
+- Keine Kulturcollage, keine Flaggen-Dekoration, keine künstlichen Testimonials,
+  keine Glows oder ständig laufende Animationen. Vorhandenes Logo erhalten.
+
+
+## Sprachspezifische Lernwelt: Mandarin
+
+Die folgenden Kalenderregeln gelten nur innerhalb des Mandarin-Kurses, nicht für die öffentliche Startseite oder Kontoformulare.
 
 Visuelle Welt: **Abreißkalender 黄历** – der chinesische Wandkalender, von dem man jeden Tag ein Blatt abreißt.
- test
 ## 1. Visual Theme & Atmosphere
 
 Dünnes, warmes Kalenderpapier, Druckerschwärze und ein einziges Zinnoberrot. Riesige, schmale Tageszahlen, darunter

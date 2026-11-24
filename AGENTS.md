@@ -6,8 +6,11 @@ Dieses Projekt ist eine Sprachlern-App. Bewahre bestehende Funktionen und lokale
 ## Produktidentität
 
 - Gestalte LinguaFlow als eigenständige, ruhige und verständliche Sprachlernsoftware.
-- Sprache, Alltag und Kultur bilden gemeinsam die Identität. Reduziere Kultur nicht
-  auf Sehenswürdigkeiten, Flaggen oder stereotype Länderbilder.
+- Der öffentliche Einstieg (Startseite, Anmeldung und Registrierung) verwendet eine
+  gemeinsame, sprachübergreifende Produktgestaltung. Der Schwerpunkt liegt auf
+  Wortschatz, Gesprächen und Wiederholungen. Kulturelle Gestaltung gehört dezent
+  in die Lernwelt der jeweiligen Sprache, nicht in den öffentlichen Einstieg.
+  Reduziere Kultur nicht auf Sehenswürdigkeiten, Flaggen oder stereotype Länderbilder.
 - Die Startseite ist ein allgemeiner Einstieg in die mehrsprachige Plattform.
   Richte Überschrift, Nutzenversprechen und Hauptaktion nicht auf eine einzelne
   Sprache aus. Einzelne Sprachen dürfen als klar gekennzeichnete Lernbeispiele dienen.
