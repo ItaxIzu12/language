@@ -95,3 +95,38 @@ Bildern Quelle und Nutzungsrechte; verwende keine ungeprüften Bildrechte.
   ersetzt keine visuelle Prüfung. Falls sie technisch nicht möglich ist, sage das klar.
 - Berichte knapp, was umgesetzt wurde, wie es geprüft wurde und welche Einschränkungen
   noch bestehen. Garantien wie „kein KI-Look“ oder „perfektes Design“ sind unangebracht.
+
+## Ablauf für neue Funktionen
+
+Behandle jede neue Funktionsbeschreibung als fachliche Anforderung innerhalb der
+bestehenden Architektur (`ARCHITECTURE.md`, `LANGUAGE_CAPABILITIES.md`,
+`KNOWLEDGE_TREE.md`, `AI_INTEGRATION.md`, `docs/ARCHITEKTUR.md`). Arbeite eindeutig
+beschriebene Anforderungen ohne unnötige Rückfragen in diesen Schritten ab:
+
+1. Anforderung analysieren; vorhandenen Code und Architekturdokumentation prüfen.
+2. Wiederverwendbare Module, Komponenten, Services, API-Schnittstellen und
+   Design-Komponenten identifizieren.
+3. Abhängigkeiten und Auswirkungen auf bestehende Funktionen prüfen.
+4. Kurzen Implementierungsplan erstellen.
+5. Frontend- und Backend-Komponenten implementieren, bei Bedarf mit
+   Datenbankmigrationen.
+6. KI-Funktionen nur über den zentralen AI Service Adapter und die vorhandenen
+   Personal-AI-Core-Schnittstellen anbinden (siehe `AI_INTEGRATION.md`).
+7. Automatisierte Tests für Lernlogik, Sprachpakete und Schnittstellen ergänzen
+   und ausführen; gefundene Fehler beheben.
+8. Projektdokumentation aktualisieren.
+9. Sicherheit, Performance und Ressourcenverbrauch (Zielsystem: Heimserver mit
+   16 GB RAM) prüfen.
+10. Änderungen zur Überprüfung bereitstellen und knapp berichten.
+
+Verbindlich:
+
+- Keine unnötigen Architekturänderungen und keine Duplizierung bestehender Funktionen.
+- Keine fest codierten KI-Anbieter.
+- Keine ungefragte Entfernung bestehender Funktionen.
+- Keine destruktiven Datenbankänderungen (Löschen von Tabellen, Spalten oder Daten)
+  ohne ausdrückliche Freigabe.
+- Keine produktive Bereitstellung, kein Commit auf `main` und kein Push ohne Freigabe.
+- Keine erfundenen Testergebnisse; nicht ausgeführte oder fehlgeschlagene Prüfungen
+  klar benennen.
+- Alle Erweiterungen bleiben mit der modularen Architektur kompatibel.
