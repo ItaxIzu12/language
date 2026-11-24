@@ -1,0 +1,65 @@
+/* Shared foundation for every language world.
+ * Platform layer: spacing, containers, radii, elevation, motion, heading type.
+ * Culture layer: colours and script fonts per [data-theme] (see languages/<code>/presentation/theme.css).
+ * Components read these tokens; they never hard-code a world's colours.
+ */
+:root {
+  /* Layout */
+  --lf-container: 1200px;
+  --lf-gutter: clamp(16px, 4vw, 48px);
+  --lf-header-height: 72px;
+
+  /* Spacing scale, 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Shape */
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --control-radius: 8px;
+
+  /* Elevation. Three steps, each with offset and soft blur, tinted from the page's warm ink.
+   * 1 = resting object that can be picked up (course row, card)
+   * 2 = primary object of a view (next step, form)
+   * 3 = floating above the page (preview, dialog, menu) */
+  --shadow-tint: 52 36 24;
+  --shadow-k: 1;
+  --shadow-1:
+    0 1px 2px rgb(var(--shadow-tint) / calc(0.06 * var(--shadow-k))),
+    0 2px 6px rgb(var(--shadow-tint) / calc(0.05 * var(--shadow-k)));
+  --shadow-2:
+    0 2px 4px rgb(var(--shadow-tint) / calc(0.05 * var(--shadow-k))),
+    0 10px 28px rgb(var(--shadow-tint) / calc(0.09 * var(--shadow-k)));
+  --shadow-3:
+    0 6px 12px rgb(var(--shadow-tint) / calc(0.07 * var(--shadow-k))),
+    0 24px 56px rgb(var(--shadow-tint) / calc(0.16 * var(--shadow-k)));
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-s: 160ms;
+  --duration-m: 240ms;
+
+  /* Type: one sans family for the platform; Archivo's width axis gives headings their own voice.
+   * Script fonts (Hanzi, Kana, Hangul …) come from the language world. */
+  --font-heading: "Archivo Variable", Archivo, system-ui, sans-serif;
+  --heading-stretch: 112%;
+  --heading-tracking: -0.025em;
+}
+
+/* On dark surfaces shadows need depth, not warmth. */
+.dark {
+  --shadow-tint: 0 0 0;
+  --shadow-k: 3.2;
+}
+
+.lf-container {
+  width: min(100% - 2 * var(--lf-gutter), var(--lf-container));
+  margin-inline: auto;
+}

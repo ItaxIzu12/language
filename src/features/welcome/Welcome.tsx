@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { languages } from "../../languages/registry";
 import { useStore } from "../../state/learningStore";
 import AccountPanel from "../account/AccountPanel";
+import { SiteFooter, SiteHeader, SkipLink } from "../../shared/ui/SiteShell";
 export { default as Welcome } from "./Landing";
 
 export function AccountEntry() {
@@ -14,19 +15,15 @@ export function AccountEntry() {
   if (username) return <Navigate to={course === lang.code ? "/heute" : "/sprachwahl"} replace />;
   return (
     <div className="lf-landing lf-account">
-      <header className="auth-header">
-        <Link className="auth-brand" to="/" aria-label="LinguaFlow Startseite">
-          <img src={import.meta.env.BASE_URL + "linguaflow-logo.svg"} width="36" height="36" alt="" />
-          LinguaFlow
-        </Link>
+      <SkipLink target="account-main" />
+      <SiteHeader label="Seitennavigation">
         <Link className="account-back" to="/">
           <ArrowLeft size={16} aria-hidden />
           Zur Startseite
         </Link>
-      </header>
-      <main className="account-entry">
+      </SiteHeader>
+      <main className="account-entry" id="account-main" tabIndex={-1}>
         <aside className="account-story" aria-label="Dein Lernen mit LinguaFlow">
-          <p className="auth-eyebrow">Dein Raum für neue Perspektiven</p>
           <h2>
             Ein Zugang.
             <br />
@@ -87,7 +84,7 @@ export function AccountEntry() {
           </div>
         </section>
       </main>
-      <footer className="auth-footer">In deinem Tempo. Mit Neugier auf die Welt.</footer>
+      <SiteFooter />
     </div>
   );
 }

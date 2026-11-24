@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Headphones, MessageCircle, Repeat2 } from "lucide-react";
 import { languages, upcomingLanguages } from "../../languages/registry";
+import { SiteFooter, SiteHeader, SkipLink, focusRegion } from "../../shared/ui/SiteShell";
 
 const steps = [
   {
@@ -20,11 +21,7 @@ const steps = [
     text: "Wiederhole mit Lernkarten und sammle eigene Ausdrücke als Fundstücke. So wächst dein persönlicher Wortschatz.",
   },
 ];
-function jumpTo(id: string) {
-  const target = document.getElementById(id);
-  target?.scrollIntoView({ behavior: "instant", block: "start" });
-  target?.focus({ preventScroll: true });
-}
+const jumpTo = focusRegion;
 
 function LearningPreview() {
   const [revealed, setRevealed] = useState(false);
@@ -80,35 +77,22 @@ export default function Landing() {
   const planned = upcomingLanguages.filter((language) => !available.some((course) => course.code === language.code));
   return (
     <div className="lf-landing lf-home">
-      <button type="button" className="home-skip" onClick={() => jumpTo("home-main")}>
-        Zum Inhalt
-      </button>
-      <header className="lf-top">
-        <div className="lf-inner lf-bar">
-          <Link className="lf-logo" to="/" aria-label="LinguaFlow Startseite">
-            <img
-              className="lf-brand-mark"
-              src={import.meta.env.BASE_URL + "linguaflow-logo.svg"}
-              width="40"
-              height="40"
-              alt=""
-            />
-            LinguaFlow
-          </Link>
-          <nav className="home-nav" aria-label="Hauptnavigation">
-            <button type="button" className="home-section-link" onClick={() => jumpTo("lernweise")}>
-              So lernst du
-            </button>
-            <Link className="home-signin" to="/anmelden">
-              Anmelden
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SkipLink target="home-main" />
+      <SiteHeader>
+        <button type="button" className="lf-site-secondary" onClick={() => jumpTo("lernweise")}>
+          So lernst du
+        </button>
+        <button type="button" className="lf-site-secondary" onClick={() => jumpTo("sprachen")}>
+          Sprachen
+        </button>
+        <Link to="/anmelden">Anmelden</Link>
+        <Link className="lf-site-cta" to="/sprachwahl">
+          Ohne Konto starten
+        </Link>
+      </SiteHeader>
       <main id="home-main" tabIndex={-1}>
         <section className="lf-inner home-hero" aria-labelledby="home-title">
           <div className="home-intro">
-            <p className="home-kicker">Sprache verbindet.</p>
             <h1 id="home-title">
               Sprachen lernen.
               <br />
@@ -136,7 +120,6 @@ export default function Landing() {
         <section className="home-method" id="lernweise" tabIndex={-1} aria-labelledby="method-title">
           <div className="lf-inner">
             <div className="home-section-heading">
-              <p className="home-kicker">Dein Weg ins Gespräch</p>
               <h2 id="method-title">Verstehen. Ausprobieren. Behalten.</h2>
               <p>Kleine Schritte, die zusammengehören – in deinem eigenen Tempo.</p>
             </div>
@@ -156,7 +139,6 @@ export default function Landing() {
         </section>
         <section className="lf-inner home-languages" id="sprachen" tabIndex={-1} aria-labelledby="languages-title">
           <div className="home-section-heading">
-            <p className="home-kicker">Deine nächste Sprache</p>
             <h2 id="languages-title">Welche Sprache macht dich neugierig?</h2>
             <p>LinguaFlow wächst Sprache für Sprache. Diese Kurse kannst du bereits entdecken.</p>
           </div>
@@ -192,7 +174,6 @@ export default function Landing() {
         </section>
         <section className="lf-inner home-culture" aria-labelledby="culture-title">
           <div>
-            <p className="home-kicker">Sprache & Kultur</p>
             <h2 id="culture-title">
               Worte gehören
               <br />
@@ -209,9 +190,7 @@ export default function Landing() {
           </div>
         </section>
       </main>
-      <footer className="lf-inner home-footer">
-        <span>LinguaFlow · Sprache verbindet.</span>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

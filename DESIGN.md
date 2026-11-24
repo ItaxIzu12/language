@@ -5,8 +5,8 @@ Visuelle Welt: **Abreißkalender 黄历** – der chinesische Wandkalender, von 
 ## 1. Visual Theme & Atmosphere
 
 Dünnes, warmes Kalenderpapier, Druckerschwärze und ein einziges Zinnoberrot. Riesige, schmale Tageszahlen, darunter
-dichte, sauber linierte Spalten. Die Oberfläche wirkt gedruckt, nicht „gerendert": harte Kanten, Haarlinien statt
-Schatten, klare Raster. Dichte 6 (ausgewogen, in Listen dicht), Varianz 8 (asymmetrische Raster, keine gleich großen
+dichte, sauber linierte Spalten. Die Oberfläche wirkt gedruckt, nicht „gerendert": harte Kanten, Haarlinien, klare Raster und wenige,
+ruhige Schatten nach festen Höhenstufen. Dichte 6 (ausgewogen, in Listen dicht), Varianz 8 (asymmetrische Raster, keine gleich großen
 Kachelreihen), Bewegung 5 (ruhig, mit einem inszenierten Moment: dem Abreißen des Tagesblatts).
 
 Die Welt leiht der App genau vier Dinge: Schrift, Palette, Dichte und **ein Markenzeichen**. Navigation, Bedienelemente
@@ -52,7 +52,8 @@ Verboten: Farbverläufe, Neon, Glühen, reines Schwarz (#000000), Lila/Blau als 
 
 ## 4. Component Stylings
 
-- **Blatt (Fläche):** Ecken 3px, eine Haarlinie als Kante, kein Schatten. Blätter liegen nie ineinander.
+- **Blatt (Fläche):** Ecken 3px, eine Haarlinie als Kante. Schatten nur nach der Höhenstufe unter
+  „Gemeinsames Layout“. Blätter liegen nie ineinander.
 - **Kopfband:** zinnoberrotes Band mit Lochreihe (die Bindung des Kalenders) als oberer Rand der App und des Tagesblatts.
 - **Knöpfe:** rechteckig, mindestens 44px hoch. Hauptaktion in Druckschwarz, eine rote Aktion nur für das Abreißen;
   Nebenaktion als Linie. Beim Drücken 1px nach unten. Kein Glühen.
@@ -85,3 +86,24 @@ Keine Emojis. Kein Inter. Kein reines Schwarz. Keine Verläufe, kein Glühen, ke
 Kacheln nebeneinander. Keine Fortschrittsringe. Keine Maskottchen, keine Bonbonfarben, keine Herzen/Leben-Mechanik.
 Keine erfundenen Zahlen, Bewertungen oder Stimmen. Keine „Kicker"-Zeile über Überschriften. Keine Papier-Textur aus
 Rauschfiltern – das Papier ist eine Farbe, kein Effekt.
+
+
+## 8. Gemeinsames Layout (alle Sprachen)
+
+Das Layout besteht aus zwei Ebenen. Die **Plattform-Ebene** ist für alle Sprachen gleich. Die **Kultur-Ebene**
+gehört der jeweiligen Lernwelt.
+
+- **Plattform** (`src/styles/foundation.css`, `src/styles/shell.css`, `src/shared/ui/SiteShell.tsx`):
+  Container 1200px mit Randabstand `clamp(16px, 4vw, 48px)`, Abstandsskala auf 4px-Basis, Radien 6/8/12px,
+  Kopfleiste, Fußleiste, Sprunglink, Marke, Überschriftenschrift (Archivo, Breite 112 %).
+- **Kultur** (`[data-theme]` und `languages/<code>/presentation/`): Farben, Schrift für die Schriftzeichen,
+  Motive, Siegel und Tagesblatt. Die Plattform-Ebene liest diese Farben nur als Tokens und ersetzt sie nie.
+- Startseite, Sprachwahl und Kurseinstieg nutzen dieselbe `SiteHeader`/`SiteFooter`. Der Lernbereich nutzt
+  dieselbe Marke (`BrandLink`), auf dem Handy auch oben in der Leiste.
+- **Höhenstufen** (Schatten immer mit Versatz und weicher Unschärfe, aus der warmen Tinte getönt;
+  im Dunkelmodus neutral und tiefer):
+  1. ablegbares Objekt, z. B. Kurszeile, Hauptknopf;
+  2. Hauptobjekt einer Ansicht, z. B. nächster Lernschritt, Anmeldeformular, Kopfleiste beim Scrollen;
+  3. schwebend über der Seite, z. B. Produktvorschau, Dialog, Menü.
+  Pro Element entweder Rahmen oder Schatten als Höhenträger; keine farbigen Halos, keine harten Versatzschatten.
+- Keine Kicker-Zeilen über Überschriften, auch nicht auf der Startseite.

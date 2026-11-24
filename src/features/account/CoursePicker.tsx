@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { languages, upcomingLanguages } from "../../languages/registry";
 import { useStore } from "../../state/learningStore";
+import { SiteFooter, SiteHeader, SkipLink } from "../../shared/ui/SiteShell";
 
 export default function CoursePicker() {
   const { lang, username, sync, updateSettings } = useStore();
@@ -15,21 +16,11 @@ export default function CoursePicker() {
   }
   return (
     <div className="lf-landing">
-      <header className="lf-top">
-        <div className="lf-inner lf-bar">
-          <Link className="lf-logo" to="/">
-            <img
-              className="lf-brand-mark"
-              src={import.meta.env.BASE_URL + "linguaflow-logo.svg"}
-              width="40"
-              height="40"
-              alt=""
-            />
-            LinguaFlow
-          </Link>
-        </div>
-      </header>
-      <main className="course-picker">
+      <SkipLink target="course-main" />
+      <SiteHeader label="Seitennavigation">
+        <Link to="/">Zur Startseite</Link>
+      </SiteHeader>
+      <main className="course-picker" id="course-main" tabIndex={-1}>
         <h1>Welche Sprache möchtest du lernen?</h1>
         <p>
           {username
@@ -47,7 +38,7 @@ export default function CoursePicker() {
             >
               <span lang={l.code}>{l.nativeName}</span>
               <strong>{l.name}</strong>
-              <ArrowRight size={20} />
+              <ArrowRight size={20} aria-hidden />
             </button>
           ))}
         {sync.pending && (
@@ -63,6 +54,7 @@ export default function CoursePicker() {
             .join(", ")}
         </p>
       </main>
+      <SiteFooter />
     </div>
   );
 }

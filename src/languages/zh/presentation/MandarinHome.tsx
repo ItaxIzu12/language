@@ -10,7 +10,6 @@ export default function MandarinHome() {
   return (
     <div className="study-home">
       <header className="study-welcome">
-        <p className="study-caption">Mandarin · dein Lernalltag</p>
         <h1>{progress.xp ? "Schön, dass du wieder da bist." : "Dein erstes Gespräch beginnt hier."}</h1>
         <p>Ein Schritt nach dem anderen. In deinem Tempo.</p>
       </header>

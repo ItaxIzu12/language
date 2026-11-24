@@ -3,15 +3,16 @@
  * Add application-wide overrides at the end of this file; avoid per-page copies.
  */
 @import "./base.css";
+@import "./foundation.css";
 @import "./landing.css";
 @import "./welcome.css";
 @import "./learning-layout.css";
 @import "./course-switcher.css";
 @import "../languages/zh/presentation/theme.css";
 @import "./study.css";
+@import "./shell.css";
 
 :root {
-  --control-radius: 0.5rem;
   --focus-color: #1677a1;
   --touch-target: 44px;
 }

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import CourseSwitcher from "../../shared/ui/CourseSwitcher";
+import { BrandLink } from "../../shared/ui/SiteShell";
 import { useStore } from "../../state/learningStore";
 import { stopSpeaking } from "../../shared/audio/tts";
 import { primaryNavigation, workspaceSection, navigationFor } from "../navigation";
@@ -35,10 +36,7 @@ export default function LearningLayout() {
         Zum Lernbereich
       </a>
       <aside className="study-sidebar">
-        <Link className="study-brand" to="/heute" aria-label="LinguaFlow – Heute">
-          <img src={import.meta.env.BASE_URL + "linguaflow-logo.svg"} width="35" height="35" alt="" />
-          <span>LinguaFlow</span>
-        </Link>
+        <BrandLink to="/heute" label="LinguaFlow – Heute" />
         <div className="study-course">
           <span className="study-caption">Dein Kurs</span>
           <strong>{lang.name}</strong>
@@ -60,6 +58,7 @@ export default function LearningLayout() {
       </aside>
       <div className="study-workspace">
         <header className="study-topbar">
+          <BrandLink to="/heute" label="LinguaFlow – Heute" compact />
           <span>
             {lang.name}
             <span className="study-topbar-separator">/</span>

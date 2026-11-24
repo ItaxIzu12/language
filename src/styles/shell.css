@@ -1,0 +1,333 @@
+/* Shared platform shell (Phase 1). Loaded last so it can unify the older page styles.
+ * Structure and elevation are shared; colours and script fonts stay with each language world.
+ */
+
+/* ---------- Brand ---------- */
+.lf-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  font-family: var(--font-heading);
+  font-stretch: var(--heading-stretch);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.035em;
+  color: inherit;
+  border-radius: var(--radius-s);
+}
+.lf-brand img {
+  flex: none;
+  width: 36px;
+  height: 36px;
+}
+.lf-brand-compact img {
+  width: 32px;
+  height: 32px;
+}
+
+/* ---------- Skip link ---------- */
+.lf-skip {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-3);
+  z-index: 200;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--control-radius);
+  background: #fffefa;
+  color: #231e1a;
+  font-weight: 600;
+  transform: translateY(-180%);
+  transition: transform var(--duration-s) var(--ease-out);
+}
+.lf-skip:focus {
+  transform: translateY(0);
+  box-shadow: var(--shadow-3);
+}
+
+/* ---------- Site header ---------- */
+.lf-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #faf8f3;
+  border-bottom: 1px solid #e6ddd1;
+  transition:
+    box-shadow var(--duration-m) var(--ease-out),
+    border-color var(--duration-m) var(--ease-out);
+}
+.lf-site-header[data-raised] {
+  border-bottom-color: transparent;
+  box-shadow: var(--shadow-2);
+}
+.lf-site-bar {
+  min-height: var(--lf-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.lf-site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.92rem;
+}
+.lf-site-nav :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-3);
+  border-radius: var(--control-radius);
+  color: #4a4038;
+  text-underline-offset: 0.3em;
+}
+.lf-site-nav :is(a, button):hover {
+  color: #231e1a;
+  text-decoration: underline;
+}
+.lf-site-nav .lf-site-cta {
+  white-space: nowrap;
+  margin-left: var(--space-2);
+  padding-inline: var(--space-4);
+  background: #9d261b;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: var(--shadow-1);
+}
+.lf-site-nav .lf-site-cta:hover {
+  background: #7d1d15;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---------- Site footer ---------- */
+.lf-site-footer {
+  margin-top: var(--space-8);
+  border-top: 1px solid #e2d8cb;
+  background: #f3eee5;
+  color: #4f463e;
+  font-size: 0.9rem;
+}
+.lf-site-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  padding-block: var(--space-7) var(--space-6);
+}
+.lf-site-footer-brand p {
+  margin-top: var(--space-3);
+  max-width: 34ch;
+  line-height: 1.6;
+}
+.lf-site-footer h2 {
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: #231e1a;
+  margin-bottom: var(--space-2);
+}
+.lf-site-footer ul {
+  display: grid;
+}
+.lf-site-footer li a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  text-underline-offset: 0.3em;
+}
+.lf-site-footer li a:hover {
+  color: #231e1a;
+  text-decoration: underline;
+}
+.lf-site-footer li span {
+  color: #9d261b;
+}
+.lf-site-footer-note {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-4) var(--space-5);
+  border-top: 1px solid #e2d8cb;
+  font-size: 0.8rem;
+  color: #63594f;
+}
+
+/* ---------- Shared headings on platform pages ---------- */
+.lf-landing :is(h1, h2),
+.lf-landing .home-course h3,
+.study-welcome h1,
+.study-next h2 {
+  font-family: var(--font-heading);
+  font-stretch: var(--heading-stretch);
+  letter-spacing: var(--heading-tracking);
+}
+.lf-landing h1 {
+  font-weight: 750;
+}
+.lf-landing h2,
+.lf-landing .home-course h3 {
+  font-weight: 650;
+}
+/* The emphasised line keeps the brand colour; no synthetic italics. */
+.lf-landing :is(h1, h2) em {
+  font-style: normal;
+}
+.lf-home h1 {
+  letter-spacing: -0.035em;
+}
+.home-culture .home-culture-lead,
+.home-demo-answer strong {
+  font-family: var(--font-heading);
+  font-stretch: var(--heading-stretch);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Elevation on platform pages ---------- */
+/* Preview: floats above the page, it is a product window. */
+.home-demo {
+  border-color: #e4dccf;
+  box-shadow: var(--shadow-3);
+}
+/* Course rows: objects that can be picked up. */
+.home-course {
+  border-color: #e4dccf;
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+  transition:
+    box-shadow var(--duration-m) var(--ease-out),
+    transform var(--duration-m) var(--ease-out),
+    border-color var(--duration-m) var(--ease-out);
+}
+.home-course:hover {
+  border-color: #c9b9a6;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+.home-course-native {
+  font-family: var(--font-script, serif);
+}
+.lf-primary {
+  box-shadow: var(--shadow-1);
+}
+/* Account form: the primary object of its view. */
+.account-paper {
+  border-color: #e7dfd3;
+  box-shadow: var(--shadow-2);
+}
+.pick-course {
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+  transition:
+    box-shadow var(--duration-m) var(--ease-out),
+    transform var(--duration-m) var(--ease-out);
+}
+.pick-course:hover:enabled {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+/* ---------- Learning area: same brand, same elevation ---------- */
+.study-sidebar .lf-brand {
+  font-size: 1.2rem;
+}
+.study-topbar .lf-brand {
+  display: none;
+}
+/* Next step: primary object of the day. Shadow replaces the one-sided top bar. */
+.study-next {
+  border: 1px solid rgb(var(--rule) / 0.6);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-2);
+}
+.study-welcome h1 {
+  font-weight: 700;
+}
+.study-next h2 {
+  font-weight: 650;
+}
+.course-dialog,
+.course-menu {
+  box-shadow: var(--shadow-3);
+}
+
+@media (max-width: 760px) {
+  .study-topbar {
+    justify-content: flex-start;
+  }
+  .study-topbar .lf-brand {
+    display: inline-flex;
+  }
+  .study-topbar > span {
+    flex: 1;
+  }
+  /* Fixed bottom bar floats above the content it covers. */
+  .study-mobile {
+    border-top-color: rgb(var(--rule) / 0.6);
+    box-shadow:
+      0 -2px 6px rgb(var(--shadow-tint) / calc(0.04 * var(--shadow-k))),
+      0 -10px 28px rgb(var(--shadow-tint) / calc(0.07 * var(--shadow-k)));
+  }
+}
+
+@media (max-width: 760px) {
+  .lf-site-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .lf-site-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 760px) {
+  .lf-site-nav .lf-site-secondary {
+    display: none;
+  }
+}
+/* On phones the hero carries the main action; the header keeps sign-in only. */
+@media (max-width: 520px) {
+  .lf-site-nav .lf-site-cta {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-course:hover,
+  .pick-course:hover:enabled {
+    transform: none;
+  }
+}
+
+/* Platform pages share one container width. */
+.lf-landing .lf-inner {
+  width: min(100% - 2 * var(--lf-gutter), var(--lf-container));
+}
+.lf-landing section[id] {
+  scroll-margin-top: calc(var(--lf-header-height) + var(--space-5));
+}
+.account-story {
+  top: calc(var(--lf-header-height) + var(--space-5));
+}
+.account-story h2,
+.lf-account .account-story h2 {
+  font-family: var(--font-heading);
+  font-stretch: var(--heading-stretch);
+  font-weight: 700;
+  letter-spacing: var(--heading-tracking);
+}
+.account-story h2 em {
+  font-style: normal;
+}
+
+/* Heading sizes for the wider heading face. */
+.lf-home h1 {
+  font-size: clamp(40px, 4.2vw, 58px);
+  line-height: 1.06;
+}
+.course-picker h1 {
+  font-size: clamp(32px, 3.6vw, 46px);
+  line-height: 1.1;
+  max-width: 18ch;
+}
