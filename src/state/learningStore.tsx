@@ -5,13 +5,12 @@ import type { Category, Language, VocabItem } from "../languages/types";
 import type { AccountState } from "../features/account/account";
 import { draftKey, getDraft, useAccountSync } from "../features/account/useAccountSync";
 import { addDays, dayKey } from "../shared/lib/utils";
+import { MASTERED_BOX, nextCard, scheduledCard } from "../shared/lib/srs";
+import type { CardState } from "../shared/lib/srs";
 
-// ---------------------------------------------------------------------------
-// Spaced repetition (Leitner boxes). A correct answer moves a card up one box
-// and schedules it further in the future; a mistake sends it back.
-// ---------------------------------------------------------------------------
-export const BOX_INTERVALS = [0, 1, 3, 7, 14, 30, 60]; // days per box
-export const MASTERED_BOX = 4;
+// The Leitner logic lives in shared/lib/srs.ts; re-exported for existing imports.
+export { BOX_INTERVALS, MASTERED_BOX } from "../shared/lib/srs";
+export type { CardState } from "../shared/lib/srs";
 export const XP_PER_LEVEL = 200;
 
 /** Id of the category that holds the learner's own words. */
@@ -24,13 +23,6 @@ function customCategory(glyph: string): Category {
     glyph,
     description: "Deine eigenen Wörter – aus Chats, Serien, Gesprächen.",
   };
-}
-
-export interface CardState {
-  box: number;
-  due: string; // YYYY-MM-DD
-  right: number;
-  wrong: number;
 }
 
 /** What was done on one day, used for the three-block day plan. */
@@ -235,14 +227,7 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
   const answer = useCallback((id: string, correct: boolean, xp = 10) => {
     const day = dayKey();
     setProgress((p) => {
-      const prev = p.cards[id] ?? { box: 0, due: day, right: 0, wrong: 0 };
-      const box = correct ? Math.min(prev.box + 1, BOX_INTERVALS.length - 1) : Math.max(prev.box - 2, 1);
-      const card: CardState = {
-        box,
-        due: correct ? addDays(day, BOX_INTERVALS[box]) : day,
-        right: prev.right + (correct ? 1 : 0),
-        wrong: prev.wrong + (correct ? 0 : 1),
-      };
+      const card = nextCard(p.cards[id], correct, day);
       const gained = correct ? xp : 0;
       return {
         ...p,
@@ -329,13 +314,13 @@ export function StoreProvider({ children, account }: { children: ReactNode; acco
         return [...list, { ...word, id, category: CUSTOM_ID, learned: true }];
       });
       if (schedule) {
-        const due = addDays(dayKey(), BOX_INTERVALS[1]);
+        const card = scheduledCard(dayKey());
         setProgress((p) =>
           p.cards[id]
             ? p
             : {
                 ...p,
-                cards: { ...p.cards, [id]: { box: 1, due, right: 0, wrong: 0 } },
+                cards: { ...p.cards, [id]: card },
               },
         );
       }

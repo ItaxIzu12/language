@@ -1,5 +1,5 @@
 import type { Progress } from "../../state/learningStore";
-import { MASTERED_BOX } from "../../state/learningStore";
+import { MASTERED_BOX } from "./srs";
 import type { VocabItem } from "../../languages/types";
 
 /**

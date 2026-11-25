@@ -11,7 +11,7 @@ try {
   await build({
     stdin: {
       contents:
-        'export * from "./src/shared/lib/plan"; export {getDraft, discardDraft, draftKey} from "./src/features/account/useAccountSync";',
+        'export * from "./src/shared/lib/plan"; export * from "./src/shared/lib/srs"; export {getDraft, discardDraft, draftKey} from "./src/features/account/useAccountSync";',
       resolveDir: process.cwd(),
     },
     bundle: true,
@@ -20,9 +20,51 @@ try {
     outfile: output,
     define: { "import.meta.env.VITE_ACCOUNT_BACKEND": '"0"' },
   });
-  const { dayPlan, recommendNext, recallTarget, getDraft, discardDraft, draftKey } = await import(
-    pathToFileURL(output)
-  );
+  const {
+    dayPlan,
+    recommendNext,
+    recallTarget,
+    getDraft,
+    discardDraft,
+    draftKey,
+    nextCard,
+    scheduledCard,
+    BOX_INTERVALS,
+    MASTERED_BOX,
+  } = await import(pathToFileURL(output));
+
+  // Leitner boxes: right → +1 (max 6), wrong → −2 (min 1, due today), new cards start in box 0.
+  assert.deepEqual(BOX_INTERVALS, [0, 1, 3, 7, 14, 30, 60]);
+  assert.equal(MASTERED_BOX, 4);
+  const card = (box, due = "2026-01-01") => ({ box, due, right: 2, wrong: 1 });
+  const day = "2026-01-10";
+  for (const [box, right, wrong] of [
+    [0, 1, 1],
+    [1, 2, 1],
+    [2, 3, 1],
+    [3, 4, 1],
+    [4, 5, 2],
+    [5, 6, 3],
+    [6, 6, 4],
+  ]) {
+    assert.equal(nextCard(card(box), true, day).box, right, `right answer from box ${box}`);
+    assert.equal(nextCard(card(box), false, day).box, wrong, `wrong answer from box ${box}`);
+  }
+  assert.deepEqual(nextCard(undefined, true, day), { box: 1, due: "2026-01-11", right: 1, wrong: 0 });
+  assert.deepEqual(nextCard(undefined, false, day), { box: 1, due: day, right: 0, wrong: 1 });
+  assert.deepEqual(nextCard(card(3), true, day), { box: 4, due: "2026-01-24", right: 3, wrong: 1 });
+  assert.deepEqual(nextCard(card(5), false, day), { box: 3, due: day, right: 2, wrong: 2 });
+  const prev = card(2);
+  nextCard(prev, true, day);
+  assert.deepEqual(prev, card(2), "nextCard must not mutate the previous card");
+  // Due dates across month, leap-day, year and DST boundaries (calendar days, not 24-hour steps).
+  assert.equal(nextCard(card(5), true, "2026-01-31").due, "2026-04-01");
+  assert.equal(nextCard(card(3), true, "2028-02-20").due, "2028-03-05");
+  assert.equal(nextCard(card(2), true, "2026-12-30").due, "2027-01-06");
+  assert.equal(nextCard(card(1), true, "2026-03-28").due, "2026-03-31");
+  assert.equal(nextCard(card(1), true, "2026-10-24").due, "2026-10-27");
+  assert.deepEqual(scheduledCard(day), { box: 1, due: "2026-01-11", right: 0, wrong: 0 });
+
   const options = {
     activity: { lesson: 0, review: 0, apply: 0 },
     nextSetId: "start",
