@@ -1,9 +1,12 @@
 import { build } from "esbuild";
-import { mkdtemp, rm, readFile, writeFile } from "node:fs/promises";
+import { mkdtemp, rm, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import assert from "node:assert/strict";
+
+/** Language-neutral code: no direct package imports, no language-code comparisons. */
+const SHARED_DIRS = ["src/features/", "src/shared/", "src/state/"];
 
 const directory = await mkdtemp(join(tmpdir(), "language-architecture-"));
 try {
@@ -19,14 +22,19 @@ try {
     outfile: output,
     define: { "import.meta.env.DEV": "false" },
   });
-  const { languages, navigationFor, isModuleAvailable, quickLinks, workspaceSection } = await import(
+  const { languages, upcomingLanguages, navigationFor, isModuleAvailable, quickLinks, workspaceSection } = await import(
     pathToFileURL(output)
   );
   const zh = languages.find((language) => language.code === "zh");
   assert.ok(zh);
   assert.equal(zh.vocab.filter((word) => word.understanding).length, 20);
   assert.equal(zh.scenarios.length, 3);
-  assert.equal(new Set(zh.vocab.map((word) => word.id)).size, zh.vocab.length);
+  for (const language of languages) {
+    const ids = language.vocab.map((word) => word.id);
+    assert.equal(new Set(ids).size, ids.length, `Duplicate word IDs in ${language.code}`);
+    const foreign = ids.filter((id) => !id.startsWith(language.code + ":"));
+    assert.deepEqual(foreign, [], `Word IDs without the "${language.code}:" prefix`);
+  }
   // Learner cards reference word IDs. Released IDs must never disappear or change.
   // New words are allowed; UPDATE_WORD_IDS=1 adds them to the snapshot (never removes).
   const snapshotPath = "scripts/fixtures/zh-word-ids.txt";
@@ -111,14 +119,33 @@ try {
     active.add(path);
     for (const dependency of inputs[path]?.imports ?? []) {
       if (!dependency.external) visit(dependency.path);
-      if (path.startsWith("src/features/")) {
-        assert.ok(!dependency.path.startsWith("src/languages/zh/"), `Feature imports Mandarin directly: ${path}`);
+      // Shared code reaches language packages only through registry.ts and types.ts.
+      if (SHARED_DIRS.some((dir) => path.startsWith(dir))) {
+        assert.ok(
+          !/^src\/languages\/[^/]+\//.test(dependency.path),
+          `Shared module imports a language package directly: ${path} -> ${dependency.path}`,
+        );
       }
     }
     active.delete(path);
     visited.add(path);
   }
   for (const path of Object.keys(inputs)) visit(path);
+  // Shared code asks for capabilities, never for a language code ("zh", "ja", …).
+  // Only comparisons and switch cases with registered codes are flagged; lang="zh" on a labelled
+  // example or v === "on" is fine.
+  const codes = [...languages, ...upcomingLanguages].map((l) => l.code).join("|");
+  const quoted = `["'\`](?:${codes})["'\`]`;
+  const codeLiteral = new RegExp(`[!=]==?\\s*${quoted}|${quoted}\\s*[!=]==?|case\\s+${quoted}\\s*:`);
+  for (const dir of SHARED_DIRS) {
+    for (const file of await readdir(dir, { recursive: true })) {
+      if (!/\.(ts|tsx)$/.test(file)) continue;
+      const source = await readFile(join(dir, file), "utf8");
+      source.split("\n").forEach((line, index) => {
+        assert.ok(!codeLiteral.test(line), `Language code compared in shared code: ${dir}${file}:${index + 1}`);
+      });
+    }
+  }
   const css = await readFile("src/styles/styles.css", "utf8");
   assert.ok(css.includes('@import "../languages/zh/presentation/theme.css"'));
   assert.ok(

@@ -182,11 +182,11 @@ Eine Validierungsfunktion für Pakete (`scripts/validate-packages.ts`, geplant) 
 
 Diese Regeln ergänzen `scripts/test-architecture.mjs`:
 
-1. Kein Modul unter `src/features/` oder `src/shared/` importiert `src/languages/<code>/` (heute nur für `zh` und nur für Features geprüft).
-2. Kein gemeinsames Modul vergleicht mit einem Sprachcode-Literal (`lang.code === "zh"`). Prüfung per Quelltextsuche.
+1. Kein Modul unter `src/features/`, `src/shared/` oder `src/state/` importiert `src/languages/<code>/`. **Geprüft** (Laufzeit-Importgraph; reine Typimporte sieht der Graph nicht).
+2. Kein gemeinsames Modul vergleicht mit einem Sprachcode-Literal (`lang.code === "zh"`, `case "zh":`). **Geprüft** per Quelltextsuche, nur für Codes aus der Registrierung. HTML-Attribute wie `lang="zh"` an gekennzeichneten Beispielen sind erlaubt.
 3. Jedes in `capabilities.modules` deklarierte Modul hat einen Eintrag in `moduleViews`, und umgekehrt gehört jeder Eintrag zu mindestens einer Sprache.
-4. Serialisierte Pakete enthalten keine Funktionen; `linguistics` erscheint nicht im Export.
-5. Wort-IDs sind eindeutig und beginnen mit `<code>:`; die Liste der Mandarin-IDs bleibt gegenüber dem letzten Release vollständig erhalten.
+4. Serialisierte Pakete enthalten keine Funktionen; `linguistics` erscheint nicht im Export. **Geprüft** ist der erste Teil (bestand schon); der zweite folgt mit `linguistics` in P1.
+5. Wort-IDs sind eindeutig und beginnen mit `<code>:`; die Liste der Mandarin-IDs bleibt gegenüber dem letzten Release vollständig erhalten. **Geprüft** für alle registrierten Sprachen, dazu Snapshot.
 6. Für jedes Manifest mit `available: true` existiert ein ladbares Paket mit Wortschatz.
 
 ---
@@ -212,6 +212,7 @@ Umgesetzt:
 - 25.11.2026 · P0 Kontosperre nach Fehlanmeldungen (B14): `backend/accounts/lockout.py`. Nach 5 Fehlversuchen pro Benutzername ist `login` 15 Minuten lang gesperrt (429). Tests in `backend/accounts/tests.py`, `LoginLockoutTests`. Nicht umgesetzt ist die optionale Weitergabe von `X-Real-IP`.
 - 25.11.2026 · P0 Leitner-Logik als reine Funktion: `src/shared/lib/srs.ts` (`nextCard`, `scheduledCard`, `BOX_INTERVALS`, `MASTERED_BOX`, `CardState`). Der Store ruft sie auf und exportiert die Konstanten weiter. Das Verhalten ist unverändert. Tabellentests aller Boxübergänge sowie Fälligkeiten über Monats-, Schaltjahr-, Jahres- und Zeitumstellungsgrenzen stehen in `scripts/test-learning.mjs`.
 - 25.11.2026 · P0 Snapshot der Mandarin-Wort-IDs: `scripts/fixtures/zh-word-ids.txt` enthält 4691 IDs, nur IDs, keine Inhalte. `test-architecture.mjs` bricht ab, wenn eine davon fehlt. Neue IDs sind erlaubt und werden mit `UPDATE_WORD_IDS=1` ergänzt, nie entfernt.
+- 25.11.2026 · P0 Architekturregeln 1, 2, 4 und 5 (Abschnitt 2.6) in `scripts/test-architecture.mjs`. Jede Regel hat einmal mit einem absichtlichen Verstoß gezeigt, dass sie anschlägt; die Verstöße wurden nicht eingecheckt. **P0 ist damit abgeschlossen.**
 
 ### P0 · Absicherung ohne Verhaltensänderung
 
