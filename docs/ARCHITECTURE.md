@@ -211,6 +211,7 @@ Umgesetzt:
 
 - 25.11.2026 · P0 Kontosperre nach Fehlanmeldungen (B14): `backend/accounts/lockout.py`. Nach 5 Fehlversuchen pro Benutzername ist `login` 15 Minuten lang gesperrt (429). Tests in `backend/accounts/tests.py`, `LoginLockoutTests`. Nicht umgesetzt ist die optionale Weitergabe von `X-Real-IP`.
 - 25.11.2026 · P0 Leitner-Logik als reine Funktion: `src/shared/lib/srs.ts` (`nextCard`, `scheduledCard`, `BOX_INTERVALS`, `MASTERED_BOX`, `CardState`). Der Store ruft sie auf und exportiert die Konstanten weiter. Das Verhalten ist unverändert. Tabellentests aller Boxübergänge sowie Fälligkeiten über Monats-, Schaltjahr-, Jahres- und Zeitumstellungsgrenzen stehen in `scripts/test-learning.mjs`.
+- 25.11.2026 · P0 Snapshot der Mandarin-Wort-IDs: `scripts/fixtures/zh-word-ids.txt` enthält 4691 IDs, nur IDs, keine Inhalte. `test-architecture.mjs` bricht ab, wenn eine davon fehlt. Neue IDs sind erlaubt und werden mit `UPDATE_WORD_IDS=1` ergänzt, nie entfernt.
 
 ### P0 · Absicherung ohne Verhaltensänderung
 

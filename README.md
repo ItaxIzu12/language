@@ -204,7 +204,7 @@ mitgelieferte Workflow (`.github/workflows/deploy.yml`) die App bei jedem Push a
 
 ### Mandarin-Inhalte bearbeiten
 
-Der Wortschatz steht in [A1.json](src/languages/zh/content/vocabulary/A1.json), [A2.json](src/languages/zh/content/vocabulary/A2.json), [B1.json](src/languages/zh/content/vocabulary/B1.json) und [B2.json](src/languages/zh/content/vocabulary/B2.json). Bestehende Wort-IDs bleiben bei Textkorrekturen erhalten. Kategorien, Hörsätze, Lesetexte, Dialogepisoden und Podcast-Empfehlungen stehen in den JSON-Dateien in den Unterordnern von `src/languages/zh/content/`. Browser und Django-Import verwenden dieselbe Kursregistrierung.
+Der Wortschatz steht in [A1.json](src/languages/zh/content/vocabulary/A1.json), [A2.json](src/languages/zh/content/vocabulary/A2.json), [B1.json](src/languages/zh/content/vocabulary/B1.json) und [B2.json](src/languages/zh/content/vocabulary/B2.json). Bestehende Wort-IDs bleiben bei Textkorrekturen erhalten. `npm run test:architecture` schlägt fehl, wenn eine ID aus [scripts/fixtures/zh-word-ids.txt](scripts/fixtures/zh-word-ids.txt) fehlt. Neue Wörter nimmst du mit `UPDATE_WORD_IDS=1 npm run test:architecture` in diese Liste auf; der Befehl entfernt nie eine ID. Kategorien, Hörsätze, Lesetexte, Dialogepisoden und Podcast-Empfehlungen stehen in den JSON-Dateien in den Unterordnern von `src/languages/zh/content/`. Browser und Django-Import verwenden dieselbe Kursregistrierung.
 
 ### Neue Sprache
 

@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import { mkdtemp, rm, readFile } from "node:fs/promises";
+import { mkdtemp, rm, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -27,6 +27,21 @@ try {
   assert.equal(zh.vocab.filter((word) => word.understanding).length, 20);
   assert.equal(zh.scenarios.length, 3);
   assert.equal(new Set(zh.vocab.map((word) => word.id)).size, zh.vocab.length);
+  // Learner cards reference word IDs. Released IDs must never disappear or change.
+  // New words are allowed; UPDATE_WORD_IDS=1 adds them to the snapshot (never removes).
+  const snapshotPath = "scripts/fixtures/zh-word-ids.txt";
+  const released = (await readFile(snapshotPath, "utf8")).split("\n").filter(Boolean);
+  const current = new Set(zh.vocab.map((word) => word.id));
+  const missing = released.filter((id) => !current.has(id));
+  assert.deepEqual(missing, [], `Released Mandarin word IDs were removed or renamed (${missing.length})`);
+  const releasedSet = new Set(released);
+  const added = [...current].filter((id) => !releasedSet.has(id));
+  if (added.length && process.env.UPDATE_WORD_IDS === "1") {
+    await writeFile(snapshotPath, [...released, ...added].sort().join("\n") + "\n");
+    console.log(`Added ${added.length} new word IDs to ${snapshotPath}.`);
+  } else if (added.length) {
+    console.log(`${added.length} new word IDs are not yet in ${snapshotPath} (UPDATE_WORD_IDS=1 adds them).`);
+  }
   assert.deepEqual(
     quickLinks.map((n) => n.to),
     ["/heute", "/learn", "/practice", "/chronicle", "/settings"],
