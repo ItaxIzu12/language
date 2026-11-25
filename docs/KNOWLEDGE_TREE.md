@@ -183,7 +183,7 @@ Die folgenden Ketten zeigen, wie Capabilities die Knotentypen prägen. Sie sind 
 
 ## 6. Validierung und Redaktion
 
-Validator (`scripts/validate-packages.ts`) und `import_courses` prüfen:
+`import_courses` (die maßgebliche Paketprüfung, auch beim Export aufgerufen) prüft:
 
 1. Eindeutige Knoten-IDs mit Sprachpräfix.
 2. Alle `requires`, `supports`, `uses` verweisen auf existierende Knoten derselben Sprache.

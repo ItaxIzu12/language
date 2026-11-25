@@ -133,14 +133,14 @@ jeweiligen Zeile direkt korrigieren.
 
 ### API und Synchronisierung
 
-| Pfad unter `/api/v1/`            | Methode  | Ergebnis                                                                                |
-| -------------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| `health/`                        | GET      | Datenbankverbindung                                                                     |
-| `session/`                       | GET      | Kontoname und CSRF-Token                                                                |
-| `register/`, `login/`, `logout/` | POST     | Django-Cookie-Sitzung; Registrierung und Anmeldung erwarten username und password       |
-| `courses/`, `courses/zh/`        | GET      | Verfügbare Kurse bzw. Kursinhalte mit Kategorien, Lesetexten und Hörmaterial            |
-| `courses/zh/words/`              | GET      | Wörter, filterbar nach level und category, mit limit und offset                         |
-| `state/zh/`                      | GET, PUT | Persönlicher Lernstand mit Revision, Einstellungen, SRS, Tagesaktivität und Fundstücken |
+| Pfad unter `/api/v1/`            | Methode  | Ergebnis                                                                                                                                                                                             |
+| -------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `health/`                        | GET      | Datenbankverbindung                                                                                                                                                                                  |
+| `session/`                       | GET      | Kontoname und CSRF-Token                                                                                                                                                                             |
+| `register/`, `login/`, `logout/` | POST     | Django-Cookie-Sitzung; Registrierung und Anmeldung erwarten username und password. Nach 5 Fehlanmeldungen sperrt `login` den Benutzernamen 15 Minuten (429), zusätzlich zum IP-Limit in `nginx.conf` |
+| `courses/`, `courses/zh/`        | GET      | Verfügbare Kurse bzw. Kursinhalte mit Kategorien, Lesetexten und Hörmaterial                                                                                                                         |
+| `courses/zh/words/`              | GET      | Wörter, filterbar nach level und category, mit limit und offset                                                                                                                                      |
+| `state/zh/`                      | GET, PUT | Persönlicher Lernstand mit Revision, Einstellungen, SRS, Tagesaktivität und Fundstücken                                                                                                              |
 
 Schreibzugriffe verwenden `X-CSRFToken`. Lernstand-Anfragen senden zusätzlich den URL-kodierten
 Kontonamen als `X-Learner`. Das Konto für den Datenzugriff stammt aus der Sitzung.

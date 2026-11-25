@@ -200,10 +200,11 @@ Verhalten:
 
 ## 7. Mock-Provider für die Entwicklung
 
-Solange der Core fehlt, gibt es zwei Ebenen, beide deterministisch und ohne Modell:
+Solange der Core fehlt, genügt eine deterministische Ebene ohne Modell:
 
-1. **`MockBackend` im Adapter** (Unit- und Integrationstests): feste Antworten je Fähigkeit, konfigurierbare Fehler (Timeout, Schemafehler, `unavailable`) für Resilienztests, Fähigkeitsliste aus einer Datei.
-2. **Mock-Core als HTTP-Dienst** (optional, Compose-Profil `ai-mock`): implementiert die versionierte Core-API mit denselben festen Antworten. So wird auch `CoreBackend` mit HTTP, Authentifizierung und Timeouts geprüft. Sobald der Core eine OpenAPI-Spezifikation veröffentlicht, wird der Mock daraus abgeleitet oder durch den offiziellen Mock des Standards ersetzt.
+- **`MockBackend` im Adapter** (Unit- und Integrationstests, im Django-Prozess): feste Antworten je Fähigkeit, konfigurierbare Fehler (Timeout, Schemafehler, `unavailable`) für Resilienztests, Fähigkeitsliste aus einer Datei.
+
+Ein Mock-Core als eigener HTTP-Dienst ist bewusst nicht vorgesehen, solange keine Core-Spezifikation existiert: Er würde eine erfundene API absichern. `CoreBackend` und seine Contract-Tests entstehen erst mit der veröffentlichten Spezifikation, idealerweise gegen den offiziellen Mock des gemeinsamen Standards.
 
 Mock-Antworten tragen `origin="mock"` und werden in der Oberfläche als „Testantwort“ gekennzeichnet. `AI_BACKEND=mock` ist in Produktionskonfigurationen unzulässig; der Adapter verweigert den Start mit `mock`, wenn `DJANGO_HTTPS=1` gesetzt ist.
 
@@ -240,7 +241,7 @@ Mock-Antworten tragen `origin="mock"` und werden in der Oberfläche als „Testa
 | Kein Core-Zugriff aus dem Frontend | Architekturtest: keine Core-Adresse und keine `AI_CORE_*`-Variable im Frontend-Bundle; `VITE_`-Variablen enthalten keine KI-Endpunkte |
 | Keine Modelle in der App           | Abhängigkeitsprüfung von `package.json` und `requirements.txt` gegen eine Liste von Modell- bzw. Inferenzbibliotheken                 |
 | Fähigkeitsabgleich                 | Tabellentests: Core-Fähigkeiten × Language Capabilities × Konfiguration × Zustimmung → erwartete Verfügbarkeit und Grund              |
-| Contract-Tests `CoreBackend`       | Gegen den Mock-Core: Versionierung, Authentifizierung, Schema, Fehlercodes                                                            |
+| Contract-Tests `CoreBackend`       | Erst mit veröffentlichter Core-Spezifikation: Versionierung, Authentifizierung, Schema, Fehlercodes                                   |
 | Resilienz                          | Timeout, Retry nur bei idempotenten Aufrufen, Circuit Breaker, degradierter Modus mit `503`, Lernstand unverändert                    |
 | Datenminimierung                   | Die an den Core gesendete Nutzlast enthält keinen Benutzernamen, keine E-Mail, keine Konto-ID; `subject` ist pro App verschieden      |
 | Herkunftsstatus                    | Validator lehnt `reviewed` ohne Quelle ab; `generated` und `mock` werden in der Oberfläche gekennzeichnet                             |

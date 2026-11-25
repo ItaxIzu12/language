@@ -2,10 +2,12 @@ import re
 from urllib.parse import parse_qs, urlsplit
 from django.contrib.auth import get_user_model
 from django.core import mail
+from django.core.cache import cache
 from django.test import TestCase, override_settings
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from accounts import lockout
 
 
 @override_settings(EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend", PUBLIC_APP_URL="https://learn.example.com")
@@ -62,3 +64,47 @@ class RecoveryTests(TestCase):
         response = self.post("register", {"username":"newlearner","email":"new@example.com","password":"Unique!Learning913"})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(get_user_model().objects.get(username="newlearner").email, "new@example.com")
+
+
+class LoginLockoutTests(TestCase):
+    password = "Original!Pass482"
+
+    def setUp(self):
+        cache.clear()
+        get_user_model().objects.create_user("learner", password=self.password)
+        get_user_model().objects.create_user("other", password=self.password)
+
+    def login(self, username, password):
+        return self.client.post("/api/v1/login/", {"username": username, "password": password}, content_type="application/json")
+
+    def fail(self, username, times=lockout.MAX_FAILURES):
+        for _ in range(times):
+            self.assertEqual(self.login(username, "wrong").status_code, 401)
+
+    def test_locks_account_after_repeated_failures_even_with_correct_password(self):
+        self.fail("learner")
+        response = self.login("learner", self.password)
+        self.assertEqual(response.status_code, 429)
+        self.assertEqual(response["Retry-After"], str(lockout.WINDOW_SECONDS))
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+    def test_other_accounts_and_case_variants(self):
+        self.fail("learner")
+        self.assertEqual(self.login("LEARNER", self.password).status_code, 429)
+        self.assertEqual(self.login("other", self.password).status_code, 200)
+
+    def test_unknown_username_is_locked_the_same_way(self):
+        self.fail("ghost")
+        self.assertEqual(self.login("ghost", "wrong").status_code, 429)
+
+    def test_success_resets_counter(self):
+        self.fail("learner", lockout.MAX_FAILURES - 1)
+        self.assertEqual(self.login("learner", self.password).status_code, 200)
+        self.client.post("/api/v1/logout/")
+        self.fail("learner", lockout.MAX_FAILURES - 1)
+        self.assertEqual(self.login("learner", self.password).status_code, 200)
+
+    def test_lock_expires(self):
+        self.fail("learner")
+        cache.delete(lockout._key("learner"))  # same effect as the window expiring
+        self.assertEqual(self.login("learner", self.password).status_code, 200)

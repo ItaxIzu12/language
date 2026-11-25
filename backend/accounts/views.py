@@ -8,6 +8,7 @@ from django.middleware.csrf import get_token
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from config.http import body, error
+from . import lockout
 
 
 @never_cache
@@ -45,9 +46,15 @@ def account(request, action):
         except IntegrityError:
             return error("Benutzername bereits vergeben.", 409)
     else:
+        if lockout.is_locked(username):
+            response = error("Zu viele fehlgeschlagene Anmeldungen. Bitte versuche es in 15 Minuten erneut.", 429)
+            response["Retry-After"] = str(lockout.WINDOW_SECONDS)
+            return response
         user = authenticate(request, username=username, password=password)
         if user is None:
+            lockout.record_failure(username)
             return error("Anmeldung fehlgeschlagen.", 401)
+        lockout.reset(username)
     login(request, user)
     return session_response(request)
 

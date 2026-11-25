@@ -22,6 +22,9 @@ stehen in den Architekturdokumenten; dort wird nichts hier Gesagtes wiederholt.
   Fortschritt, Hören, Aussprache, Statistik) existieren einmal. Sprachspezifisches
   liegt im Sprachpaket und wird als Capability deklariert; gemeinsamer Code fragt
   Capabilities ab, nie den Sprachcode.
+- **Wiederverwendung:** Vor jeder neuen Komponente, jedem Service oder Endpunkt die
+  vorhandenen in `src/features`, `src/shared`, `src/app` und `backend/*` prüfen und
+  erweitern statt neu bauen.
 - **Trennung:** Lerninhalte, Lernlogik und KI-Dienste bleiben getrennt.
 - **KI nur über den Personal AI Core:** über den zentralen AI Service Adapter im
   Backend und versionierte REST-Schnittstellen; keine eingebundenen Modelle, keine
@@ -30,11 +33,40 @@ stehen in den Architekturdokumenten; dort wird nichts hier Gesagtes wiederholt.
   `docs/AI_INTEGRATION.md` dokumentiert.
 - **Ohne KI vollständig:** Alle grundlegenden Funktionen, Lernfortschritt und
   Wiederholungslogik funktionieren unabhängig vom Personal AI Core.
+- **Personal AI Core noch nicht bauen:** Keinen Core und keine lokalen Modelle in
+  diesem Repo entwickeln oder einbinden. Erweiterungen bleiben nur kompatibel zur
+  späteren Anbindung.
 - **Überprüfbare Inhalte:** KI-generierte Inhalte gelten erst nach redaktioneller
   Freigabe als geprüft.
+- **Datenschutz und Sicherheit:** Lernstand und Kontodaten nur so weit erheben, wie
+  die Funktion es braucht. Keine Secrets im Code oder in Logs, keine personenbezogenen
+  Daten in URLs. Neue Endpunkte sind standardmäßig authentifiziert (DRF-Vorgabe
+  `IsAuthenticated`), schreibende Endpunkte durch CSRF geschützt, Eingaben serverseitig
+  validiert (`learning/validation.py`, `import_courses`).
+- **Kein Overengineering:** Nur bauen, was eine konkrete, freigegebene Funktion braucht.
+  Keine vorsorglichen Felder, Abstraktionsschichten, Dienste oder Konfiguration
+  für hypothetische Sprachen oder KI-Fähigkeiten. Einfachste Lösung, die in die
+  Zielarchitektur passt.
 - **Unabhängigkeit:** LinguaFlow bleibt unabhängig von 4inOne, Denkraum und Prüfraum.
-- **Freigabe:** Architekturänderungen und Phasen des Maßnahmenplans werden erst nach
-  ausdrücklicher Freigabe durch den Nutzer umgesetzt.
+- **Freigabe und kleine Schritte:** Architekturänderungen und Aufgaben des
+  Maßnahmenplans werden erst nach ausdrücklicher Freigabe durch den Nutzer umgesetzt,
+  einzeln und nacheinander. Nach jedem Schritt läuft die Prüfroutine unten; erst
+  wenn sie grün ist, folgt der nächste Schritt.
+
+### Prüfroutine nach jedem Schritt
+
+```bash
+npm run lint && npm run test:architecture && npm run test:learning && npm run test:routes && npm run format:check && npm run build
+```
+
+Bei Backend-Änderungen zusätzlich die Django-Tests gegen PostgreSQL im laufenden
+Docker-Stack (`docker compose up -d --build`, dann
+`docker compose exec backend python manage.py test`). Ohne Stack ersatzweise mit
+installierten `backend/requirements.txt`:
+`python manage.py test --settings=config.test_settings` (SQLite, ohne
+Nebenläufigkeitstests gegen PostgreSQL). Sichtbare Änderungen im Browser
+prüfen (siehe „Bedienbarkeit und Prüfung“). Was nicht ausgeführt werden konnte, wird
+im Bericht genannt.
 
 ## Produktidentität
 

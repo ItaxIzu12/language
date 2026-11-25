@@ -153,7 +153,7 @@ Regeln:
 
 ### 4.2 Inhaltsfelder abhängig von Capabilities
 
-Additive, optionale Felder an `VocabItem` (und analog `Example`):
+Additive, optionale Felder an `VocabItem` (und analog `Example`). Jedes Feld wird erst mit der ersten Sprache eingeführt, die es braucht, nicht vorsorglich:
 
 | Feld                             | Pflicht, wenn …                                     | Zweck                                                            |
 | -------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------- |
@@ -169,7 +169,7 @@ Diese Felder entsprechen den Spalten `register`, `variety` und `sense_variant` i
 
 ## 5. Validierung
 
-Ein Paketvalidator (`scripts/validate-packages.ts`, geplant) und `backend/catalog/management/commands/import_courses.py` prüfen dieselben Regeln:
+`backend/catalog/management/commands/import_courses.py` ist die einzige maßgebliche Paketprüfung. Der Export ruft sie auf, statt die Regeln in einem zweiten Validator zu duplizieren (siehe [ARCHITECTURE.md](ARCHITECTURE.md), Abschnitt 6). Geprüft wird:
 
 1. `capabilities` vorhanden und serialisierbar; jedes Modul in `modules` ist in `moduleViews` registriert (nur im Frontend-Test prüfbar).
 2. Jedes `level` eines Wortes stammt aus einem deklarierten `levelSystems`-Eintrag.
@@ -232,8 +232,7 @@ Die bestehende Anleitung in README („Neue Sprache“) bleibt die Grundlage. Er
 
 | Test                              | Ort                                                             | Prüft                                                                                                    |
 | --------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Paketschema und Capability-Regeln | `scripts/validate-packages.ts`, Fixtures                        | Regeln 1–7 aus Abschnitt 5 mit je einem negativen Fixture                                                |
-| Import-Parität                    | `backend/catalog/tests/`                                        | Dieselben Fixtures liefern in Django dasselbe Ergebnis wie im Node-Validator                             |
+| Paketschema und Capability-Regeln | `backend/catalog/tests/`, Fixtures                              | Regeln 1–7 aus Abschnitt 5 mit je einem negativen Fixture                                                |
 | Sprachhilfen                      | `scripts/test-languages.mjs` (neu) oder `test-architecture.mjs` | Tabellentests je Sprache, z. B. `numbersToMarks("ni3 hao3") === "nǐ hǎo"`, Suchschlüssel ohne Tonzeichen |
 | Synthetische Testsprache          | `test-architecture.mjs`                                         | Lateinische Schrift ohne Lesung und ohne Module: Navigation, Lektion ohne Satzbau, Quiz, Fundstücke      |
 | ID-Stabilität                     | Snapshot je veröffentlichtem Paket                              | Keine ID entfällt oder ändert sich ohne Alias                                                            |
